@@ -1,18 +1,17 @@
 import {
-  ChevronLeftIcon as ChevronLeftIconSolid,
-  ClipboardDocumentListIcon as ClipboardDocumentListIconSolid,
-  PaperAirplaneIcon as PaperAirplaneIconSolid,
-  QueueListIcon as QueueListIconSolid,
-} from "@heroicons/react/24/solid";
-import {
   ChevronLeftIcon as ChevronLeftIconOutline,
   ClipboardDocumentListIcon as ClipboardDocumentListIconOutline,
   PaperAirplaneIcon as PaperAirplaneIconOutline,
-  QueueListIcon as QueueListIconOutline,
+  QueueListIcon as QueueListIconOutline
 } from "@heroicons/react/24/outline";
+import {
+  ClipboardDocumentListIcon as ClipboardDocumentListIconSolid,
+  PaperAirplaneIcon as PaperAirplaneIconSolid,
+  QueueListIcon as QueueListIconSolid
+} from "@heroicons/react/24/solid";
 
 import { useRouter } from "next/router";
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import Robot from "../../../public/assets/Robot.svg";
 import SidebarElement from "./sidebarElement";
 
@@ -22,7 +21,6 @@ const routes = [
     path: "/templates",
     icon: <QueueListIconOutline />,
     iconSolid: <QueueListIconSolid />,
-
     key: "key1",
   },
   {
@@ -40,16 +38,14 @@ const routes = [
     key: "key3",
   },
 ];
-
 interface IProps {
   open: boolean;
-  setOpen: (open: boolean) => void;
+  setOpen: (open: any) => void;
 }
 
 const Sidebar: FC<IProps> = ({ open, setOpen }) => {
   const router = useRouter();
-  // const [open, setOpen] = useState(false);
-
+  
   const activeMenu = useMemo(() => {
     return routes.find((route) => route.path === router.pathname);
   }, [router.pathname]);

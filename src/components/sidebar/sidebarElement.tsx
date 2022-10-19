@@ -1,12 +1,5 @@
-import {
-  ChevronLeftIcon,
-  ClipboardDocumentListIcon,
-  PaperAirplaneIcon,
-  QueueListIcon,
-} from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { FC, useState } from "react";
-import Robot from "../../../public/assets/Robot.svg";
+import { FC } from "react";
 
 interface IProps {
   open: boolean;

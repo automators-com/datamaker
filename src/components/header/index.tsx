@@ -1,8 +1,7 @@
 import { useState } from "react";
-import LogoWhite from "../../public/assets/LogoWhite.svg";
+import LogoWhite from "../../../public/assets/LogoWhite.svg";
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
   return (
     <>
       <div className="flex h-20 w-full">
