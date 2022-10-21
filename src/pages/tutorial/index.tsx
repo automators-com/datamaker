@@ -5,7 +5,7 @@ const Tutorial: NextPage = () => {
   return (
     <>
       <Layout>
-        <div className="m-7 w-full">
+        <div className="w-full p-10">
           <form className="w-full shadow-lg">
             <div className="flex h-fit content-center items-center justify-between gap-3 border-b-2 bg-gray-50 p-7 font-sans">
               <h1 className="h-fit text-lg font-medium text-automatorsPurple">

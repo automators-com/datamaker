@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "../header";
 import Sidebar from "../sidebar";
-import useWindowDimensions from "../../lib/useWindowDimensions";
-import useLocalStorage from "../../lib/useLocalStorage";
+// import Sidebar from "../sidebar";
 
 type defaultLayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout = ({ children }: defaultLayoutProps) => {
-  // const { width } = useWindowDimensions();
-  const [open, setOpen] = useLocalStorage("open", true);
+  const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
 
   return (
     <>
-      <div className="flex h-screen auto-cols-max auto-rows-max flex-col font-sans text-white">
+      <div className="flex h-screen w-screen flex-col">
         <Header />
-        <div className="flex h-full w-full">
-          <Sidebar open={open} setOpen={setOpen} />
-          <main className="">{children}</main>
+        <div className="flex h-full w-full flex-row">
+          <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
+          <main className="w-full">{children}</main>
         </div>
       </div>
     </>

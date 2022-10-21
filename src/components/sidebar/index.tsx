@@ -2,12 +2,12 @@ import {
   ChevronLeftIcon as ChevronLeftIconOutline,
   ClipboardDocumentListIcon as ClipboardDocumentListIconOutline,
   PaperAirplaneIcon as PaperAirplaneIconOutline,
-  QueueListIcon as QueueListIconOutline
+  QueueListIcon as QueueListIconOutline,
 } from "@heroicons/react/24/outline";
 import {
   ClipboardDocumentListIcon as ClipboardDocumentListIconSolid,
   PaperAirplaneIcon as PaperAirplaneIconSolid,
-  QueueListIcon as QueueListIconSolid
+  QueueListIcon as QueueListIconSolid,
 } from "@heroicons/react/24/solid";
 
 import { useRouter } from "next/router";
@@ -45,16 +45,18 @@ interface IProps {
 
 const Sidebar: FC<IProps> = ({ open, setOpen }) => {
   const router = useRouter();
-  
+
   const activeMenu = useMemo(() => {
     return routes.find((route) => route.path === router.pathname);
   }, [router.pathname]);
 
   return (
     <>
-      <div
+      <nav
         className={`h-full ${
-          open ? "w-60" : "w-20"
+          open
+            ? "w-60 min-w-[10rem] md:w-60 md:min-w-[10rem]"
+            : "w-16 min-w-[4rem] md:w-20 md:min-w-[5rem]"
         } relative bg-gray-200 shadow-inner duration-300`}
       >
         <ul className=" flex w-full flex-col items-center justify-center pt-4 text-automatorsPurple">
@@ -81,7 +83,7 @@ const Sidebar: FC<IProps> = ({ open, setOpen }) => {
             !open && "scale-0"
           } absolute left-10 bottom-0 w-40 transition-all duration-100`}
         />
-      </div>
+      </nav>
     </>
   );
 };
