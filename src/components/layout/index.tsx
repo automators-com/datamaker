@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Header from "../header";
 import Sidebar from "../sidebar";
+import { NavContext } from "../context/navContext";
 
 type defaultLayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout = ({ children }: defaultLayoutProps) => {
-  const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
-
+  const { isNavOpen, setIsNavOpen } = useContext(NavContext);
   return (
     <>
       <div className="flex h-screen w-screen flex-col">
