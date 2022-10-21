@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Header from "../header";
 import Sidebar from "../sidebar";
-// import Sidebar from "../sidebar";
 
 type defaultLayoutProps = {
   children: React.ReactNode;
