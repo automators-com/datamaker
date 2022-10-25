@@ -38,3 +38,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Unsupported package managers 
+package-lock.json
+yarn.lock
