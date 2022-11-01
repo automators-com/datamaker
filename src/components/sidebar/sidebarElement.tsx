@@ -14,8 +14,7 @@ interface IProps {
 const SidebarElement: FC<IProps> = (props: IProps) => {
   return (
     <>
-      <Link key={props.key} href={props.path}>
-        <a
+      <Link key={props.key} href={props.path}
           className={`flex h-16 w-full cursor-pointer items-center ${
             props.open ? `justify-between` : `justify-center`
           }  p-4 hover:bg-gray-100 ${
@@ -32,7 +31,6 @@ const SidebarElement: FC<IProps> = (props: IProps) => {
           >
             {props.text}
           </span>
-        </a>
       </Link>
     </>
   );
