@@ -13,8 +13,8 @@ const Header = () => {
         <LogoWhite />
       </div>
       <div className="flex h-full w-full items-center pl-4 md:pl-10">
-        <h1 className="b-2 text-xl font-extralight uppercase tracking-widest">
-          test:data
+        <h1 className="text-xl font-normal uppercase tracking-widest">
+          datamaker
         </h1>
       </div>
     </header>

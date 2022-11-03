@@ -57,7 +57,7 @@ const Sidebar: FC<IProps> = ({ open, setOpen }) => {
           open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "w-14 min-w-[4rem] md:w-18 md:min-w-[5rem]"
-        } relative bg-gray-200 shadow-inner duration-300 space-y-1 px-2`}
+        } relative bg-gray-200 shadow-inner duration-300 space-y-1 px-4`}
       >
         <ul className=" flex w-full flex-col items-center justify-center pt-4 text-automatorsPurple">
           {routes.map((route) => (
@@ -80,8 +80,8 @@ const Sidebar: FC<IProps> = ({ open, setOpen }) => {
         />
         <Robot
           className={`${
-            !open && "scale-0"
-          } absolute left-10 bottom-0 w-40 transition-all duration-100`}
+            !open && "hidden"
+          } absolute left-7 bottom-0 w-40 transition-all duration-100`}
         />
       </nav>
     </>
