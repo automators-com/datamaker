@@ -12,6 +12,11 @@ module.exports = {
         automatorsTourquoiseFocus: "rgba(29, 116, 127,1)",
         automatorsPurpleLightHover: "rgba(71, 43, 124, 0.1)",
         automatorsBlue: "rgba(29, 30, 57, 1)",
+        automatorsTurquoise: 'rgba(69, 156, 167, 1)',
+        automatorsBtnHover: 'rgba(237, 237, 237, 1)',
+        whiteText: '#ffffff',
+        grayHover: 'rgba(0, 0, 0, 0.1)'
+
       },
     },
   },

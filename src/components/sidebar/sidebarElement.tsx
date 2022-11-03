@@ -15,11 +15,11 @@ const SidebarElement: FC<IProps> = (props: IProps) => {
   return (
     <>
       <Link key={props.key} href={props.path}
-          className={`flex h-16 w-full cursor-pointer items-center ${
+          className={`flex h-10 w-full cursor-pointer items-center ${
             props.open ? `justify-between` : `justify-center`
-          }  p-4 hover:bg-gray-100 ${
-            props.active ? "bg-gray-100" : "bg-transparent"
-          } flex-row`}
+          }  p-4 ${
+            props.active ? "bg-automatorsPurple text-whiteText" : "bg-transparent hover:bg-grayHover hover:text-automatorsPurple text-automatorsBlue"
+          } flex-row group flex items-center px-2 my-1 text-base font-medium rounded-md`}
         >
           <div className="w-7">
             {props.active ? props.iconSolid : props.icon}
