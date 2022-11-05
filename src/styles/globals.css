@@ -7,3 +7,28 @@
     @apply box-border;
   }
 }
+
+@layer components {
+  /* btn styles */
+  .btn{
+    @apply inline-flex items-center rounded-sm border border-transparent px-4 py-1.5 text-xs font-medium focus:outline-none;
+  }
+
+  .btn-primary-tourquoise{
+    @apply text-white bg-automatorsTourquoise border-automatorsTourquoise hover:bg-automatorsTourquoiseHover hover:border-automatorsTourquoiseHover
+     focus:bg-automatorsTourquoiseFocus shadow-sm ;
+  }
+
+  .btn-primary-purple{
+    @apply text-white bg-automatorsPurple border-automatorsPurple hover:bg-automatorsPurpleHover hover:border-automatorsPurpleHover 
+      focus:bg-automatorsPurpleFocus shadow-sm ;
+  }
+
+ .btn-secondray{
+    @apply text-automatorsBlue border-automatorsBlue hover:bg-automatorsPurpleLightHover shadow-sm;
+  }
+ 
+  .btn-link{
+    @apply text-automatorsTourquoise hover:text-automatorsBlue
+  }
+}
