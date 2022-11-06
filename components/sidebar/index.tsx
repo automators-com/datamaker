@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { FC, useMemo } from "react";
 import Robot from "../../public/assets/Robot.svg";
 import ToolTip from "../tooltip";
@@ -52,11 +52,11 @@ export default function Sidebar({
   open: boolean;
   setOpen: (open: any) => void;
 }) {
-  const router = useRouter();
+  const pathName = usePathname();
 
   const activeMenu = useMemo(() => {
-    return routes?.find((route) => route?.path === router?.pathname);
-  }, [router?.pathname]);
+    return routes?.find((route) => route?.path === pathName);
+  }, [pathName]);
 
   return (
     <>
@@ -69,17 +69,17 @@ export default function Sidebar({
       >
         <ul className=" flex w-full flex-col items-center justify-center pt-4 text-automatorsPurple">
           {routes.map((route, active) => (
-            <ToolTip tooltip={!open ? route.name : ""}>
+            <ToolTip key={route.key} tooltip={!open ? route.name : ""}>
               <Link
                 key={route.key}
                 href={route.path}
                 className={`flex h-12 w-full cursor-pointer items-center ${
-                  open ? `justify-between pl-4` : `justify-center rounded-xl`
-                }  p-4 ${
+                  open ? `justify-between pl-4` : `rounded-xl`
+                } ${
                   activeMenu?.path === route.path
                     ? "bg-automatorsPurple text-whiteText"
                     : "bg-transparent text-automatorsBlue hover:bg-grayHover hover:text-automatorsPurple"
-                } group my-1 flex flex-row items-center rounded-xl px-2 text-base font-medium`}
+                } group my-1 flex flex-row items-center rounded-xl px-2 text-base font-medium pl-[0.88rem]`}
               >
                 <div className="w-5">
                   {activeMenu?.path === route.path
@@ -105,7 +105,7 @@ export default function Sidebar({
           onClick={() => setOpen(!open)}
         />
         <Robot
-          className={`${!open && "invisible"} absolute left-7 bottom-0 w-40`}
+          className={`${!open && "invisible"} absolute left-10 bottom-0 w-40`}
         />
       </nav>
     </>
