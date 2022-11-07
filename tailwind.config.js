@@ -19,9 +19,9 @@ module.exports = {
         borderColor: "rgb(129, 130, 165)",
         automatorsRed: "rgba(244, 98, 86, 1)",
         automatorsBlue: "rgba(29, 30, 57, 1)",
-        automatorsBtnHover: 'rgba(237, 237, 237, 1)',
-        whiteText: '#ffffff',
-        grayHover: 'rgba(0, 0, 0, 0.1)'
+        automatorsBtnHover: "rgba(237, 237, 237, 1)",
+        whiteText: "#ffffff",
+        grayHover: "rgba(0, 0, 0, 0.1)",
       },
     },
   },
