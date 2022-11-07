@@ -1,10 +1,7 @@
 "use client";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { NavContext } from "../components/context/navContext";
-import DropDown from "../components/dropdown";
 import Header from "../components/header";
-import { Input } from "../components/input";
-import { MenuI } from "../components/menu";
 import Sidebar from "../components/sidebar";
 import "./globals.css";
 
@@ -23,7 +20,6 @@ import "./globals.css";
 //   { id: 10, name: 'Emil Schaefer' },
 // ]
 
-
 export default function RootLayout({
   children,
 }: {
@@ -34,7 +30,6 @@ export default function RootLayout({
   // const [selected, setSelected] = useState(people[3]);
   // const [input, setInput] = useState('');
 
-
   return (
     <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
       <html lang="en">
@@ -43,22 +38,18 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
         <head />
-        <body>
-          <div className="flex h-screen w-screen flex-col">
-            <Header />
-            <div className="flex h-full w-full flex-row">
-              <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
-              <main>
-                {children}
+        <body className="dark flex h-screen w-screen flex-col bg-base-100">
+          <Header />
+          <div className="flex h-full w-full flex-row">
+            <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
+            <main>
+              {children}
 
-                {/* <MenuI /> */}
-                {/* <DropDown name="nsma" label="Select" value={selected!} list={people} setValue={setSelected} /> */}
+              {/* <MenuI /> */}
+              {/* <DropDown name="nsma" label="Select" value={selected!} list={people} setValue={setSelected} /> */}
 
-                {/* <Input name="name" placeholder="name" value={input} setValue={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)} label="Name" type="text" error="" /> */}
-
-              </main>
-
-            </div>
+              {/* <Input name="name" placeholder="name" value={input} setValue={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)} label="Name" type="text" error="" /> */}
+            </main>
           </div>
         </body>
       </html>

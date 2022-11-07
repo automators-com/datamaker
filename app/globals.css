@@ -2,6 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-primary: hsl(238, 33%, 17%);
+    --color-primary-focus: hsl(238 33% 07%);
+    --color-primary-content: hsl(0 0% 100%);
+    --color-secondary: hsl(261 49% 33%);
+    --color-secondary-focus: hsl(261 49% 23%);
+    --color-secondary-content: hsl(0 0% 100%);
+    --color-accent: hsl(187 42% 46%);
+    --color-accent-focus: hsl(187 42% 36%);
+    --color-accent-content: hsl(0 0% 100%);
+    --color-neutral: hsl(0 0% 95%);
+    --color-neutral-focus: hsl(0 0% 85%);
+    --color-neutral-content: hsl(0 0% 10%);
+    --color-base-100: hsl(0 0% 100%);
+    --color-base-200: hsl(0 0% 85%);
+    --color-base-300: hsl(0 0% 70%);
+    --color-base-content: hsl(0 0% 10%);
+    --color-info: hsl(261 49% 33%);
+    --color-info-content: hsl(0 0% 100%);
+    --color-success: hsl(261 49% 33%);
+    --color-success-content: hsl(0 0% 100%);
+    --color-warning: hsl(31 76, 57);
+    --color-warning-content: hsl(0 0% 100%);
+    --color-error: hsl(5 88% 65%);
+    --color-error-content: hsl(0 0% 100%);
+  }
+  .dark {
+    --color-primary: hsl(238, 33%, 17%);
+    --color-primary-focus: hsl(238 33% 07%);
+    --color-primary-content: hsl(0 0% 100%);
+    --color-secondary: hsl(261 49% 33%);
+    --color-secondary-focus: hsl(261 49% 23%);
+    --color-secondary-content: hsl(0 0% 100%);
+    --color-accent: hsl(187 42% 46%);
+    --color-accent-focus: hsl(187 42% 36%);
+    --color-accent-content: hsl(0 0% 100%);
+    --color-neutral: hsl(261 49% 33%);
+    --color-neutral-focus: hsl(261 49% 23%);
+    --color-neutral-content: hsl(0 0% 100%);
+    --color-base-100: hsl(238 25% 21%);
+    --color-base-200: hsl(238, 33%, 36%);
+    --color-base-300: hsl(238, 33%, 51%);
+    --color-base-content: hsl(0 0% 100%);
+    --color-info: hsl(261 49% 33%);
+    --color-info-content: hsl(0 0% 100%);
+    --color-success: hsl(261 49% 33%);
+    --color-success-content: hsl(0 0% 100%);
+    --color-warning: hsl(31 76, 57);
+    --color-warning-content: hsl(0 0% 100%);
+    --color-error: hsl(5 88% 65%);
+    --color-error-content: hsl(0 0% 100%);
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -37,26 +92,25 @@ a {
 
 @layer components {
   /* btn styles */
-  .btn{
+  .btn {
     @apply inline-flex items-center rounded-sm border border-transparent px-4 py-1.5 text-xs font-medium focus:outline-none;
   }
 
-  .btn-primary-tourquoise{
-    @apply text-white bg-automatorsTourquoise border-automatorsTourquoise hover:bg-automatorsTourquoiseHover hover:border-automatorsTourquoiseHover
-     focus:bg-automatorsTourquoiseFocus shadow-sm ;
+  .btn-primary-accent {
+    @apply border-accent bg-accent text-white shadow-sm hover:border-automatorsTourquoiseHover
+     hover:bg-automatorsTourquoiseHover focus:bg-automatorsTourquoiseFocus;
   }
 
-  .btn-primary-purple{
-    @apply text-white bg-automatorsPurple border-automatorsPurple hover:bg-automatorsPurpleHover hover:border-automatorsPurpleHover 
-      focus:bg-automatorsPurpleFocus shadow-sm ;
+  .btn-primary-purple {
+    @apply border-secondary bg-secondary text-white shadow-sm hover:border-automatorsPurpleHover 
+      hover:bg-automatorsPurpleHover focus:bg-automatorsPurpleFocus;
   }
 
- .btn-secondray{
-    @apply text-automatorsBlue border-automatorsBlue hover:bg-automatorsPurpleLightHover shadow-sm;
+  .btn-secondray {
+    @apply border-primary text-primary shadow-sm hover:bg-automatorsPurpleLightHover;
   }
- 
-  .btn-link{
-    @apply text-automatorsTourquoise hover:text-automatorsBlue
+
+  .btn-link {
+    @apply text-accent hover:text-primary;
   }
 }
-

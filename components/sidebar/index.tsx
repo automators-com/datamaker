@@ -61,12 +61,13 @@ export default function Sidebar({
   return (
     <>
       <nav
-        className={`h-full ${open
+        className={`h-full ${
+          open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "md:w-18 w-14 min-w-[4rem] md:min-w-[5rem]"
-          } relative space-y-1 bg-gray-200 px-4 shadow-inner duration-300`}
+        } relative space-y-1 bg-neutral px-4 shadow-inner duration-300`}
       >
-        <ul className=" flex w-full flex-col items-center justify-center pt-4 text-automatorsPurple">
+        <ul className=" flex w-full flex-col items-center justify-center pt-4 text-secondary">
           {routes.map((route, active) => (
             <ToolTip key={route.key} tooltip={!open ? route.name : ""}>
               <Link
@@ -76,9 +77,9 @@ export default function Sidebar({
                   open ? `justify-between pl-4` : `rounded-xl`
                 } ${
                   activeMenu?.path === route.path
-                    ? "bg-automatorsPurple text-whiteText"
-                    : "bg-transparent text-automatorsBlue hover:bg-grayHover hover:text-automatorsPurple"
-                } group my-1 flex flex-row items-center rounded-xl px-2 text-base font-medium pl-[0.88rem]`}
+                    ? "bg-primary text-primary-content"
+                    : "bg-transparent text-neutral-content hover:bg-neutral-focus hover:text-neutral-content"
+                } group my-1 flex flex-row items-center rounded-xl px-2 pl-[0.88rem] text-base font-medium`}
               >
                 <div className="w-5">
                   {activeMenu?.path === route.path
@@ -86,8 +87,9 @@ export default function Sidebar({
                     : route.icon}
                 </div>
                 <span
-                  className={`${!open && "invisible"
-                    } absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm`}
+                  className={`${
+                    !open && "invisible"
+                  } absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm`}
                 >
                   {route.name}
                 </span>
@@ -97,8 +99,9 @@ export default function Sidebar({
         </ul>
         <div className="py-10"></div>
         <ChevronLeftIconOutline
-          className={`absolute -right-3 bottom-40 h-7 w-7 cursor-pointer rounded-md border-2 border-gray-400 bg-white p-1 text-gray-400 ${open || "rotate-180"
-            }`}
+          className={`absolute -right-3 bottom-40 h-7 w-7 cursor-pointer rounded-md border-2 border-base-300 bg-base-100 p-1 text-base-300 ${
+            open || "rotate-180"
+          }`}
           onClick={() => setOpen(!open)}
         />
         <Robot

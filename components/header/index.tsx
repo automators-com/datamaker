@@ -5,12 +5,12 @@ export default function Header(): JSX.Element {
   return (
     <header
       id="header"
-      className="flex min-h-[4.6rem] w-full flex-row items-center justify-center bg-automatorsBlue text-white md:h-20"
+      className="flex min-h-[4.6rem] w-full flex-row items-center justify-center bg-primary text-primary-content md:h-20"
     >
       <Link
-      href={"/"}
+        href={"/"}
         id="logo"
-        className="flex h-full w-16 min-w-[4rem] items-center justify-center bg-automatorsPurple md:w-20 md:min-w-[5rem]"
+        className="flex h-full w-16 min-w-[4rem] items-center justify-center bg-secondary md:w-20 md:min-w-[5rem]"
       >
         <LogoWhite />
       </Link>
