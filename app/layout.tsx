@@ -1,7 +1,10 @@
 "use client";
 import { useContext, useState } from "react";
 import { NavContext } from "../components/context/navContext";
+import DropDown from "../components/dropdown";
 import Header from "../components/header";
+import { Input } from "../components/input";
+import { MenuI } from "../components/menu";
 import Sidebar from "../components/sidebar";
 import "./globals.css";
 

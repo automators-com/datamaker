@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@headlessui/react': ^1.7.4
   '@heroicons/react': ^2.0.13
   '@svgr/webpack': ^6.5.1
   '@types/node': 18.11.9
@@ -19,6 +20,7 @@ specifiers:
   typescript: 4.8.4
 
 dependencies:
+  '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 2.0.13_react@18.2.0
   '@svgr/webpack': 6.5.1
   '@types/node': 18.11.9
@@ -1326,6 +1328,18 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@headlessui/react/1.7.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-D8n5yGCF3WIkPsjEYeM8knn9jQ70bigGGb5aUvN6y4BGxcT3OcOQOKcM3zRGllRCZCFxCZyQvYJF6ZE7bQUOyQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      client-only: 0.0.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@heroicons/react/2.0.13_react@18.2.0:
