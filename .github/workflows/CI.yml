@@ -23,6 +23,8 @@ jobs:
       with:
         version: 6.0.2
       name: Install pnpm
+    - name: Install dependencies
+      run: pnpm install
     - name: Run Linter
       run: pnpm run lint
     - name: Run formatter
