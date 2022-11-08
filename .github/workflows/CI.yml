@@ -20,6 +20,8 @@ jobs:
       with:
         node-version: "18.x"
     - uses: pnpm/action-setup@v2
+      with:
+        version: 6.0.2
       name: Install pnpm
     - name: Run Linter
       run: pnpm lint
