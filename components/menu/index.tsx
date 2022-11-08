@@ -1,14 +1,12 @@
-import React from "react";
-import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   ArrowDownCircleIcon,
-  ArrowRightCircleIcon,
   ArrowUpCircleIcon,
   DocumentDuplicateIcon,
   EllipsisHorizontalIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import { Fragment } from "react";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");

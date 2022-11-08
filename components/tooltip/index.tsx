@@ -1,10 +1,5 @@
 "use client";
-import { FC, ReactNode, useRef } from "react";
-
-interface Props {
-  children: ReactNode;
-  tooltip?: string;
-}
+import { ReactNode, useRef } from "react";
 
 export default function ToolTip({
   children,

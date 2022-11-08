@@ -52,7 +52,7 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
                     }
                     value={person}
                   >
-                    {({ selected, active }) => (
+                    {({ selected }) => (
                       <span
                         className={classNames(
                           selected ? "font-semibold" : "font-normal",

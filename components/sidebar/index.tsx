@@ -12,8 +12,8 @@ import {
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-import { usePathname, useRouter } from "next/navigation";
-import { FC, useMemo } from "react";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 import Robot from "../../public/assets/Robot.svg";
 import ToolTip from "../tooltip";
 
@@ -40,10 +40,6 @@ const routes = [
     key: "key3",
   },
 ];
-interface IProps {
-  open: boolean;
-  setOpen: (open: any) => void;
-}
 
 export default function Sidebar({
   open,
@@ -68,7 +64,7 @@ export default function Sidebar({
         } relative space-y-1 bg-neutral px-4 shadow-inner duration-300`}
       >
         <ul className=" flex w-full flex-col items-center justify-center pt-4 text-secondary">
-          {routes.map((route, active) => (
+          {routes.map((route) => (
             <ToolTip key={route.key} tooltip={!open ? route.name : ""}>
               <Link
                 key={route.key}

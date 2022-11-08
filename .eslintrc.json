@@ -20,7 +20,7 @@
     "react/react-in-jsx-scope": "off",
     //Typescript specific rules
     "@typescript-eslint/consistent-type-imports": "warn",
-    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/consistent-type-definitions": ["warn", "type"]
   }
 }
