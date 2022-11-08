@@ -38,7 +38,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
         <head />
-        <body className="dark flex h-screen w-screen flex-col bg-base-100">
+        <body className=" flex h-screen w-screen flex-col bg-base-100">
           <Header />
           <div className="flex h-full w-full flex-row">
             <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />

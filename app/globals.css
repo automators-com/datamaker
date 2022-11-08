@@ -43,8 +43,10 @@
     --color-neutral-focus: hsl(261 49% 23%);
     --color-neutral-content: hsl(0 0% 100%);
     --color-base-100: hsl(238 25% 21%);
-    --color-base-200: hsl(238, 33%, 36%);
-    --color-base-300: hsl(238, 33%, 51%);
+    --color-base-200: hsl(238, 33%, 16%);
+    --color-base-300: hsl(238, 33%, 11%);
+    /* --color-base-200: hsl(238, 33%, 36%);
+    --color-base-300: hsl(238, 33%, 51%); */
     --color-base-content: hsl(0 0% 100%);
     --color-info: hsl(261 49% 33%);
     --color-info-content: hsl(0 0% 100%);

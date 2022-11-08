@@ -99,13 +99,15 @@ export default function Sidebar({
         </ul>
         <div className="py-10"></div>
         <ChevronLeftIconOutline
-          className={`absolute -right-3 bottom-40 h-7 w-7 cursor-pointer rounded-md border-2 border-base-300 bg-base-100 p-1 text-base-300 ${
+          className={`absolute -right-3 bottom-40 h-7 w-7 cursor-pointer rounded-md bg-base-200 p-1 text-primary-content ${
             open || "rotate-180"
           }`}
           onClick={() => setOpen(!open)}
         />
         <Robot
-          className={`${!open && "invisible"} absolute left-10 bottom-0 w-40`}
+          className={`${
+            !open && "invisible"
+          } absolute left-10 bottom-0 w-40 fill-primary`}
         />
       </nav>
     </>
