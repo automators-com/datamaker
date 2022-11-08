@@ -46,7 +46,7 @@ export const MenuI = () => {
                   )}
                 >
                   <TrashIcon
-                    className="mr-3 h-5 w-5 text-automatorsRed group-hover:text-gray-500"
+                    className="text-automatorsRed mr-3 h-5 w-5 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
                   Delete Field

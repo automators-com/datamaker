@@ -26,8 +26,8 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
           </Listbox.Label>
           <div className="relative mt-1 mb-3">
             <Listbox.Button
-              className="relative w-full cursor-default rounded border
-                         border-borderColor bg-white py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:border-accent 
+              className="border-borderColor relative w-full cursor-default rounded
+                         border bg-white py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:border-accent 
                             focus:outline-none sm:text-sm"
             >
               <span className="block truncate">{value?.name}</span>
