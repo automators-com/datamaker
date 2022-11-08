@@ -20,7 +20,8 @@ jobs:
       with:
         node-version: "18.x"
         cache: 'npm'
-    - run: npm install pnpm
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
     - name: Run Linter
       run: pnpm lint
     - name: Run formatter
