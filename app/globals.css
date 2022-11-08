@@ -45,8 +45,6 @@
     --color-base-100: hsl(238 25% 21%);
     --color-base-200: hsl(238, 33%, 16%);
     --color-base-300: hsl(238, 33%, 11%);
-    /* --color-base-200: hsl(238, 33%, 36%);
-    --color-base-300: hsl(238, 33%, 51%); */
     --color-base-content: hsl(0 0% 100%);
     --color-info: hsl(261 49% 33%);
     --color-info-content: hsl(0 0% 100%);
@@ -76,16 +74,6 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-}
-
 @layer base {
   * {
     @apply box-border;
@@ -98,18 +86,18 @@ a {
     @apply inline-flex items-center rounded-sm border border-transparent px-4 py-1.5 text-xs font-medium focus:outline-none;
   }
 
+  .btn-primary {
+    @apply border-secondary bg-secondary text-white shadow-sm hover:border-secondary-focus 
+      hover:bg-secondary-focus focus:bg-secondary-focus;
+  }
+
   .btn-primary-accent {
-    @apply border-accent bg-accent text-white shadow-sm hover:border-automatorsTourquoiseHover
-     hover:bg-automatorsTourquoiseHover focus:bg-automatorsTourquoiseFocus;
+    @apply border-accent bg-accent text-white shadow-sm hover:border-accent-focus
+     hover:bg-accent-focus focus:bg-accent-focus;
   }
 
-  .btn-primary-purple {
-    @apply border-secondary bg-secondary text-white shadow-sm hover:border-automatorsPurpleHover 
-      hover:bg-automatorsPurpleHover focus:bg-automatorsPurpleFocus;
-  }
-
-  .btn-secondray {
-    @apply border-primary text-primary shadow-sm hover:bg-automatorsPurpleLightHover;
+  .btn-secondary {
+    @apply border-primary text-primary shadow-sm hover:bg-neutral-focus;
   }
 
   .btn-link {

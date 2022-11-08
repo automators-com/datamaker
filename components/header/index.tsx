@@ -5,7 +5,7 @@ export default function Header(): JSX.Element {
   return (
     <header
       id="header"
-      className="flex min-h-[4.6rem] w-full flex-row items-center justify-center bg-primary text-primary-content md:h-20"
+      className="flex min-h-[4.6rem] w-full flex-row items-center justify-center bg-primary text-primary-content shadow-md md:h-20"
     >
       <Link
         href={"/"}
