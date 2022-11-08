@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate:dev": "npx prisma migrate dev",
-    "preinstall": "npx -y only-allow pnpm",
-    "postinstall": "prisma generate"
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|tsx|ts|json)\"",
+    "migrate:dev": "pnpx prisma migrate dev",
+    "preinstall": "pnpx -y only-allow pnpm",
+    "postinstall": "pnpx prisma generate",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
@@ -18,7 +20,6 @@
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
-    "eslint": "8.26.0",
     "eslint-config-next": "13.0.2",
     "next": "13.0.2",
     "react": "18.2.0",
@@ -26,11 +27,16 @@
     "typescript": "4.8.4"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.5.0",
+    "eslint": "8.26.0",
+    "eslint-plugin-react": "^7.31.10",
     "postcss": "^8.4.18",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
-    "tailwindcss": "^3.2.2"
+    "tailwindcss": "^3.2.2",
+    "husky": "^8.0.0"
   }
 }
