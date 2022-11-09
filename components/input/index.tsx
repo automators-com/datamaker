@@ -33,9 +33,9 @@ export const Input: FC<IProps> = ({
           type={type}
           name={name}
           id={name}
-          className={`block w-full rounded border border-${
+          className={`block w-full rounded border bg-white border-${
             error ? "red-300" : "borderColor"
-          } 
+          } text-primary
                     text-${error ? "red-900" : "borderColor"}
                     placeholder-gray-500 focus:border-${
                       error ? "red-300" : "accent"
@@ -51,14 +51,14 @@ export const Input: FC<IProps> = ({
         {error && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
             <ExclamationCircleIcon
-              className="h-5 w-5 text-red-500"
+              className="h-5 w-5 text-error"
               aria-hidden="true"
             />
           </div>
         )}
       </div>
       {error && (
-        <p className="mt-2 text-sm text-red-600" id="email-error">
+        <p className="mt-2 text-sm text-error" id="email-error">
           {" "}
           {error}{" "}
         </p>
