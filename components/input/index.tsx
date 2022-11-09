@@ -28,12 +28,12 @@ export const Input: FC<IProps> = ({
       >
         {label}
       </label>
-      <div className="relative mt-1 mb-2 rounded ">
+      <div className="relative mt-1 mb-2">
         <input
           type={type}
           name={name}
           id={name}
-          className={`block w-full rounded border bg-white border-${
+          className={`block w-full rounded-md border bg-white border-${
             error ? "red-300" : "borderColor"
           } text-primary
                     text-${error ? "red-900" : "borderColor"}

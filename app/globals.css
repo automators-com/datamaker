@@ -83,7 +83,7 @@ a {
 @layer components {
   /* btn styles */
   .btn {
-    @apply inline-flex items-center rounded-sm border border-transparent px-4 py-1.5 text-xs font-medium focus:outline-none;
+    @apply inline-flex items-center rounded-md border border-transparent px-4 py-1.5 text-xs font-medium focus:outline-none;
   }
 
   .btn-primary {
