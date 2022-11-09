@@ -87,20 +87,20 @@ a {
   }
 
   .btn-primary {
-    @apply border-secondary bg-secondary text-white shadow-sm hover:border-secondary-focus 
+    @apply border-secondary bg-secondary text-secondary-content shadow-sm hover:border-secondary-focus 
       hover:bg-secondary-focus focus:bg-secondary-focus;
   }
 
   .btn-primary-accent {
-    @apply border-accent bg-accent text-white shadow-sm hover:border-accent-focus
+    @apply border-accent bg-accent text-accent-content shadow-sm hover:border-accent-focus
      hover:bg-accent-focus focus:bg-accent-focus;
   }
 
   .btn-secondary {
-    @apply border-primary text-primary shadow-sm hover:bg-neutral-focus;
+    @apply border-primary bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
   }
 
   .btn-link {
-    @apply text-accent hover:text-primary;
+    @apply text-accent;
   }
 }

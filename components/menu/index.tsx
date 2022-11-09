@@ -15,7 +15,7 @@ export const MenuI = () => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+        <Menu.Button className="flex items-center text-base-content focus:outline-none">
           <EllipsisHorizontalIcon className="h-5 w-8" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -29,19 +29,19 @@ export const MenuI = () => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
                 <a
                   href="#"
                   className={classNames(
-                    active ? "bg-base-200 text-primary" : "text-gray-700",
+                    active ? "bg-base-200 text-error" : "text-base-content",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
                   <TrashIcon
-                    className="mr-3 h-5 w-5 text-error group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-error group-hover:text-error"
                     aria-hidden="true"
                   />
                   Delete Field
@@ -53,12 +53,14 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? "bg-base-200 text-primary" : "text-gray-700",
+                    active
+                      ? "bg-base-200 text-base-content"
+                      : "text-base-content",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
                   <DocumentDuplicateIcon
-                    className="mr-3 h-5 w-5 text-accent group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-accent group-hover:text-accent"
                     aria-hidden="true"
                   />
                   Duplicate Field
@@ -70,12 +72,14 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? "bg-base-200 text-primary" : "text-gray-700",
+                    active
+                      ? "bg-base-200 text-base-content"
+                      : "text-base-content",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
                   <ArrowUpCircleIcon
-                    className="mr-3 h-5 w-5 text-accent group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-accent group-hover:text-accent"
                     aria-hidden="true"
                   />
                   Move Up
@@ -87,12 +91,14 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active ? "bg-base-200 text-primary" : "text-gray-700",
+                    active
+                      ? "bg-base-200 text-base-content"
+                      : "text-base-content",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
                   <ArrowDownCircleIcon
-                    className="mr-3 h-5 w-5 text-accent group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-accent group-hover:text-accent"
                     aria-hidden="true"
                   />
                   Move Down

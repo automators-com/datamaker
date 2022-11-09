@@ -20,14 +20,13 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
     <Listbox value={value} onChange={setValue}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block text-sm font-medium text-gray-700">
-            {" "}
-            {label}{" "}
+          <Listbox.Label className="block text-sm font-medium text-base-content">
+            {label}
           </Listbox.Label>
           <div className="relative mt-1 mb-3">
             <Listbox.Button
-              className="border-borderColor relative w-full cursor-default rounded-md
-                         border bg-white py-1 pl-3 pr-5 text-left text-primary shadow-sm hover:border-accent focus:border-accent 
+              className="relative w-full cursor-default rounded-md
+                         border bg-base-100 py-1 pl-3 pr-5 text-left text-base-content shadow-sm hover:border-accent focus:border-accent 
                             focus:outline-none sm:text-sm"
             >
               <span className="block truncate">{value.name}</span>
@@ -40,14 +39,14 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100 py-1 text-base-content shadow-lg ring-1 ring-accent ring-opacity-5 focus:outline-none sm:text-sm">
                 {list.map((person) => (
                   <Listbox.Option
                     key={person.id}
                     className={({ active }) =>
                       classNames(
-                        active && "bg-base-200",
-                        "text-gray-900",
+                        active && "bg-accent text-accent-content",
+                        "text-base-content",
                         "relative cursor-default select-none py-2 px-4"
                       )
                     }

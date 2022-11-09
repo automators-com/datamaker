@@ -16,6 +16,7 @@ import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import Robot from "../../public/assets/Robot.svg";
 import ToolTip from "../tooltip";
+// import ToolTip from "react-tooltip";
 
 const routes = [
   {

@@ -24,7 +24,7 @@ export const Input: FC<IProps> = ({
     <div>
       <label
         htmlFor="email"
-        className="block text-sm font-medium text-gray-700"
+        className="block text-sm font-medium text-base-content"
       >
         {label}
       </label>
@@ -33,12 +33,12 @@ export const Input: FC<IProps> = ({
           type={type}
           name={name}
           id={name}
-          className={`block w-full rounded-md border bg-white border-${
+          className={`block w-full rounded-md border bg-base-100 border-${
             error ? "red-300" : "borderColor"
-          } text-primary
-                    text-${error ? "red-900" : "borderColor"}
-                    placeholder-gray-500 focus:border-${
-                      error ? "red-300" : "accent"
+          } text-base-content
+                    text-${error ? "error" : "borderColor"}
+                    placeholder-base-300 focus:border-${
+                      error ? "error" : "accent"
                     } focus:${error ? "outline-none" : "border-accent"}
                     focus:ring-${error ? "red-500" : "accent"} py-1 pl-3
                     pr-5 text-left shadow-sm hover:border-accent focus:border-accent focus:outline-none sm:text-sm`}
