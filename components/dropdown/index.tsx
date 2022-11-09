@@ -27,10 +27,10 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
           <div className="relative mt-1 mb-3">
             <Listbox.Button
               className="border-borderColor relative w-full cursor-default rounded
-                         border bg-white py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:border-accent 
+                         border bg-white py-1 pl-3 pr-5 text-left text-primary shadow-sm hover:border-accent focus:border-accent 
                             focus:outline-none sm:text-sm"
             >
-              <span className="block truncate">{value?.name}</span>
+              <span className="block truncate">{value.name}</span>
             </Listbox.Button>
 
             <Transition
@@ -46,7 +46,8 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
                     key={person.id}
                     className={({ active }) =>
                       classNames(
-                        active ? "bg-automatorsLightHover" : "text-gray-900",
+                        active && "bg-base-200",
+                        "text-gray-900",
                         "relative cursor-default select-none py-2 px-4"
                       )
                     }

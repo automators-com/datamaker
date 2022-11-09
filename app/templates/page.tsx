@@ -1,3 +1,5 @@
+import Home from "../page";
+
 export default function Templates() {
-  return <></>;
+  return <Home />;
 }

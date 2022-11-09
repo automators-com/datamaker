@@ -16,7 +16,6 @@ export const MenuI = () => {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
-          <span className="sr-only">Open options</span>
           <EllipsisHorizontalIcon className="h-5 w-8" aria-hidden="true" />
         </Menu.Button>
       </div>
@@ -37,14 +36,12 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active
-                      ? "bg-automatorsLightHover text-primary"
-                      : "text-gray-700",
+                    active ? "bg-base-200 text-primary" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
                   <TrashIcon
-                    className="text-automatorsRed mr-3 h-5 w-5 group-hover:text-gray-500"
+                    className="mr-3 h-5 w-5 text-error group-hover:text-gray-500"
                     aria-hidden="true"
                   />
                   Delete Field
@@ -56,9 +53,7 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active
-                      ? "bg-automatorsLightHover text-primary"
-                      : "text-gray-700",
+                    active ? "bg-base-200 text-primary" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
@@ -75,9 +70,7 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active
-                      ? "bg-automatorsLightHover text-primary"
-                      : "text-gray-700",
+                    active ? "bg-base-200 text-primary" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >
@@ -94,9 +87,7 @@ export const MenuI = () => {
                 <a
                   href="#"
                   className={classNames(
-                    active
-                      ? "bg-automatorsLightHover text-primary"
-                      : "text-gray-700",
+                    active ? "bg-base-200 text-primary" : "text-gray-700",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
                 >

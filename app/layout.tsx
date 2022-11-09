@@ -24,7 +24,7 @@ export default function RootLayout({
           <Header />
           <div className="flex h-full w-full flex-row">
             <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
-            <main>{children}</main>
+            <main>{children} </main>
           </div>
         </body>
       </html>
