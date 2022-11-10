@@ -95,7 +95,6 @@ export default function Header(): JSX.Element {
                   <a
                     onClick={() => {
                       setTheme("contrast");
-                      // console.log(theme);
                     }}
                     className={classNames(
                       active
