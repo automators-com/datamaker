@@ -1,9 +1,6 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utilities/className";
 
 type dropDownList = { id: number; name: string };
 
@@ -12,10 +9,11 @@ interface IProps {
   name: string;
   value: dropDownList;
   list: dropDownList[];
+  addClass?: string;
   setValue: any; // function
 }
 
-const DropDown = ({ value, label, list, setValue }: IProps) => {
+const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
   return (
     <Listbox value={value} onChange={setValue}>
       {({ open }) => (
@@ -23,7 +21,7 @@ const DropDown = ({ value, label, list, setValue }: IProps) => {
           <Listbox.Label className="block text-sm font-medium text-base-content">
             {label}
           </Listbox.Label>
-          <div className="relative mt-1 mb-3">
+          <div className={classNames("relative", addClass)}>
             <Listbox.Button
               className="relative w-full cursor-default rounded-md
                          border bg-base-100 py-1 pl-3 pr-5 text-left text-base-content shadow-sm hover:border-accent focus:border-accent 

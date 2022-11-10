@@ -4,11 +4,12 @@ import React, { FC } from "react";
 interface IProps {
   label?: string;
   name: string;
-  value: string;
+  value: string | number;
   placeholder: string;
   type: string;
-  error: string;
+  error?: string;
   setValue: any;
+  addClass?: string
 }
 
 export const Input: FC<IProps> = ({
@@ -19,16 +20,20 @@ export const Input: FC<IProps> = ({
   label,
   type,
   setValue,
+  addClass
 }) => {
   return (
     <div>
-      <label
-        htmlFor="email"
-        className="block text-sm font-medium text-base-content"
-      >
-        {label}
-      </label>
-      <div className="relative mt-1 mb-2">
+      {label && 
+        <label
+          htmlFor="email"
+          className={`block text-sm font-medium text-base-content mb-1`}
+        >
+          {label}
+        </label>
+      }
+      
+      <div className="relative">
         <input
           type={type}
           name={name}
@@ -41,7 +46,7 @@ export const Input: FC<IProps> = ({
                       error ? "error" : "accent"
                     } focus:${error ? "outline-none" : "border-accent"}
                     focus:ring-${error ? "red-500" : "accent"} py-1 pl-3
-                    pr-5 text-left shadow-sm hover:border-accent focus:border-accent focus:outline-none sm:text-sm`}
+                    pr-5 text-left shadow-sm hover:border-accent focus:border-accent focus:outline-none sm:text-sm ${addClass}`}
           placeholder={placeholder}
           aria-invalid="true"
           aria-describedby="email-error"

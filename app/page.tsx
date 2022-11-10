@@ -1,9 +1,12 @@
 "use client";
-import { EyeIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, EnvelopeIcon, TrashIcon, TvIcon } from "@heroicons/react/24/outline";
+import { ArrowUturnDownIcon, CogIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import Constrains from "../components/constrains";
 import DropDown from "../components/dropdown";
 import { Input } from "../components/input";
 import { MenuI } from "../components/menu";
+import Toggle from "../components/toggleButton";
 import styles from "./page.module.css";
 
 // testing
@@ -23,24 +26,35 @@ const people = [
 export default function Home() {
   const [selected, setSelected] = useState(people[3]);
   const [input, setInput] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   return (
     <div className={styles.container}>
       <div className="my-2 space-x-4">
-        <button className="btn btn-primary">Hello</button>
+        <button className="btn btn-primary">  Hello</button>
         <button className="btn btn-primary-accent">Hello</button>
         <button className="btn btn-secondary ">Hello</button>
         <button className="btn btn-link">Hello</button>
+        <button className="btn btn-error"> Hello</button>
+
+        {/* button with label */}
+        <button className="btn btn-primary"> <CheckIcon /> Save</button>
+
+      </div>
+
+
+      <div className="my-2 space-x-4">
+        <Toggle toggle={toggle} setToggle={setToggle} text="Text"/>
 
         <MenuI />
       </div>
-
       <DropDown
         name="nsma"
         label="Select"
         value={selected!}
         list={people}
         setValue={setSelected}
+        addClass="my-2"
       />
 
       <Input
@@ -54,6 +68,11 @@ export default function Home() {
         type="text"
         error=""
       />
+
+     
+      <Constrains  handleDelete={null}/>
+
+
     </div>
   );
 }

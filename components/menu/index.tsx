@@ -7,18 +7,15 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
+import { classNames } from "../../utilities/className";
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+
 export const MenuI = () => {
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="flex items-center text-base-content focus:outline-none">
-          <EllipsisHorizontalIcon className="h-5 w-8" aria-hidden="true" />
-        </Menu.Button>
-      </div>
+      <Menu.Button className="flex items-center text-base-content focus:outline-none">
+        <EllipsisHorizontalIcon className="h-5 w-8" aria-hidden="true" />
+      </Menu.Button>
 
       <Transition
         as={Fragment}
@@ -31,7 +28,7 @@ export const MenuI = () => {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item>
+            <Menu.Item >
               {({ active }) => (
                 <a
                   href="#"

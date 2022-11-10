@@ -126,7 +126,18 @@ a {
     @apply border-primary bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
   }
 
+  .btn-error {
+    @apply text-error hover:underline ;
+  }
+
   .btn-link {
     @apply text-accent;
+  }
+
+  .btn svg{
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    margin-left: -0.125rem;
   }
 }

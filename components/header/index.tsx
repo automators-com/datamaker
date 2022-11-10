@@ -4,9 +4,8 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Fragment } from "react";
 import LogoWhite from "../../public/assets/LogoWhite.svg";
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "../../utilities/className";
+
 
 export default function Header(): JSX.Element {
   // const _theme = localStorage.getItem('data_maker_theme')
@@ -58,7 +57,6 @@ export default function Header(): JSX.Element {
                   <a
                     onClick={() => {
                       setTheme("root");
-                      // localStorage.setItem("data_maker_theme", theme!);
                     }}
                     className={classNames(
                       active
