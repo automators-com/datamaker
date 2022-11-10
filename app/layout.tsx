@@ -1,7 +1,6 @@
 "use client";
-import { ThemeProvider } from "next-themes";
-import { useState } from "react";
-import { NavContext } from "../components/context/navContext";
+import { useEffect, useState } from "react";
+import { NavContext, ThemeContext } from "../components/context/context";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { classNames } from "../utilities/className";
@@ -13,29 +12,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+  const [theme, setTheme] = useState<string>("root");
 
   return (
     <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
-      <html lang="en">
-        {/*
+      <ThemeContext.Provider value={{ theme, setTheme: () => {} }}>
+        <html lang="en">
+          {/*
         <head /> will contain the components returned by the nearest parent
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
-        <head />
-        <ThemeProvider attribute="class">
+          <head />
           <body
             className={classNames(
+              theme,
               "flex h-screen w-screen flex-col bg-base-100"
             )}
           >
-            <Header />
+            <Header theme={theme} setTheme={setTheme} />
             <div className="flex h-full w-full flex-row">
               <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
               <main>{children} </main>
             </div>
           </body>
-        </ThemeProvider>
-      </html>
+        </html>
+      </ThemeContext.Provider>
     </NavContext.Provider>
   );
 }

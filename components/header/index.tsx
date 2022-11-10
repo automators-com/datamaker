@@ -1,23 +1,26 @@
+"use client";
 import { Menu, Transition } from "@headlessui/react";
-import { MoonIcon, SunIcon, TvIcon } from "@heroicons/react/24/outline";
-import { useTheme } from "next-themes";
+import { FireIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Fragment } from "react";
 import LogoWhite from "../../public/assets/LogoWhite.svg";
 import { classNames } from "../../utilities/className";
 
 const themes = [
-  { name: "Light", icon: <SunIcon /> },
-  { name: "Dark", icon: <MoonIcon /> },
-  { name: "Pink", icon: <TvIcon /> },
+  { name: "Light", key: "root", icon: <SunIcon /> },
+  { name: "Dark", key: "dark", icon: <MoonIcon /> },
+  { name: "Fire", key: "fire", icon: <FireIcon /> },
 ];
 
-export default function Header(): JSX.Element {
-  const { theme, setTheme } = useTheme();
+export default function Header({
+  theme,
+  setTheme,
+}: {
+  theme: string;
+  setTheme: (value: string) => void;
+}) {
   // const [mounted, setMounted] = useState(false);
-
   // useEffect(() => setMounted(true), []);
-
   // if (!mounted) return null;
 
   return (
@@ -41,7 +44,7 @@ export default function Header(): JSX.Element {
       <Menu as="div" className="relative mr-10 inline-block text-left">
         <Menu.Button className="flex items-center text-primary-content focus:outline-none">
           {themes.map((t) => {
-            if (t.name.toLowerCase() === theme) {
+            if (t.key === theme) {
               return (
                 <span className="h-6 w-6" key={t.name}>
                   {t.icon}
@@ -65,10 +68,10 @@ export default function Header(): JSX.Element {
               <Menu.Item key={item.name}>
                 {({ active }) => (
                   <a
-                    onClick={() => setTheme(item.name.toLowerCase())}
+                    onClick={() => setTheme(item.key)}
                     className={classNames(
                       active
-                        ? "  bg-accent text-accent-content"
+                        ? "bg-accent text-accent-content"
                         : "text-base-content",
                       "group flex cursor-pointer items-center px-2 py-2 text-sm "
                     )}

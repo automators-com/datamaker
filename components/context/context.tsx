@@ -12,3 +12,14 @@ export const NavContext = createContext<NavContextType>({
   isNavOpen: false,
   setIsNavOpen: () => {},
 });
+
+type ThemeContextType = {
+  theme: string;
+  setTheme: (value: string) => void;
+};
+
+// Create a custom theme context
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: "root",
+  setTheme: () => {},
+});
