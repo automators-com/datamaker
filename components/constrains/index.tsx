@@ -1,26 +1,19 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import DropDown from "../dropdown";
 import { Input } from "../input";
 
-
 const _list = [
-    { id: 1, name: "Min" },
-    { id: 2, name: "Max" },
-    { id: 3, name: "RegEx (Words)" },
-]
+  { id: 1, name: "Min" },
+  { id: 2, name: "Max" },
+  { id: 3, name: "RegEx (Words)" },
+];
 
-
-export const Constrains = ({handleDelete} : {
-    handleDelete: any
-}) => {
-
-
-    const [selected, setSelected] = useState(_list[0]);
-    const [number, setNumber] = useState(0);
-
+export const Constrains = ({ handleDelete }: { handleDelete: any }) => {
+  const [selected, setSelected] = useState(_list[0]);
+  const [number, setNumber] = useState(0);
 
   return (
-    <div className="flex max-w-min flex-row space-x-2 rounded-md bg-base-300 py-2 pr-2 my-2">
+    <div className="my-2 flex max-w-min flex-row space-x-2 rounded-md bg-base-300 py-2 pr-2">
       <DropDown
         list={_list}
         name=""
@@ -30,23 +23,19 @@ export const Constrains = ({handleDelete} : {
         setValue={setSelected}
       ></DropDown>
 
+      {selected.id !== 3 && (
+        <Input
+          type="number"
+          name="number"
+          placeholder={selected.name}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNumber(Number(e.target.value))
+          }
+          addClass="w-16 pr-1 text-left"
+          value={number}
+        />
+      )}
 
-        {
-            selected.id !== 3 && 
-            <Input
-                type="number"
-                name="number"      
-                placeholder={selected.name}
-                setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setNumber(Number(e.target.value))
-                }
-                addClass="w-16 pr-1 text-left"
-                value={number}
-            />
-        }
-      
-
-    
       <button onClick={handleDelete}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -68,4 +57,3 @@ export const Constrains = ({handleDelete} : {
 };
 
 export default Constrains;
-

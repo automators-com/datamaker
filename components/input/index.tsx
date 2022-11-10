@@ -9,7 +9,7 @@ interface IProps {
   type: string;
   error?: string;
   setValue: any;
-  addClass?: string
+  addClass?: string;
 }
 
 export const Input: FC<IProps> = ({
@@ -20,19 +20,19 @@ export const Input: FC<IProps> = ({
   label,
   type,
   setValue,
-  addClass
+  addClass,
 }) => {
   return (
     <div>
-      {label && 
+      {label && (
         <label
           htmlFor="email"
-          className={`block text-sm font-medium text-base-content mb-1`}
+          className={`mb-1 block text-sm font-medium text-base-content`}
         >
           {label}
         </label>
-      }
-      
+      )}
+
       <div className="relative">
         <input
           type={type}

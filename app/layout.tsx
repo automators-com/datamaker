@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NavContext } from "../components/context/navContext";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
+import { classNames } from "../utilities/className";
 import "./globals.css";
 
 export default function RootLayout({
@@ -22,7 +23,11 @@ export default function RootLayout({
       */}
         <head />
         <ThemeProvider attribute="class">
-          <body className=" flex h-screen w-screen flex-col bg-base-100">
+          <body
+            className={classNames(
+              "flex h-screen w-screen flex-col bg-base-100"
+            )}
+          >
             <Header />
             <div className="flex h-full w-full flex-row">
               <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />

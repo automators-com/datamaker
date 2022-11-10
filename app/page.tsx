@@ -1,5 +1,10 @@
 "use client";
-import { CheckIcon, EnvelopeIcon, TrashIcon, TvIcon } from "@heroicons/react/24/outline";
+import {
+  CheckIcon,
+  EnvelopeIcon,
+  TrashIcon,
+  TvIcon,
+} from "@heroicons/react/24/outline";
 import { ArrowUturnDownIcon, CogIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Constrains from "../components/constrains";
@@ -31,20 +36,21 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className="my-2 space-x-4">
-        <button className="btn btn-primary">  Hello</button>
+        <button className="btn btn-primary"> Hello</button>
         <button className="btn btn-primary-accent">Hello</button>
         <button className="btn btn-secondary ">Hello</button>
         <button className="btn btn-link">Hello</button>
         <button className="btn btn-error"> Hello</button>
 
         {/* button with label */}
-        <button className="btn btn-primary"> <CheckIcon /> Save</button>
-
+        <button className="btn btn-primary">
+          {" "}
+          <CheckIcon /> Save
+        </button>
       </div>
 
-
       <div className="my-2 space-x-4">
-        <Toggle toggle={toggle} setToggle={setToggle} text="Text"/>
+        <Toggle toggle={toggle} setToggle={setToggle} text="Text" />
 
         <MenuI />
       </div>
@@ -69,10 +75,7 @@ export default function Home() {
         error=""
       />
 
-     
-      <Constrains  handleDelete={null}/>
-
-
+      <Constrains handleDelete={null} />
     </div>
   );
 }

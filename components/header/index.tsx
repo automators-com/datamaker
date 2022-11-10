@@ -6,11 +6,19 @@ import { Fragment } from "react";
 import LogoWhite from "../../public/assets/LogoWhite.svg";
 import { classNames } from "../../utilities/className";
 
+const themes = [
+  { name: "Light", icon: <SunIcon /> },
+  { name: "Dark", icon: <MoonIcon /> },
+  { name: "Pink", icon: <TvIcon /> },
+];
 
 export default function Header(): JSX.Element {
-  // const _theme = localStorage.getItem('data_maker_theme')
-
   const { theme, setTheme } = useTheme();
+  // const [mounted, setMounted] = useState(false);
+
+  // useEffect(() => setMounted(true), []);
+
+  // if (!mounted) return null;
 
   return (
     <header
@@ -32,13 +40,15 @@ export default function Header(): JSX.Element {
 
       <Menu as="div" className="relative mr-10 inline-block text-left">
         <Menu.Button className="flex items-center text-primary-content focus:outline-none">
-          {theme === "dark" ? (
-            <MoonIcon className="h-6 w-6" />
-          ) : theme === "contrast" ? (
-            <TvIcon className="h-6 w-6" />
-          ) : (
-            <SunIcon className="h-6 w-6" />
-          )}
+          {themes.map((t) => {
+            if (t.name.toLowerCase() === theme) {
+              return (
+                <span className="h-6 w-6" key={t.name}>
+                  {t.icon}
+                </span>
+              );
+            }
+          })}
         </Menu.Button>
 
         <Transition
@@ -50,65 +60,25 @@ export default function Header(): JSX.Element {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
-            <div className="py-1">
-              <Menu.Item>
+          <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right overflow-auto rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
+            {themes.map((item) => (
+              <Menu.Item key={item.name}>
                 {({ active }) => (
                   <a
-                    onClick={() => {
-                      setTheme("root");
-                    }}
+                    onClick={() => setTheme(item.name.toLowerCase())}
                     className={classNames(
                       active
-                        ? "bg-accent text-accent-content"
+                        ? "  bg-accent text-accent-content"
                         : "text-base-content",
-                      "group flex cursor-pointer items-center px-2 py-2 text-sm"
+                      "group flex cursor-pointer items-center px-2 py-2 text-sm "
                     )}
                   >
-                    <SunIcon className="h-5 w-8" />
-                    Light
+                    <span className="h-5 w-5">{item.icon}</span>
+                    <span className="ml-2">{item.name}</span>
                   </a>
                 )}
               </Menu.Item>
-
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    onClick={() => {
-                      setTheme("dark");
-                      // console.log(theme);
-                    }}
-                    className={classNames(
-                      active
-                        ? "bg-accent text-accent-content"
-                        : "text-base-content",
-                      "group flex cursor-pointer items-center px-2 py-2 text-sm"
-                    )}
-                  >
-                    <MoonIcon className="h-5 w-8" />
-                    Dark
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    onClick={() => {
-                      setTheme("contrast");
-                    }}
-                    className={classNames(
-                      active
-                        ? "bg-accent text-accent-content"
-                        : "text-base-content",
-                      "group flex cursor-pointer items-center px-2 py-2 text-sm"
-                    )}
-                  >
-                    <TvIcon className="h-5 w-8" />
-                    Contrast
-                  </a>
-                )}
-              </Menu.Item>
-            </div>
+            ))}
           </Menu.Items>
         </Transition>
       </Menu>

@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, useRef } from "react";
+import { type ReactNode, useRef } from "react";
 
 export default function ToolTip({
   children,
