@@ -22,8 +22,7 @@ export default function RootLayout({
       */}
         <head />
         <ThemeProvider attribute="class">
-          <body className="contrast flex h-screen w-screen flex-col bg-base-100">
-            
+          <body className=" flex h-screen w-screen flex-col bg-base-100">
             <Header />
             <div className="flex h-full w-full flex-row">
               <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />

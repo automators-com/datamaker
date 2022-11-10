@@ -55,6 +55,32 @@
     --color-error: hsl(5 88% 65%);
     --color-error-content: hsl(0 0% 100%);
   }
+  .contrast {
+    --color-primary: hsl(53, 79%, 48%);
+    --color-primary-focus: hsl(238 33% 07%);
+    --color-primary-content: hsl(0 0% 100%);
+    --color-secondary: rgb(32, 185, 202);
+    --color-secondary-focus: hsl(261 49% 23%);
+    --color-secondary-content: hsl(0 0% 100%);
+    --color-accent: hsl(187 42% 46%);
+    --color-accent-focus: hsl(187 42% 36%);
+    --color-accent-content: hsl(0 0% 100%);
+    --color-neutral: hsl(261 49% 33%);
+    --color-neutral-focus: hsl(261 49% 23%);
+    --color-neutral-content: hsl(0 0% 100%);
+    --color-base-100: hsl(238 25% 21%);
+    --color-base-200: hsl(238, 33%, 16%);
+    --color-base-300: hsl(238, 33%, 11%);
+    --color-base-content: hsl(0 0% 100%);
+    --color-info: hsl(261 49% 33%);
+    --color-info-content: hsl(0 0% 100%);
+    --color-success: hsl(261 49% 33%);
+    --color-success-content: hsl(0 0% 100%);
+    --color-warning: hsl(31 76, 57);
+    --color-warning-content: hsl(0 0% 100%);
+    --color-error: hsl(5 88% 65%);
+    --color-error-content: hsl(0 0% 100%);
+  }
 }
 
 html,

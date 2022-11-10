@@ -1,4 +1,5 @@
 "use client";
+import { EyeIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import DropDown from "../components/dropdown";
 import { Input } from "../components/input";
@@ -27,7 +28,7 @@ export default function Home() {
     <div className={styles.container}>
       <div className="my-2 space-x-4">
         <button className="btn btn-primary">Hello</button>
-        <button className="btn btn-primary-accent ">Hello</button>
+        <button className="btn btn-primary-accent">Hello</button>
         <button className="btn btn-secondary ">Hello</button>
         <button className="btn btn-link">Hello</button>
 
