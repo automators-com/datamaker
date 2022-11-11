@@ -9,6 +9,13 @@ import {
 import { Fragment } from "react";
 import { classNames } from "../../utilities/className";
 
+const options = [
+  { text: "Delete Field", icon: <TrashIcon className="text-error" /> },
+  { text: "Duplicate Field", icon: <DocumentDuplicateIcon /> },
+  { text: "Move Up", icon: <ArrowUpCircleIcon /> },
+  { text: "Move Down", icon: <ArrowDownCircleIcon /> },
+];
+
 export const MenuI = () => {
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -26,80 +33,27 @@ export const MenuI = () => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right overflow-auto rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
-          <Menu.Item>
-            {({ active }) => (
-              <a
-                href="#"
-                className={classNames(
-                  active ? "bg-base-200 text-error" : "text-base-content",
-                  "group flex items-center px-4 py-2 text-sm"
-                )}
-              >
-                <TrashIcon
-                  className="mr-3 h-5 w-5 text-error group-hover:text-error"
-                  aria-hidden="true"
-                />
-                Delete Field
-              </a>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <a
-                href="#"
-                className={classNames(
-                  active
-                    ? "bg-base-200 text-base-content"
-                    : "text-base-content",
-                  "group flex items-center px-4 py-2 text-sm"
-                )}
-              >
-                <DocumentDuplicateIcon
-                  className="mr-3 h-5 w-5 text-accent group-hover:text-accent"
-                  aria-hidden="true"
-                />
-                Duplicate Field
-              </a>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <a
-                href="#"
-                className={classNames(
-                  active
-                    ? "bg-base-200 text-base-content"
-                    : "text-base-content",
-                  "group flex items-center px-4 py-2 text-sm"
-                )}
-              >
-                <ArrowUpCircleIcon
-                  className="mr-3 h-5 w-5 text-accent group-hover:text-accent"
-                  aria-hidden="true"
-                />
-                Move Up
-              </a>
-            )}
-          </Menu.Item>
-          <Menu.Item>
-            {({ active }) => (
-              <a
-                href="#"
-                className={classNames(
-                  active
-                    ? "bg-base-200 text-base-content"
-                    : "text-base-content",
-                  "group flex items-center px-4 py-2 text-sm"
-                )}
-              >
-                <ArrowDownCircleIcon
-                  className="mr-3 h-5 w-5 text-accent group-hover:text-accent"
-                  aria-hidden="true"
-                />
-                Move Down
-              </a>
-            )}
-          </Menu.Item>
+          {options.map((option, index) => (
+            <Menu.Item key={index}>
+              {({ active }) => (
+                <a
+                  href="#"
+                  className={classNames(
+                    active
+                      ? "bg-base-200 bg-opacity-50 text-base-content"
+                      : "text-base-content",
+                    "group flex items-center px-4 py-2 text-sm"
+                  )}
+                >
+                  <span className="mr-3 h-5 w-5 text-accent" aria-hidden="true">
+                    {option.icon}
+                  </span>
+
+                  {option.text}
+                </a>
+              )}
+            </Menu.Item>
+          ))}
         </Menu.Items>
       </Transition>
     </Menu>
