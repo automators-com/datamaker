@@ -126,6 +126,11 @@ a {
     @apply border-primary bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
   }
 
+  .btn-primary-accent-light {
+    @apply content-center bg-accent bg-opacity-30 fill-black align-middle text-accent
+     hover:bg-accent-focus hover:bg-opacity-30;
+  }
+
   .btn-error {
     @apply text-error hover:underline;
   }

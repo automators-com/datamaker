@@ -2,6 +2,7 @@
 import {
   CheckIcon,
   EnvelopeIcon,
+  PlusIcon,
   TrashIcon,
   TvIcon,
 } from "@heroicons/react/24/outline";
@@ -38,13 +39,15 @@ export default function Home() {
       <div className="my-2 space-x-4">
         <button className="btn btn-primary"> Hello</button>
         <button className="btn btn-primary-accent">Hello</button>
-        <button className="btn btn-secondary ">Hello</button>
+        <button className="btn btn-secondary">Hello</button>
         <button className="btn btn-link">Hello</button>
         <button className="btn btn-error"> Hello</button>
+        <button className="btn btn-primary-accent-light h-20 w-20">
+          <PlusIcon />
+        </button>
 
         {/* button with label */}
         <button className="btn btn-primary">
-          {" "}
           <CheckIcon /> Save
         </button>
       </div>
