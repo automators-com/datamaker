@@ -24,14 +24,15 @@ const Toggle = ({
           aria-hidden="true"
           className={classNames(
             toggle ? "translate-x-6" : "translate-x-0",
-            "pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+            "pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
           )}
         />
       </Switch>
       <Switch.Label as="span" className="ml-3">
-        <span className="text-sm text-primary">{text}</span>
+        <span className="text-sm text-base-content opacity-60">{text}</span>
       </Switch.Label>
     </Switch.Group>
+
   );
 };
 

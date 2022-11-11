@@ -32,14 +32,13 @@ const CallbackList = () => {
     });
   };
 
-  console.log(callbacks);
 
   return (
     <div>
       <div>
         <div className="ml-6 flex text-xs">
-          <span className="w-1/2"> Callback Field Name</span>
-          <span className="w-auto"> Callback Value Source</span>
+          <span className="w-1/2 text-base-content"> Callback Field Name</span>
+          <span className="w-auto text-base-content"> Callback Value Source</span>
         </div>
         {callbacks.map((item, index) => {
           return (
