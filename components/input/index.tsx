@@ -41,13 +41,13 @@ export const Input: FC<IProps> = ({
           id={name}
           className={classNames(
             "block w-full rounded-md border bg-base-100",
-            error ? "border-red-300" : "border-borderColor",
+            error ? "border-error" : "",
             "text-base-content",
             error ? "text-error" : "text-borderColor",
-            "placeholder-base-300",
+            "placeholder-base-content placeholder-opacity-20",
             error ? "focus:border-error" : "focus:border-accent",
             error ? "focus:outline-none" : "focus:border-accent",
-            error ? "focus:ring-red-500" : "focus:ring-accent",
+            error ? "focus:ring-error" : "focus:ring-accent",
             "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:border-accent focus:outline-none sm:text-sm",
             addClass
           )}
