@@ -9,7 +9,7 @@ const _list = [
   { id: 3, name: "RegEx (Words)" },
 ];
 
-export const Constrains = ({ handleDelete }: { handleDelete: any }) => {
+export const Constrains = ({ handleDelete }: { handleDelete: () => void }) => {
   const [selected, setSelected] = useState(_list[0]);
   const [number, setNumber] = useState(0);
 
@@ -18,7 +18,6 @@ export const Constrains = ({ handleDelete }: { handleDelete: any }) => {
       <DropDown
         list={_list}
         name=""
-        // setValue={setSelected}
         value={selected}
         addClass="w-auto min-w-[120px]"
         setValue={setSelected}
@@ -32,7 +31,7 @@ export const Constrains = ({ handleDelete }: { handleDelete: any }) => {
           setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
             setNumber(Number(e.target.value))
           }
-          addClass="w-16 pr-1 text-left"
+          addClass="w-16 pr-0.5 text-left"
           value={number}
         />
       )}

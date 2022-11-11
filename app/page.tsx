@@ -1,12 +1,8 @@
 "use client";
 import {
   CheckIcon,
-  EnvelopeIcon,
   PlusIcon,
-  TrashIcon,
-  TvIcon,
 } from "@heroicons/react/24/outline";
-import { ArrowUturnDownIcon, CogIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Constrains from "../components/constrains";
 import DropDown from "../components/dropdown";
@@ -57,7 +53,7 @@ export default function Home() {
       <DropDown
         name="nsma"
         label="Select"
-        value={selected!}
+        value={selected}
         list={people}
         setValue={setSelected}
         addClass="my-2"
@@ -75,7 +71,7 @@ export default function Home() {
         error=""
       />
 
-      <Constrains handleDelete={null} />
+      <Constrains handleDelete={() => console.log("TODO Delete Fn")} />
       <button className="btn-primary-accent-light grid h-12 w-12 place-content-center">
         <PlusIcon className=" h-5 w-5" />
       </button>
