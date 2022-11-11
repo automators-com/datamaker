@@ -127,8 +127,7 @@ a {
   }
 
   .btn-primary-accent-light {
-    @apply content-center bg-accent bg-opacity-30 fill-black align-middle text-accent
-     hover:bg-accent-focus hover:bg-opacity-30;
+    @apply rounded-lg bg-accent bg-opacity-10 text-xs text-accent hover:bg-accent-focus hover:bg-opacity-20;
   }
 
   .btn-error {

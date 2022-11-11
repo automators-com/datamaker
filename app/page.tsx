@@ -42,9 +42,6 @@ export default function Home() {
         <button className="btn btn-secondary">Hello</button>
         <button className="btn btn-link">Hello</button>
         <button className="btn btn-error"> Hello</button>
-        <button className="btn btn-primary-accent-light h-20 w-20">
-          <PlusIcon />
-        </button>
 
         {/* button with label */}
         <button className="btn btn-primary">
@@ -79,6 +76,9 @@ export default function Home() {
       />
 
       <Constrains handleDelete={null} />
+      <button className="btn-primary-accent-light grid h-12 w-12 place-content-center">
+        <PlusIcon className=" h-5 w-5" />
+      </button>
     </div>
   );
 }

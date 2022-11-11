@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { classNames } from "../../utilities/className";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 type dropDownList = { id: number; name: string };
 
@@ -23,11 +24,13 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
           </Listbox.Label>
           <div className={classNames("relative", addClass)}>
             <Listbox.Button
-              className="relative w-full cursor-default rounded-md
-                         border bg-base-100 py-1 pl-3 pr-5 text-left text-base-content shadow-sm hover:border-accent focus:border-accent 
-                            focus:outline-none sm:text-sm"
+              className="relative flex w-full cursor-default
+                         justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left text-accent shadow-sm 
+                            hover:border-accent focus:border-accent focus:outline-none sm:text-sm"
             >
               <span className="block truncate">{value.name}</span>
+
+              <ChevronDownIcon className="h-5 w-5" />
             </Listbox.Button>
 
             <Transition
