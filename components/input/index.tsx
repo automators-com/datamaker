@@ -9,7 +9,7 @@ interface IProps {
   placeholder: string;
   type: string;
   error?: string;
-  setValue: any;
+  setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addClass?: string;
 }
 
@@ -42,7 +42,9 @@ export const Input: FC<IProps> = ({
           className={classNames(
             "block w-full rounded-md border bg-base-100 text-base-content placeholder-base-300",
             "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none sm:text-sm",
-            error ? "border-error text-error focus:border-error" : "border-accent focus:border-accent",
+            error
+              ? "border-error text-error focus:border-error"
+              : "border-accent focus:border-accent",
             addClass
           )}
           placeholder={placeholder}

@@ -1,9 +1,7 @@
 "use client";
-import {
-  CheckIcon,
-  PlusIcon,
-} from "@heroicons/react/24/outline";
+import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import CallbackList from "../components/callbackList";
 import Constrains from "../components/constrains";
 import DropDown from "../components/dropdown";
 import { Input } from "../components/input";
@@ -72,9 +70,20 @@ export default function Home() {
       />
 
       <Constrains handleDelete={() => console.log("TODO Delete Fn")} />
-      <button className="btn-primary-accent-light grid h-12 w-12 place-content-center">
+
+      <DropDown
+        name="dropdown"
+        value={selected}
+        list={people}
+        setValue={setSelected}
+        addClass="my-2 p-2 bg-accent bg-opacity-10 rounded-md"
+      />
+
+      <button className="btn-primary-accent-light mb-5 grid h-12 w-12 place-content-center">
         <PlusIcon className=" h-5 w-5" />
       </button>
+
+      <CallbackList />
     </div>
   );
 }
