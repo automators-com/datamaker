@@ -12,7 +12,7 @@ import { Input } from "../components/input";
 import List from "../components/list";
 import { MenuI } from "../components/menu";
 import Toggle from "../components/toggleButton";
-import styles from "./page.module.css";
+// import styles from "./page.module.css";
 
 // testing
 const people = [
@@ -53,7 +53,7 @@ export default function Home() {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <div className={styles.container}>
+    <div className="m-10 w-96">
       <div className="my-2 space-x-4">
         <button className="btn btn-primary"> Hello</button>
         <button className="btn btn-primary-accent">Hello</button>

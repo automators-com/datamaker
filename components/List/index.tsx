@@ -24,7 +24,9 @@ export default function List({
           <li key={item.name}>
             <a
               href={item.href}
-              className={`${index % 2 === 1 && "bg-neutral"} block rounded-md 
+              className={`${
+                index % 2 === 1 && "bg-base-200 bg-opacity-30"
+              } block rounded-md 
             text-base-content hover:bg-secondary hover:text-secondary-content`}
             >
               <div className="flex items-center p-3 sm:px-3">

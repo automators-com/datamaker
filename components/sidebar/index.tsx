@@ -62,10 +62,10 @@ export default function Sidebar({
           open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "md:w-18 w-14 min-w-[4rem] md:min-w-[5rem]",
-          "relative h-full space-y-1 bg-neutral px-4 shadow-inner duration-300"
+          "relative space-y-1 bg-neutral px-4 shadow-inner duration-500"
         )}
       >
-        <ul className="flex w-full flex-col items-center justify-center pt-4 text-secondary">
+        <ul className="flex flex-col items-center justify-center pt-4 text-secondary">
           {routes.map((route) => (
             <Link
               key={route.key}
@@ -115,8 +115,8 @@ export default function Sidebar({
         />
         <Robot
           className={classNames(
-            !open && "invisible",
-            "absolute left-10 bottom-0 w-40 fill-primary"
+            !open && "invisible translate-y-[100%]",
+            "absolute left-10 bottom-0 w-40 scale-100 fill-primary transition-all duration-100 ease-in-out"
           )}
         />
       </nav>
