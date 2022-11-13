@@ -36,8 +36,10 @@ const CallbackList = () => {
     <div>
       <div>
         <div className="ml-6 flex text-xs">
-          <span className="w-1/2 text-base-content">Callback Field Name</span>
-          <span className="w-auto text-base-content">
+          <span className="w-1/2 text-sm font-medium text-base-content opacity-50">
+            Callback Field Name
+          </span>
+          <span className="block w-auto text-sm font-medium text-base-content opacity-50">
             Callback Value Source
           </span>
         </div>

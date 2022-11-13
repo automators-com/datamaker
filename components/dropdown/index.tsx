@@ -19,13 +19,13 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
     <Listbox value={value} onChange={setValue}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-medium text-base-content">
+          <Listbox.Label className="block text-sm font-medium text-base-content opacity-50">
             {label}
           </Listbox.Label>
           <div className={classNames("relative", addClass)}>
             <Listbox.Button
               className="relative flex w-full cursor-default content-center items-center
-                         justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left text-accent shadow-sm 
+                         justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left font-medium text-accent shadow-sm 
                             hover:border-accent focus:border-accent focus:outline-none "
             >
               <span className="block truncate">{value.name}</span>
@@ -40,7 +40,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100  text-base-content shadow-lg ring-1 ring-accent ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100 text-base-content shadow-lg ring-1 ring-accent ring-opacity-5 focus:outline-none sm:text-sm">
                 {list.map((person) => (
                   <Listbox.Option
                     key={person.id}
@@ -55,7 +55,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
                     {({ selected }) => (
                       <span
                         className={classNames(
-                          selected ? "font-semibold" : "font-normal",
+                          selected ? "font-semibold" : "font-medium",
                           "block truncate"
                         )}
                       >
