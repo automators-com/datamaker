@@ -12,7 +12,7 @@ export default function List({
   const [filteredList, setFilteredList] = useState(list);
 
   return (
-    <div className="overflow-hidde w-80">
+    <div className="w-80 overflow-hidden">
       <Filter
         placeholder="Filter Templeates .."
         updateList={setFilteredList}
