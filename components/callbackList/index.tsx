@@ -54,7 +54,7 @@ const CallbackList = () => {
         })}
       </div>
       <button
-        className="btn btn-primary-accent-light ml-6 h-9 font-normal"
+        className="btn btn-primary-accent-light ml-6 flex h-9 font-normal"
         onClick={handleAddCallback}
       >
         <PlusIcon className="text-accent" /> Add Callback

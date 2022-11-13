@@ -10,6 +10,7 @@ import CallbackList from "../components/callbackList";
 import Constrains from "../components/constrains";
 import DropDown from "../components/dropdown";
 import { Input } from "../components/input";
+import List from "../components/List";
 import { MenuI } from "../components/menu";
 import Toggle from "../components/toggleButton";
 import styles from "./page.module.css";
@@ -26,6 +27,25 @@ const people = [
   { id: 8, name: "Mason Heaney" },
   { id: 9, name: "Claudie Smitham" },
   { id: 10, name: "Emil Schaefer" },
+];
+
+const Templeates = [
+  {
+    name: "Ricardo Cooper",
+    href: "#",
+  },
+  {
+    name: "Kristen Ramos",
+    href: "#",
+  },
+  {
+    name: "Ted Fox",
+    href: "#",
+  },
+  {
+    name: "Ted Fox 2344",
+    href: "#",
+  },
 ];
 
 export default function Home() {
@@ -50,9 +70,9 @@ export default function Home() {
 
       <div className="my-2 space-x-4">
         <Toggle toggle={toggle} setToggle={setToggle} text="Text" />
-
         <MenuI />
       </div>
+
       <DropDown
         name="nsma"
         label="Select"
@@ -85,7 +105,7 @@ export default function Home() {
       />
 
       <button className="btn-primary-accent-light mb-5 h-12 w-12">
-        <PlusIcon className=" h-5 w-5" />
+        <PlusIcon className="h-5 w-5" />
       </button>
 
       <CallbackList />
@@ -93,6 +113,8 @@ export default function Home() {
       <button className="btn-primary-accent-light mb-5 h-10 w-10 bg-accent hover:bg-accent-focus">
         <ChevronUpIcon className="h-6 w-6 text-accent-content" />
       </button>
+
+      <List list={Templeates} textButton="Add new Template" />
     </div>
   );
 }
