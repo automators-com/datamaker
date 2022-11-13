@@ -62,7 +62,7 @@ export default function Sidebar({
           open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "md:w-18 w-14 min-w-[4rem] md:min-w-[5rem]",
-          "relative space-y-1 bg-neutral px-4 shadow-inner duration-500"
+          "relative space-y-1 bg-neutral px-4 shadow-inner duration-300"
         )}
       >
         <ul className="flex flex-col items-center justify-center pt-4 text-secondary">
@@ -116,7 +116,7 @@ export default function Sidebar({
         <Robot
           className={classNames(
             !open && "invisible translate-y-[100%]",
-            "absolute left-10 bottom-0 w-40 scale-100 fill-primary transition-all duration-100 ease-in-out"
+            "absolute left-10 bottom-0 w-40 scale-100 fill-primary transition-all duration-75 ease-in-out"
           )}
         />
       </nav>

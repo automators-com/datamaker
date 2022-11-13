@@ -26,13 +26,13 @@ export default function RootLayout({
           <body
             className={classNames(
               theme,
-              "flex  w-screen flex-col overflow-scroll"
+              "flex w-screen flex-col overflow-scroll bg-base-100"
             )}
           >
             <Header theme={theme} setTheme={setTheme} />
             <div className="flex flex-row">
               <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
-              <main className=" h-[calc(100vh_-_5rem)] w-full overflow-scroll">
+              <main className="h-[calc(100vh_-_5rem)] w-full overflow-scroll">
                 {children}{" "}
               </main>
             </div>
