@@ -19,7 +19,7 @@ export const Constrains = ({ handleDelete }: { handleDelete: () => void }) => {
         list={_list}
         name=""
         value={selected}
-        addClass="w-inherit"
+        addClass="w-full"
         setValue={setSelected}
       ></DropDown>
 
