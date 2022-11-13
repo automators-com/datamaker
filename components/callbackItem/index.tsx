@@ -37,7 +37,7 @@ const CallbackItem = ({
 
   return (
     <div className="flex items-center space-x-2">
-      <Bars3Icon className="h-4 w-4 text-primary-focus" />
+      <Bars3Icon className="h-4 w-4 text-base-content " />
 
       <div className="my-2 flex w-full flex-row space-x-2 rounded-md bg-secondary bg-opacity-10 py-2 px-2">
         <Input
@@ -65,7 +65,7 @@ const CallbackItem = ({
       </div>
 
       <button onClick={() => handleDelete(id)}>
-        <TrashIcon className="h-4 w-4 text-primary-focus" />
+        <TrashIcon className="h-4 w-4 text-base-content hover:text-base-content hover:text-opacity-70" />
       </button>
     </div>
   );

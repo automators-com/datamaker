@@ -36,7 +36,7 @@ export const Constrains = ({ handleDelete }: { handleDelete: () => void }) => {
         />
       )}
       <button onClick={handleDelete}>
-        <TrashIcon className="h-3 w-3 hover:text-primary-focus" />
+        <TrashIcon className="h-3 w-3 text-base-content hover:text-base-content hover:text-opacity-70" />
       </button>
     </div>
   );

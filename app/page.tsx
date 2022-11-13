@@ -1,5 +1,10 @@
 "use client";
-import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
 import { useState } from "react";
 import CallbackList from "../components/callbackList";
 import Constrains from "../components/constrains";
@@ -79,11 +84,15 @@ export default function Home() {
         addClass="my-2 p-2 bg-accent bg-opacity-10 rounded-md"
       />
 
-      <button className="btn-primary-accent-light mb-5 grid h-12 w-12 place-content-center">
+      <button className="btn-primary-accent-light mb-5 h-12 w-12">
         <PlusIcon className=" h-5 w-5" />
       </button>
 
       <CallbackList />
+
+      <button className="btn-primary-accent-light mb-5 h-10 w-10 bg-accent hover:bg-accent-focus">
+        <ChevronUpIcon className="h-6 w-6 text-accent-content" />
+      </button>
     </div>
   );
 }

@@ -32,7 +32,6 @@ const Toggle = ({
         <span className="text-sm text-base-content opacity-60">{text}</span>
       </Switch.Label>
     </Switch.Group>
-
   );
 };
 

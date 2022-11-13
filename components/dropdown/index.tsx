@@ -24,7 +24,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
           </Listbox.Label>
           <div className={classNames("relative", addClass)}>
             <Listbox.Button
-              className="relative flex w-full cursor-default
+              className="relative flex w-full cursor-default content-center items-center
                          justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left text-accent shadow-sm 
                             hover:border-accent focus:border-accent focus:outline-none sm:text-sm"
             >
@@ -47,8 +47,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
                     className={({ active }) =>
                       classNames(
                         active && "bg-accent text-accent-content",
-                        "text-base-content",
-                        "relative cursor-default select-none py-2 px-4"
+                        "relative cursor-default select-none py-2 px-4 text-base-content"
                       )
                     }
                     value={person}
