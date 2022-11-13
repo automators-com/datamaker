@@ -40,7 +40,7 @@ export const Input: FC<IProps> = ({
           name={name}
           id={name}
           className={classNames(
-            "block w-full rounded-md border bg-base-100 text-sm font-medium text-base-content placeholder-base-content placeholder-opacity-30",
+            "block w-full rounded-md border bg-base-100 font-medium text-base-content placeholder-base-content placeholder-opacity-30",
             "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none",
             error
               ? "border-error text-error focus:border-error"

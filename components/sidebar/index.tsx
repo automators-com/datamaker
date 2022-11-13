@@ -14,10 +14,9 @@ import Link from "next/link";
 
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import ReactTooltip from "react-tooltip";
 import Robot from "../../public/assets/Robot.svg";
 import { classNames } from "../../utilities/className";
-import ToolTip from "../tooltip";
-// import ToolTip from "react-tooltip";
 
 const routes = [
   {
@@ -68,33 +67,42 @@ export default function Sidebar({
       >
         <ul className="flex w-full flex-col items-center justify-center pt-4 text-secondary">
           {routes.map((route) => (
-            <ToolTip key={route.key} tooltip={!open ? route.name : ""}>
-              <Link
-                key={route.key}
-                href={route.path}
+            <Link
+              key={route.key}
+              href={route.path}
+              data-tip={!open ? route.name : ""}
+              className={classNames(
+                open ? "justify-between pl-4" : "rounded-xl",
+                activeMenu?.path === route.path
+                  ? "bg-primary text-primary-content"
+                  : "bg-transparent text-neutral-content hover:bg-neutral-focus hover:text-neutral-content",
+                "group my-1 flex h-12 w-full cursor-pointer flex-row items-center rounded-xl px-2 pl-[0.88rem] text-base font-medium"
+              )}
+            >
+              <div className="w-5">
+                {activeMenu?.path === route.path ? route.iconSolid : route.icon}
+              </div>
+
+              <div
                 className={classNames(
-                  open ? "justify-between pl-4" : "rounded-xl",
-                  activeMenu?.path === route.path
-                    ? "bg-primary text-primary-content"
-                    : "bg-transparent text-neutral-content hover:bg-neutral-focus hover:text-neutral-content",
-                  "group my-1 flex h-12 w-full cursor-pointer flex-row items-center rounded-xl px-2 pl-[0.88rem] text-base font-medium"
+                  !open && "invisible",
+                  "absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm"
                 )}
               >
-                <div className="w-5">
-                  {activeMenu?.path === route.path
-                    ? route.iconSolid
-                    : route.icon}
-                </div>
-                <span
-                  className={classNames(
-                    !open && "invisible",
-                    "absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm"
-                  )}
-                >
-                  {route.name}
-                </span>
-              </Link>
-            </ToolTip>
+                {route.name}
+                <ReactTooltip
+                  uuid="mytt"
+                  key={route.key}
+                  effect="solid"
+                  textColor="hsl(var(--color-secondary-content))"
+                  backgroundColor="hsl(var(--color-secondary))"
+                  overridePosition={({ left, top }) => ({
+                    left: left + 20,
+                    top: top,
+                  })}
+                />
+              </div>
+            </Link>
           ))}
         </ul>
         <div className="py-10"></div>

@@ -1,7 +1,6 @@
 "use client";
 import {
   CheckIcon,
-  ChevronDownIcon,
   ChevronUpIcon,
   PlusIcon,
 } from "@heroicons/react/24/outline";
