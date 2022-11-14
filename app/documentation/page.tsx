@@ -9,7 +9,7 @@ import CallbackList from "../../components/callbackList";
 import Constrains from "../../components/constrains";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
-import List from "../../components/list";
+import List from "../../components/List";
 import { MenuI } from "../../components/menu";
 import Toggle from "../../components/toggleButton";
 // import styles from "./page.module.css";
