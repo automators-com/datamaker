@@ -47,7 +47,7 @@ const Templeates = [
   },
 ];
 
-export default function Components() {
+export default function Documentation() {
   const [selected, setSelected] = useState(people[3]);
   const [input, setInput] = useState("");
   const [toggle, setToggle] = useState(false);
