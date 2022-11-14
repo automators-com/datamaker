@@ -19,14 +19,10 @@ export default function Header({
   theme: string;
   setTheme: (value: string) => void;
 }) {
-  // const [mounted, setMounted] = useState(false);
-  // useEffect(() => setMounted(true), []);
-  // if (!mounted) return null;
-
   return (
     <header
       id="header"
-      className="flex h-16 w-full flex-row items-center justify-center bg-primary text-primary-content shadow-md md:h-20"
+      className="flex h-16 min-h-[4rem] w-full flex-row items-center justify-center bg-primary text-primary-content shadow-md md:h-20 md:min-h-[5rem] md:justify-between"
     >
       <Link
         href={"/"}
