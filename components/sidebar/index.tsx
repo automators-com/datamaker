@@ -40,6 +40,13 @@ const routes = [
     iconSolid: <PaperAirplaneIconSolid />,
     key: "key3",
   },
+  {
+    name: "Components",
+    path: "/components",
+    icon: <QueueListIconOutline />,
+    iconSolid: <QueueListIconSolid />,
+    key: "key4",
+  },
 ];
 
 export default function Sidebar({

@@ -9,7 +9,7 @@ import CallbackList from "../components/callbackList";
 import Constrains from "../components/constrains";
 import DropDown from "../components/dropdown";
 import { Input } from "../components/input";
-import List from "../components/list";
+import List from "../components/List";
 import { MenuI } from "../components/menu";
 import Toggle from "../components/toggleButton";
 // import styles from "./page.module.css";
@@ -28,7 +28,7 @@ const people = [
   { id: 10, name: "Emil Schaefer" },
 ];
 
-const Templeates = [
+const TempleateList = [
   {
     name: "Ricardo Cooper",
     href: "#",
@@ -113,7 +113,7 @@ export default function Home() {
         <ChevronUpIcon className="h-6 w-6 text-accent-content" />
       </button>
 
-      <List list={Templeates} textButton="Add new Template" />
+      <List list={TempleateList} text="Template" />
     </div>
   );
 }
