@@ -6,9 +6,8 @@ export default function List({ list, text }: { list: any[]; text: string }) {
   const [filteredList, setFilteredList] = useState(list);
 
   return (
-    <div className="w-72 overflow-hidden">
-      <p className="mb-2 text-xs">
-        {" "}
+    <div className="w-auto overflow-hidden">
+      <p className="mb-3 text-xs">
         <span className="text-accent"> {filteredList.length} </span>
         {`${text}s found`}
       </p>
