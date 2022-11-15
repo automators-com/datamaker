@@ -1,5 +1,12 @@
-import { ArrowLeftIcon, CheckIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftIcon,
+  CheckIcon,
+  ChevronUpIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import Constrains from "../constrains";
+import Divider from "../divider";
 import { Input } from "../input";
 
 const Form = () => {
@@ -30,13 +37,25 @@ const Form = () => {
           setValue={(e) => setName(e.target.value)}
         />
 
-        <div className="relative my-5">
-          <div
-            className="absolute inset-0 flex items-center"
-            aria-hidden="true"
-          >
-            <div className="w-full border-t border-base-200 border-opacity-50" />
-          </div>
+        <Divider />
+
+        <div className="rounded-md">
+          <details className="duration-300">
+            <summary className="btn-primary-accent-light h-10 w-10 cursor-pointer bg-accent hover:bg-accent-focus">
+              <ChevronUpIcon className="h-6 w-6 text-accent-content" />
+            </summary>
+            <div className=" flex items-center space-x-2 px-5 py-3">
+              <span className="mb-1 text-sm font-medium text-base-content opacity-50">
+                {" "}
+                Field Constraints{" "}
+              </span>
+              <Constrains handleDelete={() => console.log("dsd")} />
+
+              <button className="btn-primary-accent-light !inline-grid h-12 w-12">
+                <PlusIcon className="h-5 w-5" />
+              </button>
+            </div>
+          </details>
         </div>
       </div>
     </div>
