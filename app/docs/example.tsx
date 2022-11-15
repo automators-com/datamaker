@@ -35,7 +35,7 @@ function Example({
     <div className={"min-h-[12rem] w-full rounded-md border p-4"}>
       <div className="mb-4 flex items-center justify-between p-1 text-xs">
         <div className="flex items-center">
-          <p className="mr-2 text-xs uppercase">{title}</p>
+          <p className="mr-2 text-xs uppercase text-base-content ">{title}</p>
           {tag && (
             <p className="rounded-md border border-accent px-1 py-0 text-[10px] text-accent">
               {tag}

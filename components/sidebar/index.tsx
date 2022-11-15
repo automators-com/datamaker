@@ -82,11 +82,10 @@ export default function Sidebar({
               <div className="w-5">
                 {activeMenu?.path === route.path ? route.iconSolid : route.icon}
               </div>
-
               <div
                 className={classNames(
                   !open && "hidden",
-                  "absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm transition-all duration-700 ease-in-out"
+                  "absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm"
                 )}
               >
                 {route.name}
@@ -116,8 +115,8 @@ export default function Sidebar({
         <div className="w-full items-center justify-center self-end justify-self-end overflow-hidden">
           <Robot
             className={classNames(
-              !open && "translate-y-full",
-              "mx-auto w-full translate-y-[0%] scale-100 fill-primary transition-all duration-300 ease-in-out"
+              !open && "scale-x-80 scale-y-80 translate-y-full",
+              "mx-auto w-full scale-100 fill-primary transition-all duration-300 ease-in-out"
             )}
           />
         </div>
