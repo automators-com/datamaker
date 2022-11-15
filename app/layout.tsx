@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavContext, ThemeContext } from "../components/context/context";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
