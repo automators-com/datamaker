@@ -24,8 +24,7 @@ export default function List({ list, text }: { list: any[]; text: string }) {
               href={item.href}
               className={`${
                 index % 2 === 1 && "bg-base-200 bg-opacity-30"
-              } block rounded-md 
-            text-base-content hover:bg-secondary hover:text-secondary-content`}
+              } block rounded-md  text-base-content hover:bg-secondary hover:text-secondary-content`}
             >
               <div className="flex items-center p-3 sm:px-3">
                 <p className="truncate text-sm">{item.name}</p>
