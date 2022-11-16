@@ -226,9 +226,9 @@ export default function Documentation() {
 
         <Example title="Template List">
           <Example.Component>
-            <List list={Templates} textButton="Add new Template" />
+            <List list={Templates} text="Template" />
           </Example.Component>
-          <Example.Snippet>{`<List list={Templates} textButton="Add new Template" />`}</Example.Snippet>
+          <Example.Snippet>{`<List list={Templates} text="Template" />`}</Example.Snippet>
         </Example>
       </div>
     </>
