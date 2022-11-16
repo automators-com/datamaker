@@ -28,7 +28,7 @@ export default function Templates() {
       <div className="w-72 flex-none pr-8 pt-5">
         <List text="Template" list={TempleateList} />
       </div>
-      <div className="min-h-[600px] min-w-[600px] flex-auto rounded-md bg-base-100 shadow-md shadow-base-200">
+      <div className="min-h-[600px] min-w-[610px] flex-auto rounded-md bg-base-100 shadow-md shadow-base-200">
         <Form />
       </div>
       <div className="w-1/3 flex-none bg-base-200 bg-opacity-50">

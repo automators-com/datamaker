@@ -117,7 +117,7 @@
   }
 
   .btn-secondary {
-    @apply border-primary bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
+    @apply border-base-content border-opacity-80 bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
   }
 
   .btn-primary-accent-light {

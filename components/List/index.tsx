@@ -9,7 +9,7 @@ export default function List({ list, text }: { list: any[]; text: string }) {
     <div className="w-auto overflow-hidden">
       <p className="mb-3 text-xs">
         <span className="text-accent"> {filteredList.length} </span>
-        {`${text}s found`}
+        <span className="text-base-content">{`${text}s found`}</span>
       </p>
       <Filter
         placeholder="Filter Templeates .."

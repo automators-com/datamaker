@@ -58,11 +58,11 @@ const CollapasedContainer = ({
         {({ open }) => (
           <>
             <div className="flex w-full items-end gap-4">
-              <Disclosure.Button className="btn-primary-accent-light inline-grid h-10 w-10 cursor-pointer bg-accent py-2 hover:bg-accent-focus">
+              <Disclosure.Button className="btn-primary-accent-light inline-grid h-[34px] w-10 cursor-pointer bg-accent py-2 hover:bg-accent-focus">
                 {open ? (
-                  <ChevronUpIcon className="h-6 w-6 text-accent-content" />
+                  <ChevronUpIcon className="h-5 w-5 text-accent-content" />
                 ) : (
-                  <ChevronDownIcon className="h-6 w-6 text-accent-content" />
+                  <ChevronDownIcon className="h-5 w-5 text-accent-content" />
                 )}
               </Disclosure.Button>
 
@@ -70,6 +70,7 @@ const CollapasedContainer = ({
                 <Input
                   label="Field Name"
                   name="fieldName"
+                  addClass="border-base-content"
                   placeholder=""
                   type="text"
                   setValue={(e) => setField(e.target.value)}
@@ -86,10 +87,9 @@ const CollapasedContainer = ({
                 <MenuI addClass="mt-5" />
               </div>
             </div>
-            <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 py-3">
-              <span className="mb-1 w-[72px] text-sm font-medium text-base-content opacity-50">
-                {" "}
-                Field Constraints{" "}
+            <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
+              <span className="mb-1 w-[72px] pr-20 text-sm font-medium text-base-content opacity-50">
+                Field Constraints
               </span>
 
               {constrains.map((item, index) => {
