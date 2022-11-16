@@ -16,9 +16,9 @@ const options = [
   { text: "Move Down", icon: <ArrowDownCircleIcon /> },
 ];
 
-export const MenuI = () => {
+export const MenuI = ({ addClass }: { addClass?: string }) => {
   return (
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className={`relative inline-block text-left ${addClass}`}>
       <Menu.Button className="flex items-center text-base-content focus:outline-none">
         <EllipsisHorizontalIcon className="h-5 w-8" aria-hidden="true" />
       </Menu.Button>

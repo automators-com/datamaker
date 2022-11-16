@@ -66,7 +66,7 @@ const CollapasedContainer = ({
                 )}
               </Disclosure.Button>
 
-              <div className="inline-flex items-end gap-4">
+              <div className="inline-flex items-center gap-4">
                 <Input
                   label="Field Name"
                   name="fieldName"
@@ -76,13 +76,14 @@ const CollapasedContainer = ({
                   value={field}
                 />
                 <DropDown
+                  label="Data Type"
                   list={DataTypes}
                   name="dataType"
                   setValue={setType}
                   value={type}
                   addClass="w-52"
                 />
-                <MenuI />
+                <MenuI addClass="mt-5" />
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center space-x-2 px-5 py-3">
