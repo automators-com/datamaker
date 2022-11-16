@@ -86,8 +86,8 @@ const CollapasedContainer = ({
                 <MenuI addClass="mt-5" />
               </div>
             </div>
-            <Disclosure.Panel className="flex flex-wrap items-center space-x-2 px-5 py-3">
-              <span className="mb-1 text-sm font-medium text-base-content opacity-50">
+            <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 py-3">
+              <span className="mb-1 w-[72px] text-sm font-medium text-base-content opacity-50">
                 {" "}
                 Field Constraints{" "}
               </span>
