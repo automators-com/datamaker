@@ -69,10 +69,10 @@ export default function Sidebar({
           open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "md:w-18 w-14 min-w-[4rem] md:min-w-[5rem]",
-          "relative space-y-1 bg-neutral px-4 shadow-inner duration-300"
+          "visible relative flex h-full flex-col justify-between space-y-1 bg-neutral px-4 shadow-inner duration-200"
         )}
       >
-        <ul className="flex flex-col items-center justify-center pt-4 text-secondary">
+        <div className="flex flex-col items-center justify-center pt-4 text-secondary">
           {routes.map((route) => (
             <Link
               key={route.key}
@@ -83,16 +83,15 @@ export default function Sidebar({
                 activeMenu?.path === route.path
                   ? "bg-primary text-primary-content"
                   : "bg-transparent text-neutral-content hover:bg-neutral-focus hover:text-neutral-content",
-                "group my-1 flex h-12 w-full cursor-pointer flex-row items-center rounded-xl px-2 pl-[0.88rem] text-base font-medium"
+                "group my-1 flex h-12 w-full cursor-pointer flex-row items-center rounded-xl px-2 pl-[0.88rem] text-base font-medium transition-all duration-500 ease-in-out"
               )}
             >
               <div className="w-5">
                 {activeMenu?.path === route.path ? route.iconSolid : route.icon}
               </div>
-
               <div
                 className={classNames(
-                  !open && "invisible",
+                  !open && "hidden",
                   "absolute left-16 flex h-16 w-6 items-center text-center font-sans text-sm"
                 )}
               >
@@ -111,7 +110,7 @@ export default function Sidebar({
               </div>
             </Link>
           ))}
-        </ul>
+        </div>
         <div className="py-10"></div>
         <ChevronLeftIconOutline
           className={classNames(
@@ -120,12 +119,14 @@ export default function Sidebar({
           )}
           onClick={() => setOpen(!open)}
         />
-        <Robot
-          className={classNames(
-            !open && "invisible translate-y-[100%]",
-            "absolute left-10 bottom-0 w-40 scale-100 fill-primary transition-all duration-75 ease-in-out"
-          )}
-        />
+        <div className="w-full items-center justify-center self-end justify-self-end overflow-hidden">
+          <Robot
+            className={classNames(
+              !open && "scale-x-80 scale-y-80 translate-y-full",
+              "mx-auto w-full scale-100 fill-primary transition-all duration-300 ease-in-out"
+            )}
+          />
+        </div>
       </nav>
     </>
   );

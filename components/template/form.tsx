@@ -1,16 +1,24 @@
 import {
   ArrowLeftIcon,
   CheckIcon,
-  ChevronUpIcon,
-  PlusIcon,
+  PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import Constrains from "../constrains";
 import Divider from "../divider";
 import { Input } from "../input";
+import CollapasedContainer from "./collapasedContainer";
 
 const Form = () => {
   const [name, setName] = useState("");
+  const [FieldList, setFieldList] = useState<any[]>([
+    { constrains: [{}], fieldName: "", dataType: 1 },
+  ]);
+
+  const handleAddField = () => {
+    setFieldList((prev) => {
+      return [...prev, { constrains: [{}], fieldName: "", dataType: 1 }];
+    });
+  };
 
   return (
     <div className="">
@@ -39,24 +47,23 @@ const Form = () => {
 
         <Divider />
 
-        <div className="rounded-md">
-          <details className="duration-300">
-            <summary className="btn-primary-accent-light h-10 w-10 cursor-pointer bg-accent hover:bg-accent-focus">
-              <ChevronUpIcon className="h-6 w-6 text-accent-content" />
-            </summary>
-            <div className=" flex items-center space-x-2 px-5 py-3">
-              <span className="mb-1 text-sm font-medium text-base-content opacity-50">
-                {" "}
-                Field Constraints{" "}
-              </span>
-              <Constrains handleDelete={() => console.log("dsd")} />
+        {FieldList.map((item, index) => {
+          return (
+            <CollapasedContainer
+              key={index}
+              constrains={item.constrains}
+              setFieldList={setFieldList}
+              item={item}
+            />
+          );
+        })}
 
-              <button className="btn-primary-accent-light !inline-grid h-12 w-12">
-                <PlusIcon className="h-5 w-5" />
-              </button>
-            </div>
-          </details>
-        </div>
+        <button
+          className="btn btn-link mt-2 flex !pl-0 font-normal"
+          onClick={handleAddField}
+        >
+          <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
+        </button>
       </div>
     </div>
   );

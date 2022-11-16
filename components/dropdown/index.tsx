@@ -2,8 +2,7 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { classNames } from "../../utilities/className";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-
-type dropDownList = { id: number; name: string };
+import { dropDownList } from "../../utilities/types";
 
 interface IProps {
   label?: string;

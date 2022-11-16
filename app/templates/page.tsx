@@ -24,7 +24,7 @@ const TempleateList = [
 
 export default function Templates() {
   return (
-    <div className="m-6 flex max-w-7xl">
+    <div className="m-10 flex max-w-7xl">
       <div className="w-72 flex-none pr-8 pt-5">
         <List text="Template" list={TempleateList} />
       </div>
