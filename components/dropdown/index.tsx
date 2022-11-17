@@ -19,7 +19,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
       {({ open }) => (
         <div className={classNames("relative", addClass)}>
           {label && (
-            <Listbox.Label className="mb-1 block text-sm font-medium text-base-content opacity-50">
+            <Listbox.Label className="mb-1 block text-xs font-medium text-base-content opacity-50">
               {label}
             </Listbox.Label>
           )}
@@ -27,12 +27,12 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
           <>
             <Listbox.Button
               className="relative flex w-full cursor-default content-center items-center
-                         justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left font-medium text-accent shadow-sm 
+                         justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left text-sm font-medium text-accent shadow-sm 
                             hover:border-accent focus:border-accent focus:outline-none "
             >
               <span className="block truncate">{value.name}</span>
 
-              <ChevronDownIcon className="h-5 w-5" />
+              <ChevronDownIcon className="h-4 w-4" />
             </Listbox.Button>
 
             <Transition
@@ -42,7 +42,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100 text-base-content shadow-lg ring-1 ring-accent ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-base-100 text-sm text-base-content shadow-lg ring-1 ring-accent ring-opacity-5 focus:outline-none sm:text-sm">
                 {list.map((person) => (
                   <Listbox.Option
                     key={person.id}
@@ -58,7 +58,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
                       <span
                         className={classNames(
                           selected ? "font-semibold" : "font-medium",
-                          "block truncate"
+                          "block truncate text-sm"
                         )}
                       >
                         {person.name}

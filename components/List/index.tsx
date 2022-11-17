@@ -27,7 +27,7 @@ export default function List({ list, text }: { list: any[]; text: string }) {
               } block rounded-md  text-base-content hover:bg-secondary hover:text-secondary-content`}
             >
               <div className="flex items-center p-3 sm:px-3">
-                <p className="truncate text-sm">{item.name}</p>
+                <p className="truncate text-xs">{item.name}</p>
               </div>
             </a>
           </li>
