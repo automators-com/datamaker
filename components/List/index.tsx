@@ -12,7 +12,7 @@ export default function List({ list, text }: { list: any[]; text: string }) {
         <span className="text-base-content">{`${text}s found`}</span>
       </p>
       <Filter
-        placeholder="Filter Templeates .."
+        placeholder="Filter Templates .."
         updateList={setFilteredList}
         originList={list}
       />

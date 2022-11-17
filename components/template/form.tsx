@@ -21,9 +21,9 @@ const Form = () => {
   };
 
   return (
-    <div className="">
-      <div className="flex justify-between border-b bg-base-200 bg-opacity-10 py-6 px-9">
-        <span className="font-medium text-base-content"> New Template</span>
+    <div>
+      <div className="flex h-20 items-center justify-between rounded-tl-md border-b bg-neutral py-6 px-9">
+        <span className=" font-medium text-neutral-content"> New Template</span>
         <div className="space-x-2">
           <button className="btn btn-secondary ">
             <ArrowLeftIcon /> Discard
