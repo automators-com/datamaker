@@ -15,7 +15,7 @@
     --color-accent-content: 0 0% 100%;
     --color-neutral: 0 0% 95%;
     --color-neutral-focus: 0 0% 85%;
-    --color-neutral-content: 0 0% 10%;
+    --color-neutral-content: 261 49% 33%;
     --color-base-100: 0 0% 100%;
     --color-base-200: 0 0% 85%;
     --color-base-300: 0 0% 70%;
@@ -117,7 +117,7 @@
   }
 
   .btn-secondary {
-    @apply border-primary bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
+    @apply border-base-content border-opacity-80 bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
   }
 
   .btn-primary-accent-light {

@@ -28,15 +28,19 @@ export default function Templates() {
       <div className="w-72 flex-none pr-8 pt-5">
         <List text="Template" list={TempleateList} />
       </div>
-      <div className="min-h-[600px] min-w-[600px] flex-auto rounded-md bg-base-100 shadow-md shadow-base-200">
-        <Form />
-      </div>
-      <div className="w-1/3 flex-none bg-base-200 bg-opacity-50">
-        <div className="flex justify-between px-4 py-6">
-          <span className="font-medium text-base-content"> LIVE PREVIEW</span>
-          <button className="btn btn-primary">
-            <PaperAirplaneIcon /> Export/Send Data
-          </button>
+      <div className="flex flex-row rounded-md shadow-md">
+        <div className="min-h-[600px] min-w-[610px] flex-auto rounded-md rounded-r-none bg-base-100 shadow-base-200">
+          <Form />
+        </div>
+        <div className="w-96 flex-none rounded-r-md rounded-l-none bg-base-200 bg-opacity-50 ">
+          <div className="flex h-20 items-center justify-between p-9">
+            <span className="text-xs font-medium text-base-content">
+              LIVE PREVIEW
+            </span>
+            <button className="btn btn-primary">
+              <PaperAirplaneIcon /> Export/Send Data
+            </button>
+          </div>
         </div>
       </div>
     </div>

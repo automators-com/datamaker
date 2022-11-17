@@ -17,11 +17,14 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
   return (
     <Listbox value={value} onChange={setValue}>
       {({ open }) => (
-        <>
-          <Listbox.Label className="block text-sm font-medium text-base-content opacity-50">
-            {label}
-          </Listbox.Label>
-          <div className={classNames("relative", addClass)}>
+        <div className={classNames("relative", addClass)}>
+          {label && (
+            <Listbox.Label className="mb-1 block text-sm font-medium text-base-content opacity-50">
+              {label}
+            </Listbox.Label>
+          )}
+
+          <>
             <Listbox.Button
               className="relative flex w-full cursor-default content-center items-center
                          justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left font-medium text-accent shadow-sm 
@@ -65,8 +68,8 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
                 ))}
               </Listbox.Options>
             </Transition>
-          </div>
-        </>
+          </>
+        </div>
       )}
     </Listbox>
   );
