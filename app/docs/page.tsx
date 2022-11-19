@@ -104,7 +104,12 @@ export default function Documentation() {
 
         <Example title="Menu">
           <Example.Component>
-            <MenuI />
+            <MenuI
+              handleDelete={null}
+              handleDuplicate={null}
+              handleMoveDown={null}
+              handleMoveUp={null}
+            />
           </Example.Component>
           <Example.Snippet>{`<MenuI />`}</Example.Snippet>
         </Example>

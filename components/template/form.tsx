@@ -4,19 +4,27 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import type { TemplateField } from "../../utilities/types";
 import Divider from "../divider";
 import { Input } from "../input";
 import CollapasedContainer from "./collapasedContainer";
 
 const Form = () => {
   const [name, setName] = useState("");
-  const [FieldList, setFieldList] = useState<any[]>([
-    { constrains: [{}], fieldName: "", dataType: 1 },
+  const [FieldList, setFieldList] = useState<TemplateField[]>([
+    { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
   ]);
+
+  const updateFieldList = (list: TemplateField[]) => {
+    setFieldList(list);
+  };
 
   const handleAddField = () => {
     setFieldList((prev) => {
-      return [...prev, { constrains: [{}], fieldName: "", dataType: 1 }];
+      return [
+        ...prev,
+        { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
+      ];
     });
   };
 
@@ -37,7 +45,7 @@ const Form = () => {
 
       <div className="p-9">
         <Input
-          name="tempplateName"
+          name="templateName"
           placeholder="name"
           type="text"
           label="Template Name"
@@ -52,8 +60,9 @@ const Form = () => {
             <CollapasedContainer
               key={index}
               constrains={item.constrains}
-              setFieldList={setFieldList}
+              updateFieldList={updateFieldList}
               item={item}
+              FieldList={FieldList}
             />
           );
         })}

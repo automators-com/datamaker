@@ -16,7 +16,19 @@ const options = [
   { text: "Move Down", icon: <ArrowDownCircleIcon /> },
 ];
 
-export const MenuI = ({ addClass }: { addClass?: string }) => {
+export const MenuI = ({
+  addClass,
+  handleDelete,
+  handleDuplicate,
+  handleMoveDown,
+  handleMoveUp,
+}: {
+  addClass?: string;
+  handleDelete: any;
+  handleDuplicate: any;
+  handleMoveUp: any;
+  handleMoveDown: any;
+}) => {
   return (
     <Menu as="div" className={`relative inline-block text-left ${addClass}`}>
       <Menu.Button className="flex items-center text-base-content focus:outline-none">
@@ -37,13 +49,20 @@ export const MenuI = ({ addClass }: { addClass?: string }) => {
             <Menu.Item key={index}>
               {({ active }) => (
                 <a
-                  href="#"
                   className={classNames(
                     active
                       ? "bg-base-200 bg-opacity-50 text-base-content"
                       : "text-base-content",
                     "group flex items-center px-4 py-2 text-sm"
                   )}
+                  onClick={() => {
+                    console.log(index);
+
+                    if (index === 0) handleDelete();
+                    if (index === 1) handleDuplicate();
+                    if (index === 2) handleMoveUp();
+                    if (index === 3) handleMoveDown();
+                  }}
                 >
                   <span className="mr-3 h-5 w-5 text-accent" aria-hidden="true">
                     {option.icon}
