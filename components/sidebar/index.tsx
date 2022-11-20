@@ -107,7 +107,7 @@ export default function Sidebar({
         <div className="py-10"></div>
         <ChevronLeftIconOutline
           className={classNames(
-            "absolute -right-3 bottom-40 h-7 w-7 cursor-pointer rounded-md bg-base-200 p-1 text-primary-content",
+            "absolute -right-3 bottom-40 z-10 h-7 w-7 cursor-pointer rounded-md bg-base-200 p-1 text-primary-content",
             open || "rotate-180"
           )}
           onClick={() => setOpen(!open)}

@@ -89,7 +89,7 @@ const CollapasedContainer = ({
       <Disclosure>
         {({ open }) => (
           <>
-            <div className="flex w-full items-end gap-4">
+            <div className="flex w-full items-end gap-2 lg:gap-4">
               <Disclosure.Button className="btn-primary-accent-light inline-grid h-[34px] w-10 cursor-pointer bg-accent py-2 hover:bg-accent-focus">
                 {open ? (
                   <ChevronUpIcon className="h-5 w-5 text-accent-content" />
@@ -98,7 +98,7 @@ const CollapasedContainer = ({
                 )}
               </Disclosure.Button>
 
-              <div className="inline-flex items-center gap-4">
+              <div className="inline-flex items-center gap-2 lg:gap-4">
                 <Input
                   label="Field Name"
                   name="fieldName"
@@ -119,7 +119,7 @@ const CollapasedContainer = ({
                   name="dataType"
                   setValue={setType}
                   value={type}
-                  addClass="w-52"
+                  addClass="w-52 sm:w-48"
                 />
                 <MenuI
                   addClass="mt-5"
