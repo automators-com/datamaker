@@ -53,7 +53,7 @@ export const MenuI = ({
                     active
                       ? "bg-base-200 bg-opacity-50 text-base-content"
                       : "text-base-content",
-                    "group flex items-center px-4 py-2 text-sm"
+                    "group flex items-center px-4 py-2 text-sm hover:cursor-pointer"
                   )}
                   onClick={() => {
                     console.log(index);

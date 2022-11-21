@@ -57,7 +57,7 @@ const CollapasedContainer = ({
 
   const handleDuplicate = () => {
     const index = FieldList.indexOf(item);
-    updateFieldList([...FieldList, FieldList[index]]);
+    updateFieldList([...FieldList, { ...FieldList[index] }]);
   };
 
   const handleMoveDown = () => {
