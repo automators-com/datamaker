@@ -6,7 +6,7 @@ interface IProps {
   label?: string;
   name: string;
   value: string | number;
-  placeholder: string;
+  placeholder?: string;
   type: string;
   error?: string;
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;

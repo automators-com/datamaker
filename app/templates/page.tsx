@@ -1,6 +1,8 @@
 "use client";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 import List from "../../components/List";
+import ExportModal from "../../components/template/exportModal";
 import Form from "../../components/template/form";
 
 const TempleateList = [
@@ -23,6 +25,8 @@ const TempleateList = [
 ];
 
 export default function Templates() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="w-full max-w-7xl flex-grow py-6 lg:flex xl:px-8">
       {/* Left sidebar & main wrapper */}
@@ -50,12 +54,19 @@ export default function Templates() {
             <span className="text-xs font-medium text-base-content">
               LIVE PREVIEW
             </span>
-            <button className="btn btn-primary">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                setOpen(true);
+              }}
+            >
               <PaperAirplaneIcon /> Export/Send Data
             </button>
           </div>
         </div>
       </div>
+
+      {<ExportModal open={open} setOpen={setOpen} />}
     </div>
   );
 }
