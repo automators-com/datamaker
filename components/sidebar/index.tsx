@@ -62,7 +62,7 @@ export default function Sidebar({
           open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "md:w-18 w-14 min-w-[4rem] md:min-w-[5rem]",
-          "visible relative flex h-full flex-col justify-between space-y-1 bg-neutral px-4 shadow-inner duration-200"
+          "visible relative hidden h-full flex-col justify-between space-y-1 bg-neutral px-4 shadow-inner duration-200 md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col"
         )}
       >
         <div className="flex flex-col items-center justify-center pt-4 text-secondary">
@@ -121,6 +121,22 @@ export default function Sidebar({
           />
         </div>
       </nav>
+
+      <div>
+        {/* Static sidebar for desktop */}
+        <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className="flex flex-grow flex-col overflow-y-auto bg-indigo-700 pt-5">
+            <div className="flex flex-shrink-0 items-center px-4">
+              <img
+                className="h-8 w-auto"
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
+                alt="Your Company"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
