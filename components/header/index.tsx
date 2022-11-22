@@ -1,6 +1,11 @@
 "use client";
 import { Menu, Transition } from "@headlessui/react";
-import { FireIcon, MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3BottomLeftIcon,
+  FireIcon,
+  MoonIcon,
+  SunIcon,
+} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Fragment } from "react";
 import LogoWhite from "../../public/assets/LogoWhite.svg";
@@ -15,9 +20,11 @@ const themes = [
 export default function Header({
   theme,
   setTheme,
+  setSidebarOpen,
 }: {
   theme: string;
   setTheme: (value: string) => void;
+  setSidebarOpen: (value: boolean) => void;
 }) {
   return (
     <header
@@ -37,7 +44,7 @@ export default function Header({
         </h1>
       </div>
 
-      <Menu as="div" className="relative mr-10 inline-block text-left">
+      <Menu as="div" className="relative mr-5 inline-block text-left">
         <Menu.Button className="flex items-center text-primary-content focus:outline-none">
           {themes.map((t) => {
             if (t.key === theme) {
@@ -81,6 +88,16 @@ export default function Header({
           </Menu.Items>
         </Transition>
       </Menu>
+
+      <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 shadow">
+        <button
+          type="button"
+          className="px-4 text-base-100 focus:outline-none md:hidden"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+        </button>
+      </div>
     </header>
   );
 }
