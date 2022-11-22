@@ -6,7 +6,7 @@ interface IProps {
   label?: string;
   name: string;
   value: string | number;
-  placeholder: string;
+  placeholder?: string;
   type: string;
   error?: string;
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -28,7 +28,7 @@ export const Input: FC<IProps> = ({
       {label && (
         <label
           htmlFor="email"
-          className="mb-1 block text-sm font-medium text-base-content opacity-50"
+          className="mb-1 block text-xs font-medium text-base-content opacity-50"
         >
           {label}
         </label>
@@ -40,7 +40,7 @@ export const Input: FC<IProps> = ({
           name={name}
           id={name}
           className={classNames(
-            "block w-full rounded-md border bg-base-100 font-medium text-base-content placeholder-base-content placeholder-opacity-30",
+            "block w-full rounded-md border bg-base-100 text-sm font-medium  text-base-content placeholder-base-content placeholder-opacity-30",
             "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none",
             error
               ? "border-error text-error focus:border-error"

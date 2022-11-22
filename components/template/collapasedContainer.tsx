@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { DataTypes } from "../../utilities/constants";
+import type { Constrain, TemplateField } from "../../utilities/types";
 import Constrains from "../constrains";
 import Divider from "../divider";
 import DropDown from "../dropdown";
@@ -15,41 +16,72 @@ import { MenuI } from "../menu";
 const CollapasedContainer = ({
   constrains,
   item,
-  setFieldList,
+  updateFieldList,
+  FieldList,
 }: {
-  constrains: any[];
-  setFieldList: any;
-  item: any;
+  constrains: Constrain[];
+  updateFieldList: (list: TemplateField[]) => void;
+  FieldList: TemplateField[];
+  item: TemplateField;
 }) => {
-  const [field, setField] = useState("");
   const [type, setType] = useState(DataTypes[0]);
 
   const handleAddConstrain = () => {
-    setFieldList((prev: any) => {
-      const index = prev.indexOf(item);
-      prev[index] = {
-        ...prev[index],
-        constrains: [...prev[index].constrains, {}],
-      };
-      console.log(prev);
+    const index = FieldList.indexOf(item);
+    FieldList[index] = {
+      ...FieldList[index],
+      constrains: [...FieldList[index].constrains, { name: "Min", value: 0 }],
+    };
 
-      return [...prev];
-    });
+    updateFieldList([...FieldList]);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDeleteConstrain = (id: number) => {
     if (item.constrains.length === 1) return;
 
-    console.log(id);
-    //   // const updatedConstrains = item.constrains.filter((_:any, index: number) => index !== id);
-    //   // setFieldList((prev: any) => {
+    const _list = FieldList;
+    const index = _list.indexOf(item);
+    _list[index].constrains.splice(id, 1);
 
-    //   //     const index = prev.indexOf(item);
-    //   //     prev[index]= { ...prev[index], constrains: updatedConstrains}
-    //   //     console.log(id, prev);
+    updateFieldList([..._list]);
+  };
 
-    //   //     return prev
-    //   // })
+  const handleDelete = () => {
+    const index = FieldList.indexOf(item);
+
+    if (FieldList.length === 1) return;
+    const updatedList = FieldList.filter((_: any, i: number) => index !== i);
+
+    updateFieldList([...updatedList]);
+  };
+
+  const handleDuplicate = () => {
+    const index = FieldList.indexOf(item);
+    updateFieldList([...FieldList, { ...FieldList[index] }]);
+  };
+
+  const handleMoveDown = () => {
+    const index = FieldList.indexOf(item);
+
+    if (index !== -1 && index < FieldList.length - 1) {
+      const el = FieldList[index];
+      FieldList[index] = FieldList[index + 1];
+      FieldList[index + 1] = el;
+    }
+    updateFieldList([...FieldList]);
+  };
+
+  const handleMoveUp = () => {
+    const _list = FieldList;
+    const index = _list.indexOf(item);
+
+    if (index > 0) {
+      const el = _list[index];
+      _list[index] = _list[index - 1];
+      _list[index - 1] = el;
+    }
+
+    updateFieldList([..._list]);
   };
 
   return (
@@ -57,7 +89,7 @@ const CollapasedContainer = ({
       <Disclosure>
         {({ open }) => (
           <>
-            <div className="flex w-full items-end gap-4">
+            <div className="flex w-full items-end gap-2 lg:gap-4">
               <Disclosure.Button className="btn-primary-accent-light inline-grid h-[34px] w-10 cursor-pointer bg-accent py-2 hover:bg-accent-focus">
                 {open ? (
                   <ChevronUpIcon className="h-5 w-5 text-accent-content" />
@@ -66,15 +98,20 @@ const CollapasedContainer = ({
                 )}
               </Disclosure.Button>
 
-              <div className="inline-flex items-center gap-4">
+              <div className="inline-flex items-center gap-2 lg:gap-4">
                 <Input
                   label="Field Name"
                   name="fieldName"
                   addClass="border-base-content"
-                  placeholder=""
+                  placeholder="Name"
                   type="text"
-                  setValue={(e) => setField(e.target.value)}
-                  value={field}
+                  setValue={(e) => {
+                    const index = FieldList.indexOf(item);
+                    FieldList[index].fieldName = e.target.value;
+
+                    updateFieldList([...FieldList]);
+                  }}
+                  value={item.fieldName}
                 />
                 <DropDown
                   label="Data Type"
@@ -82,9 +119,15 @@ const CollapasedContainer = ({
                   name="dataType"
                   setValue={setType}
                   value={type}
-                  addClass="w-52"
+                  addClass="w-52 sm:w-48"
                 />
-                <MenuI addClass="mt-5" />
+                <MenuI
+                  addClass="mt-5"
+                  handleDelete={handleDelete}
+                  handleDuplicate={handleDuplicate}
+                  handleMoveDown={handleMoveDown}
+                  handleMoveUp={handleMoveUp}
+                />
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
@@ -95,8 +138,9 @@ const CollapasedContainer = ({
               {constrains.map((item, index) => {
                 return (
                   <Constrains
-                    handleDelete={() => handleDelete(index)}
+                    handleDelete={() => handleDeleteConstrain(index)}
                     key={index}
+                    // setFieldList={setFieldList}
                   />
                 );
               })}

@@ -31,7 +31,7 @@ export const Constrains = ({ handleDelete }: { handleDelete: () => void }) => {
           setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
             setNumber(Number(e.target.value))
           }
-          addClass="w-14 !pr-0.5 text-left text-center"
+          addClass="w-14 !pr-0.5 text-center"
           value={number}
         />
       )}
