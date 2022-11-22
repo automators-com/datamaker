@@ -20,16 +20,12 @@ const themes = [
 export default function Header({
   theme,
   setTheme,
-  sidebarOpen,
   setSidebarOpen,
 }: {
   theme: string;
   setTheme: (value: string) => void;
-  sidebarOpen: boolean;
   setSidebarOpen: (value: boolean) => void;
 }) {
-  console.log(sidebarOpen);
-  
   return (
     <header
       id="header"
@@ -48,7 +44,7 @@ export default function Header({
         </h1>
       </div>
 
-      <Menu as="div" className="relative mr-8 inline-block text-left">
+      <Menu as="div" className="relative mr-5 inline-block text-left">
         <Menu.Button className="flex items-center text-primary-content focus:outline-none">
           {themes.map((t) => {
             if (t.key === theme) {
@@ -99,7 +95,6 @@ export default function Header({
           className="px-4 text-base-100 focus:outline-none md:hidden"
           onClick={() => setSidebarOpen(true)}
         >
-          <span className="sr-only">Open sidebar</span>
           <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
         </button>
       </div>

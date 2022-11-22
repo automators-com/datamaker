@@ -14,7 +14,9 @@ export default function RootLayout({
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("root");
 
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+
+  console.log(isNavOpen, sidebarOpen);
 
   return (
     <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
@@ -34,11 +36,15 @@ export default function RootLayout({
             <Header
               theme={theme}
               setTheme={setTheme}
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setIsNavOpen}
+              setSidebarOpen={setSidebarOpen}
             />
             <div className="flex flex-row">
-              <Sidebar open={isNavOpen} setOpen={setIsNavOpen} />
+              <Sidebar
+                open={isNavOpen}
+                setOpen={setIsNavOpen}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+              />
               <main className="h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-full overflow-auto">
                 {children}
               </main>
