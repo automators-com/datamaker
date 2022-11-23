@@ -39,7 +39,7 @@ export default function Header({
         <LogoWhite />
       </Link>
       <div className="flex h-full w-full items-center pl-4 md:pl-10">
-        <h1 className="text-xl font-normal uppercase tracking-widest">
+        <h1 className="font-normal uppercase tracking-widest lg:text-xl">
           datamaker
         </h1>
       </div>
@@ -95,7 +95,10 @@ export default function Header({
           className="px-4 text-base-100 focus:outline-none md:hidden"
           onClick={() => setSidebarOpen(true)}
         >
-          <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+          <Bars3BottomLeftIcon
+            className="h-6 w-6 text-primary-content"
+            aria-hidden="true"
+          />
         </button>
       </div>
     </header>

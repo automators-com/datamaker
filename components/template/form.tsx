@@ -30,8 +30,8 @@ const Form = () => {
 
   return (
     <>
-      <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40  bg-neutral bg-opacity-50 py-6 px-6 lg:px-9">
-        <span className=" font-medium text-neutral-content"> New Template</span>
+      <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral bg-opacity-50 py-6 px-6 lg:px-9">
+        <span className="font-medium text-neutral-content"> New Template</span>
         <div className="space-x-2">
           <button className="btn btn-secondary ">
             <ArrowLeftIcon /> Discard

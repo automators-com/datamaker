@@ -3,7 +3,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import DropDown from "../dropdown";
 import { Input } from "../input";
 
-const Target = [{ id: 1, name: "Send To API" }];
+const Target = [
+  { id: 1, name: "CSV/Excel" },
+  { id: 2, name: "JSON" },
+];
 
 const API = [{ id: 1, name: "ErsteBank-USERAPI_intern_EU" }];
 
@@ -15,7 +18,7 @@ export default function ExportModal({
   setOpen: (open: boolean) => void;
 }) {
   const [exportData, setExportData] = useState({
-    dataPoint: 0,
+    dataPoint: 10,
     api: API[0],
     target: Target[0],
   });
@@ -50,37 +53,32 @@ export default function ExportModal({
                 <div className="mt-2 sm:mt-3">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-primary"
+                    className="text-lg font-medium leading-6 text-base-content"
                   >
                     <p>
-                      {" "}
                       Send/Export{" "}
                       <span className="text-accent">
-                        {" "}
-                        Customer: <br /> E-Commerce General{" "}
+                        Customer: <br />
+                        E-Commerce General
                       </span>
                     </p>
                   </Dialog.Title>
 
-                  <p className="my-6 text-sm">
+                  <p className="my-6 text-sm text-base-content">
                     Select how to export or send your data.
                   </p>
 
                   <DropDown
                     list={Target}
                     name="target"
-                    setValue={null}
+                    setValue={(e: any) =>
+                      setExportData({
+                        ...exportData,
+                        target: e,
+                      })
+                    }
                     value={exportData.target}
                     label="Select Target"
-                    addClass="mb-7"
-                  />
-
-                  <DropDown
-                    list={API}
-                    name="api"
-                    setValue={null}
-                    value={exportData.api}
-                    label="Select API"
                     addClass="mb-7"
                   />
 
@@ -98,8 +96,7 @@ export default function ExportModal({
                   />
                 </div>
 
-                <p className="my-5 text-end text-xs">
-                  {" "}
+                <p className="my-5 text-end text-xs text-base-content">
                   {exportData.dataPoint} Datapoints will be sent to API{" "}
                 </p>
 
