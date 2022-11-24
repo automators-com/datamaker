@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Fragment } from "react";
-import LogoWhite from "../../public/assets/LogoWhite.svg";
+import LogoWhite from "../../../public/assets/LogoWhite.svg";
 import { classNames } from "../../utilities/className";
 
 const themes = [

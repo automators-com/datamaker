@@ -17,7 +17,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Fragment, useMemo } from "react";
 import ReactTooltip from "react-tooltip";
-import Robot from "../../public/assets/Robot.svg";
+import Robot from "../../../public/assets/Robot.svg";
 import { classNames } from "../../utilities/className";
 
 const routes = [
