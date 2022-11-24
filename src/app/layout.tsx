@@ -20,7 +20,7 @@ export default function RootLayout({
 
   return (
     <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
-      <ThemeContext.Provider value={{ theme, setTheme: () => {} }}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
         <html lang="en">
           {/*
         <head /> will contain the components returned by the nearest parent
