@@ -4,23 +4,27 @@ import { classNames } from "../../utilities/className";
 
 interface IProps {
   label?: string;
-  name: string;
-  value: string | number;
+  id?: string;
+  name?: string;
+  value?: string | number;
   placeholder?: string;
-  type: string;
+  type?: string;
   error?: string;
-  setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setValue?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   addClass?: string;
+  formRegister?: any;
 }
 
 export const Input: FC<IProps> = ({
+  formRegister,
   error,
-  name,
+  id,
+  // name,
   placeholder,
-  value,
+  // value,
   label,
   type,
-  setValue,
+  // setValue,
   addClass,
 }) => {
   return (
@@ -36,9 +40,10 @@ export const Input: FC<IProps> = ({
 
       <div className="relative">
         <input
+          {...formRegister}
           type={type}
-          name={name}
-          id={name}
+          // name={name}
+          id={id}
           className={classNames(
             "block w-full rounded-md border bg-base-100 text-sm font-medium  text-base-content placeholder-base-content placeholder-opacity-30",
             "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none",
@@ -50,8 +55,8 @@ export const Input: FC<IProps> = ({
           placeholder={placeholder}
           aria-invalid="true"
           aria-describedby="email-error"
-          value={value}
-          onChange={setValue}
+          // value={value}
+          // onChange={setValue}
         />
         {error && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
@@ -63,7 +68,7 @@ export const Input: FC<IProps> = ({
         )}
       </div>
       {error && (
-        <p className="mt-2 text-sm text-error" id="email-error">
+        <p className="mt-2 text-xs text-error" id="email-error">
           {error}
         </p>
       )}

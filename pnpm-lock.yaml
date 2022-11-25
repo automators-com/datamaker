@@ -24,6 +24,7 @@ specifiers:
   prisma: ^4.6.1
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.39.5
   react-tooltip: ^4.5.0
   tailwindcss: ^3.2.2
   typescript: 4.8.4
@@ -41,6 +42,7 @@ dependencies:
   prisma: 4.6.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.39.5_react@18.2.0
   react-tooltip: 4.5.0_biqbaboplfbrettd7655fr4n2y
   typescript: 4.8.4
 
@@ -3627,6 +3629,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form/7.39.5_react@18.2.0:
+    resolution: {integrity: sha512-OE0HKyz5IPc6svN2wd+e+evidZrw4O4WZWAWYzQVZuHi+hYnHFSLnxOq0ddjbdmaLIsLHut/ab7j72y2QT3+KA==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

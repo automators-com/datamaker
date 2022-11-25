@@ -3,14 +3,24 @@ import {
   CheckIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import type { TemplateField } from "../../utilities/types";
 import Divider from "../divider";
 import { Input } from "../input";
 import CollapasedContainer from "./collapasedContainer";
 
+type TemplateForm = {
+  templateName: string;
+};
+
 const Form = () => {
-  const [name, setName] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TemplateForm>();
+  // const [name, setName] = useState("");
   const [FieldList, setFieldList] = useState<TemplateField[]>([
     { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
   ]);
@@ -29,7 +39,11 @@ const Form = () => {
   };
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit((data) => {
+        console.log(data);
+      })}
+    >
       <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral bg-opacity-50 py-6 px-6 lg:px-9">
         <span className="font-medium text-neutral-content"> New Template</span>
         <div className="space-x-2">
@@ -37,7 +51,7 @@ const Form = () => {
             <ArrowLeftIcon /> Discard
           </button>
 
-          <button className="btn btn-primary-accent">
+          <button className="btn btn-primary-accent" type="submit">
             <CheckIcon /> Save
           </button>
         </div>
@@ -45,12 +59,19 @@ const Form = () => {
 
       <div className="p-6 sm:p-6 md:p-8 lg:p-9">
         <Input
-          name="templateName"
+          formRegister={{
+            ...register("templateName", {
+              required: "Please enter a template name",
+            }),
+          }}
+          error={errors.templateName?.message}
+          id={"templateName"}
+          // name="templateName"
           placeholder="name"
           type="text"
           label="Template Name"
-          value={name}
-          setValue={(e) => setName(e.target.value)}
+          // value={"templateName"}
+          // setValue={(e) => setName(e.target.value)}
         />
 
         <Divider />
@@ -74,7 +95,7 @@ const Form = () => {
           <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
         </button>
       </div>
-    </>
+    </form>
   );
 };
 
