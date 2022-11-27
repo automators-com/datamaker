@@ -9,7 +9,7 @@ import Divider from "../divider";
 import { Input } from "../input";
 import CollapasedContainer from "./collapasedContainer";
 
-const Form = () => {
+const Form = ({ handleClose }: { handleClose: () => void }) => {
   const [name, setName] = useState("");
   const [FieldList, setFieldList] = useState<TemplateField[]>([
     { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
@@ -33,7 +33,7 @@ const Form = () => {
       <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral bg-opacity-50 py-6 px-6 lg:px-9">
         <span className="font-medium text-neutral-content"> New Template</span>
         <div className="space-x-2">
-          <button className="btn btn-secondary ">
+          <button className="btn btn-secondary" onClick={handleClose}>
             <ArrowLeftIcon /> Discard
           </button>
 
