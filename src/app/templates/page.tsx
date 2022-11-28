@@ -44,9 +44,12 @@ export default function Templates() {
       </div>
 
       {isOpen ? (
-        <div className="min-w-0 flex-1 xl:flex">
+        <div
+          className="min-w-0 flex-1 rounded-md xl:flex"
+          style={{ boxShadow: "0px 0px 30px #0000001A" }}
+        >
           <div
-            className="relative h-full flex-auto rounded-md rounded-r-none bg-base-100 shadow-base-200 lg:min-w-[400px] lg:flex-1"
+            className="relative h-full flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1"
             style={{ minHeight: "36rem" }}
           >
             <Form handleClose={handleOpenForm} />
@@ -74,7 +77,7 @@ export default function Templates() {
           </div>
         </div>
       ) : (
-        <div className="mx-auto flex flex-col gap-5 self-center text-center">
+        <div className="mx-auto flex flex-col gap-5 self-center text-center lg:pt-16 xl:pt-16">
           <NoContentRobot className="scale-80 mx-auto w-40 fill-secondary" />
 
           <p className="text-xs text-base-content">
@@ -82,7 +85,7 @@ export default function Templates() {
           </p>
 
           <button
-            className="btn btn-primary-accent mx-auto p-3"
+            className="btn btn-primary-accent mx-auto p-3 px-4"
             onClick={handleOpenForm}
           >
             <PlusIcon /> Create new template
