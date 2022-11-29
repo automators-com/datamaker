@@ -5,8 +5,14 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import {
+  Control,
+  FieldErrorsImpl,
+  useFieldArray,
+  UseFormRegister,
+} from "react-hook-form";
 import { DataTypes } from "../../utilities/constants";
-import type { Constrain, TemplateField } from "../../utilities/types";
+import type { TemplateField, TemplateForm } from "../../utilities/types";
 import Constrains from "../constrains";
 import Divider from "../divider";
 import DropDown from "../dropdown";
@@ -14,46 +20,67 @@ import { Input } from "../input";
 import { MenuI } from "../menu";
 
 const CollapasedContainer = ({
-  constrains,
+  // constrains,
   item,
   updateFieldList,
   FieldList,
+  register,
+  index,
+  control,
+  // setValue,
+  // getValues,
+  errors,
+  deleteField,
 }: {
-  constrains: Constrain[];
+  // constrains: Constrain[];
   updateFieldList: (list: TemplateField[]) => void;
   FieldList: TemplateField[];
   item: TemplateField;
+  register: UseFormRegister<TemplateForm>;
+  index: number;
+  control: Control<TemplateForm, any>;
+  // setValue: ,
+  // getValues: ,
+  deleteField: any;
+  errors: Partial<FieldErrorsImpl<TemplateForm>>;
 }) => {
   const [type, setType] = useState(DataTypes[0]);
 
-  const handleAddConstrain = () => {
-    const index = FieldList.indexOf(item);
-    FieldList[index] = {
-      ...FieldList[index],
-      constrains: [...FieldList[index].constrains, { name: "Min", value: 0 }],
-    };
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: `fieldList.${index}.constrains`,
+  });
 
-    updateFieldList([...FieldList]);
-  };
+  // console.log(errors.fieldList ? errors.fieldList[index] : "");
 
-  const handleDeleteConstrain = (id: number) => {
-    if (item.constrains.length === 1) return;
+  // const handleAddConstrain = () => {
+  //   const index = FieldList.indexOf(item);
+  //   FieldList[index] = {
+  //     ...FieldList[index],
+  //     constrains: [...FieldList[index].constrains, { name: "Min", value: 0 }],
+  //   };
 
-    const _list = FieldList;
-    const index = _list.indexOf(item);
-    _list[index].constrains.splice(id, 1);
+  //   updateFieldList([...FieldList]);
+  // };
 
-    updateFieldList([..._list]);
-  };
+  // const handleDeleteConstrain = (id: number) => {
+  //   if (item.constrains.length === 1) return;
 
-  const handleDelete = () => {
-    const index = FieldList.indexOf(item);
+  //   const _list = FieldList;
+  //   const index = _list.indexOf(item);
+  //   _list[index].constrains.splice(id, 1);
 
-    if (FieldList.length === 1) return;
-    const updatedList = FieldList.filter((_: any, i: number) => index !== i);
+  //   updateFieldList([..._list]);
+  // };
 
-    updateFieldList([...updatedList]);
-  };
+  // const handleDelete = () => {
+  //   const index = FieldList.indexOf(item);
+
+  //   if (FieldList.length === 1) return;
+  //   const updatedList = FieldList.filter((_: any, i: number) => index !== i);
+
+  //   updateFieldList([...updatedList]);
+  // };
 
   const handleDuplicate = () => {
     const index = FieldList.indexOf(item);
@@ -86,7 +113,7 @@ const CollapasedContainer = ({
 
   return (
     <>
-      <Disclosure>
+      <Disclosure defaultOpen={index === 0 && true}>
         {({ open }) => (
           <>
             <div className="flex w-full items-end gap-2 lg:gap-4">
@@ -101,17 +128,25 @@ const CollapasedContainer = ({
               <div className="inline-flex items-center gap-2 lg:gap-4">
                 <Input
                   label="Field Name"
-                  name="fieldName"
+                  // name="fieldName"
                   addClass="border-base-content"
                   placeholder="Name"
                   type="text"
-                  setValue={(e) => {
-                    const index = FieldList.indexOf(item);
-                    FieldList[index].fieldName = e.target.value;
+                  // setValue={(e) => {
+                  //   const index = FieldList.indexOf(item);
+                  //   FieldList[index].fieldName = e.target.value;
 
-                    updateFieldList([...FieldList]);
-                  }}
+                  //   updateFieldList([...FieldList]);
+                  // }}
                   value={item.fieldName}
+                  formRegister={{
+                    ...register(`fieldList.${index}.fieldName`, {
+                      required: "Please enter field name",
+                    }),
+                  }}
+                  error={
+                    errors.fieldList ? errors.fieldList[index]?.message : ""
+                  }
                 />
                 <DropDown
                   label="Data Type"
@@ -123,7 +158,7 @@ const CollapasedContainer = ({
                 />
                 <MenuI
                   addClass="mt-5"
-                  handleDelete={handleDelete}
+                  handleDelete={() => deleteField(index)}
                   handleDuplicate={handleDuplicate}
                   handleMoveDown={handleMoveDown}
                   handleMoveUp={handleMoveUp}
@@ -135,10 +170,14 @@ const CollapasedContainer = ({
                 Field Constraints
               </span>
 
-              {constrains.map((item, index) => {
+              {fields.map((item, i) => {
                 return (
                   <Constrains
-                    handleDelete={() => handleDeleteConstrain(index)}
+                    // handleDelete={() => handleDeleteConstrain(index)}
+                    handleDelete={() => {
+                      if (fields.length === 1) return;
+                      remove(i);
+                    }}
                     key={index}
                     // setFieldList={setFieldList}
                   />
@@ -147,7 +186,12 @@ const CollapasedContainer = ({
 
               <button
                 className="btn-primary-accent-light !inline-grid h-12 w-12"
-                onClick={handleAddConstrain}
+                onClick={() => {
+                  append({
+                    name: "",
+                    value: 0,
+                  });
+                }}
               >
                 <PlusIcon className="h-5 w-5" />
               </button>

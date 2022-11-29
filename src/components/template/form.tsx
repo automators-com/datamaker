@@ -4,39 +4,56 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import type { TemplateField } from "../../utilities/types";
+import { useFieldArray, useForm } from "react-hook-form";
+import type { TemplateField, TemplateForm } from "../../utilities/types";
 import Divider from "../divider";
 import { Input } from "../input";
 import CollapasedContainer from "./collapasedContainer";
 
-type TemplateForm = {
-  templateName: string;
+const defaultValues: TemplateForm = {
+  isOpen: true,
+  templateName: "test",
+  fieldList: [
+    {
+      fieldName: "useFieldArray1",
+      dataType: 1,
+      constrains: [{ name: "Min", value: 1 }],
+    },
+  ],
 };
 
 const Form = () => {
   const {
     register,
     handleSubmit,
+    // getValues,
+    // reset,
+    // setValue,
+    control,
     formState: { errors },
-  } = useForm<TemplateForm>();
+  } = useForm<TemplateForm>({ defaultValues });
   // const [name, setName] = useState("");
   const [FieldList, setFieldList] = useState<TemplateField[]>([
     { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
   ]);
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "fieldList",
+  });
+
   const updateFieldList = (list: TemplateField[]) => {
     setFieldList(list);
   };
 
-  const handleAddField = () => {
-    setFieldList((prev) => {
-      return [
-        ...prev,
-        { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
-      ];
-    });
-  };
+  // const handleAddField = () => {
+  //   setFieldList((prev) => {
+  //     return [
+  //       ...prev,
+  //       { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
+  //     ];
+  //   });
+  // };
 
   return (
     <form
@@ -76,21 +93,35 @@ const Form = () => {
 
         <Divider />
 
-        {FieldList.map((item, index) => {
+        {fields.map((item, index) => {
           return (
             <CollapasedContainer
               key={index}
-              constrains={item.constrains}
+              // constrains={item.constrains}
               updateFieldList={updateFieldList}
               item={item}
               FieldList={FieldList}
+              register={register}
+              index={index}
+              errors={errors}
+              control={control}
+              deleteField={(i: number) => {
+                if (fields.length === 1) return;
+                remove(i);
+              }}
             />
           );
         })}
 
         <button
           className="btn btn-link mt-2 flex !pl-0 font-normal"
-          onClick={handleAddField}
+          onClick={() =>
+            append({
+              fieldName: "",
+              dataType: 1,
+              constrains: [{ name: "", value: 1 }],
+            })
+          }
         >
           <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
         </button>

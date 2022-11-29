@@ -7,3 +7,13 @@ export type TemplateField = {
   fieldName: string;
   dataType: number;
 };
+
+export type TemplateForm = {
+  isOpen: boolean;
+  templateName: string;
+  fieldList: {
+    fieldName: string;
+    dataType: number;
+    constrains: { value?: number; name: string }[];
+  }[];
+};

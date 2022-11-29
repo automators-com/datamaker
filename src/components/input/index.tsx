@@ -19,12 +19,12 @@ export const Input: FC<IProps> = ({
   formRegister,
   error,
   id,
-  // name,
+  name,
   placeholder,
-  // value,
+  value,
   label,
   type,
-  // setValue,
+  setValue,
   addClass,
 }) => {
   return (
@@ -39,25 +39,43 @@ export const Input: FC<IProps> = ({
       )}
 
       <div className="relative">
-        <input
-          {...formRegister}
-          type={type}
-          // name={name}
-          id={id}
-          className={classNames(
-            "block w-full rounded-md border bg-base-100 text-sm font-medium  text-base-content placeholder-base-content placeholder-opacity-30",
-            "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none",
-            error
-              ? "border-error text-error hover:border-error focus:border-error"
-              : "border-accent focus:border-accent",
-            addClass
-          )}
-          placeholder={placeholder}
-          aria-invalid="true"
-          aria-describedby="email-error"
-          // value={value}
-          // onChange={setValue}
-        />
+        {formRegister ? (
+          <input
+            {...formRegister}
+            type={type}
+            id={id}
+            className={classNames(
+              "block w-full rounded-md border bg-base-100 text-sm font-medium  text-base-content placeholder-base-content placeholder-opacity-30",
+              "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none",
+              error
+                ? "border-error text-error hover:border-error focus:border-error"
+                : "border-accent focus:border-accent",
+              addClass
+            )}
+            placeholder={placeholder}
+            aria-invalid="true"
+            aria-describedby="email-error"
+          />
+        ) : (
+          <input
+            type={type}
+            name={name}
+            id={id}
+            className={classNames(
+              "block w-full rounded-md border bg-base-100 text-sm font-medium  text-base-content placeholder-base-content placeholder-opacity-30",
+              "py-1 pl-3 pr-5 text-left shadow-sm hover:border-accent focus:outline-none",
+              error
+                ? "border-error text-error hover:border-error focus:border-error"
+                : "border-accent focus:border-accent",
+              addClass
+            )}
+            placeholder={placeholder}
+            aria-invalid="true"
+            aria-describedby="email-error"
+            value={value}
+            onChange={setValue}
+          />
+        )}
         {error && (
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
             <ExclamationCircleIcon
