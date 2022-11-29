@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|jsx|tsx|ts|json)\"",
-    "migrate:dev": "pnpx prisma migrate dev",
+    "migrate:dev": "dotenv -e .env.local -- pnpx prisma migrate dev",
+    "studio": "dotenv -e .env.local -- pnpx prisma studio",
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "pnpx prisma generate",
     "prepare": "husky install"
@@ -16,8 +17,10 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
+    "@premieroctet/next-crud": "^2.3.1",
     "@prisma/client": "^4.6.1",
     "@svgr/webpack": "^6.5.1",
+    "@tanstack/react-query": "^4.18.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
@@ -26,6 +29,7 @@
     "prisma": "^4.6.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.39.7",
     "react-tooltip": "^4.5.0",
     "typescript": "4.8.4"
   },
@@ -35,6 +39,7 @@
     "@typescript-eslint/parser": "^5.42.1",
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.5.0",
+    "dotenv-cli": "^6.0.0",
     "eslint": "8.26.0",
     "eslint-plugin-react": "^7.31.10",
     "husky": "^8.0.0",
