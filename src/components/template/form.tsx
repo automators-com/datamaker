@@ -3,21 +3,20 @@ import {
   CheckIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import type { TemplateField, TemplateForm } from "../../utilities/types";
+import type { TemplateForm } from "../../utilities/types";
 import Divider from "../divider";
 import { Input } from "../input";
-import CollapasedContainer from "./collapasedContainer";
+import CollapsedContainer from "./collapsedContainer";
 
 const defaultValues: TemplateForm = {
   isOpen: true,
-  templateName: "test",
+  templateName: "",
   fieldList: [
     {
-      fieldName: "useFieldArray1",
+      fieldName: "",
       dataType: 1,
-      constrains: [{ name: "Min", value: 1 }],
+      constrains: [{ name: "Min", value: 0 }],
     },
   ],
 };
@@ -26,34 +25,17 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    // getValues,
+    getValues,
     // reset,
-    // setValue,
+    setValue,
     control,
     formState: { errors },
   } = useForm<TemplateForm>({ defaultValues });
-  // const [name, setName] = useState("");
-  const [FieldList, setFieldList] = useState<TemplateField[]>([
-    { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
-  ]);
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: "fieldList",
   });
-
-  const updateFieldList = (list: TemplateField[]) => {
-    setFieldList(list);
-  };
-
-  // const handleAddField = () => {
-  //   setFieldList((prev) => {
-  //     return [
-  //       ...prev,
-  //       { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
-  //     ];
-  //   });
-  // };
 
   return (
     <form
@@ -83,24 +65,17 @@ const Form = () => {
           }}
           error={errors.templateName?.message}
           id={"templateName"}
-          // name="templateName"
           placeholder="name"
           type="text"
           label="Template Name"
-          // value={"templateName"}
-          // setValue={(e) => setName(e.target.value)}
         />
 
         <Divider />
 
         {fields.map((item, index) => {
           return (
-            <CollapasedContainer
+            <CollapsedContainer
               key={index}
-              // constrains={item.constrains}
-              updateFieldList={updateFieldList}
-              item={item}
-              FieldList={FieldList}
               register={register}
               index={index}
               errors={errors}
@@ -109,6 +84,9 @@ const Form = () => {
                 if (fields.length === 1) return;
                 remove(i);
               }}
+              getValues={getValues}
+              setValue={setValue}
+              move={move}
             />
           );
         })}

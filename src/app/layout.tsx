@@ -16,8 +16,6 @@ export default function RootLayout({
 
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
-  console.log(isNavOpen, sidebarOpen);
-
   return (
     <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
       <ThemeContext.Provider value={{ theme, setTheme }}>
