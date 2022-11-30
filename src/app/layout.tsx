@@ -4,6 +4,7 @@ import { NavContext, ThemeContext } from "../components/context/context";
 import Header from "../components/header";
 import Sidebar from "../components/sidebar";
 import { classNames } from "../utilities/className";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./globals.css";
 
 export default function RootLayout({
@@ -11,47 +12,45 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const queryClient = new QueryClient();
+
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const [theme, setTheme] = useState<string>("root");
 
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
-  console.log(isNavOpen, sidebarOpen);
-
   return (
-    <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
-      <ThemeContext.Provider value={{ theme, setTheme }}>
-        <html lang="en">
-          {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-          <head />
-          <body
-            className={classNames(
-              theme,
-              "overflow-scraoll flex h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-screen flex-col bg-base-100"
-            )}
-          >
-            <Header
-              theme={theme}
-              setTheme={setTheme}
-              setSidebarOpen={setSidebarOpen}
-            />
-            <div className="flex flex-row">
-              <Sidebar
-                open={isNavOpen}
-                setOpen={setIsNavOpen}
-                sidebarOpen={sidebarOpen}
+    <QueryClientProvider client={queryClient}>
+      <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
+        <ThemeContext.Provider value={{ theme, setTheme }}>
+          <html lang="en">
+            <head />
+            <body
+              className={classNames(
+                theme,
+                "overflow-scraoll flex h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-screen flex-col bg-base-100"
+              )}
+            >
+              <Header
+                theme={theme}
+                setTheme={setTheme}
                 setSidebarOpen={setSidebarOpen}
               />
-              <main className="h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-full overflow-auto">
-                {children}
-              </main>
-            </div>
-          </body>
-        </html>
-      </ThemeContext.Provider>
-    </NavContext.Provider>
+              <div className="flex flex-row">
+                <Sidebar
+                  open={isNavOpen}
+                  setOpen={setIsNavOpen}
+                  sidebarOpen={sidebarOpen}
+                  setSidebarOpen={setSidebarOpen}
+                />
+                <main className="h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-full overflow-auto">
+                  {children}
+                </main>
+              </div>
+            </body>
+          </html>
+        </ThemeContext.Provider>
+      </NavContext.Provider>
+    </QueryClientProvider>
   );
 }

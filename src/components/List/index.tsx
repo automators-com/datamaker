@@ -1,8 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Filter from "../filter";
 
-export default function List({ list, text }: { list: any[]; text: string }) {
+export default function List({
+  list,
+  text,
+  onClickAdd,
+}: {
+  list: Array<{ name: string }>;
+  text: string;
+  onClickAdd: () => any;
+}) {
   const [filteredList, setFilteredList] = useState(list);
 
   return (
@@ -21,7 +30,7 @@ export default function List({ list, text }: { list: any[]; text: string }) {
         {filteredList.map((item, index) => (
           <li key={item.name}>
             <a
-              href={item.href}
+              href={"#"}
               className={`${
                 index % 2 === 1 && "bg-base-200 bg-opacity-30"
               } block rounded-md  text-base-content hover:bg-secondary hover:text-secondary-content`}
@@ -36,7 +45,10 @@ export default function List({ list, text }: { list: any[]; text: string }) {
 
       <div className="mt-8 w-full border-t border-base-200 border-opacity-40" />
 
-      <button className="btn btn-link mt-2 flex !pl-0 font-normal">
+      <button
+        className="btn btn-link mt-2 flex !pl-0 font-normal"
+        onClick={onClickAdd}
+      >
         <PlusCircleIcon className="!h-5 !w-5 text-accent" /> {`Add new ${text}`}
       </button>
     </div>

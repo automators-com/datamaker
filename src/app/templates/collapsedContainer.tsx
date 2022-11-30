@@ -7,13 +7,13 @@ import {
 import React, { useState } from "react";
 import { DataTypes } from "../../utilities/constants";
 import type { Constrain, TemplateField } from "../../utilities/types";
-import Constrains from "../constrains";
-import Divider from "../divider";
-import DropDown from "../dropdown";
-import { Input } from "../input";
-import { MenuI } from "../menu";
+import Constrains from "../../components/constrains";
+import Divider from "../../components/divider";
+import DropDown from "../../components/dropdown";
+import { Input } from "../../components/input";
+import { MenuI } from "../../components/menu";
 
-const CollapasedContainer = ({
+const CollapsedContainer = ({
   constrains,
   item,
   updateFieldList,
@@ -160,4 +160,4 @@ const CollapasedContainer = ({
   );
 };
 
-export default CollapasedContainer;
+export default CollapsedContainer;

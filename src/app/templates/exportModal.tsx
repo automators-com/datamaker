@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import DropDown from "../dropdown";
-import { Input } from "../input";
+import DropDown from "../../components/dropdown";
+import { Input } from "../../components/input";
 
 const Target = [
   { id: 1, name: "CSV/Excel" },

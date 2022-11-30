@@ -231,9 +231,21 @@ export default function Documentation() {
 
         <Example title="Template List">
           <Example.Component>
-            <List list={Templates} text="Template" />
+            <List
+              onClickAdd={() => {
+                console.log(`Do something on click`);
+              }}
+              list={Templates}
+              text="Template"
+            />
           </Example.Component>
-          <Example.Snippet>{`<List list={Templates} text="Template" />`}</Example.Snippet>
+          <Example.Snippet>{`<List
+              onClickAdd={() => {
+                console.log("Do something on click");
+              }}
+              list={Templates}
+              text="Template"
+            />`}</Example.Snippet>
         </Example>
       </div>
     </>

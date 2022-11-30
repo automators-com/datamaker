@@ -4,13 +4,16 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import type { TemplateField } from "../../utilities/types";
-import Divider from "../divider";
-import { Input } from "../input";
-import CollapasedContainer from "./collapasedContainer";
+import Divider from "../../components/divider";
+import { Input } from "../../components/input";
+import CollapsedContainer from "./collapsedContainer";
 
-const Form = ({ handleClose }: { handleClose: () => void }) => {
-  const [name, setName] = useState("");
+export default function Form(props: {
+  setIsFormOpen: Dispatch<SetStateAction<boolean>>;
+}): JSX.Element {
+  const [name, setName] = useState<string>("");
   const [FieldList, setFieldList] = useState<TemplateField[]>([
     { constrains: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
   ]);
@@ -29,11 +32,17 @@ const Form = ({ handleClose }: { handleClose: () => void }) => {
   };
 
   return (
-    <>
+    <div
+      className="relative h-full flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1"
+      style={{ minHeight: "36rem" }}
+    >
       <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral bg-opacity-50 py-6 px-6 lg:px-9">
         <span className="font-medium text-neutral-content"> New Template</span>
         <div className="space-x-2">
-          <button className="btn btn-secondary" onClick={handleClose}>
+          <button
+            className="btn btn-secondary"
+            onClick={() => props.setIsFormOpen(false)}
+          >
             <ArrowLeftIcon /> Discard
           </button>
 
@@ -46,18 +55,20 @@ const Form = ({ handleClose }: { handleClose: () => void }) => {
       <div className="p-6 sm:p-6 md:p-8 lg:p-9">
         <Input
           name="templateName"
-          placeholder="name"
+          placeholder="Name"
           type="text"
           label="Template Name"
           value={name}
-          setValue={(e) => setName(e.target.value)}
+          setValue={(e: { target: { value: string } }) =>
+            setName(e.target.value)
+          }
         />
 
         <Divider />
 
         {FieldList.map((item, index) => {
           return (
-            <CollapasedContainer
+            <CollapsedContainer
               key={index}
               constrains={item.constrains}
               updateFieldList={updateFieldList}
@@ -74,8 +85,6 @@ const Form = ({ handleClose }: { handleClose: () => void }) => {
           <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
         </button>
       </div>
-    </>
+    </div>
   );
-};
-
-export default Form;
+}
