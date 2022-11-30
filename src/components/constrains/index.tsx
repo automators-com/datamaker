@@ -18,9 +18,9 @@ export const Constrains = ({
   nestedIndex,
 }: {
   handleDelete: () => void;
-  register?: UseFormRegister<TemplateForm>;
-  index?: number;
-  nestedIndex?: number;
+  register: UseFormRegister<TemplateForm> | null;
+  index: number;
+  nestedIndex: number;
 }) => {
   const [selected, setSelected] = useState(_list[0]);
 
@@ -34,19 +34,24 @@ export const Constrains = ({
         setValue={setSelected}
       ></DropDown>
 
-      {register && index && nestedIndex && selected.id !== 3 && (
+      {selected.id !== 3 && (
         <Input
           type="number"
           placeholder={selected.name}
           addClass="w-14 !pr-0.5 text-center"
-          formRegister={{
-            ...register(`fieldList.${index}.constrains.${nestedIndex}.value`, {
-              required: "Please enter value",
-            }),
-          }}
-        // error={
-        //   // typeof(errors.fieldList[index]?.constrains[index]?.value) !== 'undefined'  ?  errors.fieldList[index]?.constrains[index]?.value?.message : ""
-        // }
+          formRegister={
+            register && {
+              ...register(
+                `fieldList.${index}.constrains.${nestedIndex}.value`,
+                {
+                  required: "Please enter value",
+                }
+              ),
+            }
+          }
+          // error={
+          //   // typeof(errors.fieldList[index]?.constrains[index]?.value) !== 'undefined'  ?  errors.fieldList[index]?.constrains[index]?.value?.message : ""
+          // }
         />
       )}
       <button onClick={handleDelete}>

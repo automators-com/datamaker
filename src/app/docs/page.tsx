@@ -189,7 +189,12 @@ export default function Documentation() {
 
         <Example title="Constraints" tag="Needs Renaming">
           <Example.Component>
-            <Constrains handleDelete={() => console.log("TODO Delete Fn")} />
+            <Constrains
+              handleDelete={() => console.log("TODO Delete Fn")}
+              index={1}
+              nestedIndex={2}
+              register={null}
+            />
           </Example.Component>
           <Example.Snippet>
             {`<Constrains handleDelete={() => console.log("TODO Delete Fn")} />`}
