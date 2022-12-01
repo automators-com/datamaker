@@ -6,15 +6,12 @@ import {
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import {
-  Control,
-  FieldErrorsImpl,
   useFieldArray,
   UseFieldArrayMove,
-  UseFormRegister,
-  UseFormSetValue,
+  useFormContext,
 } from "react-hook-form";
 import { DataTypes } from "../../utilities/constants";
-import type { TemplateField, TemplateForm } from "../../utilities/types";
+import type { TemplateForm } from "../../utilities/types";
 import Constrains from "../constrains";
 import Divider from "../divider";
 import DropDown from "../dropdown";
@@ -22,24 +19,22 @@ import { Input } from "../input";
 import { MenuI } from "../menu";
 
 const CollapsedContainer = ({
-  register,
   index,
-  control,
-  setValue,
-  getValues,
-  errors,
   deleteField,
   move,
 }: {
-  register: UseFormRegister<TemplateForm>;
   index: number;
-  control: Control<TemplateForm, any>;
-  setValue: UseFormSetValue<TemplateForm>;
-  getValues: (name: string) => TemplateField[];
   deleteField: (id: number) => void;
-  errors: Partial<FieldErrorsImpl<TemplateForm>>;
   move: UseFieldArrayMove;
 }) => {
+  const {
+    register,
+    control,
+    getValues,
+    setValue,
+    formState: { errors },
+  } = useFormContext<TemplateForm>(); // retrieve all hook methods
+
   const [type, setType] = useState(DataTypes[0]);
   const Fields = getValues("fieldList");
 
