@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import {
   CheckIcon,
@@ -6,7 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import CallbackList from "../../components/callbackList";
-import Constrains from "../../components/constrains";
+import Constraints from "../../components/constraints";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
 import List from "../../components/List";
@@ -30,25 +31,26 @@ const people = [
 
 const Templates = [
   {
+    id: "1",
     name: "Ricardo Cooper",
-    href: "#",
   },
   {
+    id: "2",
     name: "Kristen Ramos",
-    href: "#",
   },
   {
+    id: "3",
     name: "Ted Fox",
-    href: "#",
   },
   {
+    id: "4",
     name: "Ted Fox 2344",
-    href: "#",
   },
 ];
 
 export default function Documentation() {
   const [selected, setSelected] = useState(people[3]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [input, setInput] = useState("");
   const [toggle, setToggle] = useState(false);
 
@@ -189,10 +191,10 @@ export default function Documentation() {
 
         <Example title="Constraints" tag="Needs Renaming">
           <Example.Component>
-            <Constrains handleDelete={() => console.log("TODO Delete Fn")} />
+            <Constraints handleDelete={() => console.log("TODO Delete Fn")} />
           </Example.Component>
           <Example.Snippet>
-            {`<Constrains handleDelete={() => console.log("TODO Delete Fn")} />`}
+            {`<Constraints handleDelete={() => console.log("TODO Delete Fn")} />`}
           </Example.Snippet>
         </Example>
 
@@ -232,19 +234,27 @@ export default function Documentation() {
         <Example title="Template List">
           <Example.Component>
             <List
-              onClickAdd={() => {
-                console.log(`Do something on click`);
-              }}
-              list={Templates}
               text="Template"
+              list={Templates}
+              onClickAdd={() => {
+                console.log(`Add button clicked!`);
+              }}
+              onClickItem={() => {
+                console.log(`Item clicked!`);
+              }}
+              setSelected={setSelectedItem}
             />
           </Example.Component>
           <Example.Snippet>{`<List
-              onClickAdd={() => {
-                console.log("Do something on click");
-              }}
-              list={Templates}
               text="Template"
+              list={Templates}
+              onClickAdd={() => {
+                console.log("Add button clicked!");
+              }}
+              onClickItem={() => {
+                console.log("Item clicked!");
+              }}
+              setSelected={setSelectedItem}
             />`}</Example.Snippet>
         </Example>
       </div>

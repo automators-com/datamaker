@@ -4,8 +4,10 @@ import type { Dispatch, SetStateAction } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 export default function LivePreview(props: {
+  data: unknown;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
+  const pretty = JSON.stringify(props.data, null, 4);
   return (
     <div
       id="live_preview"
@@ -22,6 +24,12 @@ export default function LivePreview(props: {
           >
             <PaperAirplaneIcon /> Export/Send Data
           </button>
+        </div>
+        <div
+          id="preview_data"
+          className="flex flex-col flex-wrap whitespace-pre-wrap p-6 text-sm"
+        >
+          {pretty}
         </div>
       </div>
     </div>

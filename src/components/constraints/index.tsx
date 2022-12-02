@@ -9,7 +9,7 @@ const _list = [
   { id: 3, name: "RegEx (Words)" },
 ];
 
-export const Constrains = ({ handleDelete }: { handleDelete: () => void }) => {
+export const Constraints = ({ handleDelete }: { handleDelete: () => void }) => {
   const [selected, setSelected] = useState(_list[0]);
   const [number, setNumber] = useState(0);
 
@@ -42,4 +42,4 @@ export const Constrains = ({ handleDelete }: { handleDelete: () => void }) => {
   );
 };
 
-export default Constrains;
+export default Constraints;

@@ -30,6 +30,9 @@ export default function Page() {
   // state management
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
+    null
+  );
 
   if (isLoading) {
     // TODO: Add skeleton loader
@@ -48,15 +51,25 @@ export default function Page() {
           <List
             text="Template"
             list={templates}
-            onClickAdd={() => setIsFormOpen(true)}
+            onClickAdd={() => {
+              setIsFormOpen(false);
+              setSelectedTemplate(null);
+              setIsFormOpen(true);
+            }}
+            onClickItem={() => setIsFormOpen(true)}
+            setSelected={setSelectedTemplate}
           />
         </div>
       </div>
 
       {isFormOpen ? (
         <div className="min-w-0 flex-1 rounded-md shadow-lg xl:flex">
-          <Form setIsFormOpen={setIsFormOpen} />
-          <LivePreview setIsModalOpen={setIsModalOpen} />
+          <Form
+            selectedTemplate={selectedTemplate}
+            setSelectedTemplate={setSelectedTemplate}
+            setIsFormOpen={setIsFormOpen}
+          />
+          <LivePreview data={templates} setIsModalOpen={setIsModalOpen} />
         </div>
       ) : (
         <Placeholder setIsFormOpen={setIsFormOpen} />

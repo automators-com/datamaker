@@ -6,20 +6,20 @@ import {
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { DataTypes } from "../../utilities/constants";
-import type { Constrain, TemplateField } from "../../utilities/types";
-import Constrains from "../../components/constrains";
+import type { Constraint, TemplateField } from "./types";
+import Constraints from "../../components/constraints";
 import Divider from "../../components/divider";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
 import { MenuI } from "../../components/menu";
 
 const CollapsedContainer = ({
-  constrains,
+  constraints,
   item,
   updateFieldList,
   FieldList,
 }: {
-  constrains: Constrain[];
+  constraints: Constraint[];
   updateFieldList: (list: TemplateField[]) => void;
   FieldList: TemplateField[];
   item: TemplateField;
@@ -30,18 +30,18 @@ const CollapsedContainer = ({
     const index = FieldList.indexOf(item);
     FieldList[index] = {
       ...FieldList[index],
-      constrains: [...FieldList[index].constrains, { name: "Min", value: 0 }],
+      constraints: [...FieldList[index].constraints, { name: "Min", value: 0 }],
     };
 
     updateFieldList([...FieldList]);
   };
 
   const handleDeleteConstrain = (id: number) => {
-    if (item.constrains.length === 1) return;
+    if (item.constraints.length === 1) return;
 
     const _list = FieldList;
     const index = _list.indexOf(item);
-    _list[index].constrains.splice(id, 1);
+    _list[index].constraints.splice(id, 1);
 
     updateFieldList([..._list]);
   };
@@ -135,9 +135,9 @@ const CollapsedContainer = ({
                 Field Constraints
               </span>
 
-              {constrains.map((item, index) => {
+              {constraints.map((item, index) => {
                 return (
-                  <Constrains
+                  <Constraints
                     handleDelete={() => handleDeleteConstrain(index)}
                     key={index}
                     // setFieldList={setFieldList}
