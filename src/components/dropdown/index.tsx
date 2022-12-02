@@ -19,7 +19,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
       {({ open }) => (
         <div className={classNames("relative", addClass)}>
           {label && (
-            <Listbox.Label className="mb-1 block text-xs font-medium text-base-content opacity-50">
+            <Listbox.Label className="mb-2 block text-[11px] font-medium text-base-content opacity-50">
               {label}
             </Listbox.Label>
           )}

@@ -10,7 +10,7 @@ import CallbackList from "../../components/callbackList";
 import Constraints from "../../components/constraints";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
-import List from "../../components/List";
+import List from "../../components/list";
 import { MenuI } from "../../components/menu";
 import Toggle from "../../components/toggleButton";
 import Example from "./example";

@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import {
-  ArrowLeftIcon,
+  ArrowUturnDownIcon,
   CheckIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
@@ -148,7 +148,7 @@ export default function Form(props: {
               props.setSelectedTemplate(null);
             }}
           >
-            <ArrowLeftIcon /> Discard
+            <ArrowUturnDownIcon /> Discard
           </button>
 
           <button

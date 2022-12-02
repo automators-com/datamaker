@@ -28,7 +28,7 @@ export const Input: FC<IProps> = ({
       {label && (
         <label
           htmlFor="email"
-          className="mb-1 block text-xs font-medium text-base-content opacity-50"
+          className="mb-2 block text-[11px] font-medium text-base-content opacity-50"
         >
           {label}
         </label>

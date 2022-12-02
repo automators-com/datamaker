@@ -90,11 +90,11 @@ const CollapsedContainer = ({
         {({ open }) => (
           <>
             <div className="flex w-full items-end gap-2 lg:gap-4">
-              <Disclosure.Button className="btn-primary-accent-light inline-grid h-[34px] w-10 cursor-pointer bg-accent py-2 hover:bg-accent-focus">
+              <Disclosure.Button className="inline-grid h-[30px] cursor-pointer place-content-center rounded-lg bg-accent py-2 hover:bg-accent-focus lg:w-[30px]">
                 {open ? (
-                  <ChevronUpIcon className="h-5 w-5 text-accent-content" />
+                  <ChevronUpIcon className="h-4 w-4 text-accent-content" />
                 ) : (
-                  <ChevronDownIcon className="h-5 w-5 text-accent-content" />
+                  <ChevronDownIcon className="h-4 w-4 text-accent-content" />
                 )}
               </Disclosure.Button>
 
@@ -131,7 +131,7 @@ const CollapsedContainer = ({
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
-              <span className="mb-1 w-[72px] pr-20 text-sm font-medium text-base-content opacity-50">
+              <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
                 Field Constraints
               </span>
 

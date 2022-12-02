@@ -1,7 +1,7 @@
 "use client";
 
 import type { Dispatch, SetStateAction } from "react";
-import NoContentRobot from "../../../public/assets/NoContentRobot.svg";
+import NotFoundRobot from "../../../public/assets/NotFoundRobot.svg";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
 export default function Placeholder(props: {
@@ -9,7 +9,7 @@ export default function Placeholder(props: {
 }): JSX.Element {
   return (
     <div className="mx-auto flex flex-col gap-5 self-center text-center lg:pt-16 xl:pt-16">
-      <NoContentRobot className="scale-80 mx-auto w-40 fill-secondary" />
+      <NotFoundRobot className="scale-80 mx-auto w-40 fill-secondary" />
 
       <p className="text-xs text-base-content">
         Nothing to show for now. Select a template to see details.
