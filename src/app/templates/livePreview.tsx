@@ -22,7 +22,8 @@ export default function LivePreview(props: {
             className="btn btn-primary"
             onClick={() => props.setIsModalOpen(true)}
           >
-            <PaperAirplaneIcon /> Export/Send Data
+            <PaperAirplaneIcon />
+            Export/Send Data
           </button>
         </div>
         <div
