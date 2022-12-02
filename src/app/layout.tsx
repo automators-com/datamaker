@@ -28,7 +28,7 @@ export default function RootLayout({
             <body
               className={classNames(
                 theme,
-                "overflow-scraoll flex h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-screen flex-col bg-base-100"
+                "flex h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-screen flex-col overflow-scroll bg-base-100"
               )}
             >
               <Header
