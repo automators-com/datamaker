@@ -26,7 +26,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
 
           <>
             <Listbox.Button
-              className="relative flex w-full cursor-default content-center items-center
+              className="relative flex h-8 w-full cursor-default content-center items-center
                          justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left text-sm font-medium text-accent shadow-sm 
                             hover:border-accent focus:border-accent focus:outline-none "
             >

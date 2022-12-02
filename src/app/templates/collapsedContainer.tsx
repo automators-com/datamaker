@@ -89,8 +89,8 @@ const CollapsedContainer = ({
       <Disclosure>
         {({ open }) => (
           <>
-            <div className="flex w-full items-end gap-2 lg:gap-4">
-              <Disclosure.Button className="inline-grid h-[30px] cursor-pointer place-content-center rounded-lg bg-accent py-2 hover:bg-accent-focus lg:w-[30px]">
+            <div className="flex w-full items-end gap-2 lg:gap-2">
+              <Disclosure.Button className="inline-grid h-8 min-w-[32px] cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus">
                 {open ? (
                   <ChevronUpIcon className="h-4 w-4 text-accent-content" />
                 ) : (
@@ -98,7 +98,7 @@ const CollapsedContainer = ({
                 )}
               </Disclosure.Button>
 
-              <div className="inline-flex items-center gap-2 lg:gap-4">
+              <div className="inline-flex items-center gap-2 lg:gap-3">
                 <Input
                   label="Field Name"
                   name="fieldName"
@@ -122,7 +122,7 @@ const CollapsedContainer = ({
                   addClass="w-52 sm:w-48"
                 />
                 <MenuI
-                  addClass="mt-5"
+                  addClass="mt-6"
                   handleDelete={handleDelete}
                   handleDuplicate={handleDuplicate}
                   handleMoveDown={handleMoveDown}

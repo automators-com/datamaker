@@ -16,7 +16,7 @@ export default function Placeholder(props: {
       </p>
 
       <button
-        className="btn btn-primary-accent mx-auto p-3 px-4"
+        className="btn btn-primary-accent mx-auto h-12 p-3 px-4"
         onClick={() => props.setIsFormOpen(true)}
       >
         <PlusIcon /> Create new template

@@ -139,7 +139,7 @@ export default function Form(props: {
   return (
     <div className="relative h-full min-h-[36rem] flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1">
       <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral bg-opacity-50 py-6 px-6 lg:px-9">
-        <span className="font-medium text-neutral-content"> New Template</span>
+        <span className="font-semibold text-neutral-content">New Template</span>
         <div className="space-x-2">
           <button
             className="btn btn-secondary"
@@ -148,14 +148,16 @@ export default function Form(props: {
               props.setSelectedTemplate(null);
             }}
           >
-            <ArrowUturnDownIcon /> Discard
+            <ArrowUturnDownIcon />
+            Discard
           </button>
 
           <button
             className="btn btn-primary-accent"
             onClick={() => handleSave()}
           >
-            <CheckIcon /> Save
+            <CheckIcon />
+            Save
           </button>
         </div>
       </div>
