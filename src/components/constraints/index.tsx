@@ -14,7 +14,7 @@ export const Constraints = ({ handleDelete }: { handleDelete: () => void }) => {
   const [number, setNumber] = useState(0);
 
   return (
-    <div className="my-2 inline-flex w-[200px] flex-row space-x-2 rounded-md bg-secondary bg-opacity-10 py-2 px-2">
+    <div className="my-2 inline-flex w-[200px] flex-row space-x-2 rounded-md bg-base-content bg-opacity-10 py-2 px-2">
       <DropDown
         list={_list}
         name=""

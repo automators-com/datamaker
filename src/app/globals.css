@@ -19,9 +19,9 @@
     --color-base-100: 0 0% 100%;
     --color-base-200: 0 0% 85%;
     --color-base-300: 0 0% 70%;
-    --color-base-content: 238 33% 17%;
-    --color-info: 261 49% 33%;
-    --color-info-content: 0 0% 100%;
+    --color-base-content: 261 49% 33%;
+    --color-info: 65 100% 50%;
+    --color-info-content: 238 33% 17%;
     --color-success: 261 49% 33%;
     --color-success-content: 0 0% 100%;
     --color-warning: 31 76% 57%;
@@ -46,8 +46,8 @@
     --color-base-200: 238 33% 16%;
     --color-base-300: 238 33% 11%;
     --color-base-content: 0 0% 100%;
-    --color-info: 261 49% 33%;
-    --color-info-content: 0 0% 100%;
+    --color-info: 65 100% 50%;
+    --color-info-content: 238 33% 17%;
     --color-success: 261 49% 33%;
     --color-success-content: 0 0% 100%;
     --color-warning: 31 76% 57%;
