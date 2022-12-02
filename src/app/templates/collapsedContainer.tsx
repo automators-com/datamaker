@@ -6,91 +6,64 @@ import {
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { DataTypes } from "../../utilities/constants";
-import type { Constraint, TemplateField } from "./types";
 import Constraints from "../../components/constraints";
 import Divider from "../../components/divider";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
 import { MenuI } from "../../components/menu";
+import {
+  useFieldArray,
+  UseFieldArrayMove,
+  useFormContext,
+} from "react-hook-form";
+import { TemplateForm } from "./types";
 
 const CollapsedContainer = ({
-  constraints,
-  item,
-  updateFieldList,
-  FieldList,
+  deleteField,
+  index,
+  move,
 }: {
-  constraints: Constraint[];
-  updateFieldList: (list: TemplateField[]) => void;
-  FieldList: TemplateField[];
-  item: TemplateField;
+  index: number;
+  deleteField: (i: number) => void;
+  move: UseFieldArrayMove;
 }) => {
   const [type, setType] = useState(DataTypes[0]);
 
-  const handleAddConstrain = () => {
-    const index = FieldList.indexOf(item);
-    FieldList[index] = {
-      ...FieldList[index],
-      constraints: [...FieldList[index].constraints, { name: "Min", value: 0 }],
-    };
+  const {
+    register,
+    control,
+    getValues,
+    setValue,
+    formState: { errors },
+  } = useFormContext<TemplateForm>(); // retrieve all hook methods
 
-    updateFieldList([...FieldList]);
-  };
+  const Fields = getValues("fieldList");
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: `fieldList.${index}.constrains`,
+  });
 
-  const handleDeleteConstrain = (id: number) => {
-    if (item.constraints.length === 1) return;
+  const handleDuplicate = () =>
+    setValue("fieldList", [...Fields, Fields[index]]);
 
-    const _list = FieldList;
-    const index = _list.indexOf(item);
-    _list[index].constraints.splice(id, 1);
-
-    updateFieldList([..._list]);
-  };
-
-  const handleDelete = () => {
-    const index = FieldList.indexOf(item);
-
-    if (FieldList.length === 1) return;
-    const updatedList = FieldList.filter((_: any, i: number) => index !== i);
-
-    updateFieldList([...updatedList]);
-  };
-
-  const handleDuplicate = () => {
-    const index = FieldList.indexOf(item);
-    updateFieldList([...FieldList, { ...FieldList[index] }]);
-  };
-
-  const handleMoveDown = () => {
-    const index = FieldList.indexOf(item);
-
-    if (index !== -1 && index < FieldList.length - 1) {
-      const el = FieldList[index];
-      FieldList[index] = FieldList[index + 1];
-      FieldList[index + 1] = el;
-    }
-    updateFieldList([...FieldList]);
-  };
-
-  const handleMoveUp = () => {
-    const _list = FieldList;
-    const index = _list.indexOf(item);
-
-    if (index > 0) {
-      const el = _list[index];
-      _list[index] = _list[index - 1];
-      _list[index - 1] = el;
-    }
-
-    updateFieldList([..._list]);
-  };
+  console.log(getValues());
 
   return (
     <>
-      <Disclosure>
+      <Disclosure defaultOpen={index === 0 && true}>
         {({ open }) => (
           <>
-            <div className="flex w-full items-end gap-2 lg:gap-2">
-              <Disclosure.Button className="inline-grid h-8 min-w-[32px] cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus">
+            <div
+              className={`flex w-full gap-2 lg:gap-2  ${
+                errors.fieldList ? "items-flex-end" : "items-end"
+              }`}
+            >
+              <Disclosure.Button
+                className={`inline-grid h-8 min-w-[32px] ${
+                  errors.fieldList ? "mt-6" : ""
+                }
+                cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus`}
+              >
                 {open ? (
                   <ChevronUpIcon className="h-4 w-4 text-accent-content" />
                 ) : (
@@ -98,20 +71,26 @@ const CollapsedContainer = ({
                 )}
               </Disclosure.Button>
 
-              <div className="inline-flex items-center gap-2 lg:gap-3">
+              <div
+                className={`inline-flex gap-2 lg:gap-3 ${
+                  errors.fieldList ? "items-flex-end" : "items-center"
+                }`}
+              >
                 <Input
                   label="Field Name"
-                  name="fieldName"
                   addClass="border-base-content"
                   placeholder="Name"
                   type="text"
-                  setValue={(e) => {
-                    const index = FieldList.indexOf(item);
-                    FieldList[index].fieldName = e.target.value;
-
-                    updateFieldList([...FieldList]);
+                  formRegister={{
+                    ...register(`fieldList.${index}.fieldName`, {
+                      required: "Please enter field name",
+                    }),
                   }}
-                  value={item.fieldName}
+                  error={
+                    errors.fieldList
+                      ? errors.fieldList[index]?.fieldName?.message
+                      : ""
+                  }
                 />
                 <DropDown
                   label="Data Type"
@@ -123,10 +102,10 @@ const CollapsedContainer = ({
                 />
                 <MenuI
                   addClass="mt-6"
-                  handleDelete={handleDelete}
+                  handleDelete={() => deleteField(index)}
                   handleDuplicate={handleDuplicate}
-                  handleMoveDown={handleMoveDown}
-                  handleMoveUp={handleMoveUp}
+                  handleMoveDown={() => move(index, index + 1)}
+                  handleMoveUp={() => move(index, index - 1)}
                 />
               </div>
             </div>
@@ -135,22 +114,34 @@ const CollapsedContainer = ({
                 Field Constraints
               </span>
 
-              {constraints.map((item, index) => {
+              {fields.map((item, i) => {
                 return (
                   <Constraints
-                    handleDelete={() => handleDeleteConstrain(index)}
+                    handleDelete={() => {
+                      if (fields.length === 1) return;
+                      remove(i);
+                    }}
                     key={index}
-                    // setFieldList={setFieldList}
+                    register={register}
+                    nestedIndex={i}
+                    index={index}
                   />
                 );
               })}
 
-              <button
-                className="btn-primary-accent-light !inline-grid h-12 w-12"
-                onClick={handleAddConstrain}
-              >
-                <PlusIcon className="h-5 w-5" />
-              </button>
+              {fields.length < 3 && (
+                <button
+                  className="btn-primary-accent-light !inline-grid h-12 w-12"
+                  onClick={() => {
+                    append({
+                      name: "",
+                      value: 0,
+                    });
+                  }}
+                >
+                  <PlusIcon className="h-5 w-5" />
+                </button>
+              )}
             </Disclosure.Panel>
           </>
         )}

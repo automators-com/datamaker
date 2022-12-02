@@ -1,5 +1,7 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
+import { UseFormRegister } from "react-hook-form";
+import { TemplateForm } from "../../app/templates/types";
 import DropDown from "../dropdown";
 import { Input } from "../input";
 
@@ -9,9 +11,18 @@ const _list = [
   { id: 3, name: "RegEx (Words)" },
 ];
 
-export const Constraints = ({ handleDelete }: { handleDelete: () => void }) => {
+export const Constraints = ({
+  handleDelete,
+  register,
+  index,
+  nestedIndex,
+}: {
+  handleDelete: () => void;
+  register: UseFormRegister<TemplateForm> | null;
+  index: number;
+  nestedIndex: number;
+}) => {
   const [selected, setSelected] = useState(_list[0]);
-  const [number, setNumber] = useState(0);
 
   return (
     <div className="my-2 inline-flex w-[200px] flex-row space-x-2 rounded-md bg-base-content bg-opacity-10 py-2 px-2">
@@ -26,13 +37,18 @@ export const Constraints = ({ handleDelete }: { handleDelete: () => void }) => {
       {selected.id !== 3 && (
         <Input
           type="number"
-          name="number"
           placeholder={selected.name}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setNumber(Number(e.target.value))
-          }
           addClass="w-14 !pr-0.5 text-center"
-          value={number}
+          formRegister={
+            register && {
+              ...register(
+                `fieldList.${index}.constrains.${nestedIndex}.value`,
+                {
+                  required: "Please enter value",
+                }
+              ),
+            }
+          }
         />
       )}
       <button onClick={handleDelete}>

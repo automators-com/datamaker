@@ -12,3 +12,13 @@ export type Template = {
   fields: TemplateField[];
   createdAt?: string;
 };
+
+export type TemplateForm = {
+  isOpen: boolean;
+  templateName: string;
+  fieldList: {
+    fieldName: string;
+    dataType: number;
+    constrains: { value?: number; name: string }[];
+  }[];
+};

@@ -11,12 +11,25 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import type { TemplateField } from "./types";
+import type { TemplateField, TemplateForm } from "./types";
 import type { Template } from "./types";
 import Divider from "../../components/divider";
 import { Input } from "../../components/input";
 import CollapsedContainer from "./collapsedContainer";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { FormProvider, useFieldArray, useForm } from "react-hook-form";
+
+const defaultValues: TemplateForm = {
+  isOpen: true,
+  templateName: "",
+  fieldList: [
+    {
+      fieldName: "",
+      dataType: 1,
+      constrains: [{ name: "Min", value: 1 }],
+    },
+  ],
+};
 
 export default function Form(props: {
   selectedTemplate: Template | null;
@@ -29,22 +42,17 @@ export default function Form(props: {
     { constraints: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
   ]);
 
-  const updateFieldList = (list: TemplateField[]) => {
-    setFieldList(list);
-  };
+  const methods = useForm<TemplateForm>({ defaultValues });
 
-  const handleAddField = () => {
-    setFieldList((prev) => {
-      return [
-        ...prev,
-        {
-          constraints: [{ name: "Min", value: 1 }],
-          fieldName: "",
-          dataType: 1,
-        },
-      ];
-    });
-  };
+  const {
+    control,
+    formState: { errors },
+  } = methods;
+
+  const { fields, append, remove, move } = useFieldArray({
+    control,
+    name: "fieldList",
+  });
 
   // Ensure rerender when selectedTemplate changes
   useEffect(() => {
@@ -127,74 +135,94 @@ export default function Form(props: {
       queryClient.setQueryData(["templates"], context.previousTemplate);
     },
     // Always refetch after error or success:
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["templates"] });
+    onSettled: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["templates"] });
     },
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSave = () => {
     mutation.mutate({ ...props.selectedTemplate, name, fields: FieldList });
   };
 
   return (
-    <div className="relative h-full min-h-[36rem] flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1">
-      <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
-        <span className="font-semibold text-neutral-content">New Template</span>
-        <div className="space-x-2">
-          <button
-            className="btn btn-secondary"
-            onClick={() => {
-              props.setIsFormOpen(false);
-              props.setSelectedTemplate(null);
+    <FormProvider {...methods}>
+      <form
+        className="relative h-full min-h-[36rem] flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1"
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onSubmit={methods.handleSubmit((data) => console.log(data))}
+      >
+        <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
+          <span className="font-semibold text-neutral-content">
+            New Template
+          </span>
+          <div className="space-x-2">
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                props.setIsFormOpen(false);
+                props.setSelectedTemplate(null);
+              }}
+            >
+              <ArrowUturnDownIcon />
+              Discard
+            </button>
+
+            <button
+              className="btn btn-primary-accent"
+              type="submit"
+            // onClick={() => handleSave()}
+            >
+              <CheckIcon />
+              Save
+            </button>
+          </div>
+        </div>
+
+        <div className="p-6 sm:p-6 md:p-8 lg:p-9">
+          <Input
+            formRegister={{
+              ...methods.register("templateName", {
+                required: "Please enter a template name",
+              }),
             }}
-          >
-            <ArrowUturnDownIcon />
-            Discard
-          </button>
+            error={errors.templateName?.message}
+            id={"templateName"}
+            placeholder="name"
+            type="text"
+            label="Template Name"
+          />
+
+          <Divider />
+
+          {fields.map((item, index) => {
+            return (
+              <CollapsedContainer
+                key={index}
+                index={index}
+                deleteField={(i: number) => {
+                  if (fields.length === 1) return;
+                  remove(i);
+                }}
+                move={move}
+              />
+            );
+          })}
 
           <button
-            className="btn btn-primary-accent"
-            onClick={() => handleSave()}
+            className="btn btn-link mt-2 flex !pl-0 font-normal"
+            onClick={() =>
+              append({
+                fieldName: "",
+                dataType: 1,
+                constrains: [{ name: "", value: 1 }],
+              })
+            }
           >
-            <CheckIcon />
-            Save
+            <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
           </button>
         </div>
-      </div>
-
-      <div className="p-6 sm:p-6 md:p-8 lg:p-9">
-        <Input
-          name="templateName"
-          placeholder="Name"
-          type="text"
-          label="Template Name"
-          value={name}
-          setValue={(e: { target: { value: string } }) =>
-            setName(e.target.value)
-          }
-        />
-
-        <Divider />
-
-        {FieldList.map((item, index) => {
-          return (
-            <CollapsedContainer
-              key={index}
-              constraints={item.constraints}
-              updateFieldList={updateFieldList}
-              item={item}
-              FieldList={FieldList}
-            />
-          );
-        })}
-
-        <button
-          className="btn btn-link mt-2 flex !pl-0 font-normal"
-          onClick={handleAddField}
-        >
-          <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
-        </button>
-      </div>
-    </div>
+      </form>
+    </FormProvider>
   );
 }
