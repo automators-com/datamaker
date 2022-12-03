@@ -11,25 +11,13 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import type { TemplateField, TemplateForm } from "./types";
+import type { TemplateForm } from "./types";
 import type { Template } from "./types";
 import Divider from "../../components/divider";
 import { Input } from "../../components/input";
 import CollapsedContainer from "./collapsedContainer";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormProvider, useFieldArray, useForm } from "react-hook-form";
-
-const defaultValues: TemplateForm = {
-  isOpen: true,
-  templateName: "",
-  fieldList: [
-    {
-      fieldName: "",
-      dataType: 1,
-      constrains: [{ name: "Min", value: 1 }],
-    },
-  ],
-};
 
 export default function Form(props: {
   selectedTemplate: Template | null;
@@ -38,10 +26,15 @@ export default function Form(props: {
 }): JSX.Element {
   // state management
   const [name, setName] = useState<string>("");
-  const [FieldList, setFieldList] = useState<TemplateField[]>([
-    { constraints: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
-  ]);
+  // const [FieldList, setFieldList] = useState<TemplateField[]>([
+  //   { constraints: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
+  // ]);
 
+  const defaultValues: TemplateForm = {
+    isOpen: true,
+    templateName: props.selectedTemplate ? props.selectedTemplate.name : "",
+    fieldList: props.selectedTemplate ? props.selectedTemplate.fields : [],
+  };
   const methods = useForm<TemplateForm>({ defaultValues });
 
   const {
@@ -58,7 +51,8 @@ export default function Form(props: {
   useEffect(() => {
     if (props.selectedTemplate) {
       setName(props.selectedTemplate.name);
-      setFieldList(props.selectedTemplate.fields);
+      methods.setValue("fieldList", props.selectedTemplate.fields);
+      // setFieldList(props.selectedTemplate.fields);
     } else {
       setName("");
     }
@@ -142,7 +136,7 @@ export default function Form(props: {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSave = () => {
-    mutation.mutate({ ...props.selectedTemplate, name, fields: FieldList });
+    mutation.mutate({ ...props.selectedTemplate, name, fields: fields });
   };
 
   return (
@@ -171,7 +165,7 @@ export default function Form(props: {
             <button
               className="btn btn-primary-accent"
               type="submit"
-            // onClick={() => handleSave()}
+              // onClick={() => handleSave()}
             >
               <CheckIcon />
               Save
@@ -215,7 +209,7 @@ export default function Form(props: {
               append({
                 fieldName: "",
                 dataType: 1,
-                constrains: [{ name: "", value: 1 }],
+                constraints: [{ name: "", value: 1 }],
               })
             }
           >

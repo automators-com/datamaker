@@ -40,7 +40,7 @@ const CollapsedContainer = ({
   const Fields = getValues("fieldList");
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `fieldList.${index}.constrains`,
+    name: `fieldList.${index}.constraints`,
   });
 
   const handleDuplicate = () =>
@@ -54,14 +54,12 @@ const CollapsedContainer = ({
         {({ open }) => (
           <>
             <div
-              className={`flex w-full gap-2 lg:gap-2  ${
-                errors.fieldList ? "items-flex-end" : "items-end"
-              }`}
+              className={`flex w-full gap-2 lg:gap-2  ${errors.fieldList ? "items-flex-end" : "items-end"
+                }`}
             >
               <Disclosure.Button
-                className={`inline-grid h-8 min-w-[32px] ${
-                  errors.fieldList ? "mt-6" : ""
-                }
+                className={`inline-grid h-8 min-w-[32px] ${errors.fieldList ? "mt-6" : ""
+                  }
                 cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus`}
               >
                 {open ? (
@@ -72,9 +70,8 @@ const CollapsedContainer = ({
               </Disclosure.Button>
 
               <div
-                className={`inline-flex gap-2 lg:gap-3 ${
-                  errors.fieldList ? "items-flex-end" : "items-center"
-                }`}
+                className={`inline-flex gap-2 lg:gap-3 ${errors.fieldList ? "items-flex-end" : "items-center"
+                  }`}
               >
                 <Input
                   label="Field Name"

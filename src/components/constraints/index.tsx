@@ -42,7 +42,7 @@ export const Constraints = ({
           formRegister={
             register && {
               ...register(
-                `fieldList.${index}.constrains.${nestedIndex}.value`,
+                `fieldList.${index}.constraints.${nestedIndex}.value`,
                 {
                   required: "Please enter value",
                 }
