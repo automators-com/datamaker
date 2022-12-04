@@ -87,7 +87,7 @@ export const Input: FC<IProps> = ({
         )}
       </div>
       {error && (
-        <p className="mt-2 text-sm text-error" id="email-error">
+        <p className="mt-2 text-xs text-error" id="email-error">
           {error}
         </p>
       )}

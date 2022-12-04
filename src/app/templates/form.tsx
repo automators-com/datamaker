@@ -9,7 +9,7 @@ import {
   CheckIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { TemplateForm } from "./types";
 import type { Template } from "./types";
@@ -24,22 +24,23 @@ export default function Form(props: {
   setSelectedTemplate: Dispatch<SetStateAction<Template | null>>;
   setIsFormOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
-  // state management
-  const [name, setName] = useState<string>("");
-  // const [FieldList, setFieldList] = useState<TemplateField[]>([
-  //   { constraints: [{ name: "Min", value: 1 }], fieldName: "", dataType: 1 },
-  // ]);
-
   const defaultValues: TemplateForm = {
     isOpen: true,
     templateName: props.selectedTemplate ? props.selectedTemplate.name : "",
-    fieldList: props.selectedTemplate ? props.selectedTemplate.fields : [],
+    fieldList: props.selectedTemplate
+      ? props.selectedTemplate.fields
+      : [{ fieldName: "", constraints: [], dataType: 1 }],
   };
-  const methods = useForm<TemplateForm>({ defaultValues });
+  const methods = useForm<TemplateForm>({
+    mode: "onBlur",
+    reValidateMode: "onBlur",
+  });
 
   const {
     control,
     formState: { errors },
+    getValues,
+    reset,
   } = methods;
 
   const { fields, append, remove, move } = useFieldArray({
@@ -49,13 +50,7 @@ export default function Form(props: {
 
   // Ensure rerender when selectedTemplate changes
   useEffect(() => {
-    if (props.selectedTemplate) {
-      setName(props.selectedTemplate.name);
-      methods.setValue("fieldList", props.selectedTemplate.fields);
-      // setFieldList(props.selectedTemplate.fields);
-    } else {
-      setName("");
-    }
+    reset(defaultValues);
   }, [props.selectedTemplate]);
 
   // Handle creation and updates of templates
@@ -136,7 +131,11 @@ export default function Form(props: {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSave = () => {
-    mutation.mutate({ ...props.selectedTemplate, name, fields: fields });
+    mutation.mutate({
+      ...props.selectedTemplate,
+      name: getValues("templateName"),
+      fields: fields,
+    });
   };
 
   return (
@@ -209,7 +208,7 @@ export default function Form(props: {
               append({
                 fieldName: "",
                 dataType: 1,
-                constraints: [{ name: "", value: 1 }],
+                constraints: [],
               })
             }
           >

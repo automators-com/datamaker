@@ -46,20 +46,20 @@ const CollapsedContainer = ({
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
 
-  console.log(getValues());
-
   return (
     <>
       <Disclosure defaultOpen={index === 0 && true}>
         {({ open }) => (
           <>
             <div
-              className={`flex w-full gap-2 lg:gap-2  ${errors.fieldList ? "items-flex-end" : "items-end"
-                }`}
+              className={`flex w-full gap-2 lg:gap-2  ${
+                errors.fieldList ? "items-flex-end" : "items-end"
+              }`}
             >
               <Disclosure.Button
-                className={`inline-grid h-8 min-w-[32px] ${errors.fieldList ? "mt-6" : ""
-                  }
+                className={`inline-grid h-8 min-w-[32px] ${
+                  errors.fieldList ? "mt-6" : ""
+                }
                 cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus`}
               >
                 {open ? (
@@ -70,8 +70,9 @@ const CollapsedContainer = ({
               </Disclosure.Button>
 
               <div
-                className={`inline-flex gap-2 lg:gap-3 ${errors.fieldList ? "items-flex-end" : "items-center"
-                  }`}
+                className={`inline-flex gap-2 lg:gap-3 ${
+                  errors.fieldList ? "items-flex-end" : "items-center"
+                }`}
               >
                 <Input
                   label="Field Name"
