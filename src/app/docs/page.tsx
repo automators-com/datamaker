@@ -191,7 +191,12 @@ export default function Documentation() {
 
         <Example title="Constraints" tag="Needs Renaming">
           <Example.Component>
-            <Constraints handleDelete={() => console.log("TODO Delete Fn")} />
+            <Constraints
+              handleDelete={() => console.log("TODO Delete Fn")}
+              index={1}
+              nestedIndex={2}
+              register={null}
+            />
           </Example.Component>
           <Example.Snippet>
             {`<Constraints handleDelete={() => console.log("TODO Delete Fn")} />`}

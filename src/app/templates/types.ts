@@ -1,9 +1,10 @@
 export type Constraint = { value?: number; name: string };
+export type Item = { id: number; name: string };
 
 export type TemplateField = {
   constraints: Constraint[];
   fieldName: string;
-  dataType: number;
+  dataType: Item;
 };
 
 export type Template = {
@@ -11,4 +12,10 @@ export type Template = {
   name: string;
   fields: TemplateField[];
   createdAt?: string;
+};
+
+export type TemplateForm = {
+  isOpen: boolean;
+  templateName: string;
+  fieldList: TemplateField[];
 };

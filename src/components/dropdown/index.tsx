@@ -11,6 +11,7 @@ interface IProps {
   list: dropDownList[];
   addClass?: string;
   setValue: any; // function
+  formRegister?: any;
 }
 
 const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
