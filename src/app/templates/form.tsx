@@ -9,7 +9,7 @@ import {
   CheckIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { TemplateForm } from "./types";
 import type { Template } from "./types";
@@ -29,7 +29,7 @@ export default function Form(props: {
     templateName: props.selectedTemplate ? props.selectedTemplate.name : "",
     fieldList: props.selectedTemplate
       ? props.selectedTemplate.fields
-      : [{ fieldName: "", constraints: [], dataType: 1 }],
+      : [{ fieldName: "", constraints: [], dataType: {id: 1, name: 'String'} }],
   };
   const methods = useForm<TemplateForm>({
     mode: "onBlur",
@@ -207,7 +207,7 @@ export default function Form(props: {
             onClick={() =>
               append({
                 fieldName: "",
-                dataType: 1,
+                dataType: { id: 1, name: "String" },
                 constraints: [],
               })
             }

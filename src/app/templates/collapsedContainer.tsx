@@ -16,7 +16,7 @@ import {
   UseFieldArrayMove,
   useFormContext,
 } from "react-hook-form";
-import { TemplateForm } from "./types";
+import { Item, TemplateForm } from "./types";
 
 const CollapsedContainer = ({
   deleteField,
@@ -45,6 +45,8 @@ const CollapsedContainer = ({
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
+
+  console.log(type, Fields);
 
   return (
     <>
@@ -94,9 +96,13 @@ const CollapsedContainer = ({
                   label="Data Type"
                   list={DataTypes}
                   name="dataType"
-                  setValue={setType}
+                  setValue={(e: Item) => {
+                    setType(e);
+                    setValue(`fieldList.${index}.dataType`, e);
+                  }}
                   value={type}
                   addClass="w-52 sm:w-48"
+                  formRegister={{ ...register(`fieldList.${index}.dataType`) }}
                 />
                 <MenuI
                   addClass="mt-6"
