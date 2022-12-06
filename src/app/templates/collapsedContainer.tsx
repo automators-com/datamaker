@@ -5,18 +5,15 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import { DataTypes } from "../../utilities/constants";
+import { DataTypes, _list } from "../../utilities/constants";
 import Constraints from "../../components/constraints";
 import Divider from "../../components/divider";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
 import { MenuI } from "../../components/menu";
-import {
-  useFieldArray,
-  UseFieldArrayMove,
-  useFormContext,
-} from "react-hook-form";
-import { Item, TemplateForm } from "./types";
+import type { UseFieldArrayMove } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import type { Item, TemplateForm } from "./types";
 
 const CollapsedContainer = ({
   deleteField,
@@ -28,6 +25,7 @@ const CollapsedContainer = ({
   move: UseFieldArrayMove;
 }) => {
   const [type, setType] = useState(DataTypes[0]);
+  const [list, setList] = useState(_list);
 
   const {
     register,
@@ -46,11 +44,37 @@ const CollapsedContainer = ({
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
 
-  console.log(type, Fields);
+  const addConstraints = () => {
+    append({
+      name: null,
+      value: 0,
+    });
+    const constraintsName = getValues(`fieldList.${index}.constraints`).map(
+      (x) => x.name?.id
+    );
+
+    const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
+
+    if (constraintsName.length === 1) return;
+    setList([...updatedList]);
+  };
+
+  const deleteConstrains = (i: number) => {
+    // if (fields.length === 1) return;
+    remove(i);
+    const constraintsName = getValues(`fieldList.${index}.constraints`).map(
+      (x) => x.name?.id
+    );
+
+    const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
+    setList([...updatedList]);
+  };
 
   return (
     <>
-      <Disclosure defaultOpen={index === 0 && true}>
+      <Disclosure
+        defaultOpen={(index === 0 || index === Fields.length - 1) && true}
+      >
         {({ open }) => (
           <>
             <div
@@ -74,6 +98,8 @@ const CollapsedContainer = ({
               <div
                 className={`inline-flex gap-2 lg:gap-3 ${
                   errors.fieldList ? "items-flex-end" : "items-center"
+                    ? "items-flex-end"
+                    : "items-center"
                 }`}
               >
                 <Input
@@ -121,14 +147,13 @@ const CollapsedContainer = ({
               {fields.map((item, i) => {
                 return (
                   <Constraints
-                    handleDelete={() => {
-                      if (fields.length === 1) return;
-                      remove(i);
-                    }}
-                    key={index}
-                    register={register}
+                    handleDelete={() => deleteConstrains(i)}
+                    key={i}
                     nestedIndex={i}
                     index={index}
+                    list={list}
+                    register={register}
+                    setValue={setValue}
                   />
                 );
               })}
@@ -136,12 +161,7 @@ const CollapsedContainer = ({
               {fields.length < 3 && (
                 <button
                   className="btn-primary-accent-light !inline-grid h-12 w-12"
-                  onClick={() => {
-                    append({
-                      name: "",
-                      value: 0,
-                    });
-                  }}
+                  onClick={addConstraints}
                 >
                   <PlusIcon className="h-5 w-5" />
                 </button>
