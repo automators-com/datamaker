@@ -9,7 +9,7 @@ import {
   CheckIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { TemplateForm } from "./types";
 import type { Template } from "./types";
@@ -29,11 +29,17 @@ export default function Form(props: {
     templateName: props.selectedTemplate ? props.selectedTemplate.name : "",
     fieldList: props.selectedTemplate
       ? props.selectedTemplate.fields
-      : [{ fieldName: "", constraints: [], dataType: {id: 1, name: 'String'} }],
+      : [
+          {
+            fieldName: "",
+            constraints: [],
+            dataType: { id: 1, name: "String" },
+          },
+        ],
   };
   const methods = useForm<TemplateForm>({
-    mode: "onBlur",
-    reValidateMode: "onBlur",
+    // mode: "onSubmit",
+    // reValidateMode: "onSubmit",
   });
 
   const {
@@ -42,6 +48,8 @@ export default function Form(props: {
     getValues,
     reset,
   } = methods;
+
+  const [isSubmit, setIsSubmit] = useState(false); // validate only onSubmit
 
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -134,8 +142,16 @@ export default function Form(props: {
     mutation.mutate({
       ...props.selectedTemplate,
       name: getValues("templateName"),
-      fields: fields,
+      fields: getValues("fieldList"),
     });
+
+    props.setIsFormOpen(false);
+    props.setSelectedTemplate(null);
+  };
+
+  const onSubmit = (data: TemplateForm) => {
+    console.log(data);
+    handleSave();
   };
 
   return (
@@ -143,7 +159,7 @@ export default function Form(props: {
       <form
         className="relative h-full min-h-[36rem] flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1"
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onSubmit={methods.handleSubmit((data) => console.log(data))}
+        onSubmit={methods.handleSubmit(onSubmit)}
       >
         <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
           <span className="font-semibold text-neutral-content">
@@ -165,6 +181,7 @@ export default function Form(props: {
               className="btn btn-primary-accent"
               type="submit"
               // onClick={() => handleSave()}
+              onClick={() => setIsSubmit(true)}
             >
               <CheckIcon />
               Save
@@ -179,7 +196,7 @@ export default function Form(props: {
                 required: "Please enter a template name",
               }),
             }}
-            error={errors.templateName?.message}
+            error={isSubmit ? errors.templateName?.message : ""}
             id={"templateName"}
             placeholder="name"
             type="text"
@@ -198,6 +215,7 @@ export default function Form(props: {
                   remove(i);
                 }}
                 move={move}
+                isSubmit={isSubmit}
               />
             );
           })}

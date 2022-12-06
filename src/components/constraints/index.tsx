@@ -33,7 +33,8 @@ export const Constraints = ({
         addClass="w-full"
         setValue={(e: Item) => {
           setSelected(e);
-          setValue && setValue(`fieldList.${index}.constraints.${nestedIndex}.name`, e);
+          setValue &&
+            setValue(`fieldList.${index}.constraints.${nestedIndex}.name`, e);
 
           // const constraintsName = getValues(`fieldList.${index}.constraints`).map(x => x.name.id)
 
@@ -67,9 +68,9 @@ export const Constraints = ({
                 ),
               }
             }
-          // error={
-          //   fields ? fields[nestedIndex]?.value?.message : ""
-          // }
+            // error={
+            //   fields ? fields[nestedIndex]?.value?.message : ""
+            // }
           />
         </>
       )}

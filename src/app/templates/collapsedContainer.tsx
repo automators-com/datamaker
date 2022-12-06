@@ -19,10 +19,12 @@ const CollapsedContainer = ({
   deleteField,
   index,
   move,
+  isSubmit,
 }: {
   index: number;
   deleteField: (i: number) => void;
   move: UseFieldArrayMove;
+  isSubmit: boolean;
 }) => {
   const [type, setType] = useState(DataTypes[0]);
   const [list, setList] = useState(_list);
@@ -79,12 +81,12 @@ const CollapsedContainer = ({
           <>
             <div
               className={`flex w-full gap-2 lg:gap-2  ${
-                errors.fieldList ? "items-flex-end" : "items-end"
+                isSubmit && errors.fieldList ? "items-flex-end" : "items-end"
               }`}
             >
               <Disclosure.Button
                 className={`inline-grid h-8 min-w-[32px] ${
-                  errors.fieldList ? "mt-6" : ""
+                  isSubmit && errors.fieldList ? "mt-6" : ""
                 }
                 cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus`}
               >
@@ -97,7 +99,7 @@ const CollapsedContainer = ({
 
               <div
                 className={`inline-flex gap-2 lg:gap-3 ${
-                  errors.fieldList ? "items-flex-end" : "items-center"
+                  isSubmit && errors.fieldList
                     ? "items-flex-end"
                     : "items-center"
                 }`}
@@ -113,7 +115,7 @@ const CollapsedContainer = ({
                     }),
                   }}
                   error={
-                    errors.fieldList
+                    isSubmit && errors.fieldList
                       ? errors.fieldList[index]?.fieldName?.message
                       : ""
                   }
@@ -131,7 +133,7 @@ const CollapsedContainer = ({
                   formRegister={{ ...register(`fieldList.${index}.dataType`) }}
                 />
                 <MenuI
-                  addClass="mt-6"
+                  addClass={`${isSubmit && errors.fieldList ? "mt-7" : "mt-6"}`}
                   handleDelete={() => deleteField(index)}
                   handleDuplicate={handleDuplicate}
                   handleMoveDown={() => move(index, index + 1)}
