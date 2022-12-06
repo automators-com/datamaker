@@ -1,5 +1,5 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import type { Item, TemplateForm } from "../../app/templates/types";
 import DropDown from "../dropdown";
@@ -22,6 +22,11 @@ export const Constraints = ({
 }) => {
   const [selected, setSelected] = useState<Item>(list[0]);
 
+  useEffect(() => {
+    setValue &&
+      setValue(`fieldList.${index}.constraints.${nestedIndex}.name`, list[0]);
+  }, []);
+
   // console.log(errors.fieldList);
 
   return (
@@ -35,15 +40,6 @@ export const Constraints = ({
           setSelected(e);
           setValue &&
             setValue(`fieldList.${index}.constraints.${nestedIndex}.name`, e);
-
-          // const constraintsName = getValues(`fieldList.${index}.constraints`).map(x => x.name.id)
-
-          // if (constraintsName.length === 1) return
-          // const updatedList = list.filter(x => !constraintsName.includes(x.id))
-          // // setList(updatedList)
-
-          // console.log(constraintsName, updatedList);
-          // // setList(list)
         }}
       ></DropDown>
 
@@ -68,9 +64,9 @@ export const Constraints = ({
                 ),
               }
             }
-            // error={
-            //   fields ? fields[nestedIndex]?.value?.message : ""
-            // }
+          // error={
+          //   fields ? fields[nestedIndex]?.value?.message : ""
+          // }
           />
         </>
       )}
