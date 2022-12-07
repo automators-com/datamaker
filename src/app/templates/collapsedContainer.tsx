@@ -13,7 +13,7 @@ import { Input } from "../../components/input";
 import { MenuI } from "../../components/menu";
 import type { UseFieldArrayMove } from "react-hook-form";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import type { Item, TemplateForm } from "./types";
+import type { Constraint, Item, TemplateForm } from "./types";
 
 const CollapsedContainer = ({
   deleteField,
@@ -35,13 +35,34 @@ const CollapsedContainer = ({
     getValues,
     setValue,
     formState: { errors },
+    clearErrors,
   } = useFormContext<TemplateForm>(); // retrieve all hook methods
 
   const Fields = getValues("fieldList");
   const { fields, append, remove } = useFieldArray({
     control,
     name: `fieldList.${index}.constraints`,
+    rules: {
+      validate: (fields: Constraint[]) => {
+        const minValue = fields.find((x) => x.name?.id === 1)?.value;
+        const maxValue = fields.find((x) => x.name?.id === 2)?.value;
+
+        if (
+          typeof minValue !== "undefined" &&
+          typeof maxValue !== "undefined"
+        ) {
+          if (minValue > maxValue) return "Min cannot be more than Max";
+          else {
+            // TODO: not working
+            clearErrors(`fieldList.${index}.constraints`);
+            // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
+          }
+        }
+      },
+    },
   });
+
+  // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
@@ -58,6 +79,7 @@ const CollapsedContainer = ({
     const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
 
     if (constraintsName.length === 1) return;
+    // clearErrors(`fieldList.${index}.`)
     setList([...updatedList]);
   };
 
@@ -142,33 +164,41 @@ const CollapsedContainer = ({
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
-              <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
-                Field Constraints
-              </span>
+              <>
+                <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
+                  Field Constraints
+                </span>
 
-              {fields.map((item, i) => {
-                return (
-                  <Constraints
-                    handleDelete={() => deleteConstrains(i)}
-                    key={i}
-                    nestedIndex={i}
-                    index={index}
-                    list={list}
-                    register={register}
-                    setValue={setValue}
-                  />
-                );
-              })}
+                {fields.map((item, i) => {
+                  return (
+                    <Constraints
+                      handleDelete={() => deleteConstrains(i)}
+                      key={i}
+                      nestedIndex={i}
+                      index={index}
+                      list={list}
+                      register={register}
+                      setValue={setValue}
+                    />
+                  );
+                })}
 
-              {fields.length < 3 && (
-                <button
-                  className="btn-primary-accent-light !inline-grid h-12 w-12"
-                  onClick={addConstraints}
-                >
-                  <PlusIcon className="h-5 w-5" />
-                </button>
-              )}
+                {fields.length < 3 && (
+                  <button
+                    className="btn-primary-accent-light !inline-grid h-12 w-12"
+                    onClick={addConstraints}
+                  >
+                    <PlusIcon className="h-5 w-5" />
+                  </button>
+                )}
+                <br />
+              </>
             </Disclosure.Panel>
+            {errors.fieldList && errors.fieldList[index]?.constraints?.root && (
+              <p className="mt-2 pl-5 text-xs text-error" id="email-error">
+                {errors.fieldList[index]?.constraints?.root?.message}
+              </p>
+            )}
           </>
         )}
       </Disclosure>

@@ -138,7 +138,9 @@ export default function Form(props: {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSave = () => {
+  const onSubmit = (data: TemplateForm) => {
+    console.log(data);
+
     mutation.mutate({
       ...props.selectedTemplate,
       name: getValues("templateName"),
@@ -147,11 +149,6 @@ export default function Form(props: {
 
     props.setIsFormOpen(false);
     props.setSelectedTemplate(null);
-  };
-
-  const onSubmit = (data: TemplateForm) => {
-    console.log(data);
-    handleSave();
   };
 
   return (

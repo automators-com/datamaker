@@ -55,6 +55,8 @@ export const Constraints = ({
                   {
                     required: "Please enter value",
                     min: 10,
+                    max: 50,
+                    valueAsNumber: true,
                     // max: ,
                     // validate: {
                     //   max: (value) => value! > (constraint ? constraint.filter(x => x.name?.id === 1) ? constraint.filter(x => x.name?.id === 1)[0].value! : 1000 : 1000),
@@ -64,9 +66,9 @@ export const Constraints = ({
                 ),
               }
             }
-          // error={
-          //   fields ? fields[nestedIndex]?.value?.message : ""
-          // }
+            // error={
+            //   fields ? fields[nestedIndex]?.value?.message : ""
+            // }
           />
         </>
       )}
