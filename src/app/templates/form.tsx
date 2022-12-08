@@ -38,8 +38,8 @@ export default function Form(props: {
         ],
   };
   const methods = useForm<TemplateForm>({
-    // mode: "onSubmit",
-    // reValidateMode: "onSubmit",
+    // mode: "onChange",
+    // reValidateMode: "onChange",
   });
 
   const {
@@ -205,7 +205,7 @@ export default function Form(props: {
           {fields.map((item, index) => {
             return (
               <CollapsedContainer
-                key={index}
+                key={item.id}
                 index={index}
                 deleteField={(i: number) => {
                   if (fields.length === 1) return;

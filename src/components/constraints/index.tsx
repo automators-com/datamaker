@@ -1,6 +1,12 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
-import type { UseFormRegister, UseFormSetValue } from "react-hook-form";
+import {
+  UseFormClearErrors,
+  UseFormGetValues,
+  UseFormRegister,
+  UseFormSetError,
+  UseFormSetValue,
+} from "react-hook-form";
 import type { Item, TemplateForm } from "../../app/templates/types";
 import DropDown from "../dropdown";
 import { Input } from "../input";
@@ -12,6 +18,9 @@ export const Constraints = ({
   index,
   nestedIndex,
   list,
+  clearErrors,
+  getValues,
+  setError,
 }: {
   register?: UseFormRegister<TemplateForm>;
   setValue?: UseFormSetValue<TemplateForm>;
@@ -19,6 +28,9 @@ export const Constraints = ({
   index: number;
   nestedIndex: number;
   list: Item[];
+  clearErrors?: UseFormClearErrors<TemplateForm>;
+  getValues?: UseFormGetValues<TemplateForm>;
+  setError?: UseFormSetError<TemplateForm>;
 }) => {
   const [selected, setSelected] = useState<Item>(list[0]);
 
@@ -26,8 +38,6 @@ export const Constraints = ({
     setValue &&
       setValue(`fieldList.${index}.constraints.${nestedIndex}.name`, list[0]);
   }, []);
-
-  // console.log(errors.fieldList);
 
   return (
     <div className="my-2 inline-flex w-[200px] flex-row space-x-2 rounded-md bg-base-content bg-opacity-10 py-2 px-2">
@@ -54,21 +64,38 @@ export const Constraints = ({
                   `fieldList.${index}.constraints.${nestedIndex}.value`,
                   {
                     required: "Please enter value",
-                    min: 10,
-                    max: 50,
                     valueAsNumber: true,
-                    // max: ,
-                    // validate: {
-                    //   max: (value) => value! > (constraint ? constraint.filter(x => x.name?.id === 1) ? constraint.filter(x => x.name?.id === 1)[0].value! : 1000 : 1000),
-                    //   // min: (value) => parseFloat(value) < 200
-                    // } // min,
+                    onChange: () => {
+                      const minValue =
+                        getValues &&
+                        getValues(`fieldList.${index}.constraints`).find(
+                          (x) => x.name?.id === 1
+                        )?.value;
+                      const maxValue =
+                        getValues &&
+                        getValues(`fieldList.${index}.constraints`).find(
+                          (x) => x.name?.id === 2
+                        )?.value;
+                      if (
+                        typeof minValue !== "undefined" &&
+                        typeof maxValue !== "undefined"
+                      ) {
+                        if (minValue < maxValue)
+                          clearErrors &&
+                            clearErrors(`fieldList.${index}.constraints`);
+                        else
+                          setError &&
+                            setError(`fieldList.${index}.constraints`, {
+                              message:
+                                "Minimum value cannot be more than the maximum value.",
+                              type: "required",
+                            });
+                      }
+                    },
                   }
                 ),
               }
             }
-            // error={
-            //   fields ? fields[nestedIndex]?.value?.message : ""
-            // }
           />
         </>
       )}

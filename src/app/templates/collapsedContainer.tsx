@@ -36,6 +36,7 @@ const CollapsedContainer = ({
     setValue,
     formState: { errors },
     clearErrors,
+    setError,
   } = useFormContext<TemplateForm>(); // retrieve all hook methods
 
   const Fields = getValues("fieldList");
@@ -51,12 +52,8 @@ const CollapsedContainer = ({
           typeof minValue !== "undefined" &&
           typeof maxValue !== "undefined"
         ) {
-          if (minValue > maxValue) return "Min cannot be more than Max";
-          else {
-            // TODO: not working
-            clearErrors(`fieldList.${index}.constraints`);
-            // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
-          }
+          if (minValue > maxValue)
+            return "Minimum value cannot be more than the maximum value.";
         }
       },
     },
@@ -173,12 +170,15 @@ const CollapsedContainer = ({
                   return (
                     <Constraints
                       handleDelete={() => deleteConstrains(i)}
-                      key={i}
+                      key={item.id}
                       nestedIndex={i}
                       index={index}
                       list={list}
                       register={register}
                       setValue={setValue}
+                      clearErrors={clearErrors}
+                      getValues={getValues}
+                      setError={setError}
                     />
                   );
                 })}
@@ -194,11 +194,18 @@ const CollapsedContainer = ({
                 <br />
               </>
             </Disclosure.Panel>
-            {errors.fieldList && errors.fieldList[index]?.constraints?.root && (
+            {errors.fieldList && errors.fieldList[index]?.constraints?.message && (
               <p className="mt-2 pl-5 text-xs text-error" id="email-error">
-                {errors.fieldList[index]?.constraints?.root?.message}
+                {errors.fieldList[index]?.constraints?.message}
               </p>
             )}
+            {errors.fieldList &&
+              errors.fieldList[index]?.constraints?.root &&
+              isSubmit && (
+                <p className="mt-2 pl-5 text-xs text-error" id="email-error">
+                  {errors.fieldList[index]?.constraints?.root?.message}
+                </p>
+              )}
           </>
         )}
       </Disclosure>
