@@ -31,7 +31,7 @@ const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
                          justify-between rounded-md border bg-base-100 py-1 pl-3 pr-2 text-left text-sm font-medium text-accent shadow-sm 
                             hover:border-accent focus:border-accent focus:outline-none "
             >
-              <span className="block truncate">{value.name}</span>
+              <span className="block truncate">{value?.name}</span>
 
               <ChevronDownIcon className="h-4 w-4" />
             </Listbox.Button>

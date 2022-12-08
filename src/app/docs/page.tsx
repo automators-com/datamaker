@@ -195,7 +195,7 @@ export default function Documentation() {
               handleDelete={() => console.log("TODO Delete Fn")}
               index={1}
               nestedIndex={2}
-              register={null}
+              list={[]}
             />
           </Example.Component>
           <Example.Snippet>

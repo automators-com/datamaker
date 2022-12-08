@@ -1,5 +1,6 @@
-export type Constraint = { value?: number; name: string };
 export type Item = { id: number; name: string };
+
+export type Constraint = { value?: number; name: Item | null };
 
 export type TemplateField = {
   constraints: Constraint[];

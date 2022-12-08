@@ -5,29 +5,29 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import { DataTypes } from "../../utilities/constants";
+import { DataTypes, _list } from "../../utilities/constants";
 import Constraints from "../../components/constraints";
 import Divider from "../../components/divider";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
 import { MenuI } from "../../components/menu";
-import {
-  useFieldArray,
-  UseFieldArrayMove,
-  useFormContext,
-} from "react-hook-form";
-import { Item, TemplateForm } from "./types";
+import type { UseFieldArrayMove } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import type { Constraint, Item, TemplateForm } from "./types";
 
 const CollapsedContainer = ({
   deleteField,
   index,
   move,
+  isSubmit,
 }: {
   index: number;
   deleteField: (i: number) => void;
   move: UseFieldArrayMove;
+  isSubmit: boolean;
 }) => {
   const [type, setType] = useState(DataTypes[0]);
+  const [list, setList] = useState(_list);
 
   const {
     register,
@@ -35,32 +35,77 @@ const CollapsedContainer = ({
     getValues,
     setValue,
     formState: { errors },
+    clearErrors,
+    setError,
   } = useFormContext<TemplateForm>(); // retrieve all hook methods
 
   const Fields = getValues("fieldList");
   const { fields, append, remove } = useFieldArray({
     control,
     name: `fieldList.${index}.constraints`,
+    rules: {
+      validate: (fields: Constraint[]) => {
+        const minValue = fields.find((x) => x.name?.id === 1)?.value;
+        const maxValue = fields.find((x) => x.name?.id === 2)?.value;
+
+        if (
+          typeof minValue !== "undefined" &&
+          typeof maxValue !== "undefined"
+        ) {
+          if (minValue > maxValue)
+            return "Minimum value cannot be more than the maximum value.";
+        }
+      },
+    },
   });
+
+  // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
 
-  console.log(type, Fields);
+  const addConstraints = () => {
+    append({
+      name: null,
+      value: 0,
+    });
+    const constraintsName = getValues(`fieldList.${index}.constraints`).map(
+      (x) => x.name?.id
+    );
+
+    const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
+
+    if (constraintsName.length === 1) return;
+    // clearErrors(`fieldList.${index}.`)
+    setList([...updatedList]);
+  };
+
+  const deleteConstrains = (i: number) => {
+    // if (fields.length === 1) return;
+    remove(i);
+    const constraintsName = getValues(`fieldList.${index}.constraints`).map(
+      (x) => x.name?.id
+    );
+
+    const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
+    setList([...updatedList]);
+  };
 
   return (
     <>
-      <Disclosure defaultOpen={index === 0 && true}>
+      <Disclosure
+        defaultOpen={(index === 0 || index === Fields.length - 1) && true}
+      >
         {({ open }) => (
           <>
             <div
               className={`flex w-full gap-2 lg:gap-2  ${
-                errors.fieldList ? "items-flex-end" : "items-end"
+                isSubmit && errors.fieldList ? "items-flex-end" : "items-end"
               }`}
             >
               <Disclosure.Button
                 className={`inline-grid h-8 min-w-[32px] ${
-                  errors.fieldList ? "mt-6" : ""
+                  isSubmit && errors.fieldList ? "mt-6" : ""
                 }
                 cursor-pointer place-content-center rounded-lg bg-accent hover:bg-accent-focus`}
               >
@@ -73,7 +118,9 @@ const CollapsedContainer = ({
 
               <div
                 className={`inline-flex gap-2 lg:gap-3 ${
-                  errors.fieldList ? "items-flex-end" : "items-center"
+                  isSubmit && errors.fieldList
+                    ? "items-flex-end"
+                    : "items-center"
                 }`}
               >
                 <Input
@@ -87,7 +134,7 @@ const CollapsedContainer = ({
                     }),
                   }}
                   error={
-                    errors.fieldList
+                    isSubmit && errors.fieldList
                       ? errors.fieldList[index]?.fieldName?.message
                       : ""
                   }
@@ -105,7 +152,7 @@ const CollapsedContainer = ({
                   formRegister={{ ...register(`fieldList.${index}.dataType`) }}
                 />
                 <MenuI
-                  addClass="mt-6"
+                  addClass={`${isSubmit && errors.fieldList ? "mt-7" : "mt-6"}`}
                   handleDelete={() => deleteField(index)}
                   handleDuplicate={handleDuplicate}
                   handleMoveDown={() => move(index, index + 1)}
@@ -114,39 +161,51 @@ const CollapsedContainer = ({
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
-              <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
-                Field Constraints
-              </span>
+              <>
+                <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
+                  Field Constraints
+                </span>
 
-              {fields.map((item, i) => {
-                return (
-                  <Constraints
-                    handleDelete={() => {
-                      if (fields.length === 1) return;
-                      remove(i);
-                    }}
-                    key={index}
-                    register={register}
-                    nestedIndex={i}
-                    index={index}
-                  />
-                );
-              })}
+                {fields.map((item, i) => {
+                  return (
+                    <Constraints
+                      handleDelete={() => deleteConstrains(i)}
+                      key={item.id}
+                      nestedIndex={i}
+                      index={index}
+                      list={list}
+                      register={register}
+                      setValue={setValue}
+                      clearErrors={clearErrors}
+                      getValues={getValues}
+                      setError={setError}
+                    />
+                  );
+                })}
 
-              {fields.length < 3 && (
-                <button
-                  className="btn-primary-accent-light !inline-grid h-12 w-12"
-                  onClick={() => {
-                    append({
-                      name: "",
-                      value: 0,
-                    });
-                  }}
-                >
-                  <PlusIcon className="h-5 w-5" />
-                </button>
-              )}
+                {fields.length < 3 && (
+                  <button
+                    className="btn-primary-accent-light !inline-grid h-12 w-12"
+                    onClick={addConstraints}
+                  >
+                    <PlusIcon className="h-5 w-5" />
+                  </button>
+                )}
+                <br />
+              </>
             </Disclosure.Panel>
+            {errors.fieldList && errors.fieldList[index]?.constraints?.message && (
+              <p className="mt-2 pl-5 text-xs text-error" id="email-error">
+                {errors.fieldList[index]?.constraints?.message}
+              </p>
+            )}
+            {errors.fieldList &&
+              errors.fieldList[index]?.constraints?.root &&
+              isSubmit && (
+                <p className="mt-2 pl-5 text-xs text-error" id="email-error">
+                  {errors.fieldList[index]?.constraints?.root?.message}
+                </p>
+              )}
           </>
         )}
       </Disclosure>
