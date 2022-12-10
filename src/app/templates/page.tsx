@@ -28,7 +28,7 @@ export default function Page() {
   });
 
   // state management
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null
