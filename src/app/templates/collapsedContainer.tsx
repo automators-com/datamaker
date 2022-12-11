@@ -73,7 +73,10 @@ const CollapsedContainer = ({
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
 
-  const addConstraints = () => {
+  const addConstraints = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     append({
       name: null,
       value: 0,
@@ -83,9 +86,9 @@ const CollapsedContainer = ({
     );
 
     const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
-
     if (constraintsName.length === 1) return;
     // clearErrors(`fieldList.${index}.`)
+
     setList([...updatedList]);
   };
 

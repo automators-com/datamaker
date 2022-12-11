@@ -55,14 +55,14 @@ export default function PreviewModal({
         {preview.id === 1 ? (
           <div className="-mx-4 mt-7 h-80 overflow-auto shadow ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
             <table className="min-w-full divide-y divide-base-200">
-              <thead className="bg-secondary text-base-100">
+              <thead className="bg-secondary text-base-content">
                 <tr>
                   {TableHeader?.map((header, i) => {
                     return (
                       <th
                         scope="col"
                         key={i}
-                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6"
+                        className="py-3.5 pl-4 pr-3 text-left text-xs font-semibold sm:pl-6"
                       >
                         {header}
                       </th>
@@ -77,9 +77,11 @@ export default function PreviewModal({
                       return (
                         <td
                           key={i}
-                          className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
+                          className="whitespace-nowrap py-4 pl-4 pr-3 text-xs text-base-content sm:pl-6"
                         >
-                          {data[x]}
+                          {typeof data[x] === "boolean"
+                            ? data[x].toString()
+                            : data[x]}
                         </td>
                       );
                     })}
