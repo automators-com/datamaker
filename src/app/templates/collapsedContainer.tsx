@@ -26,9 +26,6 @@ const CollapsedContainer = ({
   move: UseFieldArrayMove;
   isSubmit: boolean;
 }) => {
-  const [type, setType] = useState(DataTypes[0]);
-  const [list, setList] = useState(_list);
-
   const {
     register,
     control,
@@ -59,7 +56,19 @@ const CollapsedContainer = ({
     },
   });
 
+  const [type, setType] = useState(Fields[index].dataType);
+  const [list, setList] = useState(_list);
+
   // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
+
+  // useEffect(() => {
+  //   if (Fields[index].constraints.length !== 0) {
+  //     let updatedList = _list.filter(y => Fields[index].constraints.map(x => x.name?.id !== y.id))
+  //     console.log(updatedList);
+
+  //     // setList()
+  //   }
+  // }, [])
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);

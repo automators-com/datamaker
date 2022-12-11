@@ -3,7 +3,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import DropDown from "../../components/dropdown";
 import { Input } from "../../components/input";
 import PreviewModal from "./previewModal";
-import type { Template } from "./types";
+import type { Template, TemplateField } from "./types";
+import { faker } from "@faker-js/faker";
 
 const Target = [
   { id: 1, name: "CSV/Excel" },
@@ -20,13 +21,42 @@ export default function ExportModal({
   data: Template;
 }) {
   const [exportData, setExportData] = useState({
-    dataPoint: 10,
+    dataPoint: 4,
     target: Target[0],
   });
 
   const [openPreview, setOpenPreview] = useState(false);
 
-  const TableHeader = data?.fields?.map((x) => x.fieldName);
+  const TableHeader = data?.fields; //?.map((x) => x.fieldName);
+
+  const tableData = Array.from({ length: exportData.dataPoint }).map(() => {
+    const o: any = {};
+    TableHeader?.forEach((str: TemplateField) => {
+      const min = str.constraints.filter((cons) => cons.name?.id === 1)[0]
+        ? str.constraints.filter((cons) => cons.name?.id === 1)[0].value
+        : 1;
+      const max = str.constraints.filter((cons) => cons.name?.id === 2)[0]
+        ? str.constraints.filter((cons) => cons.name?.id === 2)[0].value
+        : 20;
+
+      const type = str.dataType.id ? str.dataType.id : str.dataType;
+      // console.log(min, max, type);
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      o[str.fieldName] =
+        type === 2
+          ? faker.datatype.number({ min: min, max: max })
+          : type === 4
+          ? faker.datatype.array(min)
+          : type === 5
+          ? faker.datatype.boolean()
+          : faker.datatype.string(max);
+    });
+
+    return o;
+  });
+
+  // console.log(data, tableData);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -68,7 +98,8 @@ export default function ExportModal({
                       setOpen(false);
                     }}
                     handleBack={() => setOpenPreview(false)}
-                    TableHeader={TableHeader}
+                    TableHeader={TableHeader?.map((x) => x.fieldName)}
+                    tableData={tableData}
                   />
                 ) : (
                   <>

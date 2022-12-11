@@ -33,6 +33,7 @@ export const Constraints = ({
   setError?: UseFormSetError<TemplateForm>;
 }) => {
   const [selected, setSelected] = useState<Item>(list[0]);
+  // console.log(getValues && getValues(`fieldList.${index}.constraints`), list[0]);
 
   useEffect(() => {
     setValue &&

@@ -5,18 +5,6 @@ import {
 } from "@heroicons/react/24/outline";
 import { RadioGroup } from "@headlessui/react";
 import { classNames } from "../../utilities/className";
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-  },
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@exampcom",
-  },
-];
 
 const Types = [
   { name: "Table", id: 1 },
@@ -27,90 +15,15 @@ export default function PreviewModal({
   handleEdit,
   handleBack,
   TableHeader,
+  tableData,
 }: {
   TableHeader: string[];
   handleEdit: any;
   handleBack: any;
+  tableData: any;
 }) {
   const [preview, setPreview] = useState(Types[0]);
-  const pretty = JSON.stringify(
-    [
-      {
-        id: "clb3bpeqd00023lr41ag0gaoc",
-        name: "Template III New",
-        fields: [
-          {
-            id: "d1acb9bf-32cf-4803-b858-e1f15cf186cd",
-            dataType: 1,
-            fieldName: "Field 1",
-            constraints: [
-              {
-                name: {
-                  id: 1,
-                  name: "Min",
-                },
-                value: 1,
-              },
-              {
-                name: {
-                  id: 2,
-                  name: "Max",
-                },
-                value: 30,
-              },
-            ],
-          },
-          {
-            id: "9b4bdc1b-aa69-40b7-9d60-15672d9daa9e",
-            dataType: 1,
-            fieldName: "Field 3",
-            constraints: [
-              {
-                name: {
-                  id: 1,
-                  name: "Min",
-                },
-                value: 1,
-              },
-            ],
-          },
-        ],
-        createdAt: "2022-11-30T07:25:11.510Z",
-      },
-      {
-        id: "clbf0a0rl0000fwln7dmzgi87",
-        name: "kl",
-        fields: [
-          {
-            dataType: {
-              id: 1,
-              name: "String",
-            },
-            fieldName: "kl",
-            constraints: [
-              {
-                name: {
-                  id: 1,
-                  name: "Min",
-                },
-                value: 0,
-              },
-              {
-                name: {
-                  id: 2,
-                  name: "Max",
-                },
-                value: 50,
-              },
-            ],
-          },
-        ],
-        createdAt: "2022-12-08T11:38:31.906Z",
-      },
-    ],
-    null,
-    4
-  );
+  const pretty = JSON.stringify(tableData, null, 4);
 
   return (
     <>
@@ -158,17 +71,18 @@ export default function PreviewModal({
                 </tr>
               </thead>
               <tbody className="divide-y divide-base-200 bg-base-100">
-                {people.map((person) => (
-                  <tr key={person.email}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                      {person.name}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                      {person.title}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {person.email}
-                    </td>
+                {tableData.map((data: any, index: number) => (
+                  <tr key={index}>
+                    {TableHeader?.map((x, i) => {
+                      return (
+                        <td
+                          key={i}
+                          className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
+                        >
+                          {data[x]}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>
