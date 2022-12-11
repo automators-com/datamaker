@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { PaperAirplaneIcon as PaperAirplaneIconOutline } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftIcon,
+  PaperAirplaneIcon as PaperAirplaneIconOutline,
+} from "@heroicons/react/24/outline";
 import { RadioGroup } from "@headlessui/react";
 import { classNames } from "../../utilities/className";
 const people = [
@@ -20,7 +23,15 @@ const Types = [
   { name: "JSON", id: 2 },
 ];
 
-export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
+export default function PreviewModal({
+  handleEdit,
+  handleBack,
+  TableHeader,
+}: {
+  TableHeader: string[];
+  handleEdit: any;
+  handleBack: any;
+}) {
   const [preview, setPreview] = useState(Types[0]);
   const pretty = JSON.stringify(
     [
@@ -50,17 +61,6 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
             ],
           },
           {
-            id: "fa471061-ce67-40d4-af56-c3770c89df62",
-            dataType: 1,
-            fieldName: "Field 2",
-            constraints: [
-              {
-                name: "Min",
-                value: 1,
-              },
-            ],
-          },
-          {
             id: "9b4bdc1b-aa69-40b7-9d60-15672d9daa9e",
             dataType: 1,
             fieldName: "Field 3",
@@ -76,27 +76,6 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
           },
         ],
         createdAt: "2022-11-30T07:25:11.510Z",
-      },
-      {
-        id: "clb5pajdi00023lykur222k38",
-        name: "Tes",
-        fields: [
-          {
-            id: "2960e804-0bad-4cbc-80aa-bb0f1930b99e",
-            dataType: 1,
-            fieldName: "dd",
-            constraints: [
-              {
-                name: {
-                  id: 1,
-                  name: "Min",
-                },
-                value: 1,
-              },
-            ],
-          },
-        ],
-        createdAt: "2022-12-01T23:21:04.663Z",
       },
       {
         id: "clbf0a0rl0000fwln7dmzgi87",
@@ -135,7 +114,7 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
 
   return (
     <>
-      <div className="relative rounded-md border border-base-300  border-opacity-40 p-4 pb-10 sm:p-6 lg:p-8">
+      <div className="relative rounded-md border border-base-content p-4 pb-10 sm:p-6 lg:p-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-base-content">
@@ -146,6 +125,9 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
             </p>
           </div>
           <div className="mt-4 flex items-center gap-3 sm:mt-0 sm:ml-16 sm:flex-none">
+            <button className="btn btn-secondary" onClick={handleBack}>
+              <ArrowLeftIcon /> Back
+            </button>
             <button className="btn btn-primary-accent" onClick={handleEdit}>
               {" "}
               Edit{" "}
@@ -158,28 +140,21 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
           </div>
         </div>
         {preview.id === 1 ? (
-          <div className="-mx-4 mt-8 overflow-hidden shadow ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+          <div className="-mx-4 mt-7 h-80 overflow-auto shadow ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
             <table className="min-w-full divide-y divide-base-200">
               <thead className="bg-secondary text-base-100">
                 <tr>
-                  <th
-                    scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold lg:table-cell"
-                  >
-                    Role
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold "
-                  >
-                    Email
-                  </th>
+                  {TableHeader?.map((header, i) => {
+                    return (
+                      <th
+                        scope="col"
+                        key={i}
+                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6"
+                      >
+                        {header}
+                      </th>
+                    );
+                  })}
                 </tr>
               </thead>
               <tbody className="divide-y divide-base-200 bg-base-100">
@@ -202,8 +177,8 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
         ) : (
           <div
             id="preview_data"
-            className="mt-5 flex h-80 flex-col flex-wrap overflow-auto whitespace-pre-wrap 
-                            rounded-md bg-primary p-6 text-sm
+            className="mt-7 flex h-80 flex-col flex-wrap overflow-auto 
+                            whitespace-pre-wrap rounded-md bg-primary p-6 text-sm
                             text-primary-content"
           >
             {pretty}
@@ -219,8 +194,8 @@ export default function PreviewModal({ handleEdit }: { handleEdit: any }) {
               className={({ checked }) =>
                 classNames(
                   planIdx === 0 ? "rounded-l-md border-r-0" : "rounded-r-md",
-                  checked ? "z-10 bg-secondary" : "border-base-200",
-                  "relative flex cursor-pointer flex-col border bg-base-100 p-2 focus:outline-none md:pl-4 md:pr-6"
+                  checked ? "z-10 bg-secondary" : "border-base-content",
+                  "relative flex cursor-pointer flex-col border bg-base-100 p-2 px-5 focus:outline-none"
                 )
               }
             >

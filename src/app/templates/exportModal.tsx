@@ -26,7 +26,7 @@ export default function ExportModal({
 
   const [openPreview, setOpenPreview] = useState(false);
 
-  console.log(data);
+  const TableHeader = data?.fields?.map((x) => x.fieldName);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -64,9 +64,11 @@ export default function ExportModal({
                 {openPreview ? (
                   <PreviewModal
                     handleEdit={() => {
-                      setOpen(false);
                       setOpenPreview(false);
+                      setOpen(false);
                     }}
+                    handleBack={() => setOpenPreview(false)}
+                    TableHeader={TableHeader}
                   />
                 ) : (
                   <>
