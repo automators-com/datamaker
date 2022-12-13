@@ -39,6 +39,8 @@ export default function ExportModal({
         ? str.constraints.filter((cons) => cons.name?.id === 2)[0].value
         : 20;
 
+      // faker.internet.email()
+      // faker.name.firstName()
       const type = str.dataType.id ? str.dataType.id : str.dataType;
       // console.log(min, max, type);
 

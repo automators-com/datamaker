@@ -8,7 +8,8 @@ import Form from "./form";
 import Placeholder from "./placeholder";
 import LivePreview from "./livePreview";
 
-import type { Template } from "./types";
+import type { Template, TemplateField } from "./types";
+import { faker } from "@faker-js/faker";
 
 const fetchTemplates = () => {
   return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
@@ -44,6 +45,39 @@ export default function Page() {
     return <span>There was an error fetching templates.</span>;
   }
 
+  const TableHeader = selectedTemplate?.fields;
+
+  const tableData = Array.from({ length: 1 }).map(() => {
+    const o: any = {};
+    TableHeader?.forEach((str: TemplateField) => {
+      const min = str.constraints.filter((cons) => cons.name?.id === 1)[0]
+        ? str.constraints.filter((cons) => cons.name?.id === 1)[0].value
+        : 1;
+      const max = str.constraints.filter((cons) => cons.name?.id === 2)[0]
+        ? str.constraints.filter((cons) => cons.name?.id === 2)[0].value
+        : 20;
+
+      // faker.internet.email()
+      // faker.name.firstName()
+      const type = str.dataType.id ? str.dataType.id : str.dataType;
+      console.log(min, max, type);
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      o[str.fieldName] =
+        type === 2
+          ? faker.datatype.number({ min: min, max: max })
+          : type === 4
+          ? faker.datatype.array(min)
+          : type === 5
+          ? faker.datatype.boolean()
+          : faker.datatype.string(max);
+    });
+
+    return o;
+  });
+
+  console.log(tableData);
+
   return (
     <div className="w-full max-w-[81rem] flex-grow py-6 lg:flex xl:px-8">
       <div className="min-w-[18rem] xl:w-80 xl:flex-shrink-0">
@@ -69,7 +103,7 @@ export default function Page() {
             setSelectedTemplate={setSelectedTemplate}
             setIsFormOpen={setIsFormOpen}
           />
-          <LivePreview data={templates} setIsModalOpen={setIsModalOpen} />
+          <LivePreview data={tableData} setIsModalOpen={setIsModalOpen} />
         </div>
       ) : (
         <Placeholder setIsFormOpen={setIsFormOpen} />
