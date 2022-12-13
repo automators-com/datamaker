@@ -4,6 +4,7 @@ import {
   PaperAirplaneIcon as PaperAirplaneIconOutline,
 } from "@heroicons/react/24/outline";
 import { RadioGroup } from "@headlessui/react";
+import { exportCSV, exportJson } from "../../../utilities/exportData";
 import { classNames } from "../../../utilities/className";
 
 const Types = [
@@ -13,11 +14,15 @@ const Types = [
 
 export default function PreviewModal({
   // handleEdit,
+  target,
+  name,
   handleBack,
   TableHeader,
   tableData,
 }: {
+  target: number;
   TableHeader: string[];
+  name: string;
   // handleEdit: () => void;
   handleBack: () => void;
   tableData: any[];
@@ -42,12 +47,17 @@ export default function PreviewModal({
               <ArrowLeftIcon /> Back
             </button>
             {/* <button className="btn btn-primary-accent" onClick={handleEdit}>
-              {" "}
-              Edit{" "}
+              Edit
             </button> */}
             <span className="text-xs text-base-content"> OR </span>
-            <button className="btn btn-primary">
-              {" "}
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                target === 1
+                  ? exportCSV(tableData)
+                  : exportJson(tableData, name);
+              }}
+            >
               <PaperAirplaneIconOutline /> Execute
             </button>
           </div>

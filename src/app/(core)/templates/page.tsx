@@ -9,7 +9,7 @@ import Placeholder from "./placeholder";
 import LivePreview from "./livePreview";
 
 import type { Template } from "./types";
-import { getTableData } from "../../utilities/tableData";
+import { getTableData } from "../../../utilities/tableData";
 
 const fetchTemplates = () => {
   return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
