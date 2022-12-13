@@ -46,7 +46,6 @@ export default function Page() {
   }
   // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
   const tableData = getTableData(1, selectedTemplate?.fields!);
-  console.log(tableData);
 
   return (
     <div className="w-full max-w-[81rem] flex-grow py-6 lg:flex xl:px-8">

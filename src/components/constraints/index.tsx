@@ -54,7 +54,7 @@ export const Constraints = ({
         }}
       ></DropDown>
 
-      {selected?.id !== 3 && (
+      {(selected?.name === "Min" || selected?.name === "Max") && (
         <>
           <Input
             type="number"

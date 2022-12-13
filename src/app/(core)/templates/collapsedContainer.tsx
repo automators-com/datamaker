@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Disclosure } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -62,6 +58,17 @@ const CollapsedContainer = ({
 
   const [type, setType] = useState(Fields[index].dataType);
   const [list, setList] = useState(_list);
+
+  // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
+
+  // useEffect(() => {
+  //   if (Fields[index].constraints.length !== 0) {
+  //     let updatedList = _list.filter(y => Fields[index].constraints.map(x => x.name?.id !== y.id))
+  //     console.log(updatedList);
+
+  //     // setList()
+  //   }
+  // }, [])
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
