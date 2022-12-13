@@ -4,7 +4,7 @@ import {
   PaperAirplaneIcon as PaperAirplaneIconOutline,
 } from "@heroicons/react/24/outline";
 import { RadioGroup } from "@headlessui/react";
-import { classNames } from "../../utilities/className";
+import { classNames } from "../../../utilities/className";
 
 const Types = [
   { name: "Table", id: 1 },

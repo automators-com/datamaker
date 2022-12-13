@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import List from "../../components/list";
+import List from "../../../components/list";
 import ExportModal from "./exportModal";
 import Form from "./form";
 import Placeholder from "./placeholder";

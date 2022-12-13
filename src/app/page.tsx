@@ -1,5 +1,5 @@
 "use client";
 
 export default function Home() {
-  return <></>;
+  return <div>This will be the datamaker landing page.</div>;
 }
