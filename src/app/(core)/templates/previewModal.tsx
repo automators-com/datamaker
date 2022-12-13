@@ -12,15 +12,15 @@ const Types = [
 ];
 
 export default function PreviewModal({
-  handleEdit,
+  // handleEdit,
   handleBack,
   TableHeader,
   tableData,
 }: {
   TableHeader: string[];
-  handleEdit: any;
-  handleBack: any;
-  tableData: any;
+  // handleEdit: () => void;
+  handleBack: () => void;
+  tableData: any[];
 }) {
   const [preview, setPreview] = useState(Types[0]);
   const pretty = JSON.stringify(tableData, null, 4);
@@ -41,14 +41,14 @@ export default function PreviewModal({
             <button className="btn btn-secondary" onClick={handleBack}>
               <ArrowLeftIcon /> Back
             </button>
-            <button className="btn btn-primary-accent" onClick={handleEdit}>
+            {/* <button className="btn btn-primary-accent" onClick={handleEdit}>
               {" "}
               Edit{" "}
-            </button>
+            </button> */}
             <span className="text-xs text-base-content"> OR </span>
             <button className="btn btn-primary">
               {" "}
-              <PaperAirplaneIconOutline /> Export/Send Data
+              <PaperAirplaneIconOutline /> Execute
             </button>
           </div>
         </div>

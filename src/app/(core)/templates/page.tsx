@@ -8,8 +8,8 @@ import Form from "./form";
 import Placeholder from "./placeholder";
 import LivePreview from "./livePreview";
 
-import type { Template, TemplateField } from "./types";
-import { faker } from "@faker-js/faker";
+import type { Template } from "./types";
+import { getTableData } from "../../utilities/tableData";
 
 const fetchTemplates = () => {
   return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
@@ -44,38 +44,8 @@ export default function Page() {
     // TODO: Add error state
     return <span>There was an error fetching templates.</span>;
   }
-
-  const TableHeader = selectedTemplate?.fields;
-
-  const tableData = Array.from({ length: 1 }).map(() => {
-    const o: any = {};
-    TableHeader?.forEach((str: TemplateField) => {
-      const min = str.constraints.filter((cons) => cons.name?.id === 1)[0]
-        ? str.constraints.filter((cons) => cons.name?.id === 1)[0].value
-        : 1;
-      const max = str.constraints.filter((cons) => cons.name?.id === 2)[0]
-        ? str.constraints.filter((cons) => cons.name?.id === 2)[0].value
-        : 20;
-
-      // faker.internet.email()
-      // faker.name.firstName()
-      const type = str.dataType.id ? str.dataType.id : str.dataType;
-      console.log(min, max, type);
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      o[str.fieldName] =
-        type === 2
-          ? faker.datatype.number({ min: min, max: max })
-          : type === 4
-          ? faker.datatype.array(min)
-          : type === 5
-          ? faker.datatype.boolean()
-          : faker.datatype.string(max);
-    });
-
-    return o;
-  });
-
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+  const tableData = getTableData(1, selectedTemplate?.fields!);
   console.log(tableData);
 
   return (
