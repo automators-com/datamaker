@@ -15,3 +15,8 @@ export const _list: Item[] = [
   { id: 2, name: "Max" },
   { id: 3, name: "RegEx (Words)" },
 ];
+
+export const string_list: Item[] = [
+  { id: 1, name: "Name" },
+  { id: 2, name: "Email" },
+];

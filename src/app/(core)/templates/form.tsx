@@ -147,8 +147,8 @@ export default function Form(props: {
       fields: getValues("fieldList"),
     });
 
-    props.setIsFormOpen(false);
-    props.setSelectedTemplate(null);
+    // props.setIsFormOpen(false);
+    // props.setSelectedTemplate(null);
   };
 
   return (
@@ -158,11 +158,21 @@ export default function Form(props: {
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         onSubmit={methods.handleSubmit(onSubmit)}
       >
-        <div className="flex h-20 items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
+        <div className="flex  items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
           <span className="font-semibold text-neutral-content">
             New Template
           </span>
           <div className="space-x-2">
+            <button
+              className="btn btn-error"
+              onClick={() => {
+                //TODO: delete function
+                props.setIsFormOpen(false);
+                props.setSelectedTemplate(null);
+              }}
+            >
+              Delete
+            </button>
             <button
               className="btn btn-secondary"
               onClick={() => {
