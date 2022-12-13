@@ -7,7 +7,7 @@ import {
   UseFormSetError,
   UseFormSetValue,
 } from "react-hook-form";
-import type { Item, TemplateForm } from "../../app/templates/types";
+import type { Item, TemplateForm } from "../../app/(core)/templates/types";
 import DropDown from "../dropdown";
 import { Input } from "../input";
 

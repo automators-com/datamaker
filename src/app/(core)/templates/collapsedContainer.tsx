@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Disclosure } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -5,12 +9,12 @@ import {
   PlusIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import { DataTypes, _list } from "../../utilities/constants";
-import Constraints from "../../components/constraints";
-import Divider from "../../components/divider";
-import DropDown from "../../components/dropdown";
-import { Input } from "../../components/input";
-import { MenuI } from "../../components/menu";
+import { DataTypes, _list } from "../../../utilities/constants";
+import Constraints from "../../../components/constraints";
+import Divider from "../../../components/divider";
+import DropDown from "../../../components/dropdown";
+import { Input } from "../../../components/input";
+import { MenuI } from "../../../components/menu";
 import type { UseFieldArrayMove } from "react-hook-form";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import type { Constraint, Item, TemplateForm } from "./types";
@@ -58,17 +62,6 @@ const CollapsedContainer = ({
 
   const [type, setType] = useState(Fields[index].dataType);
   const [list, setList] = useState(_list);
-
-  // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
-
-  // useEffect(() => {
-  //   if (Fields[index].constraints.length !== 0) {
-  //     let updatedList = _list.filter(y => Fields[index].constraints.map(x => x.name?.id !== y.id))
-  //     console.log(updatedList);
-
-  //     // setList()
-  //   }
-  // }, [])
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);

@@ -68,7 +68,7 @@ export default function Sidebar({
           open
             ? "w-80 min-w-[10rem] md:w-60 md:min-w-[10rem]"
             : "md:w-18 w-14 min-w-[4rem] md:min-w-[5rem]",
-          "visible relative flex h-full flex-col justify-between space-y-1 bg-neutral px-4 shadow-inner duration-200",
+          "visible relative flex h-[calc(100vh)_-_4rem] flex-col justify-between space-y-1 bg-neutral px-4 shadow-inner duration-200 md:h-[calc(100vh)_-_5rem]",
           "hidden md:flex md:flex-col"
         )}
       >

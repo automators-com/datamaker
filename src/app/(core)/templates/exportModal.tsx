@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import DropDown from "../../components/dropdown";
-import { Input } from "../../components/input";
+import DropDown from "../../../components/dropdown";
+import { Input } from "../../../components/input";
 import PreviewModal from "./previewModal";
 import type { Template, TemplateField } from "./types";
 import { faker } from "@faker-js/faker";

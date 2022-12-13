@@ -1,7 +1,7 @@
 "use client";
 
 import type { Dispatch, SetStateAction } from "react";
-import NotFoundRobot from "../../../public/assets/NotFoundRobot.svg";
+import NotFoundRobot from "../../../../public/assets/NotFoundRobot.svg";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
 export default function Placeholder(props: {
