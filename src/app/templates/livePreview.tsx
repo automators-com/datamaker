@@ -28,7 +28,7 @@ export default function LivePreview(props: {
         </div>
         <div
           id="preview_data"
-          className="flex flex-col flex-wrap whitespace-pre-wrap p-6 text-sm"
+          className="flex flex-col flex-wrap whitespace-pre-wrap p-6 text-sm text-base-content"
         >
           {pretty}
         </div>

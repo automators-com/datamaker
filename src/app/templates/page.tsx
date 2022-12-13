@@ -75,7 +75,11 @@ export default function Page() {
         <Placeholder setIsFormOpen={setIsFormOpen} />
       )}
 
-      <ExportModal open={isModalOpen} setOpen={setIsModalOpen} />
+      <ExportModal
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
+        data={selectedTemplate!}
+      />
     </div>
   );
 }
