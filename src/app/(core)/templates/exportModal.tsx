@@ -90,7 +90,7 @@ export default function ExportModal({
                           Send/Export{" "}
                           <span className="text-accent">
                             {/* : <br /> */}
-                            {data.name}:
+                            {data?.name}:
                           </span>
                         </p>
                       </Dialog.Title>
@@ -155,7 +155,7 @@ export default function ExportModal({
                           exportData.target.id === 1
                             ? exportCSV(tableData)
                             : exportJson(tableData, data.name);
-                          handleClose()
+                          handleClose();
                         }}
                       >
                         Execute

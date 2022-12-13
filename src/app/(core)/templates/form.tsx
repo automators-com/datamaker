@@ -189,10 +189,7 @@ export default function Form(props: {
             </button>
             <Menu as="div" className={`relative inline-block text-left`}>
               <Menu.Button className="flex items-center text-base-content focus:outline-none">
-                <EllipsisVerticalIcon
-                  className="h-5 w-8"
-                  aria-hidden="true"
-                />
+                <EllipsisVerticalIcon className="h-5 w-8" aria-hidden="true" />
               </Menu.Button>
 
               <Transition
@@ -204,8 +201,8 @@ export default function Form(props: {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right overflow-auto rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
-                  <Menu.Item >
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right overflow-auto rounded-md bg-base-100 shadow-lg ring-1 ring-secondary ring-opacity-5 focus:outline-none">
+                  <Menu.Item>
                     {({ active }) => (
                       <a
                         className={classNames(
