@@ -16,3 +16,30 @@ model Template {
     fields    Json
     createdAt DateTime @default(now())
 }
+
+model User {
+    id                String             @id @default(cuid())
+    email             String             @unique
+    firstName         String
+    lastName          String
+    password          String
+    passwordResetCode String?
+    createdAt         DateTime           @default(now())
+    UserOrganization  UserOrganization[]
+}
+
+model Organization {
+    id               String             @id @default(cuid())
+    name             String
+    createdAt        DateTime           @default(now())
+    UserOrganization UserOrganization[]
+}
+
+model UserOrganization {
+    id             String       @id @default(cuid())
+    userId         String
+    User           User         @relation(fields: [userId], references: [id])
+    orgId String
+    Organization   Organization @relation(fields: [orgId], references: [id])
+    createdAt      DateTime     @default(now())
+}
