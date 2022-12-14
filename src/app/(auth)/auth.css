@@ -1,0 +1,73 @@
+ /* Autocomplete styles */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    background: none;
+    -webkit-text-fill-color: none;
+    -webkit-box-shadow: 0 0 0 0 none inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .input-primary {
+    box-sizing: border-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #482B7C;
+    border-radius: 4px;
+    opacity: 1;
+    min-width: 510px;
+    height: 60px;
+    color: #482B7C;
+    font-size: 16px;
+    padding: 0 1.5em;
+    margin-bottom: 1em;
+  }
+
+  .input-primary::placeholder {
+    color: #482B7C;
+  }
+
+  .input-primary:focus {
+    outline: none;
+    border: 1px solid #482B7C;
+  }
+
+  .auth-link {
+    color: #482B7C;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: #459CA7 0% 0% no-repeat padding-box;
+    box-shadow: none;
+    border: none;
+    border-radius: 4px;
+    opacity: 1;
+    color: #FFFFFF;
+    height: 60px;
+    font-size: 16px;
+    margin-bottom: 2em;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.8;
+  }
+
+  .auth-wrapper form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    box-shadow: 0px 0px 99px 00000040;
+    border-radius: 4px;
+    max-width: 580px;
+    height: auto;
+    position: relative;
+    z-index: 10;
+  }

@@ -138,4 +138,13 @@
     margin-right: 0.5rem;
     margin-left: -0.125rem;
   }
+
+  /* auth styles */
+  .auth-form {
+    @apply flex w-auto flex-col rounded-md bg-white p-8 shadow-lg;
+  }
+
+  .auth-input {
+    @apply w-full px-3 py-2 text-base text-neutral-content placeholder-neutral-content bg-base-100 border border-base-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
 }
