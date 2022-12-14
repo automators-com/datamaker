@@ -96,8 +96,8 @@ export default function Form({
     }
   };
 
-  const deleteTemplate = async (id: string): Promise<Template[]> => {
-    const res = await fetch(`/api/templates/${id}`, {
+  const deleteTemplate = async (temp: Template): Promise<Template[]> => {
+    const res = await fetch(`/api/templates/${temp.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -158,14 +158,16 @@ export default function Form({
   const deleteMutation = useMutation({
     // @ts-ignore t
     mutationFn: deleteTemplate,
-    onMutate: async (id: string) => {
+    onMutate: async (temp: Template) => {
       await queryClient.cancelQueries({ queryKey: ["templates"] });
       const previousTemplates = queryClient.getQueryData(["templates"]);
 
       // Optimistically update to the new value
       queryClient.setQueryData(["templates"], (old: Template[] | undefined) => {
         // get all templates except newTemplate
-        const other = old?.filter((template: Template) => template.id !== id);
+        const other = old?.filter(
+          (template: Template) => template.id !== temp.id
+        );
         if (other) return [...other];
       });
       return { MutationKey: "deleteTemplate", previousTemplates };
@@ -250,9 +252,8 @@ export default function Form({
                           "group flex items-center px-4 py-2 text-sm hover:cursor-pointer"
                         )}
                         onClick={() => {
-                          //TODO: delete function
-                          if (selectedTemplate?.id)
-                            deleteMutation.mutate(selectedTemplate?.id);
+                          if (selectedTemplate)
+                            deleteMutation.mutate(selectedTemplate);
                           setIsFormOpen(false);
                           setSelectedTemplate(null);
                         }}
