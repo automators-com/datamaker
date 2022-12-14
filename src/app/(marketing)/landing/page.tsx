@@ -1,10 +1,11 @@
+"use client";
+
 import { useEffect } from "react";
-import Header from "../components/marketing/header";
-import Hero from "../components/marketing/hero";
-import Footer from "../components/marketing/footer";
+import Header from "../../../components/marketing/header";
+import Hero from "../../../components/marketing/hero";
+import Footer from "../../../components/marketing/footer";
 import Image from "next/image";
-import "../app/globals.css";
-import SignUp from "../components/marketing/signup";
+import SignUp from "../../../components/marketing/signup";
 
 export default function LandingPage() {
   useEffect(() => {
