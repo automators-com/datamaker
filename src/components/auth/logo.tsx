@@ -1,15 +1,15 @@
-// import Image from "next/image";
+import Image from "next/image";
 
 export default function Logo() {
+  const scale = 0.75;
   return (
-    <div className="relative flex h-20 w-full items-center justify-center border-b bg-orange-500 pb-16">
-      {/* <Image
-        layout="fill"
-        objectFit="contain"
-        src="/assets/automators-capacity-app-logo.png"
-        alt="automators logo"
-      /> */}
-      Datamaker
+    <div className="relative flex w-full flex-col items-center justify-center border-b pb-10">
+      <Image
+        width={268.56 * scale}
+        height={75 * scale}
+        src="/assets/datamaker.svg"
+        alt="datamaker logo"
+      />
     </div>
   );
 }

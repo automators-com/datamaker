@@ -1,3 +1,5 @@
+"use client";
+
 import SEO from "../../../../components/seo";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";

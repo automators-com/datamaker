@@ -25,21 +25,4 @@ model User {
     password          String
     passwordResetCode String?
     createdAt         DateTime           @default(now())
-    UserOrganization  UserOrganization[]
-}
-
-model Organization {
-    id               String             @id @default(cuid())
-    name             String
-    createdAt        DateTime           @default(now())
-    UserOrganization UserOrganization[]
-}
-
-model UserOrganization {
-    id             String       @id @default(cuid())
-    userId         String
-    User           User         @relation(fields: [userId], references: [id])
-    orgId String
-    Organization   Organization @relation(fields: [orgId], references: [id])
-    createdAt      DateTime     @default(now())
 }

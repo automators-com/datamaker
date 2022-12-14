@@ -1,11 +1,12 @@
-import SEO from "../../src/components/seo";
+"use client";
+
+import SEO from "../../../components/seo";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Robot from "../../src/components/auth/robot";
-import { useRouter } from "next/router";
-import Logo from "../../src/components/auth/logo";
+import { useRouter } from "next/navigation";
+import Logo from "../../../components/auth/logo";
 
-export default function Password({ csrfToken }) {
+export default function Password() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -29,23 +30,25 @@ export default function Password({ csrfToken }) {
       body: JSON.stringify({
         email,
       }),
-    }).then((res) => {
-      if (res.status === 201) {
-        router.push(`/auth/password/reset?email=${email}`);
-      } else if (res.status === 404) {
-        setError("User not found");
-        setLoading(false);
-      } else {
-        setLoading(false);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.status === 201) {
+          router.push(`/auth/password/reset?email=${email}`);
+        } else if (res.status === 404) {
+          setError("User not found");
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
     <div id="main" className="auth-wrapper">
       <SEO title={`Password Reset`} />
-      <Robot />
       <form
+        className="auth-form"
         method="post"
         action="/api/password"
         onSubmit={(e) => {
@@ -67,7 +70,7 @@ export default function Password({ csrfToken }) {
           <strong>Reset</strong> your account password
         </p>
         <input
-          className="input-primary"
+          className="auth-input"
           name="text "
           type="text"
           placeholder="Email Address"
@@ -77,8 +80,8 @@ export default function Password({ csrfToken }) {
         <button className="btn-primary" type="submit">
           {loading ? `Processing...` : `Reset`}
         </button>
-        <Link href={"/auth/signup"}>
-          <a className="auth-link">No account yet? Sign up now</a>
+        <Link href={"/signup"} className="auth-link">
+          No account yet? Sign up now
         </Link>
         {error ? (
           <div

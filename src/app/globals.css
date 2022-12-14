@@ -98,6 +98,22 @@
   * {
     box-sizing: border-box;
   }
+
+   /* Autocomplete styles */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    background: none;
+    -webkit-text-fill-color: none;
+    -webkit-box-shadow: 0 0 0 0 none inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 @layer components {
@@ -146,5 +162,17 @@
 
   .auth-input {
     @apply w-full px-6 py-4 my-2 text-base border border-[#482B7C] rounded-sm outline-none focus:outline-none placeholder-[#482B7C];
+  }
+
+  .auth-link {
+    @apply text-[#482B7C] text-[14px] no-underline
+  }
+
+  .auth-button {
+    @apply px-6 py-4 my-2 rounded-[4px] bg-[#459CA7] text-white flex items-center justify-center shadow-lg hover:opacity-80
+  }
+
+  .auth-error {
+    @apply text-[#482B7C] text-sm mt-2 flex items-center justify-center text-center;
   }
 }
