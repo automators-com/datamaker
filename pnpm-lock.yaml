@@ -30,6 +30,7 @@ specifiers:
   react: 18.2.0
   react-dom: 18.2.0
   react-hook-form: ^7.39.7
+  react-spinners: ^0.13.7
   react-tooltip: ^4.5.0
   tailwindcss: ^3.2.2
   typescript: 4.8.4
@@ -51,6 +52,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hook-form: 7.39.7_react@18.2.0
+  react-spinners: 0.13.7_biqbaboplfbrettd7655fr4n2y
   react-tooltip: 4.5.0_biqbaboplfbrettd7655fr4n2y
   typescript: 4.8.4
 
@@ -4771,6 +4773,16 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  /react-spinners/0.13.7_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-mRamn56bfxWbGcacif5RT3UbeJaXi2AttjtPwSmomuv2IcxjpbfETCzdTvaQpNDk0E33ENJsStsQeKAZFuJcpA==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /react-tooltip/4.5.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-mJNurq29atce+TJc9Xe+/FHrcEs3K9J7wkjZZXwbK5Yq6uG5SZeKSFHwd0wcRPUipVwx5crmgzSW8Zu1xyvLTQ==}
