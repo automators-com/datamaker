@@ -2,14 +2,14 @@
 import { Dialog, Transition } from "@headlessui/react";
 import {
   ChevronLeftIcon as ChevronLeftIconOutline,
-  ClipboardDocumentListIcon as ClipboardDocumentListIconOutline,
-  PaperAirplaneIcon as PaperAirplaneIconOutline,
+  // ClipboardDocumentListIcon as ClipboardDocumentListIconOutline,
+  // PaperAirplaneIcon as PaperAirplaneIconOutline,
   QueueListIcon as QueueListIconOutline,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
-  ClipboardDocumentListIcon as ClipboardDocumentListIconSolid,
-  PaperAirplaneIcon as PaperAirplaneIconSolid,
+  // ClipboardDocumentListIcon as ClipboardDocumentListIconSolid,
+  // PaperAirplaneIcon as PaperAirplaneIconSolid,
   QueueListIcon as QueueListIconSolid,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
@@ -28,20 +28,20 @@ const routes = [
     iconSolid: <QueueListIconSolid />,
     key: "key1",
   },
-  {
-    name: "Modifications",
-    path: "/modifications",
-    icon: <ClipboardDocumentListIconOutline />,
-    iconSolid: <ClipboardDocumentListIconSolid />,
-    key: "key2",
-  },
-  {
-    name: "Connections",
-    path: "/connections",
-    icon: <PaperAirplaneIconOutline />,
-    iconSolid: <PaperAirplaneIconSolid />,
-    key: "key3",
-  },
+  // {
+  //   name: "Modifications",
+  //   path: "/modifications",
+  //   icon: <ClipboardDocumentListIconOutline />,
+  //   iconSolid: <ClipboardDocumentListIconSolid />,
+  //   key: "key2",
+  // },
+  // {
+  //   name: "Connections",
+  //   path: "/connections",
+  //   icon: <PaperAirplaneIconOutline />,
+  //   iconSolid: <PaperAirplaneIconSolid />,
+  //   key: "key3",
+  // },
 ];
 
 export default function Sidebar({

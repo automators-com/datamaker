@@ -38,12 +38,12 @@ export default function Form({
     fieldList: selectedTemplate
       ? selectedTemplate.fields
       : [
-        {
-          fieldName: "",
-          constraints: [],
-          dataType: { id: 1, name: "String" },
-        },
-      ],
+          {
+            fieldName: "",
+            constraints: [],
+            dataType: { id: 1, name: "String" },
+          },
+        ],
   };
   const methods = useForm<TemplateForm>({
     // mode: "onChange",
@@ -251,7 +251,8 @@ export default function Form({
                         )}
                         onClick={() => {
                           //TODO: delete function
-                          if (selectedTemplate?.id) deleteMutation.mutate(selectedTemplate?.id)
+                          if (selectedTemplate?.id)
+                            deleteMutation.mutate(selectedTemplate?.id);
                           setIsFormOpen(false);
                           setSelectedTemplate(null);
                         }}
