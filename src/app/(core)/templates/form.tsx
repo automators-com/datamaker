@@ -23,16 +23,20 @@ import { FormProvider, useFieldArray, useForm } from "react-hook-form";
 import { Menu, Transition } from "@headlessui/react";
 import { classNames } from "../../../utilities/className";
 
-export default function Form(props: {
+export default function Form({
+  selectedTemplate,
+  setSelectedTemplate,
+  setIsFormOpen,
+}: {
   selectedTemplate: Template | null;
   setSelectedTemplate: Dispatch<SetStateAction<Template | null>>;
   setIsFormOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
   const defaultValues: TemplateForm = {
     isOpen: true,
-    templateName: props.selectedTemplate ? props.selectedTemplate.name : "",
-    fieldList: props.selectedTemplate
-      ? props.selectedTemplate.fields
+    templateName: selectedTemplate ? selectedTemplate.name : "",
+    fieldList: selectedTemplate
+      ? selectedTemplate.fields
       : [
           {
             fieldName: "",
@@ -63,7 +67,7 @@ export default function Form(props: {
   // Ensure rerender when selectedTemplate changes
   useEffect(() => {
     reset(defaultValues);
-  }, [props.selectedTemplate]);
+  }, [selectedTemplate]);
 
   // Handle creation and updates of templates
   const queryClient = useQueryClient();
@@ -90,6 +94,16 @@ export default function Form(props: {
       });
       return await res.json();
     }
+  };
+
+  const deleteTemplate = async (temp: Template): Promise<Template[]> => {
+    const res = await fetch(`/api/templates/${temp.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return await res.json();
   };
 
   const mutation = useMutation({
@@ -141,18 +155,44 @@ export default function Form(props: {
     },
   });
 
+  const deleteMutation = useMutation({
+    // @ts-ignore t
+    mutationFn: deleteTemplate,
+    onMutate: async (temp: Template) => {
+      await queryClient.cancelQueries({ queryKey: ["templates"] });
+      const previousTemplates = queryClient.getQueryData(["templates"]);
+
+      // Optimistically update to the new value
+      queryClient.setQueryData(["templates"], (old: Template[] | undefined) => {
+        // get all templates except newTemplate
+        const other = old?.filter(
+          (template: Template) => template.id !== temp.id
+        );
+        if (other) return [...other];
+      });
+      return { MutationKey: "deleteTemplate", previousTemplates };
+    },
+    onError: (
+      err: Error,
+      newTemplate: Template,
+      context: { previousTemplate: Template }
+    ) => {
+      queryClient.setQueryData(["templates"], context.previousTemplate);
+    },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["templates"] });
+    },
+  });
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = (data: TemplateForm) => {
     console.log(data);
 
     mutation.mutate({
-      ...props.selectedTemplate,
+      ...selectedTemplate,
       name: getValues("templateName"),
       fields: getValues("fieldList"),
     });
-
-    // props.setIsFormOpen(false);
-    // props.setSelectedTemplate(null);
   };
 
   return (
@@ -170,8 +210,8 @@ export default function Form(props: {
             <button
               className="btn btn-secondary"
               onClick={() => {
-                props.setIsFormOpen(false);
-                props.setSelectedTemplate(null);
+                setIsFormOpen(false);
+                setSelectedTemplate(null);
               }}
             >
               <ArrowUturnDownIcon />
@@ -212,9 +252,10 @@ export default function Form(props: {
                           "group flex items-center px-4 py-2 text-sm hover:cursor-pointer"
                         )}
                         onClick={() => {
-                          //TODO: delete function
-                          props.setIsFormOpen(false);
-                          props.setSelectedTemplate(null);
+                          if (selectedTemplate)
+                            deleteMutation.mutate(selectedTemplate);
+                          setIsFormOpen(false);
+                          setSelectedTemplate(null);
                         }}
                       >
                         <span
