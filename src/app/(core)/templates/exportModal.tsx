@@ -64,8 +64,9 @@ export default function ExportModal({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel
-                className={`relative transform overflow-hidden rounded-md bg-base-100 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full ${openPreview ? "sm:max-w-2xl" : "sm:max-w-sm"
-                  } sm:p-6`}
+                className={`relative transform overflow-hidden rounded-md bg-base-100 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full ${
+                  openPreview ? "sm:max-w-2xl" : "sm:max-w-sm"
+                } sm:p-6`}
               >
                 {openPreview ? (
                   <PreviewModal
