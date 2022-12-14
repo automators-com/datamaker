@@ -6,7 +6,7 @@
 import NextAuth from "next-auth";
 import { prisma } from "../../../utilities/dbConnect";
 import CredentialsProvider from "next-auth/providers/credentials";
-import sha256 from "crypto";
+import { checkPassword } from "../../../utilities/hash";
 
 export default NextAuth({
   providers: [
@@ -31,13 +31,7 @@ export default NextAuth({
           where: { email: credentials.username.toLowerCase() },
         });
         // validate the users credentials
-        if (
-          user &&
-          sha256
-            .createHash("sha256")
-            .update(credentials.password)
-            .digest("hex") === user.password
-        ) {
+        if (user && checkPassword(credentials.password, user.password)) {
           // return user object
           const user = await prisma.user.findFirst({
             where: {

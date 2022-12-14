@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import sha256 from "crypto";
 import { prisma } from "../../../utilities/dbConnect";
 
 import type { NextApiRequest, NextApiResponse } from "next";
+import { hashPassword } from "../../../utilities/hash";
 
 type signUpForm = {
   firstName: string;
@@ -40,10 +40,7 @@ export default async function handler(
     }
 
     // Hash password and create user
-    const hashed_pwd = sha256
-      .createHash("sha256")
-      .update(password)
-      .digest("hex");
+    const hashed_pwd = hashPassword(password);
 
     // Create user
     const user = await prisma.user.create({
