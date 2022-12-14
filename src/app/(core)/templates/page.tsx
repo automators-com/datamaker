@@ -1,15 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+
 import List from "../../../components/list";
 import ExportModal from "./exportModal";
 import Form from "./form";
 import Placeholder from "./placeholder";
 import LivePreview from "./livePreview";
 
-import type { Template } from "./types";
+import type { Template, TemplateForm } from "./types";
 import { getTableData } from "../../../utilities/tableData";
+import { FormProvider, useForm } from "react-hook-form";
 
 const fetchTemplates = () => {
   return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
@@ -35,6 +38,102 @@ export default function Page() {
     null
   );
 
+  const methods = useForm<TemplateForm>();
+
+  const {
+    getValues,
+    watch
+  } = methods;
+
+  const queryClient = useQueryClient();
+
+  const createOrUpdateTemplate = async (
+    template: Template
+  ): Promise<Template[]> => {
+    if (template.id) {
+      const res = await fetch(`/api/templates/${template.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(template),
+      });
+      return await res.json();
+    } else {
+      const res = await fetch(`/api/templates/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(template),
+      });
+      return await res.json();
+    }
+  };
+
+  const mutation = useMutation({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore t
+    mutationFn: createOrUpdateTemplate,
+    // When mutate is called:
+    onMutate: async (newTemplate: Template) => {
+      // Cancel any outgoing refetches
+      // (so they don't overwrite our optimistic update)
+      await queryClient.cancelQueries({ queryKey: ["templates"] });
+
+      // Snapshot the previous value
+      const previousTemplates = queryClient.getQueryData(["templates"]);
+
+      // Optimistically update to the new value
+      if (newTemplate.id) {
+        queryClient.setQueryData(
+          ["templates"],
+          (old: Template[] | undefined) => {
+            // get all templates except newTemplate
+            const other = old?.filter(
+              (template: Template) => template.id !== newTemplate.id
+            );
+            if (other) {
+              return [...other, newTemplate];
+            }
+          }
+        );
+      } else {
+        queryClient.setQueryData(["templates"], (old: any) => [
+          ...old,
+          newTemplate,
+        ]);
+      }
+      // Return a context object with the snapshotted value
+      return { MutationKey: "createOrUpdateTemplates", previousTemplates };
+    },
+    // If the mutation fails, use the context we returned above
+    onError: (
+      err: Error,
+      newTemplate: Template,
+      context: { previousTemplate: Template }
+    ) => {
+      queryClient.setQueryData(["templates"], context.previousTemplate);
+    },
+    // Always refetch after error or success:
+    onSettled: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["templates"] });
+    },
+  });
+
+  const tableData = getTableData(1, watch().fieldList);
+
+  const onSubmit = (data: TemplateForm) => {
+    console.log(data);
+
+    mutation.mutate({
+      ...selectedTemplate,
+      name: getValues("templateName"),
+      fields: getValues("fieldList"),
+    });
+  };
+
+
   if (isLoading) {
     // TODO: Add skeleton loader
     return <span>Loading...</span>;
@@ -44,8 +143,6 @@ export default function Page() {
     // TODO: Add error state
     return <span>There was an error fetching templates.</span>;
   }
-  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
-  const tableData = getTableData(1, selectedTemplate?.fields!);
 
   return (
     <div className="w-full max-w-[83rem] flex-grow py-6 lg:flex xl:px-8">
@@ -67,11 +164,20 @@ export default function Page() {
 
       {isFormOpen ? (
         <div className="min-w-0 flex-1 rounded-md shadow-lg xl:flex">
-          <Form
-            selectedTemplate={selectedTemplate}
-            setSelectedTemplate={setSelectedTemplate}
-            setIsFormOpen={setIsFormOpen}
-          />
+          <FormProvider {...methods}>
+            <form
+              className="relative h-full min-h-[36rem] flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1"
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              onSubmit={methods.handleSubmit(onSubmit)}
+            >
+              <Form
+                selectedTemplate={selectedTemplate}
+                setSelectedTemplate={setSelectedTemplate}
+                setIsFormOpen={setIsFormOpen}
+              />
+            </form>
+          </FormProvider>
+
           <LivePreview data={tableData} setIsModalOpen={setIsModalOpen} />
         </div>
       ) : (
@@ -81,7 +187,7 @@ export default function Page() {
       <ExportModal
         open={isModalOpen}
         setOpen={setIsModalOpen}
-        data={selectedTemplate!}
+        data={watch()}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import type { Template } from "./types";
+import type { TemplateForm } from "./types";
 import { getTableData } from "../../../utilities/tableData";
 import PreviewModal from "./previewModal";
 import DropDown from "../../../components/dropdown";
@@ -19,7 +19,7 @@ export default function ExportModal({
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
-  data: Template;
+  data: TemplateForm;
 }) {
   const [exportData, setExportData] = useState({
     dataPoint: 4,
@@ -28,7 +28,7 @@ export default function ExportModal({
 
   const [openPreview, setOpenPreview] = useState(false);
 
-  const TableHeader = data?.fields; //?.map((x) => x.fieldName);
+  const TableHeader = data?.fieldList; //?.map((x) => x.fieldName);
   const tableData: any[] = getTableData(exportData.dataPoint, TableHeader);
 
   const handleClose = () => {
@@ -64,9 +64,8 @@ export default function ExportModal({
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel
-                className={`relative transform overflow-hidden rounded-md bg-base-100 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full ${
-                  openPreview ? "sm:max-w-2xl" : "sm:max-w-sm"
-                } sm:p-6`}
+                className={`relative transform overflow-hidden rounded-md bg-base-100 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full ${openPreview ? "sm:max-w-2xl" : "sm:max-w-sm"
+                  } sm:p-6`}
               >
                 {openPreview ? (
                   <PreviewModal
@@ -75,7 +74,7 @@ export default function ExportModal({
                     //   setOpen(false);
                     // }}
                     target={exportData.target.id}
-                    name={data.name}
+                    name={data.templateName}
                     handleBack={() => setOpenPreview(false)}
                     TableHeader={TableHeader?.map((x) => x.fieldName)}
                     tableData={tableData}
@@ -91,7 +90,7 @@ export default function ExportModal({
                           Send/Export{" "}
                           <span className="text-accent">
                             {/* : <br /> */}
-                            {data?.name}:
+                            {data?.templateName}:
                           </span>
                         </p>
                       </Dialog.Title>
@@ -155,7 +154,7 @@ export default function ExportModal({
                         onClick={() => {
                           exportData.target.id === 1
                             ? exportCSV(tableData)
-                            : exportJson(tableData, data.name);
+                            : exportJson(tableData, data.templateName);
                           handleClose();
                         }}
                       >
