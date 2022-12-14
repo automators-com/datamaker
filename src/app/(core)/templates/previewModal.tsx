@@ -4,8 +4,9 @@ import {
   PaperAirplaneIcon as PaperAirplaneIconOutline,
 } from "@heroicons/react/24/outline";
 import { RadioGroup } from "@headlessui/react";
-import { exportCSV, exportJson } from "../../../utilities/exportData";
+import { exportJson } from "../../../utilities/exportData";
 import { classNames } from "../../../utilities/className";
+import { CSVLink } from "react-csv";
 
 const Types = [
   { name: "Table", id: 1 },
@@ -19,12 +20,14 @@ export default function PreviewModal({
   handleBack,
   TableHeader,
   tableData,
+  handleClose,
 }: {
   target: number;
   TableHeader: string[];
   name: string;
   // handleEdit: () => void;
   handleBack: () => void;
+  handleClose: () => void;
   tableData: any[];
 }) {
   const [preview, setPreview] = useState(Types[0]);
@@ -50,16 +53,24 @@ export default function PreviewModal({
               Edit
             </button> */}
             <span className="text-xs text-base-content"> OR </span>
-            <button
-              className="btn btn-primary"
-              onClick={() => {
-                target === 1
-                  ? exportCSV(tableData)
-                  : exportJson(tableData, name);
-              }}
-            >
-              <PaperAirplaneIconOutline /> Execute
-            </button>
+            {target === 1 ? (
+              <CSVLink
+                data={tableData}
+                filename={name}
+                className="btn btn-primary"
+                target="_blank"
+                onClick={handleClose}
+              >
+                <PaperAirplaneIconOutline /> Execute
+              </CSVLink>
+            ) : (
+              <button
+                className="btn btn-primary"
+                onClick={() => exportJson(tableData, name)}
+              >
+                <PaperAirplaneIconOutline /> Execute
+              </button>
+            )}
           </div>
         </div>
         {preview.id === 1 ? (
