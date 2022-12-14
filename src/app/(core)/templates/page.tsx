@@ -12,6 +12,7 @@ import LivePreview from "./livePreview";
 
 import type { Template, TemplateForm } from "./types";
 import { getTableData } from "../../../utilities/tableData";
+import MoonLoader from "../../../components/loaders/moonLoader";
 import { FormProvider, useForm } from "react-hook-form";
 
 const fetchTemplates = () => {
@@ -132,7 +133,7 @@ export default function Page() {
 
   if (isLoading) {
     // TODO: Add skeleton loader
-    return <span>Loading...</span>;
+    return <MoonLoader />;
   }
 
   if (isError) {

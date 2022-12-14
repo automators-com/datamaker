@@ -1,5 +1,8 @@
 "use client";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
-  return <div>This will be the datamaker landing page.</div>;
+  const { data: session } = useSession();
+
+  return <pre>{JSON.stringify(session)}</pre>;
 }

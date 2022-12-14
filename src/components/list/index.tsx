@@ -51,7 +51,7 @@ export default function List({
             key={item.name}
             className={`${
               index % 2 === 1 && "bg-base-200 bg-opacity-30"
-            } block w-full rounded-md text-base-content hover:bg-secondary hover:text-secondary-content`}
+            } block w-full cursor-pointer rounded-md text-base-content hover:bg-secondary hover:text-secondary-content`}
             onClick={() => {
               setSelected(item);
               onClickItem();

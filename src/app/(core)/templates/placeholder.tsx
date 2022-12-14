@@ -8,7 +8,7 @@ export default function Placeholder(props: {
   setIsFormOpen: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
   return (
-    <div className="mx-auto flex flex-col gap-5 self-center text-center lg:pt-16 xl:pt-16">
+    <div className="mx-auto flex flex-col gap-5 self-center text-center lg:pt-28">
       <NotFoundRobot className="scale-80 mx-auto w-40 fill-secondary" />
 
       <p className="text-xs text-base-content">
