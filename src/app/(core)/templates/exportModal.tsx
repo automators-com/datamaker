@@ -1,10 +1,11 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import type { Template } from "./types";
+import { getTableData } from "../../../utilities/tableData";
+import PreviewModal from "./previewModal";
 import DropDown from "../../../components/dropdown";
 import { Input } from "../../../components/input";
-import PreviewModal from "./previewModal";
-import type { Template, TemplateField } from "./types";
-import { faker } from "@faker-js/faker";
+import { exportCSV, exportJson } from "../../../utilities/exportData";
 
 const Target = [
   { id: 1, name: "CSV/Excel" },
@@ -28,39 +29,15 @@ export default function ExportModal({
   const [openPreview, setOpenPreview] = useState(false);
 
   const TableHeader = data?.fields; //?.map((x) => x.fieldName);
+  const tableData: any[] = getTableData(exportData.dataPoint, TableHeader);
 
-  const tableData = Array.from({ length: exportData.dataPoint }).map(() => {
-    const o: any = {};
-    TableHeader?.forEach((str: TemplateField) => {
-      const min = str.constraints.filter((cons) => cons.name?.id === 1)[0]
-        ? str.constraints.filter((cons) => cons.name?.id === 1)[0].value
-        : 1;
-      const max = str.constraints.filter((cons) => cons.name?.id === 2)[0]
-        ? str.constraints.filter((cons) => cons.name?.id === 2)[0].value
-        : 20;
-
-      const type = str.dataType.id ? str.dataType.id : str.dataType;
-      // console.log(min, max, type);
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      o[str.fieldName] =
-        type === 2
-          ? faker.datatype.number({ min: min, max: max })
-          : type === 4
-          ? faker.datatype.array(min)
-          : type === 5
-          ? faker.datatype.boolean()
-          : faker.datatype.string(max);
-    });
-
-    return o;
-  });
-
-  // console.log(data, tableData);
-
+  const handleClose = () => {
+    setOpen(false);
+    setOpenPreview(false);
+  };
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" onClose={handleClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -93,10 +70,12 @@ export default function ExportModal({
               >
                 {openPreview ? (
                   <PreviewModal
-                    handleEdit={() => {
-                      setOpenPreview(false);
-                      setOpen(false);
-                    }}
+                    // handleEdit={() => {
+                    //   setOpenPreview(false);
+                    //   setOpen(false);
+                    // }}
+                    target={exportData.target.id}
+                    name={data.name}
                     handleBack={() => setOpenPreview(false)}
                     TableHeader={TableHeader?.map((x) => x.fieldName)}
                     tableData={tableData}
@@ -111,8 +90,8 @@ export default function ExportModal({
                         <p>
                           Send/Export{" "}
                           <span className="text-accent">
-                            Customer: <br />
-                            E-Commerce General
+                            {/* : <br /> */}
+                            {data?.name}:
                           </span>
                         </p>
                       </Dialog.Title>
@@ -169,12 +148,18 @@ export default function ExportModal({
                           setOpenPreview(true);
                         }}
                       >
-                        {" "}
                         Preview & Edit
                       </button>
-                      <button className="btn btn-primary-accent">
-                        {" "}
-                        Execute{" "}
+                      <button
+                        className="btn btn-primary-accent"
+                        onClick={() => {
+                          exportData.target.id === 1
+                            ? exportCSV(tableData)
+                            : exportJson(tableData, data.name);
+                          handleClose();
+                        }}
+                      >
+                        Execute
                       </button>
                     </div>
                   </>

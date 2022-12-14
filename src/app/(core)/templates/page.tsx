@@ -9,6 +9,7 @@ import Placeholder from "./placeholder";
 import LivePreview from "./livePreview";
 
 import type { Template } from "./types";
+import { getTableData } from "../../../utilities/tableData";
 
 const fetchTemplates = () => {
   return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
@@ -43,6 +44,8 @@ export default function Page() {
     // TODO: Add error state
     return <span>There was an error fetching templates.</span>;
   }
+  // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+  const tableData = getTableData(1, selectedTemplate?.fields!);
 
   return (
     <div className="w-full max-w-[81rem] flex-grow py-6 lg:flex xl:px-8">
@@ -69,7 +72,7 @@ export default function Page() {
             setSelectedTemplate={setSelectedTemplate}
             setIsFormOpen={setIsFormOpen}
           />
-          <LivePreview data={templates} setIsModalOpen={setIsModalOpen} />
+          <LivePreview data={tableData} setIsModalOpen={setIsModalOpen} />
         </div>
       ) : (
         <Placeholder setIsFormOpen={setIsFormOpen} />
