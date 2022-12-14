@@ -48,7 +48,7 @@ export default function Page() {
   const tableData = getTableData(1, selectedTemplate?.fields!);
 
   return (
-    <div className="w-full max-w-[81rem] flex-grow py-6 lg:flex xl:px-8">
+    <div className="w-full max-w-[83rem] flex-grow py-6 lg:flex xl:px-8">
       <div className="min-w-[18rem] xl:w-80 xl:flex-shrink-0">
         <div className="relative h-full min-h-[12rem] flex-none pl-8 pr-6 pt-5 pb-10 sm:pl-6 lg:pl-8 xl:pl-0">
           <List
