@@ -34,12 +34,12 @@ export default function Form(props: {
     fieldList: props.selectedTemplate
       ? props.selectedTemplate.fields
       : [
-        {
-          fieldName: "",
-          constraints: [],
-          dataType: { id: 1, name: "String" },
-        },
-      ],
+          {
+            fieldName: "",
+            constraints: [],
+            dataType: { id: 1, name: "String" },
+          },
+        ],
   };
   const methods = useForm<TemplateForm>({
     // mode: "onChange",
