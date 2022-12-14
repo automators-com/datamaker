@@ -40,10 +40,7 @@ export default function Page() {
 
   const methods = useForm<TemplateForm>();
 
-  const {
-    getValues,
-    watch
-  } = methods;
+  const { getValues, watch } = methods;
 
   const queryClient = useQueryClient();
 
@@ -133,7 +130,6 @@ export default function Page() {
     });
   };
 
-
   if (isLoading) {
     // TODO: Add skeleton loader
     return <span>Loading...</span>;
@@ -184,11 +180,7 @@ export default function Page() {
         <Placeholder setIsFormOpen={setIsFormOpen} />
       )}
 
-      <ExportModal
-        open={isModalOpen}
-        setOpen={setIsModalOpen}
-        data={watch()}
-      />
+      <ExportModal open={isModalOpen} setOpen={setIsModalOpen} data={watch()} />
     </div>
   );
 }
