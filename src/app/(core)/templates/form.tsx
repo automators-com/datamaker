@@ -111,7 +111,7 @@ export default function Form({
     <>
       <div className="flex  items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
         <span className="font-semibold text-neutral-content">New Template</span>
-        <div className="space-x-2">
+        <div className="flex items-center gap-2">
           <button
             className="btn btn-secondary"
             onClick={() => {

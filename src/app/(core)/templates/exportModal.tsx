@@ -5,7 +5,8 @@ import { getTableData } from "../../../utilities/tableData";
 import PreviewModal from "./previewModal";
 import DropDown from "../../../components/dropdown";
 import { Input } from "../../../components/input";
-import { exportCSV, exportJson } from "../../../utilities/exportData";
+import { exportJson } from "../../../utilities/exportData";
+import { CSVLink } from "react-csv";
 
 const Target = [
   { id: 1, name: "CSV/Excel" },
@@ -74,6 +75,7 @@ export default function ExportModal({
                     //   setOpenPreview(false);
                     //   setOpen(false);
                     // }}
+                    handleClose={handleClose}
                     target={exportData.target.id}
                     name={data.templateName}
                     handleBack={() => setOpenPreview(false)}
@@ -150,17 +152,28 @@ export default function ExportModal({
                       >
                         Preview & Edit
                       </button>
-                      <button
-                        className="btn btn-primary-accent"
-                        onClick={() => {
-                          exportData.target.id === 1
-                            ? exportCSV(tableData)
-                            : exportJson(tableData, data.templateName);
-                          handleClose();
-                        }}
-                      >
-                        Execute
-                      </button>
+
+                      {exportData.target.id === 1 ? (
+                        <CSVLink
+                          data={tableData}
+                          filename={data.templateName}
+                          className="btn btn-primary-accent"
+                          target="_blank"
+                          onClick={handleClose}
+                        >
+                          Execute
+                        </CSVLink>
+                      ) : (
+                        <button
+                          className="btn btn-primary-accent"
+                          onClick={() => {
+                            exportJson(tableData, data.templateName);
+                            handleClose();
+                          }}
+                        >
+                          Execute
+                        </button>
+                      )}
                     </div>
                   </>
                 )}

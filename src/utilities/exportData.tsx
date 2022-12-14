@@ -8,10 +8,3 @@ export const exportJson = (data: any[], name: string) => {
 
   link.click();
 };
-
-export const exportCSV = (data: any[]) => {
-  const _data = JSON.stringify(data);
-  const csvContent = `data:text/csv;charset=utf-8,${_data}`;
-  const encodedURI = encodeURI(csvContent);
-  window.open(encodedURI);
-};
