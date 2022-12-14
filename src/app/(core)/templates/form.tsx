@@ -112,7 +112,7 @@ export default function Form({
     <>
       <div className="flex  items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
         <span className="font-semibold text-neutral-content">New Template</span>
-        <div className="space-x-2">
+        <div className="flex items-center space-x-2">
           <button
             className="btn btn-secondary"
             onClick={() => {
@@ -133,7 +133,7 @@ export default function Form({
             <CheckIcon />
             Save
           </button>
-          <Menu as="div" className={`relative inline-block text-left`}>
+          <Menu as="div" className={`relative inline-block h-full text-left`}>
             <Menu.Button className="flex items-center text-base-content focus:outline-none">
               <EllipsisVerticalIcon className="h-5 w-8" aria-hidden="true" />
             </Menu.Button>

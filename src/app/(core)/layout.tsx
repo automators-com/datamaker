@@ -19,11 +19,9 @@ export default function CoreLayout({
   const { data: session, status } = useSession();
   const router = useRouter();
 
-
-  if (status === "loading"){
+  if (status === "loading") {
     return <MoonLoader />;
   }
-
 
   if (!session) {
     // redirect to sign in page if not signed in
