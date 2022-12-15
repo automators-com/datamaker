@@ -8,6 +8,7 @@ import Header from "../../../components/marketing/header";
 import Hero from "../../../components/marketing/hero";
 import Footer from "../../../components/marketing/footer";
 import DataGeneration from "../../../components/marketing/dataGeneration";
+import SplitSection from "../../../components/marketing/splitSection";
 import Image from "next/image";
 import SignUp from "../../../components/marketing/signup";
 import { useForm } from "react-hook-form";
@@ -80,13 +81,10 @@ export default function LandingPage() {
         Section 3
       </section>
       <span ref={howRef} className="invisible" />
-      <section className="relative z-10 flex h-96 items-center justify-center">
-        <div className="h-full w-full bg-[#459CA7]">Left</div>
-        <div className="h-full w-full bg-[#1D1E39]">Right</div>
-      </section>
-      <section className="flex h-[100em] flex-col items-center justify-center bg-white text-black">
+      <SplitSection />
+      {/* <section className="flex h-[100em] flex-col items-center justify-center bg-white text-black">
         Section 5
-      </section>
+      </section> */}
       <SignUp />
       <Footer />
     </div>
