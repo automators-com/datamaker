@@ -10,6 +10,7 @@ import Footer from "../../../components/marketing/footer";
 import DataGeneration from "../../../components/marketing/dataGeneration";
 import Image from "next/image";
 import SignUp from "../../../components/marketing/signup";
+import Features from "../../../components/marketing/features";
 
 export default function LandingPage() {
   useEffect(() => {
@@ -44,9 +45,7 @@ export default function LandingPage() {
 
       <span ref={whatRef} className="invisible" />
       <DataGeneration />
-      <section className="relative z-10 flex h-[50em] flex-col items-center justify-center bg-gradient-to-t from-[#459CA7] to-[#482B7C]">
-        Section 2
-      </section>
+      <Features />
       <span ref={whyRef} className="invisible" />
       <section className="relative z-10 flex h-96 flex-col items-center justify-center bg-gradient-to-b from-[#1D1E39] to-[#482B7C]">
         Section 3

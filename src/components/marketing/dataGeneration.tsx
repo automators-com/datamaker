@@ -3,10 +3,7 @@ import Image from "next/image";
 export default function DataGeneration() {
   const scale = 0.7;
   return (
-    <section
-      id="what"
-      className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]"
-    >
+    <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
       <div className="relative -top-80 z-40 mx-auto mt-8 min-h-[400px] w-3/4 rounded-md bg-white pt-80 shadow-lg">
         Data generation happens here.
       </div>
