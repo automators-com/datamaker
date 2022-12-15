@@ -35,6 +35,15 @@ module.exports = {
         error: "hsl(var(--color-error) / <alpha-value>)",
         "error-content": "hsl(var(--color-error-content) / <alpha-value>)",
       },
+      keyframes: {
+        globe: {
+          "0%,100%": { transform: "translateY(0%)" },
+          "50%": { transform: "translateY(-30%)" },
+        },
+      },
+      animation: {
+        globe: "globe 60s linear infinite",
+      },
     },
   },
   plugins: [],

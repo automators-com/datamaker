@@ -99,7 +99,7 @@
     box-sizing: border-box;
   }
 
-   /* Autocomplete styles */
+  /* Autocomplete styles */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -157,22 +157,22 @@
 
   /* auth styles */
   .auth-form {
-    @apply flex w-auto min-w-[28rem] flex-col rounded-[4px] bg-white p-8 shadow-xl relative top-5 z-10;
+    @apply relative top-5 z-10 flex w-auto min-w-[28rem] flex-col rounded-[4px] bg-white p-8 shadow-xl;
   }
 
   .auth-input {
-    @apply w-full px-6 py-4 my-2 text-base border border-[#482B7C] rounded-sm outline-none focus:outline-none placeholder-[#482B7C];
+    @apply my-2 w-full rounded-sm border border-[#482B7C] px-6 py-4 text-base placeholder-[#482B7C] outline-none focus:outline-none;
   }
 
   .auth-link {
-    @apply text-[#482B7C] text-[14px] no-underline
+    @apply text-[14px] text-[#482B7C] no-underline;
   }
 
   .auth-button {
-    @apply px-6 py-4 my-2 rounded-[4px] bg-[#459CA7] text-white flex items-center justify-center shadow-lg hover:opacity-80
+    @apply my-2 flex items-center justify-center rounded-[4px] bg-[#459CA7] px-6 py-4 text-white shadow-lg hover:opacity-80;
   }
 
   .auth-error {
-    @apply text-[#482B7C] text-sm mt-2 flex items-center justify-center text-center;
+    @apply mt-2 flex items-center justify-center text-center text-sm text-[#482B7C];
   }
 }

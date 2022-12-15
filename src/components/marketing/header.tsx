@@ -15,9 +15,11 @@ export default function Header() {
           <li className="mx-4 cursor-pointer">Why?</li>
           <li className="mx-4 cursor-pointer">How?</li>
         </ul>
-        <button className="ml-4 rounded-full bg-[#EBFF00] py-2 px-6 text-[#1D1E39]">
-          Get access
-        </button>
+        <Link href={`/signin`}>
+          <button className="ml-4 rounded-full bg-[#EBFF00] py-2 px-6 text-[#1D1E39]">
+            Get access
+          </button>
+        </Link>
       </div>
     </header>
   );

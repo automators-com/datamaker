@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SignUp() {
   return (
@@ -8,9 +9,11 @@ export default function SignUp() {
         and Monitor Your Test Data Sets Seamlessly for a Truly Streamlined
         Development Process!
       </p>
-      <button className="my-20 rounded-full bg-[#EBFF00] px-10 py-2 text-base text-black">
-        Start Making Data
-      </button>
+      <Link href={`/signup`}>
+        <button className="my-20 rounded-full bg-[#EBFF00] px-10 py-2 text-base text-black">
+          Start Making Data
+        </button>
+      </Link>
       <div className="relative h-20 w-full object-contain">
         <Image
           src="/assets/dashed-lines-white.svg"
