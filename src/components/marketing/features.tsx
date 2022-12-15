@@ -13,7 +13,6 @@ export default function Features({
   rows: number;
 }) {
   const scale = 0.7;
-  console.log(methods.getValues("fieldList"));
 
   const DataTable = methods.getValues("fieldList");
 
