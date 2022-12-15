@@ -1,7 +1,22 @@
 import Image from "next/image";
+import type { UseFormReturn } from "react-hook-form";
+import PreviewModal from "../../app/(core)/templates/previewModal";
+import type { TemplateForm } from "../../app/(core)/templates/types";
+import { Target } from "../../utilities/constants";
+import { getTableData } from "../../utilities/tableData";
 
-export default function Features() {
+export default function Features({
+  methods,
+  rows,
+}: {
+  methods: UseFormReturn<TemplateForm, any>;
+  rows: number;
+}) {
   const scale = 0.7;
+  console.log(methods.getValues("fieldList"));
+
+  const DataTable = methods.getValues("fieldList");
+
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-x-hidden bg-gradient-to-t from-[#459CA7] to-[#482B7C] py-40">
       <p className="w-96 text-center text-2xl font-bold">
@@ -61,8 +76,15 @@ export default function Features() {
       <div className="mt-20 flex h-auto w-full py-40">
         <div
           id="data-preview"
-          className="relative flex h-[700px] w-full flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl"
-        ></div>
+          className="relative flex h-[600px] w-full max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl"
+        >
+          <PreviewModal
+            name=""
+            TableHeader={DataTable.map((x) => x.fieldName)}
+            tableData={getTableData(rows, DataTable)}
+            target={Target[0].id}
+          />
+        </div>
         <div className="flex w-full flex-col items-center justify-center">
           <div className="flex w-96 flex-col">
             <strong className="w-64 text-xl text-[#EBFF00]">

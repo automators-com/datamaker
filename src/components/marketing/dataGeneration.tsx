@@ -6,16 +6,18 @@ import CollapsedContainer from "../../app/(core)/templates/collapsedContainer";
 import type { TemplateForm } from "../../app/(core)/templates/types";
 import { PaperAirplaneIcon as PaperAirplaneIconOutline } from "@heroicons/react/24/solid";
 import { Input } from "../input";
-import { useState } from "react";
 
 export default function DataGeneration({
   methods,
+  row,
+  setRow,
 }: {
   methods: UseFormReturn<TemplateForm, any>;
+  row: number;
+  setRow: any;
 }) {
   const scale = 0.7;
 
-  const [row, setRow] = useState(10);
   const F = methods.getValues("fieldList");
   console.log(F);
 

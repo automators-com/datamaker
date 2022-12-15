@@ -26,8 +26,8 @@ export default function PreviewModal({
   TableHeader: string[];
   name: string;
   // handleEdit: () => void;
-  handleBack: () => void;
-  handleClose: () => void;
+  handleBack?: () => void;
+  handleClose?: () => void;
   tableData: any[];
 }) {
   const [preview, setPreview] = useState(Types[0]);

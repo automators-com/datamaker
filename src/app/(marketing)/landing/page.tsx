@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "../../../components/marketing/header";
 import Hero from "../../../components/marketing/hero";
 import Footer from "../../../components/marketing/footer";
@@ -16,6 +16,8 @@ import { DataTypes } from "../../../utilities/constants";
 import Features from "../../../components/marketing/features";
 
 export default function LandingPage() {
+  const [row, setRow] = useState(10);
+
   useEffect(() => {
     const body = document.getElementsByTagName("body")[0];
     body.classList.add("bg-[#1D1E39]");
@@ -71,8 +73,8 @@ export default function LandingPage() {
       <Hero />
 
       <span ref={whatRef} className="invisible" />
-      <DataGeneration methods={methods} />
-      <Features />
+      <DataGeneration methods={methods} row={row} setRow={setRow} />
+      <Features methods={methods} rows={row} />
       <span ref={whyRef} className="invisible" />
       <section className="relative z-10 flex h-96 flex-col items-center justify-center bg-gradient-to-b from-[#1D1E39] to-[#482B7C]">
         Section 3
