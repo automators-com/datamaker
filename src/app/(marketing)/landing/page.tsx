@@ -10,6 +10,9 @@ import Footer from "../../../components/marketing/footer";
 import DataGeneration from "../../../components/marketing/dataGeneration";
 import Image from "next/image";
 import SignUp from "../../../components/marketing/signup";
+import { useForm } from "react-hook-form";
+import type { TemplateForm } from "../../(core)/templates/types";
+import { DataTypes } from "../../../utilities/constants";
 import Features from "../../../components/marketing/features";
 
 export default function LandingPage() {
@@ -26,6 +29,30 @@ export default function LandingPage() {
   const handleScroll = (ref: any) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const defaultValues: TemplateForm = {
+    fieldList: [
+      {
+        fieldName: "Name",
+        dataType: DataTypes[2],
+        constraints: [],
+      },
+      {
+        fieldName: "E-Mail",
+        dataType: DataTypes[3],
+        constraints: [],
+      },
+      {
+        fieldName: "Language",
+        dataType: DataTypes[0],
+        constraints: [],
+      },
+    ],
+    templateName: "",
+    isOpen: true,
+  };
+
+  const methods = useForm<TemplateForm>({ defaultValues });
 
   return (
     <div id="landing" className="relative min-h-screen w-full">
@@ -44,7 +71,7 @@ export default function LandingPage() {
       <Hero />
 
       <span ref={whatRef} className="invisible" />
-      <DataGeneration />
+      <DataGeneration methods={methods} />
       <Features />
       <span ref={whyRef} className="invisible" />
       <section className="relative z-10 flex h-96 flex-col items-center justify-center bg-gradient-to-b from-[#1D1E39] to-[#482B7C]">

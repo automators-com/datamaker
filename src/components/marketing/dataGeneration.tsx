@@ -1,11 +1,72 @@
+import { EyeIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import type { UseFormReturn } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
+import CollapsedContainer from "../../app/(core)/templates/collapsedContainer";
+import type { TemplateForm } from "../../app/(core)/templates/types";
+import { PaperAirplaneIcon as PaperAirplaneIconOutline } from "@heroicons/react/24/solid";
+import { Input } from "../input";
+import { useState } from "react";
 
-export default function DataGeneration() {
+export default function DataGeneration({
+  methods,
+}: {
+  methods: UseFormReturn<TemplateForm, any>;
+}) {
   const scale = 0.7;
+
+  const [row, setRow] = useState(10);
+  const F = methods.getValues("fieldList");
+  console.log(F);
+
   return (
-    <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
-      <div className="relative -top-80 z-40 mx-auto mt-8 min-h-[400px] w-3/4 rounded-md bg-white pt-80 shadow-lg">
-        Data generation happens here.
+    <section
+      id="what"
+      className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]"
+    >
+      <div className="relative -top-80 z-40 mx-auto mt-8 min-h-[400px] w-3/4 rounded-md bg-white shadow-lg">
+        <FormProvider {...methods}>
+          <form
+            className="relative flex h-full rounded-l-md bg-base-100 lg:flex-1"
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
+            // onSubmit={methods.handleSubmit(onSubmit)}
+          >
+            <div className="p-6 sm:p-6 md:p-8 lg:p-9">
+              {F.map((item, index) => {
+                return (
+                  <CollapsedContainer
+                    key={index}
+                    index={index}
+                    isSubmit={false}
+                    landing={true}
+                  />
+                );
+              })}
+            </div>
+
+            <div className="flex min-w-[300px] flex-col gap-3 p-6 sm:p-6 md:p-8 lg:border-l lg:p-9">
+              <p className="flex items-center gap-2 pb-3 pt-6 text-xs text-primary">
+                {" "}
+                <span> Render Data with </span>
+                <Input
+                  addClass="w-16 pr-1"
+                  type="number"
+                  setValue={(e) => setRow(Number(e.target.value))}
+                  value={row}
+                />{" "}
+                <span>rows</span>
+              </p>
+              <button className="btn btn-primary-accent">
+                {" "}
+                <EyeIcon /> Preview data table{" "}
+              </button>
+              <button className="btn btn-primary">
+                {" "}
+                <PaperAirplaneIconOutline /> Export/Send Data{" "}
+              </button>
+            </div>
+          </form>
+        </FormProvider>
       </div>
       <div className="-mt-80 flex h-96 w-full flex-col items-center bg-[#1D1E39]">
         <p className="my-40 max-w-[30em] text-center text-2xl">
