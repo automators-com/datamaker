@@ -22,9 +22,9 @@ export const getTableData = (len: number, data: TemplateField[]): any[] => {
               min: min,
               max: max > min ? max : undefined,
             })
-          : type === 6
-          ? faker.datatype.array(min)
-          : type === 7
+          : // : type === 6
+          // ? faker.datatype.array(min)
+          type === 7
           ? faker.datatype.boolean()
           : type === 3
           ? faker.name.fullName()

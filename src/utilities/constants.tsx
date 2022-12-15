@@ -6,10 +6,10 @@ export const DataTypes: dropDownList[] = [
   { id: 2, name: "Integer" },
   { id: 3, name: "Name" },
   { id: 4, name: "Email" },
-  { id: 5, name: "Object" },
-  { id: 6, name: "Array" },
+  // { id: 5, name: "Object" },
+  // { id: 6, name: "Array" },
   { id: 7, name: "Boolean" },
-  { id: 8, name: "Response" },
+  // { id: 8, name: "Response" },
 ];
 
 export const _list: Item[] = [
