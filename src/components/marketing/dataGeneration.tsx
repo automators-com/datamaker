@@ -3,7 +3,10 @@ import Image from "next/image";
 export default function DataGeneration() {
   const scale = 0.7;
   return (
-    <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
+    <section
+      id="what"
+      className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]"
+    >
       <div className="relative -top-80 z-40 mx-auto mt-8 min-h-[400px] w-3/4 rounded-md bg-white pt-80 shadow-lg">
         Data generation happens here.
       </div>
@@ -78,6 +81,23 @@ export default function DataGeneration() {
           <strong>High-Quality test data is hard to come by,</strong> and using
           production data in test environments{" "}
           <span className="text-white">is risky.</span>
+        </p>
+      </div>
+      <div className="flex w-full items-center justify-center px-10 py-40">
+        <p className="relative inline text-lg md:w-1/2">
+          <span className="float-left flex h-6 items-center pr-4">
+            <Image
+              src="/assets/red-dots.svg"
+              alt="red dots"
+              width={38 * scale}
+              height={10 * scale}
+            />
+          </span>
+          At Automators, we developed{" "}
+          <span className="text-[#F46256]">datamaker</span> to make it super
+          easy to rapidly generate fit-for-purpose data that emulates and
+          behaves just like the real thing, giving you the power to create as
+          much data as you need, when you need it, wherever you need it.
         </p>
       </div>
     </section>
