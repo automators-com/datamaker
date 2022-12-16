@@ -17,20 +17,20 @@ export default function Features({
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-x-hidden bg-gradient-to-t from-[#459CA7] to-[#482B7C] py-40">
-      <p className="w-96 text-center text-2xl font-bold">
-        Robust Features For Your Data Ecosystem
+      <p className="text-center text-3xl font-bold">
+        Robust Features For Your Data <br /> Ecosystem
       </p>
       <div className="mt-20 flex h-auto w-full py-40">
         <div className="flex w-full flex-col items-center justify-center">
           <div className="flex w-96 flex-col">
-            <strong className="w-64 text-xl text-[#08FFB3]">
+            <strong className="text-2xl text-[#08FFB3]">
               Automated Data Pipeline:
             </strong>
-            <p className="w-64 text-xl font-light text-[#08FFB3]">
-              Modular, Flexible & Highly Configurable To Your Needs
+            <p className="text-2xl font-light text-[#08FFB3]">
+              Modular, Flexible & Highly <br /> Configurable To Your Needs
             </p>
             <div>
-              <p className="border-b border-gray-400 pb-20 pt-10 text-sm">
+              <p className="border-b border-gray-400 py-20 text-sm font-light">
                 <span className="float-left flex h-4 items-center pr-2">
                   <Image
                     src="/assets/green-dots.svg"
@@ -88,14 +88,14 @@ export default function Features({
         </div>
         <div className="flex w-full flex-col items-center justify-center">
           <div className="flex w-96 flex-col">
-            <strong className="w-64 text-xl text-[#EBFF00]">
+            <strong className="text-2xl text-[#EBFF00]">
               Heightened Data Synthesis:
             </strong>
-            <p className="w-64 text-xl font-light text-[#EBFF00]">
+            <p className="text-2xl font-light text-[#EBFF00]">
               Generate Production-Like Data On The Fly
             </p>
             <div>
-              <p className="border-b border-gray-400 pb-20 pt-10 text-sm">
+              <p className="border-b border-gray-400 py-20 text-sm font-light">
                 <span className="float-left flex h-4 items-center pr-2">
                   <Image
                     src="/assets/yellow-dots.svg"
@@ -108,16 +108,16 @@ export default function Features({
                 anywhere, anytime: Define your data constraints, review it on
                 the go and generate multiple rich and sophisticated data sets
                 with a click of a button. Export your data directly to:{" "}
-                <span className="cursor-default rounded-full border border-[#1D1E39] bg-[#08FFB3] px-2 text-[#1D1E39]">
+                <span className="mx-1 cursor-default rounded-full bg-[#08FFB3] px-2 text-xs text-[#1D1E39]">
                   JSON
                 </span>
-                <span className="cursor-default rounded-full border border-[#1D1E39] bg-[#08FFB3] px-2 text-[#1D1E39]">
+                <span className="mx-1 cursor-default rounded-full bg-[#08FFB3] px-2 text-xs text-[#1D1E39]">
                   XLSX
                 </span>
-                <span className="cursor-default rounded-full border border-[#1D1E39] bg-[#08FFB3] px-2 text-[#1D1E39]">
+                <span className="mx-1 cursor-default rounded-full bg-[#08FFB3] px-2 text-xs text-[#1D1E39]">
                   CSV
                 </span>
-                <span className="cursor-default rounded-full border border-[#1D1E39] bg-[#08FFB3] px-2 text-[#1D1E39]">
+                <span className="mx-1 cursor-default rounded-full bg-[#08FFB3] px-2 text-xs text-[#1D1E39]">
                   SQL
                 </span>
               </p>

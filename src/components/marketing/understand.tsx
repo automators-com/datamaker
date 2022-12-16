@@ -9,12 +9,12 @@ import bg5 from "../../../public/assets/understand-5.jpg";
 export default function Understand() {
   const scale = 0.7;
   return (
-    <section className="flex flex-col items-center justify-start bg-white py-20 text-black">
-      <p className="text-center text-4xl">
+    <section className="flex flex-col items-center justify-start bg-white pt-40 pb-20 text-black">
+      <p className="text-center text-3xl">
         Understand How Datamaker Makes Your <br /> Job Easier
       </p>
 
-      <div className="mt-10 flex w-full py-10">
+      <div className="mt-20 flex w-full py-10">
         <div className="flex w-full items-center justify-end px-8">
           <BlueCard
             number={1}
@@ -60,11 +60,14 @@ export default function Understand() {
               />
             </span>
             Avoid expensive and extensive software delivery delays caused by
-            manual data generation and <strong className="text-[#F46256]">wipe out privacy bottlenecks</strong> that could
-            be holding up your development process. This robust tool will help
-            you automatically generate the right test data sets for your
-            specific testing needs, so you can focus on optimizing test coverage
-            and running the right tests every time.
+            manual data generation and{" "}
+            <strong className="text-[#F46256]">
+              wipe out privacy bottlenecks
+            </strong>{" "}
+            that could be holding up your development process. This robust tool
+            will help you automatically generate the right test data sets for
+            your specific testing needs, so you can focus on optimizing test
+            coverage and running the right tests every time.
           </p>
         </div>
       </div>
@@ -114,7 +117,11 @@ export default function Understand() {
             </span>
             Create massive volumes of data for functional, load, and performance
             tests with ease. Test your application end-to-end with confidence,
-            knowing that your production like test data is of the <strong className="text-[#F46256]">highest quality and integrity</strong>.
+            knowing that your production like test data is of the{" "}
+            <strong className="text-[#F46256]">
+              highest quality and integrity
+            </strong>
+            .
           </p>
         </div>
       </div>

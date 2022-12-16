@@ -170,12 +170,12 @@ export default function DataGeneration({
         />
         <p className="w-2/3 text-center text-2xl text-[#F46256] md:w-1/3 md:text-left md:text-3xl">
           <strong>High-Quality test data is hard to come by,</strong> and using
-          production data in test environments
+          production data in test environments{" "}
           <span className="text-white">is risky.</span>
         </p>
       </div>
-      <div className="flex w-full items-center justify-center px-10 py-40">
-        <p className="relative inline text-lg md:w-1/2">
+      <div className="flex w-full items-center justify-center px-10 pb-40">
+        <p className="relative inline text-lg font-light md:w-1/2">
           <span className="float-left flex h-6 items-center pr-4">
             <Image
               src="/assets/red-dots.svg"
@@ -184,7 +184,7 @@ export default function DataGeneration({
               height={10 * scale}
             />
           </span>
-          At Automators, we developed
+          <strong>At Automators</strong>, we developed{" "}
           <span className="text-[#F46256]">datamaker</span> to make it super
           easy to rapidly generate fit-for-purpose data that emulates and
           behaves just like the real thing, giving you the power to create as
