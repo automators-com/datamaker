@@ -13,8 +13,7 @@ export default function Features({
   rows: number;
 }) {
   const scale = 0.7;
-
-  const DataTable = methods.getValues("fieldList");
+  const DataTable = methods.watch().fieldList;
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-x-hidden bg-gradient-to-t from-[#459CA7] to-[#482B7C] py-40">
@@ -82,6 +81,7 @@ export default function Features({
             TableHeader={DataTable.map((x) => x.fieldName)}
             tableData={getTableData(rows, DataTable)}
             target={Target[0].id}
+            landing={true}
           />
         </div>
         <div className="flex w-full flex-col items-center justify-center">

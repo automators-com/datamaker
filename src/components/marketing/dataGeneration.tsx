@@ -6,6 +6,11 @@ import CollapsedContainer from "../../app/(core)/templates/collapsedContainer";
 import type { TemplateForm } from "../../app/(core)/templates/types";
 import { PaperAirplaneIcon as PaperAirplaneIconOutline } from "@heroicons/react/24/solid";
 import { Input } from "../input";
+import { handleClickScroll } from "../../utilities/scrollTo";
+// import ReactTooltip from "react-tooltip";
+// import { classNames } from "../../utilities/className";
+import { exportJson } from "../../utilities/exportData";
+import { getTableData } from "../../utilities/tableData";
 
 export default function DataGeneration({
   methods,
@@ -18,23 +23,43 @@ export default function DataGeneration({
 }) {
   const scale = 0.7;
 
-  const F = methods.getValues("fieldList");
-  console.log(F);
+  const Fields = methods.getValues("fieldList");
+  const tableData: any[] = getTableData(row, Fields);
 
   return (
     <section
       id="what"
       className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]"
     >
-      <div className="relative -top-80 z-40 mx-auto mt-8 min-h-[400px] w-3/4 rounded-md bg-white shadow-lg">
+      <div
+        id="generate-form"
+        className="relative -top-80 z-40 mx-auto mt-8 min-h-[350px] w-2/3 rounded-md bg-white py-6 shadow-lg sm:py-6 md:py-8 lg:py-12"
+      >
+        {/* 
+        <div
+          className={classNames(
+            // !open && "hidden",
+            " left-16 flex h-16 w-6 items-center text-center font-sans text-sm"
+          )}
+        >
+          Asmaaaaa
+          <ReactTooltip
+            uuid="mytt"
+
+            key={1}
+            effect="solid"
+            textColor="hsl(var(--color-secondary-content))"
+            backgroundColor="hsl(var(--color-secondary))"
+            overridePosition={({ left, top }) => ({
+              left: left + 20,
+              top: top,
+            })}
+          />
+        </div> */}
         <FormProvider {...methods}>
-          <form
-            className="relative flex h-full rounded-l-md bg-base-100 lg:flex-1"
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            // onSubmit={methods.handleSubmit(onSubmit)}
-          >
-            <div className="p-6 sm:p-6 md:p-8 lg:p-9">
-              {F.map((item, index) => {
+          <form className="relative flex h-full rounded bg-base-100 lg:flex-1">
+            <div className="w-2/3 px-6 sm:px-6 md:px-8 lg:px-9">
+              {Fields.map((item, index) => {
                 return (
                   <CollapsedContainer
                     key={index}
@@ -46,25 +71,31 @@ export default function DataGeneration({
               })}
             </div>
 
-            <div className="flex min-w-[300px] flex-col gap-3 p-6 sm:p-6 md:p-8 lg:border-l lg:p-9">
-              <p className="flex items-center gap-2 pb-3 pt-6 text-xs text-primary">
-                {" "}
+            <div className="flex min-w-[200px] flex-col gap-3 px-6 sm:px-6 md:px-8 lg:border-l lg:px-9">
+              <p className="flex items-center gap-2 pb-3  text-xs text-primary">
                 <span> Render Data with </span>
                 <Input
                   addClass="w-16 pr-1"
                   type="number"
                   setValue={(e) => setRow(Number(e.target.value))}
                   value={row}
-                />{" "}
+                />
                 <span>rows</span>
               </p>
-              <button className="btn btn-primary-accent">
-                {" "}
-                <EyeIcon /> Preview data table{" "}
+              <button
+                className="btn btn-primary-accent"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClickScroll("data-preview");
+                }}
+              >
+                <EyeIcon /> Preview data table
               </button>
-              <button className="btn btn-primary">
-                {" "}
-                <PaperAirplaneIconOutline /> Export/Send Data{" "}
+              <button
+                className="btn btn-primary"
+                onClick={() => exportJson(tableData, "testData")}
+              >
+                <PaperAirplaneIconOutline /> Export/Send Data
               </button>
             </div>
           </form>
@@ -75,7 +106,7 @@ export default function DataGeneration({
           »
           <span className="text-[#459CA7]">
             Rapidly Generate Synthetic Data
-          </span>{" "}
+          </span>
           With A Data Generator Tool That Always Delivers«
         </p>
       </div>
@@ -139,7 +170,7 @@ export default function DataGeneration({
         />
         <p className="w-2/3 text-center text-2xl text-[#F46256] md:w-1/3 md:text-left md:text-3xl">
           <strong>High-Quality test data is hard to come by,</strong> and using
-          production data in test environments{" "}
+          production data in test environments
           <span className="text-white">is risky.</span>
         </p>
       </div>
@@ -153,7 +184,7 @@ export default function DataGeneration({
               height={10 * scale}
             />
           </span>
-          At Automators, we developed{" "}
+          At Automators, we developed
           <span className="text-[#F46256]">datamaker</span> to make it super
           easy to rapidly generate fit-for-purpose data that emulates and
           behaves just like the real thing, giving you the power to create as

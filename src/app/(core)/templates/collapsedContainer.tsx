@@ -115,7 +115,9 @@ const CollapsedContainer = ({
         {({ open }) => (
           <>
             <div
-              className={`flex w-full ${landing ? "pt-6" : ""} gap-2 lg:gap-2 ${
+              className={`flex w-full ${
+                landing && index !== 0 ? "pt-6" : ""
+              } gap-2 lg:gap-2 ${
                 isSubmit && errors.fieldList ? "items-flex-end" : "items-end"
               }`}
             >
@@ -133,7 +135,7 @@ const CollapsedContainer = ({
               </Disclosure.Button>
 
               <div
-                className={`inline-flex gap-2 lg:gap-3 ${
+                className={`inline-flex w-full gap-2 lg:gap-3 ${
                   isSubmit && errors.fieldList
                     ? "items-flex-end"
                     : "items-center"
@@ -154,6 +156,7 @@ const CollapsedContainer = ({
                       ? errors.fieldList[index]?.fieldName?.message
                       : ""
                   }
+                  pClass="w-[55%]"
                 />
                 <DropDown
                   label="Data Type"
@@ -164,7 +167,7 @@ const CollapsedContainer = ({
                     setValue(`fieldList.${index}.dataType`, e);
                   }}
                   value={type}
-                  addClass="w-52 sm:w-48"
+                  addClass="w-[45%]"
                   formRegister={{ ...register(`fieldList.${index}.dataType`) }}
                 />
                 {!landing && (
