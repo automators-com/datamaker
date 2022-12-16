@@ -4,12 +4,12 @@ import type { dropDownList } from "./types";
 export const DataTypes: dropDownList[] = [
   { id: 1, name: "String" },
   { id: 2, name: "Integer" },
-  { id: 3, name: "Name" },
-  { id: 4, name: "Email" },
-  { id: 5, name: "Object" },
-  { id: 6, name: "Array" },
+  { id: 3, name: "String[Name]" },
+  { id: 4, name: "String[E-Mail]" },
+  // { id: 5, name: "Object" },
+  // { id: 6, name: "Array" },
   { id: 7, name: "Boolean" },
-  { id: 8, name: "Response" },
+  // { id: 8, name: "Response" },
 ];
 
 export const _list: Item[] = [

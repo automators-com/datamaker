@@ -129,6 +129,8 @@ export default function Page() {
       name: getValues("templateName"),
       fields: getValues("fieldList"),
     });
+    setIsFormOpen(false);
+    setSelectedTemplate(null);
   };
 
   if (isLoading) {
