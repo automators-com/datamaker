@@ -1,5 +1,6 @@
 "use client";
 import { Menu, Transition } from "@headlessui/react";
+import { signOut } from "next-auth/react";
 import {
   Bars3BottomLeftIcon,
   FireIcon,
@@ -45,17 +46,27 @@ export default function Header({
       </div>
 
       <Menu as="div" className="relative mr-5 inline-block text-left">
-        <Menu.Button className="flex items-center text-primary-content focus:outline-none">
-          {themes.map((t) => {
-            if (t.key === theme) {
-              return (
-                <span className="h-6 w-6" key={t.name}>
-                  {t.icon}
-                </span>
-              );
-            }
-          })}
-        </Menu.Button>
+        <div className="flex">
+          <Menu.Button className="flex items-center text-primary-content focus:outline-none">
+            {themes.map((t) => {
+              if (t.key === theme) {
+                return (
+                  <span className="h-6 w-6" key={t.name}>
+                    {t.icon}
+                  </span>
+                );
+              }
+            })}
+          </Menu.Button>
+          <button
+            className="btn-primary ml-8 h-10 w-28 rounded-md px-4 py-2"
+            onClick={() => {
+              signOut().catch((err) => console.log(err));
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
 
         <Transition
           as={Fragment}
