@@ -9,13 +9,6 @@ export default function Hero() {
           With our intuitive point-and-click interface, creating high-quality
           synthetic data has never been easier.
         </p>
-        <p className="mt-28 text-center text-[#08FFB3]">
-          Make some data right now
-        </p>
-        <div
-          id="down_arrow"
-          className="m-4 h-0 w-0 border-t-[5px] border-l-[5px] border-r-[5px] border-solid border-[#08FFB3] border-l-transparent border-r-transparent"
-        ></div>
       </div>
     </section>
   );

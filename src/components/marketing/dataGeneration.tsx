@@ -27,35 +27,18 @@ export default function DataGeneration({
   const tableData: any[] = getTableData(row, Fields);
 
   return (
-    <section
-      id="what"
-      className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]"
-    >
+    <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
       <div
         id="generate-form"
         className="relative -top-80 z-40 mx-auto mt-8 min-h-[350px] w-2/3 rounded-md bg-white py-6 shadow-lg sm:py-6 md:py-8 lg:py-12"
       >
-        {/* 
-        <div
-          className={classNames(
-            // !open && "hidden",
-            " left-16 flex h-16 w-6 items-center text-center font-sans text-sm"
-          )}
-        >
-          Asmaaaaa
-          <ReactTooltip
-            uuid="mytt"
-
-            key={1}
-            effect="solid"
-            textColor="hsl(var(--color-secondary-content))"
-            backgroundColor="hsl(var(--color-secondary))"
-            overridePosition={({ left, top }) => ({
-              left: left + 20,
-              top: top,
-            })}
-          />
-        </div> */}
+        <div className="absolute -top-14 flex w-full flex-col items-center text-center text-[#08FFB3]">
+          <p>Make some data right now</p>
+          <span
+            id="down_arrow"
+            className="m-2 h-0 w-0 border-t-[5px] border-l-[5px] border-r-[5px] border-solid border-[#08FFB3] border-l-transparent border-r-transparent"
+          ></span>
+        </div>
         <FormProvider {...methods}>
           <form className="relative flex h-full rounded bg-base-100 lg:flex-1">
             <div className="w-2/3 px-6 sm:px-6 md:px-8 lg:px-9">
