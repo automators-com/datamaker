@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { ThemeContext } from "../../components/context/context";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { NavContext } from "../../components/context/context";
@@ -7,6 +8,7 @@ import Header from "../../components/header";
 import Sidebar from "../../components/sidebar";
 import "../globals.css";
 import MoonLoader from "../../components/loaders/moonLoader";
+import { classNames } from "../../utilities/className";
 
 export default function CoreLayout({
   children,
@@ -28,24 +30,33 @@ export default function CoreLayout({
     router.push("/signin");
   } else if (session && session.user) {
     return (
-      <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
-        <Header
-          theme={theme}
-          setTheme={setTheme}
-          setSidebarOpen={setSidebarOpen}
-        />
-        <div className="flex flex-row">
-          <Sidebar
-            open={isNavOpen}
-            setOpen={setIsNavOpen}
-            sidebarOpen={sidebarOpen}
-            setSidebarOpen={setSidebarOpen}
-          />
-          <main className="h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-full overflow-auto">
-            {children}
-          </main>
-        </div>
-      </NavContext.Provider>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <NavContext.Provider value={{ isNavOpen, setIsNavOpen }}>
+          <body
+            className={classNames(
+              theme,
+              "flex h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-screen flex-col overflow-scroll bg-base-100"
+            )}
+          >
+            <Header
+              theme={theme}
+              setTheme={setTheme}
+              setSidebarOpen={setSidebarOpen}
+            />
+            <div className="flex flex-row">
+              <Sidebar
+                open={isNavOpen}
+                setOpen={setIsNavOpen}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
+              />
+              <main className="h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-full overflow-auto">
+                {children}
+              </main>
+            </div>
+          </body>
+        </NavContext.Provider>
+      </ThemeContext.Provider>
     );
   }
 }

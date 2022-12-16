@@ -60,31 +60,33 @@ export default function LandingPage() {
   const methods = useForm<TemplateForm>({ defaultValues });
 
   return (
-    <div id="landing" className="relative min-h-screen w-full">
-      <Image
-        src="/assets/globe2.png"
-        className="fixed top-40 z-0 mx-auto animate-globe opacity-50 bg-blend-color-burn md:-right-[20em] md:top-[12em]"
-        width={1300 * 0.7}
-        height={1387 * 0.7}
-        alt="globe"
-      />
-      <Header
-        scrollToWhat={() => handleScroll(whatRef)}
-        scrollToWhy={() => handleScroll(whyRef)}
-        scrollToHow={() => handleScroll(howRef)}
-      />
-      <Hero />
+    <body>
+      <div id="landing" className="relative min-h-screen w-full">
+        <Image
+          src="/assets/globe.png"
+          className="fixed top-40 z-0 mx-auto animate-globe opacity-50 bg-blend-color-burn md:-right-[20em] md:top-[12em]"
+          width={1300 * 0.7}
+          height={1387 * 0.7}
+          alt="globe"
+        />
+        <Header
+          scrollToWhat={() => handleScroll(whatRef)}
+          scrollToWhy={() => handleScroll(whyRef)}
+          scrollToHow={() => handleScroll(howRef)}
+        />
+        <Hero />
 
-      <span ref={whatRef} className="invisible" />
-      <DataGeneration methods={methods} row={row} setRow={setRow} />
-      <Features methods={methods} rows={row} />
-      <span ref={whyRef} className="invisible" />
-      {/* <MoreFeatures /> */}
-      <span ref={howRef} className="invisible" />
-      <SplitSection />
-      <Understand />
-      <SignUp />
-      <Footer />
-    </div>
+        <span ref={whatRef} className="invisible" />
+        <DataGeneration methods={methods} row={row} setRow={setRow} />
+        <Features methods={methods} rows={row} />
+        <span ref={whyRef} className="invisible" />
+        {/* <MoreFeatures /> */}
+        <span ref={howRef} className="invisible" />
+        <SplitSection />
+        <Understand />
+        <SignUp />
+        <Footer />
+      </div>
+    </body>
   );
 }
