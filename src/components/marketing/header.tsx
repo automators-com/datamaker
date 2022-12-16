@@ -18,7 +18,7 @@ export default function Header({
         dataMaker();
       </Link>
       <div className="flex items-center">
-        <ul className="flex">
+        <ul className="flex !hidden">
           <li className="mx-4 cursor-pointer" onClick={() => scrollToWhat()}>
             What?
           </li>
@@ -31,7 +31,7 @@ export default function Header({
         </ul>
         <Link href={`/signin`}>
           <button className="ml-4 rounded-full bg-[#EBFF00] py-2 px-6 text-[#1D1E39]">
-            Get access
+            Sign In
           </button>
         </Link>
       </div>

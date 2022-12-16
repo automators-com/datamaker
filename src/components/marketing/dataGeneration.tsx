@@ -106,8 +106,8 @@ export default function DataGeneration({
           »
           <span className="text-[#459CA7]">
             Rapidly Generate Synthetic Data
-          </span>
-          With A Data Generator Tool That Always Delivers«
+          </span>{" "}
+          With An Open Source Data Generator Tool That Always Delivers«
         </p>
       </div>
       <div className="flex w-full flex-col items-center justify-center pb-10 md:flex-row">

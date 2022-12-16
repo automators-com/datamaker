@@ -45,8 +45,8 @@ export default function Features({
                 create derived values.
               </p>
               <p className="pt-4 text-xs">
-                »We needed this tool for ourself and thought, why not make it
-                beautiful and available for others to use?«
+                »Missing data is a pain point in every stage of the development
+                process. That’s why we created datamaker.«
               </p>
               <div className="flex items-center pt-4 text-xs">
                 <Image
@@ -56,7 +56,9 @@ export default function Features({
                   width={66 * scale}
                   height={66 * scale}
                 />
-                <p className="font-semibold">Amin Chirazi, CEO at Automators</p>
+                <p className="font-semibold">
+                  Amin Chirazi, Managing Director at Automators
+                </p>
               </div>
             </div>
           </div>
@@ -132,7 +134,7 @@ export default function Features({
                   height={66 * scale}
                 />
                 <p className="font-semibold">
-                  Valentin Ober, CEO at Automators
+                  Valentin Ober, Managing Partner at Automators
                 </p>
               </div>
             </div>

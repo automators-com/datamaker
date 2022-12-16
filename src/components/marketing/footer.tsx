@@ -1,5 +1,5 @@
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -11,15 +11,27 @@ export default function Footer() {
             MASSIVE SYNTHETIC TEST DATA FOR ANY USE CASE, ENVIRONMENT, OR SCALE.
           </p>
         </div>
-        <ul className="mx-20 text-[#08FFB3]">
+        <ul className="mx-20 hidden text-[#08FFB3]">
           <li>Plans & prices</li>
           <li>All features</li>
           <li>Custom Add-ons</li>
         </ul>
         <ul className="text-[#EBFF00]">
-          <li>Support</li>
-          <li>Legal</li>
-          <li>Data protection</li>
+          <Link href="mailto:office@automators.com">
+            <li>Support</li>
+          </Link>
+          <Link
+            href="https://www.automators.com/about#comp-kwuvehkx"
+            target={"_blank"}
+          >
+            <li>Legal</li>
+          </Link>
+          <Link
+            href="https://www.automators.com/privacy-policy"
+            target={"_blank"}
+          >
+            <li>Data protection</li>
+          </Link>
         </ul>
       </div>
       <hr className="my-14 h-[1px] w-full border-none bg-[#442E78]" />

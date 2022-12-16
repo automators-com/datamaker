@@ -15,7 +15,8 @@ import { useForm } from "react-hook-form";
 import type { TemplateForm } from "../../(core)/templates/types";
 import { DataTypes } from "../../../utilities/constants";
 import Features from "../../../components/marketing/features";
-import MoreFeatures from "../../../components/marketing/moreFeatures";
+// import MoreFeatures from "../../../components/marketing/moreFeatures";
+import Understand from "../../../components/marketing/understand";
 
 export default function LandingPage() {
   const [row, setRow] = useState(10);
@@ -78,12 +79,10 @@ export default function LandingPage() {
       <DataGeneration methods={methods} row={row} setRow={setRow} />
       <Features methods={methods} rows={row} />
       <span ref={whyRef} className="invisible" />
-      <MoreFeatures />
+      {/* <MoreFeatures /> */}
       <span ref={howRef} className="invisible" />
       <SplitSection />
-      {/* <section className="flex h-[100em] flex-col items-center justify-center bg-white text-black">
-        Section 5
-      </section> */}
+      <Understand />
       <SignUp />
       <Footer />
     </div>

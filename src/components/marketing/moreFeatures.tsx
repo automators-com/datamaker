@@ -45,7 +45,7 @@ function MoreFeatures() {
             </div>
           </div>
         </div>
-        <div className="relative flex w-full flex-col items-center justify-center">
+        <div className="relative flex w-full flex-col items-center justify-center overflow-x-hidden overflow-y-visible">
           <Image
             className="relative -right-48 scale-150"
             src="/assets/templates-screen.png"
@@ -56,10 +56,7 @@ function MoreFeatures() {
         </div>
       </div>
       <div className="mt-20 flex h-auto w-full py-40">
-        <div
-          id="data-preview"
-          className="relative flex h-[600px] w-full max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-white shadow-xl"
-        >
+        <div className="relative flex h-[600px] w-full max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-white shadow-xl">
           <Image
             className="absolute -top-32 -left-10"
             src="/assets/white-robot.svg"
