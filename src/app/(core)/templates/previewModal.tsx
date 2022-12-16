@@ -7,6 +7,7 @@ import { RadioGroup } from "@headlessui/react";
 import { exportJson } from "../../../utilities/exportData";
 import { classNames } from "../../../utilities/className";
 import { CSVLink } from "react-csv";
+import { handleClickScroll } from "../../../utilities/scrollTo";
 
 const Types = [
   { name: "Table", id: 1 },
@@ -21,21 +22,25 @@ export default function PreviewModal({
   TableHeader,
   tableData,
   handleClose,
+  landing,
 }: {
   target: number;
   TableHeader: string[];
   name: string;
   // handleEdit: () => void;
-  handleBack: () => void;
-  handleClose: () => void;
+  handleBack?: () => void;
+  handleClose?: () => void;
   tableData: any[];
+  landing?: boolean;
 }) {
   const [preview, setPreview] = useState(Types[0]);
   const pretty = JSON.stringify(tableData, null, 4);
 
+  console.log(landing);
+
   return (
     <>
-      <div className="relative rounded-md border border-base-content p-4 pb-10 sm:p-6 lg:p-8">
+      <div className="relative w-[650px] rounded-md border border-base-content p-4 pb-10 sm:p-6 lg:p-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-base-content">
@@ -46,14 +51,26 @@ export default function PreviewModal({
             </p>
           </div>
           <div className="mt-4 flex items-center gap-3 sm:mt-0 sm:ml-16 sm:flex-none">
-            <button className="btn btn-secondary" onClick={handleBack}>
-              <ArrowLeftIcon /> Back
-            </button>
+            {landing ? (
+              <button
+                className="btn btn-primary-accent"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleClickScroll("generate-form");
+                }}
+              >
+                Edit
+              </button>
+            ) : (
+              <button className="btn btn-secondary" onClick={handleBack}>
+                <ArrowLeftIcon /> Back
+              </button>
+            )}
             {/* <button className="btn btn-primary-accent" onClick={handleEdit}>
               Edit
             </button> */}
             <span className="text-xs text-base-content"> OR </span>
-            {target === 1 ? (
+            {target === 1 && !landing ? (
               <CSVLink
                 data={tableData}
                 filename={name}
@@ -131,8 +148,12 @@ export default function PreviewModal({
               className={({ checked }) =>
                 classNames(
                   planIdx === 0 ? "rounded-l-md border-r-0" : "rounded-r-md",
-                  checked ? "z-10 bg-secondary" : "border-base-content",
-                  "relative flex cursor-pointer flex-col border bg-base-100 p-2 px-5 focus:outline-none"
+                  checked
+                    ? !landing
+                      ? "z-10 bg-secondary"
+                      : "bg-[#EBFF00]"
+                    : "border-base-content",
+                  "relative flex cursor-pointer flex-col border bg-primary p-2 px-5 focus:outline-none"
                 )
               }
             >
@@ -143,9 +164,12 @@ export default function PreviewModal({
                       as="span"
                       className={classNames(
                         checked
-                          ? "text-secondary-content"
-                          : "text-base-content",
-                        "font-medium"
+                          ? landing
+                            ? "text-base-content"
+                            : "text-secondary-content"
+                          : "text-[#08FFB3]",
+                        "font-medium",
+                        landing && "text-xs"
                       )}
                     >
                       {plan.name}

@@ -7,11 +7,7 @@ import DropDown from "../../../components/dropdown";
 import { Input } from "../../../components/input";
 import { exportJson } from "../../../utilities/exportData";
 import { CSVLink } from "react-csv";
-
-const Target = [
-  { id: 1, name: "CSV/Excel" },
-  { id: 2, name: "JSON" },
-];
+import { Target } from "../../../utilities/constants";
 
 export default function ExportModal({
   open,

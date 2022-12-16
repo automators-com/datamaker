@@ -20,11 +20,13 @@ const CollapsedContainer = ({
   index,
   move,
   isSubmit,
+  landing,
 }: {
   index: number;
-  deleteField: (i: number) => void;
-  move: UseFieldArrayMove;
-  isSubmit: boolean;
+  deleteField?: (i: number) => void;
+  move?: UseFieldArrayMove;
+  isSubmit?: boolean;
+  landing?: boolean;
 }) => {
   const {
     register,
@@ -106,12 +108,16 @@ const CollapsedContainer = ({
   return (
     <>
       <Disclosure
-        defaultOpen={(index === 0 || index === Fields.length - 1) && true}
+        defaultOpen={
+          (index === 0 || (index === Fields.length - 1 && !landing)) && true
+        }
       >
         {({ open }) => (
           <>
             <div
-              className={`flex w-full gap-2 lg:gap-2  ${
+              className={`flex w-full ${
+                landing && index !== 0 ? "pt-6" : ""
+              } gap-2 lg:gap-2 ${
                 isSubmit && errors.fieldList ? "items-flex-end" : "items-end"
               }`}
             >
@@ -129,7 +135,7 @@ const CollapsedContainer = ({
               </Disclosure.Button>
 
               <div
-                className={`inline-flex gap-2 lg:gap-3 ${
+                className={`inline-flex w-full gap-2 lg:gap-3 ${
                   isSubmit && errors.fieldList
                     ? "items-flex-end"
                     : "items-center"
@@ -150,6 +156,7 @@ const CollapsedContainer = ({
                       ? errors.fieldList[index]?.fieldName?.message
                       : ""
                   }
+                  pClass="w-[55%]"
                 />
                 <DropDown
                   label="Data Type"
@@ -160,16 +167,20 @@ const CollapsedContainer = ({
                     setValue(`fieldList.${index}.dataType`, e);
                   }}
                   value={type}
-                  addClass="w-52 sm:w-48"
+                  addClass="w-[45%]"
                   formRegister={{ ...register(`fieldList.${index}.dataType`) }}
                 />
-                <MenuI
-                  addClass={`${isSubmit && errors.fieldList ? "mt-7" : "mt-6"}`}
-                  handleDelete={() => deleteField(index)}
-                  handleDuplicate={handleDuplicate}
-                  handleMoveDown={() => move(index, index + 1)}
-                  handleMoveUp={() => move(index, index - 1)}
-                />
+                {!landing && (
+                  <MenuI
+                    addClass={`${
+                      isSubmit && errors.fieldList ? "mt-7" : "mt-6"
+                    }`}
+                    handleDelete={() => deleteField && deleteField(index)}
+                    handleDuplicate={handleDuplicate}
+                    handleMoveDown={() => move && move(index, index + 1)}
+                    handleMoveUp={() => move && move(index, index - 1)}
+                  />
+                )}
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
@@ -221,7 +232,7 @@ const CollapsedContainer = ({
           </>
         )}
       </Disclosure>
-      <Divider />
+      {!landing && <Divider />}
     </>
   );
 };

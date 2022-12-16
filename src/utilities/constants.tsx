@@ -1,4 +1,4 @@
-import { Item } from "../app/(core)/templates/types";
+import type { Item } from "../app/(core)/templates/types";
 import type { dropDownList } from "./types";
 
 export const DataTypes: dropDownList[] = [
@@ -10,6 +10,11 @@ export const DataTypes: dropDownList[] = [
   // { id: 6, name: "Array" },
   { id: 7, name: "Boolean" },
   // { id: 8, name: "Response" },
+];
+
+export const Target = [
+  { id: 1, name: "CSV/Excel" },
+  { id: 2, name: "JSON" },
 ];
 
 export const _list: Item[] = [

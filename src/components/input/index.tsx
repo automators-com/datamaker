@@ -14,6 +14,7 @@ interface IProps {
   addClass?: string;
   formRegister?: any; // UseFormRegisterReturn;
   id?: string;
+  pClass?: string;
 }
 
 export const Input: FC<IProps> = ({
@@ -27,9 +28,10 @@ export const Input: FC<IProps> = ({
   addClass,
   formRegister,
   id,
+  pClass,
 }) => {
   return (
-    <div>
+    <div className={pClass}>
       {label && (
         <label
           htmlFor="email"

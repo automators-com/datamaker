@@ -2,9 +2,9 @@
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./../app/**/*.{js,ts,jsx,tsx}",
-    "./../pages/**/*.{js,ts,jsx,tsx}",
-    "./../components/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -34,6 +34,15 @@ module.exports = {
         "warning-content": "hsl(var(--color-warning-content) / <alpha-value>)",
         error: "hsl(var(--color-error) / <alpha-value>)",
         "error-content": "hsl(var(--color-error-content) / <alpha-value>)",
+      },
+      keyframes: {
+        globe: {
+          "0%,100%": { transform: "translateY(0%)" },
+          "50%": { transform: "translateY(-30%)" },
+        },
+      },
+      animation: {
+        globe: "globe 60s linear infinite",
       },
     },
   },

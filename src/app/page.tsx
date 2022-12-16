@@ -1,8 +1,15 @@
 "use client";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import LandingPage from "./(marketing)/landing/page";
 
 export default function Home() {
   const { data: session } = useSession();
+  const router = useRouter();
 
-  return <pre>{JSON.stringify(session)}</pre>;
+  if (session && session.user) {
+    router.push("/templates");
+  } else {
+    return <LandingPage />;
+  }
 }
