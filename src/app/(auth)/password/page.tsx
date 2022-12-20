@@ -33,7 +33,7 @@ export default function Password() {
     })
       .then((res) => {
         if (res.status === 201) {
-          router.push(`/auth/password/reset?email=${email}`);
+          router.push(`/password/reset?email=${email}`);
         } else if (res.status === 404) {
           setError("User not found");
           setLoading(false);
@@ -77,7 +77,7 @@ export default function Password() {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button className="btn-primary" type="submit">
+        <button className="auth-button" type="submit">
           {loading ? `Processing...` : `Reset`}
         </button>
         <Link href={"/signup"} className="auth-link">
