@@ -12,7 +12,7 @@ export const getTableData = (len: number, data: TemplateField[]): any[] => {
         ? field.constraints.filter((cons) => cons.name?.id === 2)[0].value!
         : 20;
 
-      const type = field.dataType.id ? field.dataType.id : field.dataType;
+      const type = field.dataType?.id ? field.dataType.id : field.dataType;
       // if(type === 2 && min > max) max = min+1
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

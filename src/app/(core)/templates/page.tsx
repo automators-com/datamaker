@@ -56,7 +56,7 @@ export default function Page() {
         },
         body: JSON.stringify(template),
       });
-      return await res.json();
+      return (await res.json()) as Template[];
     } else {
       const res = await fetch(`/api/templates/`, {
         method: "POST",
@@ -65,7 +65,7 @@ export default function Page() {
         },
         body: JSON.stringify(template),
       });
-      return await res.json();
+      return (await res.json()) as Template[];
     }
   };
 
@@ -97,10 +97,16 @@ export default function Page() {
           }
         );
       } else {
-        queryClient.setQueryData(["templates"], (old: any) => [
-          ...old,
-          newTemplate,
-        ]);
+        queryClient.setQueryData(
+          ["templates"],
+          (old: Template[] | undefined) => {
+            if (old) {
+              return [...old, newTemplate] as Template[];
+            } else {
+              return [newTemplate] as Template[];
+            }
+          }
+        );
       }
       // Return a context object with the snapshotted value
       return { MutationKey: "createOrUpdateTemplates", previousTemplates };
