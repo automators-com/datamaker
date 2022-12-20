@@ -157,7 +157,7 @@ export default function DataGeneration({
           <span className="text-white">is risky.</span>
         </p>
       </div>
-      <div className="flex w-full items-center justify-center px-10 pb-40">
+      <div className="flex w-full items-center justify-center px-10 pb-40 pt-14">
         <p className="relative inline text-lg font-light md:w-1/2">
           <span className="float-left flex h-6 items-center pr-4">
             <Image

@@ -20,7 +20,7 @@ export default function Features({
       <p className="text-center text-3xl font-bold">
         Robust Features For Your Data <br /> Ecosystem
       </p>
-      <div className="mt-20 flex h-auto w-full py-40">
+      <div className="mt-20 flex h-auto w-full flex-col py-40 lg:flex-row xl:flex-row">
         <div className="flex w-full flex-col items-center justify-center">
           <div className="flex w-96 flex-col">
             <strong className="text-2xl text-[#08FFB3]">

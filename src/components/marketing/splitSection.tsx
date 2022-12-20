@@ -5,7 +5,7 @@ export default function SplitSection() {
   return (
     <section className="relative z-10 flex h-96 flex-col items-center justify-center md:flex-row">
       <div className="flex h-full w-full bg-[#482B7C]">
-        <div className="flex w-2/3 flex-col items-start justify-center px-20 pt-20">
+        <div className="flex w-2/3 flex-col items-start justify-center px-20 pt-20 sm:w-full">
           <strong className="text-xl">Multiple Templates</strong>
           <p className="pb-20 pt-10 text-sm">
             <span className="float-left flex h-4 items-center pr-2">
