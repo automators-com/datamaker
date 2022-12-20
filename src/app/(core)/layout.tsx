@@ -22,12 +22,20 @@ export default function CoreLayout({
   const router = useRouter();
 
   if (status === "loading") {
-    return <MoonLoader />;
-  }
-
-  if (!session) {
+    return (
+      <body
+        className={classNames(
+          theme,
+          "flex h-[calc(100vh_-_5rem)] max-h-[calc(100vh_-_5rem)] w-screen flex-col overflow-scroll bg-base-100"
+        )}
+      >
+        <MoonLoader />
+      </body>
+    );
+  } else if (!session) {
     // redirect to sign in page if not signed in
     router.push("/signin");
+    return;
   } else if (session && session.user) {
     return (
       <ThemeContext.Provider value={{ theme, setTheme }}>
