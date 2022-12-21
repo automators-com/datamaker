@@ -17,10 +17,10 @@ export default function Features({
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-x-hidden bg-gradient-to-t from-[#459CA7] to-[#482B7C] py-40">
-      <p className="text-center text-3xl font-bold">
+      <p className="px-20 text-center text-3xl font-bold sm:px-0">
         Robust Features For Your Data <br /> Ecosystem
       </p>
-      <div className="mt-20 flex h-auto w-full flex-col py-20 md:flex-row md:py-40">
+      <div className="mt-10 flex h-auto w-full flex-col gap-y-20 py-14 md:mt-20 md:flex-row md:py-40">
         <div className="flex w-full flex-col items-center justify-center">
           <div className="flex w-80 flex-col md:w-96">
             <strong className="text-2xl text-[#08FFB3]">
@@ -30,7 +30,7 @@ export default function Features({
               Modular, Flexible & Highly <br /> Configurable To Your Needs
             </p>
             <div>
-              <p className="border-b border-gray-400 py-20 text-sm font-light">
+              <p className="border-b border-gray-400 py-10 text-sm font-light md:py-20">
                 <span className="float-left flex h-4 items-center pr-2">
                   <Image
                     src="/assets/green-dots.svg"
@@ -63,9 +63,9 @@ export default function Features({
             </div>
           </div>
         </div>
-        <div className="relative flex w-full flex-col items-center justify-center">
+        <div className="relative flex h-[400px] w-full flex-col items-center justify-center">
           <Image
-            className="relative -right-48 scale-150"
+            className="relative -right-[6.8rem] scale-150 md:-right-48"
             src="/assets/templates-screen.png"
             alt="templates screenshot"
             width={2836}
@@ -73,10 +73,10 @@ export default function Features({
           />
         </div>
       </div>
-      <div className="mt-20 flex h-auto w-full flex-col gap-y-12 py-10 md:flex-row md:py-40">
+      <div className="mt-5 flex h-auto w-full flex-col-reverse gap-y-12 py-10 md:mt-20 md:flex-row md:py-40">
         <div
           id="data-preview"
-          className="relative flex h-[600px] w-full max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl"
+          className="relative flex h-[600px] w-[95%] max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl"
         >
           <PreviewModal
             name=""
@@ -86,8 +86,8 @@ export default function Features({
             landing={true}
           />
         </div>
-        <div className="flex w-full flex-col items-center justify-center">
-          <div className="flex w-96 flex-col">
+        <div className="flex w-full flex-col items-center justify-center py-20 md:py-0">
+          <div className="flex w-80 flex-col md:w-96">
             <strong className="text-2xl text-[#EBFF00]">
               Heightened Data Synthesis:
             </strong>
@@ -95,7 +95,7 @@ export default function Features({
               Generate Production-Like Data On The Fly
             </p>
             <div>
-              <p className="border-b border-gray-400 py-20 text-sm font-light">
+              <p className="border-b border-gray-400 py-10 text-sm font-light md:py-20">
                 <span className="float-left flex h-4 items-center pr-2">
                   <Image
                     src="/assets/yellow-dots.svg"

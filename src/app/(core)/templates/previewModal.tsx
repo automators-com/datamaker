@@ -40,7 +40,11 @@ export default function PreviewModal({
 
   return (
     <>
-      <div className="relative w-[650px] rounded-md border border-base-content p-4 pb-10 sm:p-6 lg:p-8">
+      <div
+        className={`${
+          landing ? "w-[90%]" : ""
+        } relative rounded-md border border-base-content p-4 pb-10 sm:p-6 lg:p-8`}
+      >
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-xl font-semibold text-base-content">
@@ -92,7 +96,7 @@ export default function PreviewModal({
         </div>
         {preview.id === 1 ? (
           <div className="-mx-4 mt-7 h-80 overflow-auto shadow ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
-            <table className="min-w-full divide-y divide-base-200">
+            <table className="w-[90%] divide-y divide-base-200">
               <thead className="bg-secondary">
                 <tr>
                   {TableHeader?.map((header, i) => {

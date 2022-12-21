@@ -10,7 +10,7 @@ export default function Understand() {
   const scale = 0.7;
   return (
     <section className="flex flex-col items-center justify-start bg-white pt-40 pb-20 text-black">
-      <p className="text-center text-3xl">
+      <p className="px-5 pt-10 text-center text-3xl md:px-0 md:pt-0">
         Understand How Datamaker Makes Your <br /> Job Easier
       </p>
 

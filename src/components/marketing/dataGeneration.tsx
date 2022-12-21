@@ -84,7 +84,7 @@ export default function DataGeneration({
           </form>
         </FormProvider>
       </div>
-      <div className="-mt-80 flex h-96 w-full flex-col items-center bg-[#1D1E39]">
+      <div className="-mt-80 flex h-96 w-full flex-col items-center bg-[#1D1E39] px-5 md:px-0">
         <p className="my-40 max-w-[30em] text-center text-2xl">
           »
           <span className="text-[#459CA7]">
