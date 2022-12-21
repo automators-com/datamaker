@@ -86,11 +86,10 @@ const sendPasswordResetEmail = async (
 ) => {
   console.log("Sending password reset email");
   sgMail.setApiKey(String(process.env.SENDGRID_API_KEY));
-  // TODO: Change template ID
   const msg = {
     to: email,
     from: "noreply@datamaker.app",
-    templateId: "d-d7498cab9c564ed79626f9373e4b58ab",
+    templateId: "d-c25a88e5be364ca480ddb051b2c61d5e",
     dynamicTemplateData: {
       Generated_Code: passwordResetCode,
     },
