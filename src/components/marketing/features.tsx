@@ -20,9 +20,9 @@ export default function Features({
       <p className="text-center text-3xl font-bold">
         Robust Features For Your Data <br /> Ecosystem
       </p>
-      <div className="mt-20 flex h-auto w-full flex-col py-40 lg:flex-row xl:flex-row">
+      <div className="mt-20 flex h-auto w-full flex-col py-20 md:flex-row md:py-40">
         <div className="flex w-full flex-col items-center justify-center">
-          <div className="flex w-96 flex-col">
+          <div className="flex w-80 flex-col md:w-96">
             <strong className="text-2xl text-[#08FFB3]">
               Automated Data Pipeline:
             </strong>
@@ -73,7 +73,7 @@ export default function Features({
           />
         </div>
       </div>
-      <div className="mt-20 flex h-auto w-full py-40">
+      <div className="mt-20 flex h-auto w-full flex-col gap-y-12 py-10 md:flex-row md:py-40">
         <div
           id="data-preview"
           className="relative flex h-[600px] w-full max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl"

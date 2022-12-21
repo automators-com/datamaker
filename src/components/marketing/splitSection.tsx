@@ -4,10 +4,10 @@ export default function SplitSection() {
   const scale = 0.75;
   return (
     <section className="relative z-10 flex h-96 flex-col items-center justify-center md:flex-row">
-      <div className="flex h-full w-full bg-[#482B7C]">
-        <div className="flex w-2/3 flex-col items-start justify-center px-20 pt-20 sm:w-full">
+      <div className="flex h-full w-full flex-col bg-[#482B7C] sm:flex-row">
+        <div className="flex w-full flex-col items-start justify-center px-10 pt-10 sm:w-2/3 sm:px-20 sm:pt-20">
           <strong className="text-xl">Multiple Templates</strong>
-          <p className="pb-20 pt-10 text-sm">
+          <p className="py-10 text-sm sm:pb-20">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
                 src="/assets/yellow-dots.svg"
@@ -21,7 +21,7 @@ export default function SplitSection() {
             costly delays and errors.
           </p>
         </div>
-        <div className="flex w-1/3 items-center justify-center">
+        <div className="flex w-full items-center justify-center sm:w-1/3">
           <Image
             src="/assets/clipboard-icon.svg"
             width={116.789 * scale}
@@ -30,16 +30,17 @@ export default function SplitSection() {
           />
         </div>
       </div>
-      <div className="flex h-full w-full bg-[#1D1E39]">
-        <div className="flex w-2/3 flex-col items-start justify-center px-20 pt-20">
+      <div className="flex h-full w-full flex-col bg-[#1D1E39] sm:flex-row">
+        <div className="flex w-full flex-col items-start justify-center px-10 pt-10 sm:w-2/3 sm:px-20 sm:pt-20">
           <strong className="text-xl">The future is AI</strong>
-          <p className="pb-20 pt-10 text-sm">
+          <p className="py-10 text-sm sm:pb-20">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
                 src="/assets/yellow-dots.svg"
                 alt="yellow dots"
                 width={38 * scale}
                 height={10 * scale}
+                className="w-5"
               />
             </span>
             In the coming days, we want to have AI create data for you based on
@@ -47,7 +48,7 @@ export default function SplitSection() {
             money, and headaches.
           </p>
         </div>
-        <div className="flex w-1/3 items-center justify-center">
+        <div className="flex w-full items-center  justify-center sm:w-1/3">
           <Image
             src="/assets/terminal-icon.svg"
             width={130.241 * scale}

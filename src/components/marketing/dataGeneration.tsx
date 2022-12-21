@@ -30,7 +30,7 @@ export default function DataGeneration({
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
       <div
         id="generate-form"
-        className="relative -top-80 z-40 mx-auto mt-8 min-h-[350px] w-2/3 rounded-md bg-white py-6 shadow-lg sm:py-6 md:py-8 lg:py-12"
+        className="relative -top-80 z-40 mx-auto mt-8 min-h-[350px] w-[90%] rounded-md bg-white py-6 shadow-lg sm:py-6 md:w-2/3 md:py-8 lg:py-12"
       >
         <div className="absolute -top-14 flex w-full flex-col items-center text-center text-[#08FFB3]">
           <p>Make some data right now</p>
@@ -40,8 +40,8 @@ export default function DataGeneration({
           ></span>
         </div>
         <FormProvider {...methods}>
-          <form className="relative flex h-full rounded bg-base-100 lg:flex-1">
-            <div className="w-2/3 px-6 sm:px-6 md:px-8 lg:px-9">
+          <form className="relative flex h-full flex-col items-center gap-y-9 rounded bg-base-100 md:flex-row">
+            <div className="w-full px-6 sm:px-6 md:w-2/3 md:px-8 lg:px-9">
               {Fields.map((item, index) => {
                 return (
                   <CollapsedContainer
@@ -54,7 +54,7 @@ export default function DataGeneration({
               })}
             </div>
 
-            <div className="flex min-w-[200px] flex-col gap-3 px-6 sm:px-6 md:px-8 lg:border-l lg:px-9">
+            <div className="flex min-w-[200px] max-w-xs flex-col gap-3 px-6 sm:px-6 md:px-8 lg:border-l lg:px-9">
               <p className="flex items-center gap-2 pb-3  text-xs text-primary">
                 <span> Render Data with </span>
                 <Input
