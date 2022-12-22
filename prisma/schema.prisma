@@ -15,14 +15,17 @@ model Template {
     name      String
     fields    Json
     createdAt DateTime @default(now())
+    createdBy String
+    User      User     @relation(fields: [createdBy], references: [id])
 }
 
 model User {
-    id                String             @id @default(cuid())
-    email             String             @unique
+    id                String     @id @default(cuid())
+    email             String     @unique
     firstName         String
     lastName          String
     password          String
     passwordResetCode String?
-    createdAt         DateTime           @default(now())
+    createdAt         DateTime   @default(now())
+    Templates         Template[]
 }
