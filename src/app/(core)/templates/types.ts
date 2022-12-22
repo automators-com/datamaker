@@ -13,6 +13,7 @@ export type Template = {
   name: string;
   fields: TemplateField[];
   createdAt?: string;
+  createdBy: string;
 };
 
 export type TemplateForm = {

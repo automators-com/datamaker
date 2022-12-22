@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import { useState } from "react";
@@ -14,14 +15,16 @@ import type { Template, TemplateForm } from "./types";
 import { getTableData } from "../../../utilities/tableData";
 import MoonLoader from "../../../components/loaders/moonLoader";
 import { FormProvider, useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
-const fetchTemplates = () => {
-  return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
-    res.json()
-  );
+const fetchTemplates = async () => {
+  const res = await fetch(`/api/templates?orderBy={"createdAt":"$asc"}`);
+  return (await res.json()) as Template[];
 };
 
 export default function Page() {
+  // fetch session
+  const { data: session } = useSession();
   // fetch templates
   const {
     data: templates,
@@ -129,14 +132,16 @@ export default function Page() {
 
   const onSubmit = (data: TemplateForm) => {
     console.log(data);
-
-    mutation.mutate({
-      ...selectedTemplate,
-      name: getValues("templateName"),
-      fields: getValues("fieldList"),
-    });
-    setIsFormOpen(false);
-    setSelectedTemplate(null);
+    if (session && session.user) {
+      mutation.mutate({
+        ...selectedTemplate,
+        name: getValues("templateName"),
+        fields: getValues("fieldList"),
+        createdBy: session?.user.id,
+      });
+      setIsFormOpen(false);
+      setSelectedTemplate(null);
+    }
   };
 
   if (isLoading) {
