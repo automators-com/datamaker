@@ -1,12 +1,13 @@
-import { TrashIcon } from "@heroicons/react/24/outline";
-import React, { useEffect, useState } from "react";
-import {
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
+import type {
   UseFormClearErrors,
   UseFormGetValues,
   UseFormRegister,
   UseFormSetError,
   UseFormSetValue,
 } from "react-hook-form";
+import { TrashIcon } from "@heroicons/react/24/outline";
 import type { Item, TemplateForm } from "../../app/(core)/templates/types";
 import DropDown from "../dropdown";
 import { Input } from "../input";
@@ -33,7 +34,6 @@ export const Constraints = ({
   setError?: UseFormSetError<TemplateForm>;
 }) => {
   const [selected, setSelected] = useState<Item>(list[0]);
-  // console.log(getValues && getValues(`fieldList.${index}.constraints`), list[0]);
 
   useEffect(() => {
     setValue &&
