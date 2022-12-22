@@ -48,7 +48,7 @@ export default function List({
       <ul role="list">
         {filteredList.map((item, index) => (
           <li
-            key={item.name}
+            key={item.id}
             className={`${
               index % 2 === 1 && "bg-base-200 bg-opacity-30"
             } block w-full cursor-pointer rounded-md text-base-content hover:bg-secondary hover:text-secondary-content`}
