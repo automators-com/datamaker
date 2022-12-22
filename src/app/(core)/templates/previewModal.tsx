@@ -42,7 +42,7 @@ export default function PreviewModal({
     <>
       <div
         className={`${
-          landing ? "w-[90%]" : ""
+          landing ? "w-[92%]" : ""
         } relative rounded-md border border-base-content p-4 pb-10 sm:p-6 lg:p-8`}
       >
         <div className="sm:flex sm:items-center">
