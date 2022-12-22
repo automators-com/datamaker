@@ -73,10 +73,10 @@ export default function Features({
           />
         </div>
       </div>
-      <div className="mt-5 flex h-auto w-full flex-col-reverse gap-y-12 py-10 md:mt-20 md:flex-row md:py-40">
+      <div className="mt-5 flex h-auto w-full flex-col-reverse gap-y-12 gap-x-3 py-10 md:mt-20 md:flex-row md:py-40">
         <div
           id="data-preview"
-          className="relative flex h-[600px] w-[95%] max-w-[750px] flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl"
+          className="relative flex h-[600px] w-[95%] max-w-[622px] flex-col items-center justify-center rounded-r-lg bg-[#F3F4F6] shadow-xl sm:w-[475px] md:w-[95%]"
         >
           <PreviewModal
             name=""

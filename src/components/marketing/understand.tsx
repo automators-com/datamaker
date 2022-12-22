@@ -171,7 +171,7 @@ function BlueCard({
         backgroundPosition: "center",
       }}
     >
-      <span className="absolute -top-6 -right-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#459CA7] bg-white text-center text-[#459CA7]">
+      <span className="absolute -top-6 left-[43%] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#459CA7] bg-white text-center text-[#459CA7] md:-right-5">
         {number}
       </span>
       <p className="text-center text-xl text-white lg:text-left xl:text-left">
@@ -199,7 +199,7 @@ function RedCard({
         backgroundPosition: "center",
       }}
     >
-      <span className="absolute -top-6 -left-5 flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#F46256] bg-white text-center">
+      <span className="absolute -top-6 left-[43%] flex  h-12 w-12 items-center justify-center rounded-full border-2 border-[#F46256] bg-white text-center md:-left-5">
         {number}
       </span>
       <p className="text-center text-xl text-white lg:text-right xl:text-right">
