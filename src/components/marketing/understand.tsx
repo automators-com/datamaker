@@ -10,19 +10,19 @@ export default function Understand() {
   const scale = 0.7;
   return (
     <section className="flex flex-col items-center justify-start bg-white pt-40 pb-20 text-black">
-      <p className="text-center text-3xl">
+      <p className="px-5 pt-10 text-center text-3xl md:px-0 md:pt-0">
         Understand How Datamaker Makes Your <br /> Job Easier
       </p>
 
-      <div className="mt-20 flex w-full py-10">
-        <div className="flex w-full items-center justify-end px-8">
+      <div className="mt-20 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
           <BlueCard
             number={1}
             bg={bg1}
             headline={`Free Up Your Time To Focus On What Matters Most`}
           />
         </div>
-        <div className="flex w-full items-center justify-start px-8">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">
           <p className="w-[20rem] text-sm">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
@@ -41,15 +41,15 @@ export default function Understand() {
           </p>
         </div>
       </div>
-      <div className="mt-10 flex w-full flex-row-reverse py-10">
-        <div className="flex w-full items-center justify-start px-8">
+      <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row-reverse xl:flex-row-reverse">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">
           <RedCard
             number={2}
             bg={bg2}
             headline={`Optimize Test Coverage and Run The Right Tests Every Time`}
           />
         </div>
-        <div className="flex w-full items-center justify-end px-8">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
           <p className="w-[20rem] text-sm">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
@@ -71,15 +71,15 @@ export default function Understand() {
           </p>
         </div>
       </div>
-      <div className="mt-10 flex w-full py-10">
-        <div className="flex w-full items-center justify-end px-8">
+      <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
           <BlueCard
             number={3}
             bg={bg3}
             headline={`Enterprise-Level Versatility`}
           />
         </div>
-        <div className="flex w-full items-center justify-start px-8">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">
           <p className="w-[20rem] text-sm">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
@@ -97,15 +97,15 @@ export default function Understand() {
           </p>
         </div>
       </div>
-      <div className="mt-10 flex w-full flex-row-reverse py-10">
-        <div className="flex w-full items-center justify-start px-8">
+      <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row-reverse xl:flex-row-reverse">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">
           <RedCard
             number={4}
             bg={bg4}
             headline={`Total Control Over Your Data`}
           />
         </div>
-        <div className="flex w-full items-center justify-end px-8">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
           <p className="w-[20rem] text-sm">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
@@ -125,15 +125,15 @@ export default function Understand() {
           </p>
         </div>
       </div>
-      <div className="mt-10 flex w-full py-10">
-        <div className="flex w-full items-center justify-end px-8">
+      <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
           <BlueCard
             number={5}
             bg={bg5}
             headline={`Generate and Distribute Test Data Definitions`}
           />
         </div>
-        <div className="flex w-full items-center justify-start px-8">
+        <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">
           <p className="w-[20rem] text-sm">
             <span className="float-left flex h-4 items-center pr-2">
               <Image
@@ -171,10 +171,12 @@ function BlueCard({
         backgroundPosition: "center",
       }}
     >
-      <span className="absolute -top-6 -right-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#459CA7] bg-white text-center text-[#459CA7]">
+      <span className="absolute -top-6 left-[43%] flex h-12 w-12 items-center justify-center rounded-full border-2 border-[#459CA7] bg-white text-center text-[#459CA7] md:-right-5">
         {number}
       </span>
-      <p className="text-xl text-white">{headline}</p>
+      <p className="text-center text-xl text-white lg:text-left xl:text-left">
+        {headline}
+      </p>
     </div>
   );
 }
@@ -197,10 +199,12 @@ function RedCard({
         backgroundPosition: "center",
       }}
     >
-      <span className="absolute -top-6 -left-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[#F46256] bg-white text-center">
+      <span className="absolute -top-6 left-[43%] flex  h-12 w-12 items-center justify-center rounded-full border-2 border-[#F46256] bg-white text-center md:-left-5">
         {number}
       </span>
-      <p className="text-right text-xl text-white">{headline}</p>
+      <p className="text-center text-xl text-white lg:text-right xl:text-right">
+        {headline}
+      </p>
     </div>
   );
 }
