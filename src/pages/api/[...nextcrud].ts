@@ -16,20 +16,24 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }),
     middlewares: [
       async (ctx: any, next) => {
-        const session = await getServerSession(ctx.req, ctx.res, authOptions);
-        const fieldToFilterOn = filterOnField(ctx.req);
+        const method = ctx.req.method;
 
-        let updatedResult = ctx.result;
+        if (method === `GET`) {
+          const session = await getServerSession(ctx.req, ctx.res, authOptions);
+          const fieldToFilterOn = filterOnField(ctx.req);
 
-        if (session) {
-          updatedResult = ctx.result.filter((item: any) => {
-            return item[fieldToFilterOn] === session.user.id;
-          });
-          ctx.result = updatedResult;
-        } else {
-          ctx.result = [];
+          let updatedResult = ctx.result;
+
+          if (session) {
+            updatedResult = ctx.result.filter((item: any) => {
+              return item[fieldToFilterOn] === session.user.id;
+            });
+            ctx.result = updatedResult;
+          } else {
+            ctx.result = [];
+          }
+          next();
         }
-        next();
       },
     ],
   });
