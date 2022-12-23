@@ -33,7 +33,7 @@ export default function DataGeneration({
         className="relative -top-80 z-40 mx-auto mt-8 min-h-[350px] w-[90%] rounded-md bg-white py-6 shadow-lg sm:py-6 md:w-2/3 md:py-8 lg:py-12"
       >
         <div className="absolute -top-14 flex w-full flex-col items-center text-center text-[#08FFB3]">
-          <p>Make some data right now</p>
+          <p>Get a sneak peek at how to make data work for you!</p>
           <span
             id="down_arrow"
             className="m-2 h-0 w-0 border-t-[5px] border-l-[5px] border-r-[5px] border-solid border-[#08FFB3] border-l-transparent border-r-transparent"
