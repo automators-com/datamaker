@@ -44,7 +44,7 @@ export default function Password() {
     })
       .then((res) => {
         if (res.status === 201) {
-          router.push("/auth/signin");
+          router.push("/signin");
         } else if (res.status === 404) {
           setError("Invalid Code");
           setLoading(false);
@@ -62,6 +62,7 @@ export default function Password() {
     <div id="main" className="auth-wrapper">
       <SEO title={`Password Reset`} />
       <form
+        className="auth-form"
         method="put"
         action="/api/auth/password"
         onSubmit={(e) => {
@@ -83,7 +84,7 @@ export default function Password() {
           <strong>Reset</strong> your account password
         </p>
         <input
-          className="input-primary"
+          className="auth-input"
           name="code"
           type="number"
           placeholder="Verification Code"
@@ -93,7 +94,7 @@ export default function Password() {
           required
         />
         <input
-          className="input-primary"
+          className="auth-input"
           name="new_password"
           type="password"
           placeholder="New Password"
@@ -101,7 +102,7 @@ export default function Password() {
           required
         />
         <input
-          className="input-primary"
+          className="auth-input"
           name="confirm_password"
           type="password"
           placeholder="Confirm Password"
@@ -110,7 +111,7 @@ export default function Password() {
           }
           required
         />
-        <button className="btn-primary" type="submit">
+        <button className="auth-button" type="submit">
           {loading ? `Processing...` : `Reset`}
         </button>
         {error ? (

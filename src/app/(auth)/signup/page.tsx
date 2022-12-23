@@ -5,7 +5,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import SEO from "../../../components/seo";
 import Logo from "../../../components/auth/logo";
 
@@ -73,11 +72,6 @@ export default function SignUp() {
     <>
       <SEO title={`Sign Up`} />
       <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
-        <div style={{ display: `flex`, alignItems: `flex-start` }}>
-          <Link href="/signin" className="auth-link">
-            &lt; Cancel
-          </Link>
-        </div>
         <Logo />
         <p
           style={{

@@ -47,10 +47,7 @@ const CollapsedContainer = ({
         const minValue = fields.find((x) => x.name?.id === 1)?.value;
         const maxValue = fields.find((x) => x.name?.id === 2)?.value;
 
-        if (
-          typeof minValue !== "undefined" &&
-          typeof maxValue !== "undefined"
-        ) {
+        if (minValue && maxValue) {
           if (minValue > maxValue)
             return "Minimum value cannot be more than the maximum value.";
         }
@@ -60,17 +57,6 @@ const CollapsedContainer = ({
 
   const [type, setType] = useState(Fields[index].dataType);
   const [list, setList] = useState(_list);
-
-  // console.log(errors.fieldList && errors.fieldList[index]?.constraints?.root)
-
-  // useEffect(() => {
-  //   if (Fields[index].constraints.length !== 0) {
-  //     let updatedList = _list.filter(y => Fields[index].constraints.map(x => x.name?.id !== y.id))
-  //     console.log(updatedList);
-
-  //     // setList()
-  //   }
-  // }, [])
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
@@ -89,13 +75,11 @@ const CollapsedContainer = ({
 
     const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
     if (constraintsName.length === 1) return;
-    // clearErrors(`fieldList.${index}.`)
 
     setList([...updatedList]);
   };
 
-  const deleteConstrains = (i: number) => {
-    // if (fields.length === 1) return;
+  const deleteConstraints = (i: number) => {
     remove(i);
     const constraintsName = getValues(`fieldList.${index}.constraints`).map(
       (x) => x.name?.id
@@ -192,7 +176,7 @@ const CollapsedContainer = ({
                 {fields.map((item, i) => {
                   return (
                     <Constraints
-                      handleDelete={() => deleteConstrains(i)}
+                      handleDelete={() => deleteConstraints(i)}
                       key={item.id}
                       nestedIndex={i}
                       index={index}

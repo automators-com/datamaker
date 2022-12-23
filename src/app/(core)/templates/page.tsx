@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
 import { useState } from "react";
@@ -14,14 +15,16 @@ import type { Template, TemplateForm } from "./types";
 import { getTableData } from "../../../utilities/tableData";
 import MoonLoader from "../../../components/loaders/moonLoader";
 import { FormProvider, useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
-const fetchTemplates = () => {
-  return fetch(`/api/templates?orderBy={"createdAt":"$asc"}`).then((res) =>
-    res.json()
-  );
+const fetchTemplates = async () => {
+  const res = await fetch(`/api/templates?orderBy={"createdAt":"$asc"}`);
+  return (await res.json()) as Template[];
 };
 
 export default function Page() {
+  // fetch session
+  const { data: session } = useSession();
   // fetch templates
   const {
     data: templates,
@@ -56,7 +59,7 @@ export default function Page() {
         },
         body: JSON.stringify(template),
       });
-      return await res.json();
+      return (await res.json()) as Template[];
     } else {
       const res = await fetch(`/api/templates/`, {
         method: "POST",
@@ -65,7 +68,7 @@ export default function Page() {
         },
         body: JSON.stringify(template),
       });
-      return await res.json();
+      return (await res.json()) as Template[];
     }
   };
 
@@ -97,10 +100,16 @@ export default function Page() {
           }
         );
       } else {
-        queryClient.setQueryData(["templates"], (old: any) => [
-          ...old,
-          newTemplate,
-        ]);
+        queryClient.setQueryData(
+          ["templates"],
+          (old: Template[] | undefined) => {
+            if (old) {
+              return [...old, newTemplate] as Template[];
+            } else {
+              return [newTemplate] as Template[];
+            }
+          }
+        );
       }
       // Return a context object with the snapshotted value
       return { MutationKey: "createOrUpdateTemplates", previousTemplates };
@@ -123,14 +132,16 @@ export default function Page() {
 
   const onSubmit = (data: TemplateForm) => {
     console.log(data);
-
-    mutation.mutate({
-      ...selectedTemplate,
-      name: getValues("templateName"),
-      fields: getValues("fieldList"),
-    });
-    setIsFormOpen(false);
-    setSelectedTemplate(null);
+    if (session && session.user) {
+      mutation.mutate({
+        ...selectedTemplate,
+        name: getValues("templateName"),
+        fields: getValues("fieldList"),
+        createdBy: session?.user.id,
+      });
+      setIsFormOpen(false);
+      setSelectedTemplate(null);
+    }
   };
 
   if (isLoading) {

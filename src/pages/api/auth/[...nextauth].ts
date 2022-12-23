@@ -4,11 +4,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/require-await */
 import NextAuth from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import { prisma } from "../../../utilities/dbConnect";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { checkPassword } from "../../../utilities/hash";
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     // Azure AD B2C Provider
     CredentialsProvider({
@@ -87,4 +88,6 @@ export default NextAuth({
   },
   events: {},
   debug: false,
-});
+};
+
+export default NextAuth(authOptions);

@@ -111,7 +111,9 @@ export default function Form({
   return (
     <>
       <div className="flex  items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
-        <span className="font-semibold text-neutral-content">New Template</span>
+        <span className="font-semibold text-neutral-content">
+          {selectedTemplate?.name || "New Template"}
+        </span>
         <div className="flex items-center space-x-2">
           <button
             className="btn btn-secondary"
@@ -127,7 +129,6 @@ export default function Form({
           <button
             className="btn btn-primary-accent"
             type="submit"
-            // onClick={() => handleSave()}
             onClick={() => setIsSubmit(true)}
           >
             <CheckIcon />
