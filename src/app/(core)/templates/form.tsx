@@ -1,26 +1,24 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
+
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
-import {
-  ArrowUturnDownIcon,
-  CheckIcon,
-  PlusCircleIcon,
-} from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+
+import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Dispatch, SetStateAction } from "react";
-import type { TemplateForm } from "./types";
-import type { Template } from "./types";
+import { useEffect, useState } from "react";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import Divider from "../../../components/divider";
 import { Input } from "../../../components/input";
 import CollapsedContainer from "./collapsedContainer";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useFieldArray, useFormContext } from "react-hook-form";
-import FormMenu from "./formMenu";
+import FormHeader from "./formHeader";
+import type { Template, TemplateForm } from "./types";
 
 export default function Form({
   selectedTemplate,
@@ -45,14 +43,16 @@ export default function Form({
         ],
   };
 
-  const [isSubmit, setIsSubmit] = useState(false); // validate only onSubmit
+  // validate only onSubmit
+  const [isSubmit, setIsSubmit] = useState(false);
 
+  // retrieve all hook methods
   const {
     control,
     formState: { errors },
     reset,
     register,
-  } = useFormContext<TemplateForm>(); // retrieve all hook methods
+  } = useFormContext<TemplateForm>();
 
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -108,38 +108,13 @@ export default function Form({
 
   return (
     <>
-      <div className="flex  items-center justify-between rounded-tl-md border-b border-base-200 border-opacity-40 bg-neutral py-6 px-6 lg:px-9">
-        <span className="font-semibold text-neutral-content">
-          {selectedTemplate?.name || "New Template"}
-        </span>
-        <div className="flex items-center space-x-2">
-          <button
-            className="btn btn-secondary"
-            onClick={() => {
-              setIsFormOpen(false);
-              setSelectedTemplate(null);
-            }}
-          >
-            <ArrowUturnDownIcon />
-            Discard
-          </button>
-
-          <button
-            className="btn btn-primary-accent"
-            type="submit"
-            onClick={() => setIsSubmit(true)}
-          >
-            <CheckIcon />
-            Save
-          </button>
-          <FormMenu
-            selectedTemplate={selectedTemplate}
-            deleteMutation={deleteMutation}
-            setIsFormOpen={setIsFormOpen}
-            setSelectedTemplate={setSelectedTemplate}
-          />
-        </div>
-      </div>
+      <FormHeader
+        selectedTemplate={selectedTemplate}
+        setSelectedTemplate={setSelectedTemplate}
+        setIsFormOpen={setIsFormOpen}
+        deleteMutation={deleteMutation}
+        setIsSubmit={setIsSubmit}
+      />
 
       <div className="p-6 sm:p-6 md:p-8 lg:p-9">
         <Input

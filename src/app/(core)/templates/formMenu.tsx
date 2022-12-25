@@ -1,3 +1,5 @@
+"use client";
+
 import { Fragment } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import type { UseMutationResult } from "@tanstack/react-query";
