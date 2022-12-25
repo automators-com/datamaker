@@ -133,14 +133,16 @@ export default function Page() {
   const onSubmit = (data: TemplateForm) => {
     console.log(data);
     if (session && session.user) {
-      mutation.mutate({
+      const updatedTemplate = {
         ...selectedTemplate,
         name: getValues("templateName"),
         fields: getValues("fieldList"),
         createdBy: session?.user.id,
-      });
-      setIsFormOpen(false);
-      setSelectedTemplate(null);
+      } as Template;
+
+      mutation.mutate(updatedTemplate);
+
+      setSelectedTemplate(updatedTemplate);
     }
   };
 
