@@ -175,4 +175,29 @@
   .auth-error {
     @apply mt-2 flex items-center justify-center text-center text-sm text-[#482B7C];
   }
+
+
+  .hero {
+    @apply h-[90vh]
+  }
+
+  @media screen and (max-width: 430px) {
+    .hero {
+      @apply h-[100vh];
+    }
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes cssAnimation {
+    to   { 
+      visibility: visible;
+      transition: 5;
+    }
+  }
+
 }

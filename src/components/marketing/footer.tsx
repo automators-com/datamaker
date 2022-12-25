@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 flex w-screen flex-col items-center bg-[#1D1E39] py-16 px-10 md:z-0 md:items-start  md:bg-transparent md:px-40 lg:p-24 xl:p-20">
+    <footer className="relative z-10 flex w-[98vw] flex-col items-center bg-[#1D1E39] py-16 px-10 md:z-0 md:items-start  md:bg-transparent md:px-40 lg:p-24 xl:p-20">
       <div className="flex w-full flex-col text-center md:flex-row md:text-left">
         <div className="flex-grow">
           <p className="pb-3 md:max-w-xs">
@@ -17,16 +17,21 @@ export default function Footer() {
           <li>Custom Add-ons</li>
         </ul>
         <ul className="text-[#EBFF00]">
-          <Link href="mailto:office@automators.com">
+          <Link
+            href="mailto:office@automators.com"
+            className="hover:text-white"
+          >
             <li>Support</li>
           </Link>
           <Link
+            className="hover:text-white"
             href="https://www.automators.com/about#comp-kwuvehkx"
             target={"_blank"}
           >
             <li className="py-3">Legal</li>
           </Link>
           <Link
+            className="hover:text-white"
             href="https://www.automators.com/privacy-policy"
             target={"_blank"}
           >

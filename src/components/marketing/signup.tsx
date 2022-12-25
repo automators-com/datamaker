@@ -13,7 +13,7 @@ export default function SignUp() {
         Development Process!
       </p>
       <Link href={`/signup`}>
-        <button className="my-14 rounded-full bg-[#EBFF00] px-10 py-3 text-base font-medium text-black lg:my-20 xl:my-20">
+        <button className="my-14 rounded-full bg-[#EBFF00] px-10 py-3 text-base font-medium text-black hover:bg-[#08FFB3] lg:my-20 xl:my-20">
           Start Making Data
         </button>
       </Link>
