@@ -60,7 +60,7 @@ export default function LandingPage() {
   const methods = useForm<TemplateForm>({ defaultValues });
 
   return (
-    <body>
+    <body className="text-white">
       <div id="landing" className="relative min-h-screen w-full">
         <Image
           src="/assets/globe.png"
