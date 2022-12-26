@@ -68,8 +68,8 @@ export default function Features({
             className="relative -right-[6.8rem] scale-150 md:-right-48"
             src="/assets/templates-screen.webp"
             alt="templates screenshot"
-            width={2836}
-            height={1774}
+            width={1280}
+            height={801}
           />
         </div>
       </div>

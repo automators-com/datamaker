@@ -50,8 +50,8 @@ function MoreFeatures() {
             className="relative -right-48 scale-150"
             src="/assets/templates-screen.webp"
             alt="templates screenshot"
-            width={2836}
-            height={1774}
+            width={1280}
+            height={801}
           />
         </div>
       </div>
