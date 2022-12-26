@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
@@ -47,7 +50,8 @@ export default function Page() {
   const ref = useRef(null);
   const [hasChanged, setHasChanged] = useState(false);
 
-  useOnClickOutside(ref, () => {
+  useOnClickOutside(ref, (e: any) => {
+    e.preventDefault();
     if (hasChanged) {
       alert("You have unsaved changes!");
     }
