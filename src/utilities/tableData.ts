@@ -5,10 +5,10 @@ export const getTableData = (len: number, data: TemplateField[]): any[] => {
   return Array.from({ length: len }).map(() => {
     const o: any = {};
     data?.forEach((field: TemplateField) => {
-      const min = field.constraints.filter((cons) => cons.name?.id === 1)[0]
+      const min = field?.constraints?.filter((cons) => cons.name?.id === 1)[0]
         ? field.constraints.filter((cons) => cons.name?.id === 1)[0].value!
         : 1;
-      const max = field.constraints.filter((cons) => cons.name?.id === 2)[0]
+      const max = field?.constraints?.filter((cons) => cons.name?.id === 2)[0]
         ? field.constraints.filter((cons) => cons.name?.id === 2)[0].value!
         : 20;
 

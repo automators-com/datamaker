@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -16,6 +19,7 @@ import { getTableData } from "../../../utilities/tableData";
 import MoonLoader from "../../../components/loaders/moonLoader";
 import { FormProvider, useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
+import useOnClickOutside from "../../../components/hooks/useOnClickOutside";
 
 const fetchTemplates = async () => {
   const res = await fetch(`/api/templates?orderBy={"createdAt":"$asc"}`);
@@ -41,6 +45,17 @@ export default function Page() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null
   );
+
+  // unsaved changes warning
+  const ref = useRef(null);
+  const [hasChanged, setHasChanged] = useState(false);
+
+  useOnClickOutside(ref, (e: any) => {
+    e.preventDefault();
+    if (hasChanged) {
+      alert("You have unsaved changes!");
+    }
+  });
 
   const methods = useForm<TemplateForm>();
 
@@ -178,6 +193,7 @@ export default function Page() {
         <div className="min-w-0 flex-1 rounded-md shadow-lg xl:flex">
           <FormProvider {...methods}>
             <form
+              ref={ref}
               className="relative h-full min-h-[36rem] flex-auto rounded-l-md bg-base-100 lg:min-w-[400px] lg:flex-1"
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onSubmit={methods.handleSubmit(onSubmit)}
@@ -186,6 +202,7 @@ export default function Page() {
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
                 setIsFormOpen={setIsFormOpen}
+                setHasChanged={setHasChanged}
               />
             </form>
           </FormProvider>

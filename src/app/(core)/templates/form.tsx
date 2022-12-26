@@ -24,10 +24,12 @@ export default function Form({
   selectedTemplate,
   setSelectedTemplate,
   setIsFormOpen,
+  setHasChanged,
 }: {
   selectedTemplate: Template | null;
   setSelectedTemplate: Dispatch<SetStateAction<Template | null>>;
   setIsFormOpen: Dispatch<SetStateAction<boolean>>;
+  setHasChanged: Dispatch<SetStateAction<boolean>>;
 }): JSX.Element {
   const defaultValues: TemplateForm = {
     isOpen: true,
@@ -49,7 +51,7 @@ export default function Form({
   // retrieve all hook methods
   const {
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     reset,
     register,
   } = useFormContext<TemplateForm>();
@@ -105,6 +107,13 @@ export default function Form({
       await queryClient.invalidateQueries({ queryKey: ["templates"] });
     },
   });
+
+  // update the hasChanged state based on the form state
+  if (isDirty) {
+    setHasChanged(true);
+  } else {
+    setHasChanged(false);
+  }
 
   return (
     <>
