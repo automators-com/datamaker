@@ -2,18 +2,18 @@ import { Disclosure } from "@headlessui/react";
 import {
   ChevronDownIcon,
   ChevronUpIcon,
-  PlusIcon,
+  // PlusIcon,
 } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import { DataTypes, _list } from "../../../utilities/constants";
-import Constraints from "../../../components/constraints";
+import { DataTypes } from "../../../utilities/constants";
+// import Constraints from "../../../components/constraints";
 import Divider from "../../../components/divider";
 import DropDown from "../../../components/dropdown";
 import { Input } from "../../../components/input";
 import { MenuI } from "../../../components/menu";
 import type { UseFieldArrayMove } from "react-hook-form";
-import { useFieldArray, useFormContext } from "react-hook-form";
-import type { Constraint, Item, TemplateForm } from "./types";
+import { useFormContext } from "react-hook-form";
+import type { Item, TemplateForm } from "./types";
 
 const CollapsedContainer = ({
   deleteField,
@@ -30,64 +30,64 @@ const CollapsedContainer = ({
 }) => {
   const {
     register,
-    control,
+    // control,
     getValues,
     setValue,
     formState: { errors },
-    clearErrors,
-    setError,
+    // clearErrors,
+    // setError,
   } = useFormContext<TemplateForm>(); // retrieve all hook methods
 
   const Fields = getValues("fieldList");
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: `fieldList.${index}.constraints`,
-    rules: {
-      validate: (fields: Constraint[]) => {
-        const minValue = fields.find((x) => x.name?.id === 1)?.value;
-        const maxValue = fields.find((x) => x.name?.id === 2)?.value;
+  // const { fields, append, remove } = useFieldArray({
+  //   control,
+  //   name: `fieldList.${index}.constraints`,
+  //   rules: {
+  //     validate: (fields: Constraint[]) => {
+  //       const minValue = fields.find((x) => x.name?.id === 1)?.value;
+  //       const maxValue = fields.find((x) => x.name?.id === 2)?.value;
 
-        if (minValue && maxValue) {
-          if (minValue > maxValue)
-            return "Minimum value cannot be more than the maximum value.";
-        }
-      },
-    },
-  });
+  //       if (minValue && maxValue) {
+  //         if (minValue > maxValue)
+  //           return "Minimum value cannot be more than the maximum value.";
+  //       }
+  //     },
+  //   },
+  // });
 
   const [type, setType] = useState(Fields[index].dataType);
-  const [list, setList] = useState(_list);
+  // const [list, setList] = useState(_list);
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
 
-  const addConstraints = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    e.preventDefault();
-    append({
-      name: null,
-      value: 0,
-    });
-    const constraintsName = getValues(`fieldList.${index}.constraints`).map(
-      (x) => x.name?.id
-    );
+  // const addConstraints = (
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) => {
+  //   e.preventDefault();
+  //   append({
+  //     name: null,
+  //     value: 0,
+  //   });
+  //   const constraintsName = getValues(`fieldList.${index}.constraints`).map(
+  //     (x) => x.name?.id
+  //   );
 
-    const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
-    if (constraintsName.length === 1) return;
+  //   const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
+  //   if (constraintsName.length === 1) return;
 
-    setList([...updatedList]);
-  };
+  //   setList([...updatedList]);
+  // };
 
-  const deleteConstraints = (i: number) => {
-    remove(i);
-    const constraintsName = getValues(`fieldList.${index}.constraints`).map(
-      (x) => x.name?.id
-    );
+  // const deleteConstraints = (i: number) => {
+  //   remove(i);
+  //   const constraintsName = getValues(`fieldList.${index}.constraints`).map(
+  //     (x) => x.name?.id
+  //   );
 
-    const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
-    setList([...updatedList]);
-  };
+  //   const updatedList = _list.filter((x) => !constraintsName.includes(x.id));
+  //   setList([...updatedList]);
+  // };
 
   return (
     <>
@@ -169,7 +169,7 @@ const CollapsedContainer = ({
               </div>
             </div>
             <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
-              <>
+              {/* <>
                 <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
                   Field Constraints
                 </span>
@@ -201,20 +201,20 @@ const CollapsedContainer = ({
                   </button>
                 )}
                 <br />
-              </>
+              </> */}
             </Disclosure.Panel>
-            {errors.fieldList && errors.fieldList[index]?.constraints?.message && (
+            {/* {errors.fieldList && errors.fieldList[index]?.constraints?.message && (
               <p className="mt-2 pl-5 text-xs text-error" id="email-error">
                 {errors.fieldList[index]?.constraints?.message}
               </p>
-            )}
-            {errors.fieldList &&
+            )} */}
+            {/* {errors.fieldList &&
               errors.fieldList[index]?.constraints?.root &&
               isSubmit && (
                 <p className="mt-2 pl-5 text-xs text-error" id="email-error">
                   {errors.fieldList[index]?.constraints?.root?.message}
                 </p>
-              )}
+              )} */}
           </>
         )}
       </Disclosure>
