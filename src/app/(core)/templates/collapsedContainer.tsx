@@ -1,9 +1,9 @@
 import { Disclosure } from "@headlessui/react";
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-  // PlusIcon,
-} from "@heroicons/react/24/outline";
+// import {
+//   ChevronDownIcon,
+//   ChevronUpIcon,
+//   PlusIcon,
+// } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { DataTypes } from "../../../utilities/constants";
 // import Constraints from "../../../components/constraints";
@@ -96,17 +96,17 @@ const CollapsedContainer = ({
           (index === 0 || (index === Fields.length - 1 && !landing)) && true
         }
       >
-        {({ open }) => (
-          <>
-            <div
-              className={`flex w-full ${
-                landing && index !== 0 ? "pt-6" : ""
-              } gap-2 lg:gap-2 ${
-                isSubmit && errors.fieldList ? "items-flex-end" : "items-end"
-              }`}
-            >
-              <Disclosure.Button
-                aria-label="Toggle Constraints"
+        {/* {({ open }) => ( */}
+        <>
+          <div
+            className={`flex w-full ${
+              landing && index !== 0 ? "pt-6" : ""
+            } gap-2 lg:gap-2 ${
+              isSubmit && errors.fieldList ? "items-flex-end" : "items-end"
+            }`}
+          >
+            {/* <Disclosure.Button
+            aria-label="Toggle Constraints"
                 className={`inline-grid h-8 min-w-[32px] ${
                   isSubmit && errors.fieldList ? "mt-6" : ""
                 }
@@ -117,59 +117,55 @@ const CollapsedContainer = ({
                 ) : (
                   <ChevronDownIcon className="h-4 w-4 text-accent-content" />
                 )}
-              </Disclosure.Button>
+              </Disclosure.Button> */}
 
-              <div
-                className={`inline-flex w-full gap-2 lg:gap-3 ${
+            <div
+              className={`inline-flex w-full gap-2 lg:gap-3 ${
+                isSubmit && errors.fieldList ? "items-flex-end" : "items-center"
+              }`}
+            >
+              <Input
+                label="Field Name"
+                addClass="border-base-content"
+                placeholder="Name"
+                type="text"
+                formRegister={{
+                  ...register(`fieldList.${index}.fieldName`, {
+                    required: "Please enter field name",
+                  }),
+                }}
+                error={
                   isSubmit && errors.fieldList
-                    ? "items-flex-end"
-                    : "items-center"
-                }`}
-              >
-                <Input
-                  label="Field Name"
-                  addClass="border-base-content"
-                  placeholder="Name"
-                  type="text"
-                  formRegister={{
-                    ...register(`fieldList.${index}.fieldName`, {
-                      required: "Please enter field name",
-                    }),
-                  }}
-                  error={
-                    isSubmit && errors.fieldList
-                      ? errors.fieldList[index]?.fieldName?.message
-                      : ""
-                  }
-                  pClass="w-[55%]"
+                    ? errors.fieldList[index]?.fieldName?.message
+                    : ""
+                }
+                pClass="w-[55%]"
+              />
+              <DropDown
+                label="Data Type"
+                list={DataTypes}
+                name="dataType"
+                setValue={(e: Item) => {
+                  setType(e);
+                  setValue(`fieldList.${index}.dataType`, e);
+                }}
+                value={type}
+                addClass="w-[45%]"
+                formRegister={{ ...register(`fieldList.${index}.dataType`) }}
+              />
+              {!landing && (
+                <MenuI
+                  addClass={`${isSubmit && errors.fieldList ? "mt-7" : "mt-6"}`}
+                  handleDelete={() => deleteField && deleteField(index)}
+                  handleDuplicate={handleDuplicate}
+                  handleMoveDown={() => move && move(index, index + 1)}
+                  handleMoveUp={() => move && move(index, index - 1)}
                 />
-                <DropDown
-                  label="Data Type"
-                  list={DataTypes}
-                  name="dataType"
-                  setValue={(e: Item) => {
-                    setType(e);
-                    setValue(`fieldList.${index}.dataType`, e);
-                  }}
-                  value={type}
-                  addClass="w-[45%]"
-                  formRegister={{ ...register(`fieldList.${index}.dataType`) }}
-                />
-                {!landing && (
-                  <MenuI
-                    addClass={`${
-                      isSubmit && errors.fieldList ? "mt-7" : "mt-6"
-                    }`}
-                    handleDelete={() => deleteField && deleteField(index)}
-                    handleDuplicate={handleDuplicate}
-                    handleMoveDown={() => move && move(index, index + 1)}
-                    handleMoveUp={() => move && move(index, index - 1)}
-                  />
-                )}
-              </div>
+              )}
             </div>
-            <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
-              {/* <>
+          </div>
+          <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
+            {/* <>
                 <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
                   Field Constraints
                 </span>
@@ -202,21 +198,21 @@ const CollapsedContainer = ({
                 )}
                 <br />
               </> */}
-            </Disclosure.Panel>
-            {/* {errors.fieldList && errors.fieldList[index]?.constraints?.message && (
+          </Disclosure.Panel>
+          {/* {errors.fieldList && errors.fieldList[index]?.constraints?.message && (
               <p className="mt-2 pl-5 text-xs text-error" id="email-error">
                 {errors.fieldList[index]?.constraints?.message}
               </p>
             )} */}
-            {/* {errors.fieldList &&
+          {/* {errors.fieldList &&
               errors.fieldList[index]?.constraints?.root &&
               isSubmit && (
                 <p className="mt-2 pl-5 text-xs text-error" id="email-error">
                   {errors.fieldList[index]?.constraints?.root?.message}
                 </p>
               )} */}
-          </>
-        )}
+        </>
+        {/* )} */}
       </Disclosure>
       {!landing && <Divider />}
     </>
