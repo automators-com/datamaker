@@ -17,21 +17,25 @@ export default function Footer() {
           <li>Custom Add-ons</li>
         </ul>
         <ul className="text-[#EBFF00]">
-          <Link href="mailto:office@automators.com">
-            <li>Support</li>
-          </Link>
-          <Link
-            href="https://www.automators.com/about#comp-kwuvehkx"
-            target={"_blank"}
-          >
-            <li className="py-3">Legal</li>
-          </Link>
-          <Link
-            href="https://www.automators.com/privacy-policy"
-            target={"_blank"}
-          >
-            <li>Data protection</li>
-          </Link>
+          <li>
+            <Link href="mailto:office@automators.com">Support</Link>
+          </li>
+          <li className="py-3">
+            <Link
+              href="https://www.automators.com/about#comp-kwuvehkx"
+              target={"_blank"}
+            >
+              Legal
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="https://www.automators.com/privacy-policy"
+              target={"_blank"}
+            >
+              Data protection
+            </Link>
+          </li>
         </ul>
       </div>
       <hr className="my-14 h-[1px] w-full border-none bg-[#442E78]" />

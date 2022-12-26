@@ -106,6 +106,7 @@ const CollapsedContainer = ({
               }`}
             >
               <Disclosure.Button
+                aria-label="Toggle Constraints"
                 className={`inline-grid h-8 min-w-[32px] ${
                   isSubmit && errors.fieldList ? "mt-6" : ""
                 }
@@ -192,6 +193,7 @@ const CollapsedContainer = ({
 
                 {fields.length < 3 && (
                   <button
+                    aria-label="Add Constraints"
                     className="btn-primary-accent-light !inline-grid h-12 w-12"
                     onClick={addConstraints}
                   >

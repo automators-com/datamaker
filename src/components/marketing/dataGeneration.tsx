@@ -58,6 +58,7 @@ export default function DataGeneration({
               <p className="flex items-center gap-2 pb-3  text-xs text-primary">
                 <span> Render Data with </span>
                 <Input
+                  aria-label="Number of rows"
                   addClass="w-16 pr-1"
                   type="number"
                   setValue={(e) => setRow(Number(e.target.value))}
