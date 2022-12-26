@@ -1,10 +1,10 @@
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
-import bg1 from "../../../public/assets/understand-1.jpg";
-import bg2 from "../../../public/assets/understand-2.jpg";
-import bg3 from "../../../public/assets/understand-3.jpg";
-import bg4 from "../../../public/assets/understand-4.jpg";
-import bg5 from "../../../public/assets/understand-5.jpg";
+import bg1 from "../../../public/assets/understand-1.webp";
+import bg2 from "../../../public/assets/understand-2.webp";
+import bg3 from "../../../public/assets/understand-3.webp";
+import bg4 from "../../../public/assets/understand-4.webp";
+import bg5 from "../../../public/assets/understand-5.webp";
 
 export default function Understand() {
   const scale = 0.7;

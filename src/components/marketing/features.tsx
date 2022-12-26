@@ -66,7 +66,7 @@ export default function Features({
         <div className="relative flex h-[400px] w-full flex-col items-center justify-center">
           <Image
             className="relative -right-[6.8rem] scale-150 md:-right-48"
-            src="/assets/templates-screen.png"
+            src="/assets/templates-screen.webp"
             alt="templates screenshot"
             width={2836}
             height={1774}

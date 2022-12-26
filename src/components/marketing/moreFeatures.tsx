@@ -48,7 +48,7 @@ function MoreFeatures() {
         <div className="relative flex w-full flex-col items-center justify-center overflow-x-hidden overflow-y-visible">
           <Image
             className="relative -right-48 scale-150"
-            src="/assets/templates-screen.png"
+            src="/assets/templates-screen.webp"
             alt="templates screenshot"
             width={2836}
             height={1774}
