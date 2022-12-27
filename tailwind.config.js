@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "3xl": "1600px",
+      },
       colors: {
         primary: "hsl(var(--color-primary) / <alpha-value>)",
         "primary-focus": "hsl(var(--color-primary-focus) / <alpha-value>)",
