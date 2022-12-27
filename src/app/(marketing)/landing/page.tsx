@@ -60,6 +60,24 @@ export default function LandingPage() {
 
   const methods = useForm<TemplateForm>({ defaultValues });
 
+  const [scale, setScale] = useState(0.75);
+
+  //choose the screen size
+  const handleResize = () => {
+    if (window.innerWidth < 630) setScale(0.4);
+    else setScale(0.75);
+  };
+
+  // create an event listener
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log("You are on the browser");
+      handleResize();
+
+      // ✅ Can use window here
+      window.addEventListener("resize", handleResize);
+    }
+  }, []);
   return (
     <body className="text-white">
       <div id="landing" className="relative min-h-screen w-full">
@@ -79,12 +97,17 @@ export default function LandingPage() {
         />
         <Hero />
         <span ref={whatRef} className="invisible" />
-        <DataGeneration methods={methods} row={row} setRow={setRow} />
+        <DataGeneration
+          methods={methods}
+          row={row}
+          setRow={setRow}
+          scale={scale}
+        />
         <Features methods={methods} rows={row} />
         <span ref={whyRef} className="invisible" />
         {/* <MoreFeatures /> */}
         <span ref={howRef} className="invisible" />
-        <SplitSection />
+        <SplitSection scale={scale} />
         <Understand />
         <SignUp />
         <Footer />

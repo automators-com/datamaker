@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="relative -z-10 flex h-[90vh] flex-col items-center justify-start overflow-visible bg-gradient-to-r from-[#459CA7] to-[#482B7C]">
+    <section className="hero relative -z-10 flex flex-col items-center justify-start overflow-visible bg-gradient-to-r from-[#459CA7] to-[#482B7C]">
       <div className="flex flex-col items-center text-center md:mx-5 md:mt-10">
         <p className="mb-4 mt-48 text-lg md:mb-0 md:mt-96 md:text-4xl">
           <strong>Fake it. While you make it.</strong>

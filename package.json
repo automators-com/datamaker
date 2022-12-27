@@ -27,6 +27,7 @@
     "@types/react-dom": "18.0.8",
     "bcryptjs": "^2.4.3",
     "eslint-config-next": "13.0.2",
+    "framer-motion": "^8.0.2",
     "next": "13.0.2",
     "next-auth": "^4.18.6",
     "prisma": "^4.8.0",
