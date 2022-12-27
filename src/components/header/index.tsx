@@ -5,9 +5,9 @@ import {
   ArrowLeftOnRectangleIcon,
   EllipsisVerticalIcon,
   Bars3BottomLeftIcon,
-  FireIcon,
   MoonIcon,
   SunIcon,
+  WindowIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -17,7 +17,7 @@ import { classNames } from "../../utilities/className";
 const themes = [
   { name: "Light", key: "root", icon: <SunIcon /> },
   { name: "Dark", key: "dark", icon: <MoonIcon /> },
-  { name: "Fire", key: "fire", icon: <FireIcon /> },
+  { name: "Gray", key: "gray", icon: <WindowIcon /> },
 ];
 
 export default function Header({

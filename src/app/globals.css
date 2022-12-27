@@ -55,28 +55,28 @@
     --color-error: 5 88% 65%;
     --color-error-content: 0 0% 100%;
   }
-  .fire {
-    --color-primary: 0 100% 50%;
-    --color-primary-focus: 0 100% 40%;
+  .gray {
+    --color-primary: 0 0% 13%;
+    --color-primary-focus: 0 0% 8%;
     --color-primary-content: 0 0% 100%;
-    --color-secondary: 0 100% 50%;
-    --color-secondary-focus: 0 100% 40%;
+    --color-secondary: 0 0% 20%;
+    --color-secondary-focus: 0 0% 15%;
     --color-secondary-content: 0 0% 100%;
-    --color-accent: 0 100% 50%;
-    --color-accent-focus: 0 100% 40%;
-    --color-accent-content: 0 0% 100%;
-    --color-neutral: 0 100% 50%;
-    --color-neutral-focus: 0 100% 40%;
+    --color-accent: 60 100% 80%;
+    --color-accent-focus: 60 100% 70%;
+    --color-accent-content: 0 0% 20%;
+    --color-neutral: 0 0% 20%;
+    --color-neutral-focus: 0 0% 15%;
     --color-neutral-content: 0 0% 100%;
-    --color-base-100: 0 100% 50%;
-    --color-base-200: 0 100% 40%;
-    --color-base-300: 0 100% 30%;
+    --color-base-100: 0 0% 13%;
+    --color-base-200: 0 0% 16%;
+    --color-base-300: 0 0% 18%;
     --color-base-content: 0 0% 100%;
-    --color-info: 0 100% 50%;
-    --color-info-content: 0 0% 100%;
-    --color-success: 0 100% 50%;
+    --color-info: 120 100% 50%;
+    --color-info-content: 0 0% 13%;
+    --color-success: 0 0% 20%;
     --color-success-content: 0 0% 100%;
-    --color-warning: 0 100% 50%;
+    --color-warning: 60 100% 50%;
     --color-warning-content: 0 0% 100%;
     --color-error: 0 100% 50%;
     --color-error-content: 0 0% 100%;
