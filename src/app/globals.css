@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 238 33% 17%;
+    --color-primary-focus: 238 33% 07%;
+    --color-primary-content: 0 0% 100%;
+    --color-secondary: 261 49% 33%;
+    --color-secondary-focus: 261 49% 23%;
+    --color-secondary-content: 0 0% 100%;
+    --color-accent: 187 42% 46%;
+    --color-accent-focus: 187 42% 36%;
+    --color-accent-content: 0 0% 100%;
+    --color-neutral: 0 0% 95%;
+    --color-neutral-focus: 0 0% 85%;
+    --color-neutral-content: 261 49% 33%;
+    --color-base-100: 0 0% 100%;
+    --color-base-200: 0 0% 85%;
+    --color-base-300: 0 0% 70%;
+    --color-base-content: 261 49% 33%;
+    --color-info: 65 100% 50%;
+    --color-info-content: 238 33% 17%;
+    --color-success: 261 49% 33%;
+    --color-success-content: 0 0% 100%;
+    --color-warning: 31 76% 57%;
+    --color-warning-content: 0 0% 100%;
+    --color-error: 5 88% 65%;
+    --color-error-content: 0 0% 100%;
+  }
+  .dark {
+    --color-primary: 238 33% 17%;
+    --color-primary-focus: 238 33% 07%;
+    --color-primary-content: 0 0% 100%;
+    --color-secondary: 261 49% 33%;
+    --color-secondary-focus: 261 49% 23%;
+    --color-secondary-content: 0 0% 100%;
+    --color-accent: 187 42% 46%;
+    --color-accent-focus: 187 42% 36%;
+    --color-accent-content: 0 0% 100%;
+    --color-neutral: 261 49% 33%;
+    --color-neutral-focus: 261 49% 23%;
+    --color-neutral-content: 0 0% 100%;
+    --color-base-100: 238 25% 21%;
+    --color-base-200: 238 33% 16%;
+    --color-base-300: 238 33% 11%;
+    --color-base-content: 0 0% 100%;
+    --color-info: 65 100% 50%;
+    --color-info-content: 238 33% 17%;
+    --color-success: 261 49% 33%;
+    --color-success-content: 0 0% 100%;
+    --color-warning: 31 76% 57%;
+    --color-warning-content: 0 0% 100%;
+    --color-error: 5 88% 65%;
+    --color-error-content: 0 0% 100%;
+  }
+  .gray {
+    --color-primary: 0 0% 13%;
+    --color-primary-focus: 0 0% 8%;
+    --color-primary-content: 0 0% 100%;
+    --color-secondary: 0 0% 20%;
+    --color-secondary-focus: 0 0% 15%;
+    --color-secondary-content: 0 0% 100%;
+    --color-accent: 60 100% 80%;
+    --color-accent-focus: 60 100% 70%;
+    --color-accent-content: 0 0% 20%;
+    --color-neutral: 0 0% 20%;
+    --color-neutral-focus: 0 0% 15%;
+    --color-neutral-content: 0 0% 100%;
+    --color-base-100: 0 0% 13%;
+    --color-base-200: 0 0% 16%;
+    --color-base-300: 0 0% 18%;
+    --color-base-content: 0 0% 100%;
+    --color-info: 120 100% 50%;
+    --color-info-content: 0 0% 13%;
+    --color-success: 0 0% 20%;
+    --color-success-content: 0 0% 100%;
+    --color-warning: 60 100% 50%;
+    --color-warning-content: 0 0% 100%;
+    --color-error: 0 100% 50%;
+    --color-error-content: 0 0% 100%;
+  }
+
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Autocomplete styles */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    background: none;
+    -webkit-text-fill-color: none;
+    -webkit-box-shadow: 0 0 0 0 none inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer components {
+  /* btn styles */
+  .btn {
+    @apply inline-flex h-8 items-center rounded-md border border-transparent px-2 py-1.5 text-xs font-medium focus:outline-none;
+  }
+
+  .btn-primary {
+    @apply h-8 border-secondary bg-secondary text-secondary-content shadow-sm hover:border-secondary-focus 
+      hover:bg-secondary-focus focus:bg-secondary-focus;
+  }
+
+  .btn-primary-accent {
+    @apply h-8 border-accent bg-accent text-accent-content shadow-sm hover:border-accent-focus
+     hover:bg-accent-focus focus:bg-accent-focus;
+  }
+
+  .btn-secondary {
+    @apply h-8 border-base-content border-opacity-80 bg-base-100 text-neutral-content shadow-sm hover:bg-base-200;
+  }
+
+  .btn-primary-accent-light {
+    @apply grid h-8 place-content-center rounded-lg bg-accent bg-opacity-10 text-xs text-accent hover:bg-accent-focus hover:bg-opacity-20;
+  }
+
+  .btn-error {
+    @apply h-8 text-error hover:underline;
+  }
+
+  .btn-link {
+    @apply text-accent;
+  }
+
+  .btn svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    margin-left: -0.125rem;
+  }
+
+  /* auth styles */
+  .auth-form {
+    @apply relative top-5 z-10 flex w-auto min-w-[28rem] flex-col rounded-[4px] bg-white p-8 shadow-xl;
+  }
+
+  .auth-input {
+    @apply my-2 w-full rounded-sm border border-[#482B7C] px-6 py-4 text-base placeholder-[#482B7C] outline-none focus:outline-none;
+  }
+
+  .auth-link {
+    @apply text-[14px] text-[#482B7C] no-underline;
+  }
+
+  .auth-button {
+    @apply my-2 flex items-center justify-center rounded-[4px] bg-[#459CA7] px-6 py-4 text-white shadow-lg hover:opacity-80;
+  }
+
+  .auth-error {
+    @apply mt-2 flex items-center justify-center text-center text-sm text-[#482B7C];
+  }
+
+
+  .hero {
+    @apply h-[90vh]
+  }
+
+  @media screen and (max-width: 430px) {
+    .hero {
+      @apply h-[100vh];
+    }
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes cssAnimation {
+    to   { 
+      visibility: visible;
+      transition: 5;
+    }
+  }
+
+}

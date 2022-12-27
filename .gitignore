@@ -4,13 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+temp/
 
 # testing
 /coverage
-
-# database
-/prisma/db.sqlite
-/prisma/db.sqlite-journal
 
 # next.js
 /.next/
@@ -30,11 +27,11 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env
-.env*.local
+.env*
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
