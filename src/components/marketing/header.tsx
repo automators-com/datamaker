@@ -4,19 +4,21 @@ export default function Header({
   scrollToWhat,
   scrollToWhy,
   scrollToHow,
+  scrollToTop,
 }: {
   scrollToWhat: () => void;
   scrollToWhy: () => void;
   scrollToHow: () => void;
+  scrollToTop: () => void;
 }) {
   return (
     <header className="fixed z-50 flex h-10 w-full items-center justify-between py-8 pr-4 text-xs font-bold">
-      <Link
-        href="/"
-        className="rounded-r-full border border-l-0 border-[#459CA7] bg-[#1D1E39] py-3 px-16 text-[#EBFF00] transition duration-300 ease-in-out hover:bg-[#08FFB3] hover:text-[#1D1E39]"
+      <div
+        onClick={() => scrollToTop()}
+        className="cursor-pointer rounded-r-full border border-l-0 border-[#459CA7] bg-[#1D1E39] py-3 px-16 text-[#EBFF00] transition duration-300 ease-in-out hover:bg-[#08FFB3] hover:text-[#1D1E39]"
       >
         dataMaker();
-      </Link>
+      </div>
       <div className="flex items-center">
         <ul className="flex !hidden">
           <li className="mx-4 cursor-pointer" onClick={() => scrollToWhat()}>
