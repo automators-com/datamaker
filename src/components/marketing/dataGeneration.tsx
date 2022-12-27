@@ -73,7 +73,7 @@ export default function DataGeneration({
           ></span>
         </div>
         <FormProvider {...methods}>
-          <form className="relative z-10 flex h-full flex-col items-center gap-y-9 rounded bg-base-100 md:flex-row">
+          <form className="relative z-10 flex h-full flex-col items-center gap-y-9 rounded bg-base-100 p-3 md:flex-row">
             <div className="w-full px-6 sm:px-6 md:w-2/3 md:px-8 lg:px-9">
               {Fields.map((item, index) => {
                 return (
