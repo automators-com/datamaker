@@ -7,7 +7,10 @@ export default function Head() {
         name="description"
         content="Effortlessly generate quality test data with datamaker.app"
       />
-      <meta property="og:image" content="/assets/og-image.png" />
+      <meta
+        property="og:image"
+        content="https://datamaker.app/assets/og-image.png"
+      />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <link rel="icon" href="/favicon.ico" />
@@ -28,7 +31,10 @@ export default function Head() {
         name="twitter:description"
         content="Effortlessly generate quality test data with datamaker.app"
       />
-      <meta name="twitter:image" content="/assets/og-image.png" />
+      <meta
+        name="twitter:image"
+        content="https://datamaker.app/assets/og-image.png"
+      />
     </>
   );
 }
