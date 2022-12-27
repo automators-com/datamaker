@@ -65,6 +65,15 @@ export default function DataGeneration({
         id="generate-form"
         className="relative -top-40 z-40 mx-auto mt-8 min-h-[350px] w-[90%] rounded-md bg-white py-6 shadow-lg sm:py-6 md:-top-80 md:w-2/3 md:py-8 lg:py-12"
       >
+        <div className="absolute -top-60 flex w-full flex-col items-center justify-center text-center">
+          <p className="md:text-4x mb-4 text-lg md:mb-0">
+            <strong className="text-center">Fake it. While you make it.</strong>
+          </p>
+          <p className="pt-2 text-lg md:text-xl">
+            With our intuitive point-and-click interface, creating high-quality
+            synthetic data has never been easier.
+          </p>
+        </div>
         <div className="absolute -top-20 flex w-full flex-col items-center text-center text-[#08FFB3] md:-top-14">
           <p>Get a sneak peek at how to make data work for you!</p>
           <span
