@@ -171,7 +171,7 @@ export default function PreviewModal({
                           ? landing
                             ? "text-base-content"
                             : "text-secondary-content"
-                          : "text-[#08FFB3]",
+                          : "text-accent",
                         "font-medium",
                         landing && "text-xs"
                       )}
