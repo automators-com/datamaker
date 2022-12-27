@@ -14,7 +14,7 @@ import { handleClickScroll } from "../../utilities/scrollTo";
 import { exportJson } from "../../utilities/exportData";
 import { getTableData } from "../../utilities/tableData";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function DataGeneration({
   methods,
@@ -48,6 +48,8 @@ export default function DataGeneration({
 
   const ref3 = useRef(null);
   const isInView3 = useInView(ref3);
+
+  const [robotHover, setRobotHover] = useState(false);
 
   useEffect(() => {
     console.log(isInView3, scale);
@@ -121,7 +123,15 @@ export default function DataGeneration({
           alt="robot"
           width={180}
           height={180}
+          onMouseEnter={() => setRobotHover(true)}
+          onMouseLeave={() => setRobotHover(false)}
         />
+        {robotHover && (
+          <span className="absolute -left-36 top-[10rem] w-20 -rotate-45 text-center text-xs italic text-primary transition delay-1000 ease-in-out">
+            {" "}
+            I eat Data for breakfast.{" "}
+          </span>
+        )}
       </div>
 
       <div className="-mt-60 flex h-96 w-full flex-col items-center bg-[#1D1E39] px-5 md:-mt-80 md:px-0">
@@ -252,7 +262,7 @@ export default function DataGeneration({
             />
             <motion.path
               id="Path_66"
-              transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
+              transition={{ duration: 2, ease: "easeIn", delay: 1 }}
               animate={
                 isInView3 ? { pathLength: 1, strokeDashoffset: 20 } : false
               }
