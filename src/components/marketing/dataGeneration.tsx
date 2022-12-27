@@ -30,9 +30,9 @@ export default function DataGeneration({
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
       <div
         id="generate-form"
-        className="relative -top-80 z-40 mx-auto mt-8 min-h-[350px] w-[90%] rounded-md bg-white py-6 shadow-lg sm:py-6 md:w-2/3 md:py-8 lg:py-12"
+        className="relative -top-40 z-40 mx-auto mt-8 min-h-[350px] w-[90%] rounded-md bg-white py-6 shadow-lg sm:py-6 md:-top-80 md:w-2/3 md:py-8 lg:py-12"
       >
-        <div className="absolute -top-14 flex w-full flex-col items-center text-center text-[#08FFB3]">
+        <div className="absolute -top-20 flex w-full flex-col items-center text-center text-[#08FFB3] md:-top-14">
           <p>Get a sneak peek at how to make data work for you!</p>
           <span
             id="down_arrow"
@@ -85,7 +85,7 @@ export default function DataGeneration({
           </form>
         </FormProvider>
       </div>
-      <div className="-mt-80 flex h-96 w-full flex-col items-center bg-[#1D1E39] px-5 md:px-0">
+      <div className="-mt-60 flex h-96 w-full flex-col items-center bg-[#1D1E39] px-5 md:-mt-80 md:px-0">
         <p className="my-40 max-w-[30em] text-center text-2xl">
           »
           <span className="text-[#459CA7]">
