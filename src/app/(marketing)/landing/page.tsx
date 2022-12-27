@@ -27,6 +27,7 @@ export default function LandingPage() {
     body.classList.add("text-white");
   }, []);
 
+  const topRef = useRef(null);
   const whatRef = useRef(null);
   const whyRef = useRef(null);
   const howRef = useRef(null);
@@ -62,6 +63,7 @@ export default function LandingPage() {
   return (
     <body className="text-white">
       <div id="landing" className="relative min-h-screen w-full">
+        <span ref={topRef} className="invisible" />
         <Image
           src="/assets/globe.png"
           className="fixed top-40 z-0 mx-auto animate-globe opacity-50 bg-blend-color-burn md:-right-[20em] md:top-[12em]"
@@ -70,12 +72,12 @@ export default function LandingPage() {
           alt="globe"
         />
         <Header
+          scrollToTop={() => handleScroll(topRef)}
           scrollToWhat={() => handleScroll(whatRef)}
           scrollToWhy={() => handleScroll(whyRef)}
           scrollToHow={() => handleScroll(howRef)}
         />
         <Hero />
-
         <span ref={whatRef} className="invisible" />
         <DataGeneration methods={methods} row={row} setRow={setRow} />
         <Features methods={methods} rows={row} />
