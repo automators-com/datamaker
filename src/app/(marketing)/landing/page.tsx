@@ -79,7 +79,7 @@ export default function LandingPage() {
     }
   }, []);
   return (
-    <body className="text-white">
+    <body className="font-JetBrainsMono text-white">
       <div id="landing" className="relative min-h-screen w-full">
         <span ref={topRef} className="invisible" />
         <Image

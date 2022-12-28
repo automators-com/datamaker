@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -8,6 +11,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        "3xl": "2560px",
+      },
+      fontFamily: {
+        JetBrainsMono: [
+          "var(--jetbrains-font)",
+          ...defaultTheme.fontFamily.sans,
+        ],
+      },
       colors: {
         primary: "hsl(var(--color-primary) / <alpha-value>)",
         "primary-focus": "hsl(var(--color-primary-focus) / <alpha-value>)",

@@ -78,7 +78,7 @@
     --color-success-content: 0 0% 100%;
     --color-warning: 60 100% 50%;
     --color-warning-content: 0 0% 100%;
-    --color-error: 0 100% 50%;
+    --color-error: 0 100% 80%;
     --color-error-content: 0 0% 100%;
   }
 
@@ -176,9 +176,8 @@
     @apply mt-2 flex items-center justify-center text-center text-sm text-[#482B7C];
   }
 
-
   .hero {
-    @apply h-[90vh]
+    @apply h-[90vh];
   }
 
   @media screen and (max-width: 430px) {
@@ -194,10 +193,9 @@
   }
 
   @keyframes cssAnimation {
-    to   { 
+    to {
       visibility: visible;
       transition: 5;
     }
   }
-
 }

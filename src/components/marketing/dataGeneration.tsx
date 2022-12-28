@@ -27,6 +27,7 @@ export default function DataGeneration({
   scale: number;
   setRow: any;
 }) {
+  const [robotHover, setRobotHover] = useState(false);
   // const scale = 0.7;
   const squareVariants = {
     visible: {
@@ -49,8 +50,6 @@ export default function DataGeneration({
   const ref3 = useRef(null);
   const isInView3 = useInView(ref3);
 
-  const [robotHover, setRobotHover] = useState(false);
-
   useEffect(() => {
     console.log(isInView3, scale);
 
@@ -61,19 +60,48 @@ export default function DataGeneration({
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
+      <Image
+        className="absolute -top-36 left-20 hidden transition-all delay-1000 ease-in-out lg:inline-block"
+        src="/assets/purple-robot.svg"
+        alt="robot"
+        width={180}
+        height={180}
+        onMouseEnter={() => setRobotHover(true)}
+        onMouseLeave={() => setRobotHover(false)}
+      />
+      {robotHover && (
+        <span className="absolute -top-40 left-20  w-20 -rotate-45 text-center text-xs italic text-primary transition-all delay-1000 ease-in-out">
+          {" "}
+          I eat data for breakfast.{" "}
+        </span>
+      )}
       <div
         id="generate-form"
-        className="relative -top-40 z-40 mx-auto mt-8 min-h-[350px] w-[90%] rounded-md bg-white py-6 shadow-lg sm:py-6 md:-top-80 md:w-2/3 md:py-8 lg:py-12"
+        className="relative -top-[30em] z-40 mx-auto flex h-full w-[90%] flex-col rounded-md md:-top-[50em] md:w-2/3"
       >
-        <div className="absolute -top-20 flex w-full flex-col items-center text-center text-[#08FFB3] md:-top-14">
-          <p>Get a sneak peek at how to make data work for you!</p>
+        <div className="flex w-full flex-col items-center text-center">
+          <div className="flex w-full flex-col items-center justify-center py-20 text-center md:py-56">
+            <p className="mb-4 text-lg md:text-4xl">
+              <strong className="text-center">
+                Fake it. While you make it.
+              </strong>
+            </p>
+            <p className="pt-2 text-lg md:text-4xl">
+              With our intuitive point-and-click interface, creating
+              high-quality synthetic data has never been easier.
+            </p>
+          </div>
+          <p className="pt-2 text-[#08FFB3]">
+            Get a sneak peek at how <br className="md:hidden" />
+            to make data work for you!
+          </p>
           <span
             id="down_arrow"
-            className="m-2 h-0 w-0 border-t-[5px] border-l-[5px] border-r-[5px] border-solid border-[#08FFB3] border-l-transparent border-r-transparent"
+            className="m-2 mb-4 h-0 w-0 border-t-[5px] border-l-[5px] border-r-[5px] border-solid border-[#08FFB3] border-l-transparent border-r-transparent"
           ></span>
         </div>
         <FormProvider {...methods}>
-          <form className="relative z-10 flex h-full flex-col items-center gap-y-9 rounded bg-base-100 p-3 md:flex-row">
+          <form className="flex h-full flex-col items-center gap-y-9 rounded bg-white p-3 py-20 shadow-lg md:flex-row ">
             <div className="w-full px-6 sm:px-6 md:w-2/3 md:px-8 lg:px-9">
               {Fields.map((item, index) => {
                 return (
@@ -117,26 +145,11 @@ export default function DataGeneration({
             </div>
           </form>
         </FormProvider>
-        <Image
-          className="absolute top-[9rem] -left-32 hidden md:inline"
-          src="/assets/purple-robot.svg"
-          alt="robot"
-          width={180}
-          height={180}
-          onMouseEnter={() => setRobotHover(true)}
-          onMouseLeave={() => setRobotHover(false)}
-        />
-        {robotHover && (
-          <span className="absolute -left-36 top-[10rem] w-20 -rotate-45 text-center text-xs italic text-primary transition delay-1000 ease-in-out">
-            {" "}
-            I eat Data for breakfast.{" "}
-          </span>
-        )}
       </div>
 
       <div className="-mt-60 flex h-96 w-full flex-col items-center bg-[#1D1E39] px-5 md:-mt-80 md:px-0">
         <motion.p
-          className="my-40 max-w-[30em] text-center text-2xl"
+          className="mb-20 max-w-[30em] text-center text-2xl"
           transition={{ duration: 1 }}
           ref={ref}
           animate={controls}
@@ -152,7 +165,7 @@ export default function DataGeneration({
       </div>
       <div className="flex w-full flex-col items-center justify-center pb-10 md:flex-row">
         <motion.div
-          className="relative my-10 flex h-64 w-64 flex-col items-center justify-start rounded-md bg-white p-8 text-primary"
+          className="relative my-10 flex h-72 w-72 flex-col items-center justify-start rounded-md bg-white p-8 text-primary"
           transition={{ duration: 1 }}
           ref={ref2}
           animate={controls}
@@ -175,7 +188,7 @@ export default function DataGeneration({
           </p>
         </motion.div>
         <motion.div
-          className="relative mx-8 my-10 flex h-64 w-64 flex-col items-center justify-start rounded-md bg-white p-8 text-primary"
+          className="relative mx-8 my-10 flex h-72 w-72 flex-col items-center justify-start rounded-md bg-white p-8 text-primary"
           transition={{ duration: 1 }}
           ref={ref2}
           animate={controls}
@@ -198,7 +211,7 @@ export default function DataGeneration({
           </p>
         </motion.div>
         <motion.div
-          className="relative my-10 flex h-64 w-64 flex-col items-center justify-start rounded-md bg-white  p-8 text-primary"
+          className="relative my-10 flex h-72 w-72 flex-col items-center justify-start rounded-md bg-white  p-8 text-primary"
           transition={{ duration: 1 }}
           ref={ref2}
           animate={controls}

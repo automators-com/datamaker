@@ -1,34 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+    <img src="https://raw.githubusercontent.com/automators-com/datamaker/dev/public/assets/og-image.png" alt="datamaker" align="center"></img>
+</div>
+<br/>
+
+Welcome to datamaker - a Next.js application from [Automators](https://automators.com) that is used to generate high quality synthetic test data.
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
+git clone https://github.com/automators-com/datamaker.git
+cd datamaker
+```
+
+Install the dependencies:
+
+```bash
+pnpm install
+```
+
+Generate a prisma client:
+
+```bash
+pnpx prisma generate
+```
+
+You will need to have the following environment variables set:
+
+```bash
+# Prisma
+DATABASE_URL=""
+
+# Next Auth
+NEXTAUTH_SECRET="supersecretstring"
+NEXTAUTH_URL="http://localhost:3000"
+
+# Sendgrid email service
+SENDGRID_API_KEY=""
+```
+
+If you want to use your own database for development, you can use the following command to run the migrations against your instance:
+
+```bash
+pnpm run migrate:dev
+```
+
+Start the development server:
+
+```bash
+pnpm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+This app is built using the following core technologies, find out more about them below:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js](https://nextjs.org/)
+- [Next Auth](https://next-auth.js.org/)
+- [Prisma](https://www.prisma.io/)
+- [React Query](https://react-query.tanstack.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deployments
 
-## Deploy on Vercel
+This app is deployed to [Vercel](https://vercel.com/). You can find the production deployment at [datamaker.app](https://datamaker.app)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[MIT](LICENSE)
