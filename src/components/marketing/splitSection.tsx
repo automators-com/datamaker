@@ -3,16 +3,9 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { squareVariants, startAnimation, stopAnimation } from "../../utilities/controlAnimation";
 
-// let window: Window & typeof globalThis;
-const squareVariants = {
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 50, type: "spring", stiffness: 120, delay: 0.5 },
-  },
-  hidden: { opacity: 0, scale: 0.5 },
-};
+
 export default function SplitSection({ scale }: { scale: number }) {
   const controls = useAnimation();
 
@@ -20,13 +13,9 @@ export default function SplitSection({ scale }: { scale: number }) {
   const isInView = useInView(ref);
 
   useEffect(() => {
-    async function startAnimation() {
-      await controls
-        .start("visible")
-        .then()
-        .catch((err) => console.log(err));
-    }
-    if (isInView) startAnimation();
+    if (isInView) startAnimation(controls);
+    else stopAnimation(controls);
+
   }, [controls, isInView]);
 
   return (

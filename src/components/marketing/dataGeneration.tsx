@@ -15,6 +15,7 @@ import { exportJson } from "../../utilities/exportData";
 import { getTableData } from "../../utilities/tableData";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { squareVariants, startAnimation, stopAnimation } from "../../utilities/controlAnimation";
 
 export default function DataGeneration({
   methods,
@@ -29,14 +30,6 @@ export default function DataGeneration({
 }) {
   const [robotHover, setRobotHover] = useState(false);
   // const scale = 0.7;
-  const squareVariants = {
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 50, type: "spring", stiffness: 120, delay: 0.5 },
-    },
-    hidden: { opacity: 0, scale: 0.5 },
-  };
   const Fields = methods.getValues("fieldList");
   const tableData: any[] = getTableData(row, Fields);
 
@@ -51,12 +44,13 @@ export default function DataGeneration({
   const isInView3 = useInView(ref3);
 
   useEffect(() => {
-    console.log(isInView3, scale);
 
-    if (isInView || isInView2 || isInView3) {
-      controls.start("visible");
-    }
+    if (isInView || isInView2 || isInView3) startAnimation(controls);
+    else stopAnimation(controls);
+
   }, [controls, isInView, isInView2, isInView3]);
+
+
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
