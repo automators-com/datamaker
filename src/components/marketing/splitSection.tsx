@@ -3,8 +3,11 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { squareVariants, startAnimation, stopAnimation } from "../../utilities/controlAnimation";
-
+import {
+  squareVariants,
+  startAnimation,
+  stopAnimation,
+} from "../../utilities/controlAnimation";
 
 export default function SplitSection({ scale }: { scale: number }) {
   const controls = useAnimation();
@@ -15,7 +18,6 @@ export default function SplitSection({ scale }: { scale: number }) {
   useEffect(() => {
     if (isInView) startAnimation(controls);
     else stopAnimation(controls);
-
   }, [controls, isInView]);
 
   return (

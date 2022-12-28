@@ -15,7 +15,11 @@ import { exportJson } from "../../utilities/exportData";
 import { getTableData } from "../../utilities/tableData";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { squareVariants, startAnimation, stopAnimation } from "../../utilities/controlAnimation";
+import {
+  squareVariants,
+  startAnimation,
+  stopAnimation,
+} from "../../utilities/controlAnimation";
 
 export default function DataGeneration({
   methods,
@@ -34,6 +38,7 @@ export default function DataGeneration({
   const tableData: any[] = getTableData(row, Fields);
 
   const controls = useAnimation();
+  const controls3 = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
 
@@ -44,13 +49,13 @@ export default function DataGeneration({
   const isInView3 = useInView(ref3);
 
   useEffect(() => {
-
-    if (isInView || isInView2 || isInView3) startAnimation(controls);
+    if (isInView || isInView2) startAnimation(controls);
     else stopAnimation(controls);
 
-  }, [controls, isInView, isInView2, isInView3]);
-
-
+    if (isInView3) {
+      controls3.start({ pathLength: 1 });
+    } else stopAnimation(controls3);
+  }, [controls, controls3, isInView, isInView2, isInView3]);
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-visible bg-[#1D1E39]">
@@ -236,6 +241,7 @@ export default function DataGeneration({
           width={963.198 * scale}
           height={622.426 * scale}
         /> */}
+
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           className="relative md:-left-10"
@@ -251,11 +257,7 @@ export default function DataGeneration({
           >
             <motion.path
               transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
-              animate={
-                isInView3
-                  ? { type: "tween", pathLength: 1, strokeDashoffset: 20 }
-                  : false
-              }
+              animate={controls3}
               initial={{ pathLength: 0 }}
               id="Path_67"
               data-name="Path 67"
@@ -267,12 +269,21 @@ export default function DataGeneration({
               stroke-width="4"
               stroke-dasharray="4 12"
             />
+            <path
+              stroke={"rgb(29,30,57)"}
+              stroke-dasharray="10 12"
+              strokeDashoffset="0"
+              stroke-width="5"
+              id="Path_67"
+              data-name="Path 67"
+              d="M.464,74.768c211.777,4.6,271.991,206.464,420.863,193.537S730.635,79.96,595.952,23.062C459.494-34.587,300.964,40.209,339.791,139s545.537,238.44,545.537,238.44"
+              transform="translate(819.437 2393.124) rotate(163)"
+              fill="none"
+            />
             <motion.path
               id="Path_66"
-              transition={{ duration: 2, ease: "easeIn", delay: 1 }}
-              animate={
-                isInView3 ? { pathLength: 1, strokeDashoffset: 20 } : false
-              }
+              transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
+              animate={controls3}
               initial={{ pathLength: 0 }}
               data-name="Path 66"
               d="M1951.05,1508.143c-226.722-1.4-324.5-217.674-453.9-220.535s-301.772,211.377-156.792,280.433,311.027,52.331,271.443-70-575-81.441-575-81.441"
@@ -282,6 +293,17 @@ export default function DataGeneration({
               stroke-linecap="round"
               stroke-width="4"
               stroke-dasharray="4 12"
+            />
+            <path
+              stroke={"rgb(29,30,57)"}
+              stroke-dasharray="10 12"
+              strokeDashoffset="0"
+              stroke-width="5"
+              id="Path_66"
+              data-name="Path 66"
+              d="M1951.05,1508.143c-226.722-1.4-324.5-217.674-453.9-220.535s-301.772,211.377-156.792,280.433,311.027,52.331,271.443-70-575-81.441-575-81.441"
+              transform="matrix(0.985, -0.174, 0.174, 0.985, -1384.708, 1174.508)"
+              fill="none"
             />
           </g>
         </motion.svg>
