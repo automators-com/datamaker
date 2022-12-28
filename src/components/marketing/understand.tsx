@@ -10,9 +10,20 @@ export default function Understand() {
   const scale = 0.7;
   return (
     <section className="flex flex-col items-center justify-start bg-white pt-40 pb-20 text-black">
-      <p className="px-5 pt-10 text-center text-3xl md:px-0 md:pt-0">
-        Understand How Datamaker Makes Your <br /> Job Easier
-      </p>
+
+      <div className="relative w-full">
+        <Image
+          className="absolute -top-32 right-48 scale-150 hidden lg:inline"
+          src="/assets/vertical-navy-dashed.svg"
+          alt="templates screenshot"
+          width={4}
+          height={60}
+        />
+        <p className="px-5 pt-10 text-center text-3xl md:px-0 md:pt-0">
+          Understand How Datamaker Makes Your <br /> Job Easier
+        </p>
+      </div>
+
 
       <div className="mt-20 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
         <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
@@ -71,7 +82,7 @@ export default function Understand() {
           </p>
         </div>
       </div>
-      <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
+      <div className="relative mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
         <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">
           <BlueCard
             number={3}
@@ -96,8 +107,15 @@ export default function Understand() {
             implementation based on their needs.
           </p>
         </div>
+        <Image
+          className="absolute left-48 top-0 scale-150 hidden lg:inline"
+          src="/assets/vertical-red-dashed.svg"
+          alt="templates screenshot"
+          width={4}
+          height={60}
+        />
       </div>
-      <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row-reverse xl:flex-row-reverse">
+      <div className="relative mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row-reverse xl:flex-row-reverse">
         <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">
           <RedCard
             number={4}
@@ -124,6 +142,13 @@ export default function Understand() {
             .
           </p>
         </div>
+        <Image
+          className="absolute right-48 scale-150 hidden lg:inline"
+          src="/assets/vertical-blue-dashed.svg"
+          alt="templates screenshot"
+          width={4}
+          height={60}
+        />
       </div>
       <div className="mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row xl:flex-row">
         <div className="flex w-full items-center justify-center px-8 lg:justify-end xl:justify-end">

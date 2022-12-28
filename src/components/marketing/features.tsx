@@ -17,6 +17,24 @@ export default function Features({
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-x-hidden bg-gradient-to-t from-[#459CA7] to-[#482B7C] py-40">
+      <div className="absolute top-20 left-1/2 lg:top-20 lg:left-0">
+        <Image
+          className="relative left-4 lg:left-20 -top-44 scale-150"
+          src="/assets/vertical-yellow-dashed.svg"
+          alt="templates screenshot"
+          width={4}
+          height={80}
+        />
+        <Image
+          className="relative lg:left-28 -top-72 lg:-top-52 scale-150"
+          src="/assets/vertical-white-dashed.svg"
+          alt="templates screenshot"
+          width={4}
+          height={80}
+        />
+      </div>
+
+
       <p className="px-20 text-center text-3xl font-bold sm:px-0">
         Robust Features For Your Data <br /> Ecosystem
       </p>
@@ -65,12 +83,35 @@ export default function Features({
         </div>
         <div className="relative flex h-[400px] w-full flex-col items-center justify-center 3xl:mt-52">
           <Image
-            className="relative -right-[6.8rem] scale-150 md:-right-48"
+            className="relative z-10 -right-[6.8rem] scale-150 md:-right-48"
             src="/assets/templates-screen.webp"
             alt="templates screenshot"
             width={1280}
             height={801}
           />
+          <div className="absolute -top-10 md:-top-96 right-64">
+            <Image
+              className="relative -top-10 md:top-20 -right-32 md:-right-32 scale-150"
+              src="/assets/vertical-green-dashed.svg"
+              alt="templates screenshot"
+              width={4}
+              height={60}
+            />
+            <Image
+              className="relative -top-64 md:-top-80 -right-36 md:-right-40 scale-150"
+              src="/assets/vertical-green-dashed-2.svg"
+              alt="templates screenshot"
+              width={4}
+              height={60}
+            />
+            <Image
+              className="relative -top-[30rem] md:-top-72 -right-40 md:-right-48 scale-150"
+              src="/assets/vertical-green-dashed-3.svg"
+              alt="templates screenshot"
+              width={4}
+              height={60}
+            />
+          </div>
         </div>
       </div>
       <div className="mt-5 flex h-auto w-full flex-col-reverse gap-y-12 gap-x-3 py-10 md:mt-20 md:flex-row md:py-40">
