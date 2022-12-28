@@ -186,6 +186,20 @@
     margin: 0;
   }
 
+  .bg-header {
+    background: linear-gradient(to right, #08ffb3 50%, #1d1e39 50%);
+    transition: all 1.5s ease;
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: #ebff00;
+    cursor: pointer;
+  }
+
+  .bg-header:hover {
+    background-position: left bottom;
+    color: #1d1e39;
+  }
+
   @media screen and (max-width: 430px) {
     .hero {
       @apply h-[100vh];
