@@ -17,6 +17,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
+    "@next/font": "^13.1.1",
     "@premieroctet/next-crud": "^2.3.1",
     "@prisma/client": "^4.8.0",
     "@sendgrid/mail": "^7.7.0",

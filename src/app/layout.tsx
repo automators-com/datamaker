@@ -3,7 +3,11 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import Script from "next/script";
+import Head from "./head";
+import { JetBrains_Mono } from "@next/font/google";
 import "./globals.css";
+
+const jetBrains_Mono = JetBrains_Mono({ subsets: ["latin"], display: "swap" });
 
 export default function RootLayout({
   children,
@@ -32,8 +36,16 @@ export default function RootLayout({
             `,
             }}
           />
-
-          <head />
+          <style jsx global>
+            {`
+              :root {
+                --jetbrains-font: ${jetBrains_Mono.style.fontFamily};
+              }
+            `}
+          </style>
+          <head>
+            <Head />
+          </head>
           {children}
         </html>
       </QueryClientProvider>
