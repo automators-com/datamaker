@@ -1,10 +1,11 @@
-import { Fragment, useState } from "react";
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import type { TemplateForm } from "./types";
 import { getTableData } from "../../../utilities/tableData";
 import PreviewModal from "./previewModal";
 import DropDown from "../../../components/dropdown";
-import { Input } from "../../../components/input";
 import { exportJson } from "../../../utilities/exportData";
 import { CSVLink } from "react-csv";
 import { Target } from "../../../utilities/constants";
@@ -24,6 +25,7 @@ export default function ExportModal({
   });
 
   const [openPreview, setOpenPreview] = useState(false);
+  const dataPointRef = useRef<HTMLInputElement>(null);
 
   const TableHeader = data?.fieldList; //?.map((x) => x.fieldName);
   const tableData: any[] = getTableData(exportData.dataPoint, TableHeader);
@@ -32,9 +34,19 @@ export default function ExportModal({
     setOpen(false);
     setOpenPreview(false);
   };
+
+  useEffect(() => {
+    setTimeout(() => dataPointRef.current?.focus(), 200);
+  }, [exportData, openPreview]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={handleClose}>
+      <Dialog
+        as="div"
+        className="modal relative z-10"
+        onClose={handleClose}
+        initialFocus={dataPointRef}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -112,20 +124,26 @@ export default function ExportModal({
                         addClass="mb-7"
                       />
 
-                      <Input
+                      <label className="mb-2 block text-[11px] font-medium text-base-content opacity-50">
+                        Number of Datapoints
+                      </label>
+                      <input
                         name="dataPoint"
                         type="number"
-                        value={exportData.dataPoint}
-                        setValue={(e) =>
+                        ref={dataPointRef}
+                        className="block w-24 rounded-md border border-accent bg-base-100 py-1 pr-1 pl-3
+                         text-left text-sm font-medium text-base-content placeholder-base-content placeholder-opacity-30 shadow-sm focus:outline-none"
+                        onChange={(e) => {
+                          const val = Number(e.target.value);
+                          if (val > 10000) return;
                           setExportData((prev) => {
                             return {
                               ...prev,
-                              dataPoint: Number(e.target.value),
+                              dataPoint: val,
                             };
-                          })
-                        }
-                        label="Number of Datapoints"
-                        addClass="w-24 !pr-1"
+                          });
+                        }}
+                        value={exportData.dataPoint}
                       />
                     </div>
 
