@@ -47,19 +47,35 @@ export default function DataGeneration({
   const ref3 = useRef(null);
   const isInView3 = useInView(ref3);
 
+  const controls4 = useAnimation();
+  const ref4 = useRef(null);
+  const isInView4 = useInView(ref4);
+
   useEffect(() => {
     if (isInView || isInView2) startAnimation(controls);
     else stopAnimation(controls);
 
-    if (isInView3) {
-      controls3.start({ pathLength: 1 });
-    } else stopAnimation(controls3);
-  }, [controls, controls3, isInView, isInView2, isInView3]);
+    if (isInView4) {
+      controls4.start({ opacity: 1 });
+    }
+  }, [
+    controls,
+    controls3,
+    controls4,
+    isInView,
+    isInView2,
+    isInView3,
+    isInView4,
+  ]);
 
   // framer motion scroll animations
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["end end", "start start"],
+  });
+
+  const { scrollYProgress: scrollYProgressLines } = useScroll({
+    target: ref3,
   });
 
   return (
@@ -290,7 +306,7 @@ export default function DataGeneration({
               height={72 * scale}
             />
             <p className="my-4 text-[#459CA7]">Fit-for-purpose</p>
-            <p className="text-center text-xs">
+            <p className="text-center text-xs" ref={ref3}>
               Stop struggling with ad-hoc scripts or complex tools to generate
               the data you need. Datamaker is purpose-built to quickly and
               easily generate the synthetic test data you need with exceptional
@@ -312,7 +328,6 @@ export default function DataGeneration({
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           className="relative md:-left-10"
-          ref={ref3}
           width={963.198 * scale}
           height={622.426 * scale}
           viewBox="0 0 963.198 622.426"
@@ -323,9 +338,9 @@ export default function DataGeneration({
             transform="translate(142.526 -2029.363)"
           >
             <motion.path
-              transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
-              animate={controls3}
-              initial={{ pathLength: 0 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+              style={{ pathLength: 1, pathOffset: scrollYProgressLines }}
+              initial={{ pathLength: 1, pathOffset: 0 }}
               id="Path_67"
               data-name="Path 67"
               d="M.464,74.768c211.777,4.6,271.991,206.464,420.863,193.537S730.635,79.96,595.952,23.062C459.494-34.587,300.964,40.209,339.791,139s545.537,238.44,545.537,238.44"
@@ -349,9 +364,9 @@ export default function DataGeneration({
             />
             <motion.path
               id="Path_66"
-              transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
-              animate={controls3}
-              initial={{ pathLength: 0 }}
+              transition={{ duration: 1, ease: "easeInOut" }}
+              style={{ pathLength: 1, pathOffset: scrollYProgressLines }}
+              initial={{ pathLength: 1, pathOffset: 0 }}
               data-name="Path 66"
               d="M1951.05,1508.143c-226.722-1.4-324.5-217.674-453.9-220.535s-301.772,211.377-156.792,280.433,311.027,52.331,271.443-70-575-81.441-575-81.441"
               transform="matrix(0.985, -0.174, 0.174, 0.985, -1384.708, 1174.508)"
@@ -374,15 +389,20 @@ export default function DataGeneration({
             />
           </g>
         </motion.svg>
-        <p className="invisible w-2/3 animate-[cssAnimation_0s_3s_forwards] text-center text-2xl text-[#F46256] md:w-1/3 md:text-left md:text-3xl">
+        <motion.p
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, delay: 2 }}
+          animate={controls4}
+          className="invisible w-2/3 animate-[cssAnimation_0s_3s_forwards] text-center text-2xl text-[#F46256] md:w-1/3 md:text-left md:text-3xl"
+        >
           <strong>High-Quality test data is hard to come by,</strong> and using
           production data in test environments{" "}
           <span className="text-white">is risky.</span>
-        </p>
+        </motion.p>
       </div>
       <div className="invisible flex w-full animate-[cssAnimation_0s_3s_forwards] items-center justify-center px-10 pb-40 pt-14">
         <p className="relative inline text-lg font-light md:w-1/2">
-          <span className="float-left flex h-6 items-center pr-4">
+          <span className="float-left flex h-6 items-center pr-4" ref={ref4}>
             <Image
               src="/assets/red-dots.svg"
               alt="red dots"
