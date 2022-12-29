@@ -180,6 +180,12 @@
     @apply h-[90vh];
   }
 
+  .modal input::-webkit-outer-spin-button,
+  .modal input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   @media screen and (max-width: 430px) {
     .hero {
       @apply h-[100vh];
