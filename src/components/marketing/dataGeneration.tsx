@@ -20,6 +20,7 @@ import {
   startAnimation,
   stopAnimation,
 } from "../../utilities/controlAnimation";
+import ReactTooltip from "react-tooltip";
 
 export default function DataGeneration({
   methods,
@@ -100,7 +101,36 @@ export default function DataGeneration({
           ></span>
         </div>
         <FormProvider {...methods}>
-          <form className="flex h-full flex-col items-center gap-y-9 rounded bg-white p-3 py-20 shadow-lg md:flex-row ">
+          <form className="relative flex h-full flex-col items-center gap-y-9 rounded bg-white p-3 py-20 shadow-lg md:flex-row ">
+            <div className="absolute top-0 right-0">
+              <div
+                data-tip
+                data-for="general"
+                className="rounded-bl-full bg-[#F46256] p-3 pl-6 pb-5 hover:bg-primary"
+              >
+                <Image
+                  src="/assets/question-mark-icon.svg"
+                  alt="question icon"
+                  width={25}
+                  height={25}
+                />
+              </div>
+              <ReactTooltip
+                id="general"
+                place="top"
+                className="!rounded-md !bg-black !p-3"
+              >
+                <p className="w-60 text-xs">
+                  {" "}
+                  <strong>
+                    This is a simplified preview of datamaker();
+                  </strong>{" "}
+                  - Withfull access you gain a multude of additional
+                  field-types, constraints and dynamic functions.
+                </p>
+              </ReactTooltip>
+            </div>
+
             <div className="w-full px-6 sm:px-6 md:w-2/3 md:px-8 lg:px-9">
               {Fields.map((item, index) => {
                 return (
@@ -135,12 +165,42 @@ export default function DataGeneration({
               >
                 <EyeIcon /> Preview data table
               </button>
-              <button
-                className="btn btn-primary"
-                onClick={() => exportJson(tableData, "testData")}
-              >
-                <PaperAirplaneIconOutline /> Export/Send Data
-              </button>
+              <div className="flex w-auto items-center gap-3">
+                <button
+                  className="btn btn-primary w-full"
+                  onClick={() => exportJson(tableData, "testData")}
+                >
+                  <PaperAirplaneIconOutline /> Export/Send Data
+                </button>
+
+                <div
+                  data-tip
+                  data-for="export"
+                  className="rounded-full bg-[#F46256] p-2"
+                >
+                  <Image
+                    src="/assets/question-mark-icon.svg"
+                    alt="question icon"
+                    width={10}
+                    height={10}
+                  />
+                </div>
+                <ReactTooltip
+                  id="export"
+                  place="top"
+                  className="!rounded-md !bg-black !p-3"
+                >
+                  <p className="w-60 text-xs">
+                    {" "}
+                    <strong>Exporting your data: </strong> we cover
+                    industry-standards like <strong>JSON, CSV </strong> and{" "}
+                    <strong> EXCEL, SQL </strong> and{" "}
+                    <strong> RAW-Text. </strong>
+                    Data can also be directly sent to pre-defined{" "}
+                    <span className="text-[#EFFD53]"> endpoints or APIs</span>.
+                  </p>
+                </ReactTooltip>
+              </div>
             </div>
           </form>
         </FormProvider>
