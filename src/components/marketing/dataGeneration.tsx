@@ -117,6 +117,8 @@ export default function DataGeneration({
               </div>
               <ReactTooltip
                 id="general"
+                delayHide={300}
+                effect="solid"
                 place="top"
                 className="!rounded-md !bg-black !p-3"
               >
@@ -188,6 +190,8 @@ export default function DataGeneration({
                 <ReactTooltip
                   id="export"
                   place="top"
+                  delayHide={300}
+                  effect="solid"
                   className="!rounded-md !bg-black !p-3"
                 >
                   <p className="w-60 text-xs">

@@ -17,23 +17,6 @@ export default function Features({
 
   return (
     <section className="relative z-10 flex h-auto flex-col items-center justify-start overflow-x-hidden bg-gradient-to-t from-[#459CA7] to-[#482B7C] py-40">
-      <div className="absolute top-20 left-1/2 lg:top-20 lg:left-0">
-        <Image
-          className="relative left-4 -top-44 scale-150 lg:left-20"
-          src="/assets/vertical-yellow-dashed.svg"
-          alt="templates screenshot"
-          width={4}
-          height={80}
-        />
-        <Image
-          className="relative -top-72 scale-150 lg:left-28 lg:-top-52"
-          src="/assets/vertical-white-dashed.svg"
-          alt="templates screenshot"
-          width={4}
-          height={80}
-        />
-      </div>
-
       <p className="px-20 text-center text-3xl font-bold sm:px-0">
         Robust Features For Your Data <br /> Ecosystem
       </p>

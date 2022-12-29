@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
 import bg1 from "../../../public/assets/understand-1.webp";
@@ -5,9 +6,32 @@ import bg2 from "../../../public/assets/understand-2.webp";
 import bg3 from "../../../public/assets/understand-3.webp";
 import bg4 from "../../../public/assets/understand-4.webp";
 import bg5 from "../../../public/assets/understand-5.webp";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function Understand() {
   const scale = 0.7;
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+
+  const draw = (i: number) => {
+    return {
+      hidden: { pathLength: 0, opacity: 0 },
+      visible: () => {
+        const delay = i;
+        return {
+          pathLength: 1,
+          opacity: 1,
+          transition: {
+            pathLength: { delay, type: "spring", duration: 2, bounce: 5 },
+            opacity: { delay, duration: 0.01 },
+          },
+        };
+      },
+    };
+  };
+
   return (
     <section className="flex flex-col items-center justify-start bg-white pt-40 pb-20 text-black">
       <div className="relative w-full">
@@ -105,13 +129,92 @@ export default function Understand() {
             implementation based on their needs.
           </p>
         </div>
-        <Image
+        {/* <motion.img
+          transition={{ duration: 2, ease: "easeInOut", delay: 1 }}
+          animate={controls}
+          initial={{ pathLength: 0 }}
           className="absolute left-48 top-0 hidden scale-150 lg:inline"
-          src="/assets/vertical-red-dashed.svg"
+          src={"/assets/vertical-red-dashed.svg"}
           alt="templates screenshot"
           width={4}
           height={60}
-        />
+        /> */}
+
+        <motion.svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="200"
+          viewBox="0 0 10 585"
+          ref={ref}
+          className="absolute left-48 top-0 hidden scale-150 lg:inline"
+          initial="hidden"
+          animate={isInView ? "visible" : undefined}
+        >
+          <motion.g
+            id="Group_334"
+            data-name="Group 334"
+            transform="translate(1347.5 2483) rotate(180)"
+          >
+            <motion.rect
+              variants={draw(0.2)}
+              id="Rectangle_16"
+              data-name="Rectangle 16"
+              width="100"
+              height="10"
+              rx="5"
+              transform="translate(1337.5 2306.5) rotate(-90)"
+              fill="#f46256"
+            />
+            <motion.rect
+              variants={draw(0.35)}
+              transition={{
+                duration: 1,
+                ease: "easeInOut",
+              }}
+              id="Rectangle_19"
+              data-name="Rectangle 19"
+              width="237.5"
+              height="10"
+              rx="5"
+              transform="translate(1337.5 2135.5) rotate(-90)"
+              fill="#f46256"
+            />
+            <motion.rect
+              variants={draw(0.122)}
+              id="Rectangle_17"
+              data-name="Rectangle 17"
+              width="40"
+              height="10"
+              rx="5"
+              transform="translate(1337.5 2362) rotate(-90)"
+              fill="#f46256"
+            />
+            <motion.rect
+              variants={draw(0.1)}
+              id="Rectangle_22"
+              data-name="Rectangle 22"
+              width="10"
+              height="10"
+              rx="5"
+              transform="translate(1337.5 2387.5) rotate(-90)"
+              fill="#f46256"
+            />
+            <motion.rect
+              variants={draw(0.3)}
+              transition={{
+                duration: 1,
+                ease: "easeInOut",
+              }}
+              id="Rectangle_18"
+              data-name="Rectangle 18"
+              width="40"
+              height="10"
+              rx="5"
+              transform="translate(1337.5 2191) rotate(-90)"
+              fill="#f46256"
+            />
+          </motion.g>
+        </motion.svg>
       </div>
       <div className="relative mt-10 flex w-full flex-col gap-7 py-10 lg:flex-row-reverse xl:flex-row-reverse">
         <div className="flex w-full items-center justify-center px-8 lg:justify-start xl:justify-start">

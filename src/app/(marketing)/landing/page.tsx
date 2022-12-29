@@ -97,13 +97,31 @@ export default function LandingPage() {
         />
         <Hero />
         <span ref={whatRef} className="invisible" />
-        <DataGeneration
-          methods={methods}
-          row={row}
-          setRow={setRow}
-          scale={scale}
-        />
-        <Features methods={methods} rows={row} />
+        <div className="relative">
+          <DataGeneration
+            methods={methods}
+            row={row}
+            setRow={setRow}
+            scale={scale}
+          />
+          <div className="absolute bottom-[50%] left-1/2 z-20  lg:left-0">
+            <Image
+              className="relative left-4 top-[19rem] scale-150 lg:left-20"
+              src="/assets/vertical-yellow-dashed.svg"
+              alt="templates screenshot"
+              width={4}
+              height={80}
+            />
+            <Image
+              className="relative top-48 scale-150 lg:top-56 lg:left-28"
+              src="/assets/vertical-white-dashed.svg"
+              alt="templates screenshot"
+              width={4}
+              height={80}
+            />
+          </div>
+          <Features methods={methods} rows={row} />
+        </div>
         <span ref={whyRef} className="invisible" />
         {/* <MoreFeatures /> */}
         <span ref={howRef} className="invisible" />

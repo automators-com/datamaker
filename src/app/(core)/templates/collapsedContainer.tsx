@@ -173,6 +173,8 @@ const CollapsedContainer = ({
                     <ReactTooltip
                       id="data"
                       place="top"
+                      delayHide={300}
+                      effect="solid"
                       className="!rounded-md !bg-black !p-3"
                     >
                       <p className="w-64 text-xs">
