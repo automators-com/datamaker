@@ -36,8 +36,6 @@ export default function PreviewModal({
   const [preview, setPreview] = useState(Types[0]);
   const pretty = JSON.stringify(tableData, null, 4);
 
-  console.log(landing);
-
   return (
     <>
       <div
