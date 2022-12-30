@@ -292,12 +292,6 @@ export default function Understand() {
             .
           </p>
         </div>
-        <Image
-          src="/assets/vertical-blue-dashed.svg"
-          alt="templates screenshot"
-          width={4}
-          height={60}
-        />
         <motion.svg
           xmlns="http://www.w3.org/2000/svg"
           width="10"
