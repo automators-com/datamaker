@@ -17,7 +17,8 @@ import { DataTypes } from "../../../utilities/constants";
 import Features from "../../../components/marketing/features";
 // import MoreFeatures from "../../../components/marketing/moreFeatures";
 import Understand from "../../../components/marketing/understand";
-
+import { motion, useInView } from "framer-motion";
+import { draw } from "../../../utilities/draw";
 export default function LandingPage() {
   const [row, setRow] = useState(10);
 
@@ -62,6 +63,9 @@ export default function LandingPage() {
 
   const [scale, setScale] = useState(0.75);
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+
   //choose the screen size
   const handleResize = () => {
     if (window.innerWidth < 630) setScale(0.4);
@@ -105,20 +109,151 @@ export default function LandingPage() {
             scale={scale}
           />
           <div className="absolute bottom-[50%] left-1/2 z-20  lg:left-0">
-            <Image
-              className="relative left-4 top-[19rem] scale-150 lg:left-20"
-              src="/assets/vertical-yellow-dashed.svg"
-              alt="templates screenshot"
-              width={4}
-              height={80}
-            />
-            <Image
-              className="relative top-48 scale-150 lg:top-56 lg:left-28"
-              src="/assets/vertical-white-dashed.svg"
-              alt="templates screenshot"
-              width={4}
-              height={80}
-            />
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="150"
+              viewBox="0 0 10 407.5"
+              className="relative left-4 top-10 scale-150 lg:left-20"
+              ref={ref}
+              initial="hidden"
+              animate={isInView ? "visible" : undefined}
+            >
+              <motion.g
+                id="Group_8"
+                data-name="Group 8"
+                transform="translate(-220.213 -1843.5)"
+              >
+                <motion.rect
+                  variants={draw(0.5)}
+                  id="Rectangle_16"
+                  data-name="Rectangle 16"
+                  width="100"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2225.5) rotate(-90)"
+                  fill="#ebff00"
+                />
+                <motion.rect
+                  variants={draw(0.6)}
+                  id="Rectangle_24"
+                  data-name="Rectangle 24"
+                  width="10"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2251) rotate(-90)"
+                  fill="#ebff00"
+                />
+                <motion.rect
+                  variants={draw(0.3)}
+                  id="Rectangle_20"
+                  data-name="Rectangle 20"
+                  width="100"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2054.5) rotate(-90)"
+                  fill="#ebff00"
+                />
+                <motion.rect
+                  variants={draw(0.2)}
+                  id="Rectangle_17"
+                  data-name="Rectangle 17"
+                  width="40"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 1939) rotate(-90)"
+                  fill="#ebff00"
+                />
+                <motion.rect
+                  variants={draw(0.1)}
+                  id="Rectangle_21"
+                  data-name="Rectangle 21"
+                  width="40"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 1883.5) rotate(-90)"
+                  fill="#ebff00"
+                />
+                <motion.rect
+                  variants={draw(0.4)}
+                  id="Rectangle_18"
+                  data-name="Rectangle 18"
+                  width="40"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2110) rotate(-90)"
+                  fill="#ebff00"
+                />
+              </motion.g>
+            </motion.svg>
+
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="10"
+              height="150"
+              viewBox="0 0 10 382"
+              className="relative top-48 scale-150 lg:-top-10 lg:left-28"
+              ref={ref}
+              initial="hidden"
+              animate={isInView ? "visible" : undefined}
+            >
+              <motion.g
+                id="Group_9"
+                data-name="Group 9"
+                transform="translate(230.213 2225.5) rotate(180)"
+              >
+                <motion.rect
+                  variants={draw(0.1)}
+                  id="Rectangle_16"
+                  data-name="Rectangle 16"
+                  width="100"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2225.5) rotate(-90)"
+                  fill="#fff"
+                />
+                <motion.rect
+                  variants={draw(0.3)}
+                  id="Rectangle_20"
+                  data-name="Rectangle 20"
+                  width="100"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2054.5) rotate(-90)"
+                  fill="#fff"
+                />
+                <motion.rect
+                  variants={draw(0.4)}
+                  id="Rectangle_17"
+                  data-name="Rectangle 17"
+                  width="40"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 1939) rotate(-90)"
+                  fill="#fff"
+                />
+                <motion.rect
+                  variants={draw(0.5)}
+                  id="Rectangle_21"
+                  data-name="Rectangle 21"
+                  width="40"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 1883.5) rotate(-90)"
+                  fill="#fff"
+                />
+                <motion.rect
+                  variants={draw(0.2)}
+                  id="Rectangle_18"
+                  data-name="Rectangle 18"
+                  width="40"
+                  height="10"
+                  rx="5"
+                  transform="translate(220.213 2110) rotate(-90)"
+                  fill="#fff"
+                />
+              </motion.g>
+            </motion.svg>
           </div>
           <Features methods={methods} rows={row} />
         </div>

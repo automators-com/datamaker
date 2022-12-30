@@ -21,12 +21,14 @@ export default function SplitSection({ scale }: { scale: number }) {
   }, [controls, isInView]);
 
   return (
-    <section className="relative z-10 flex h-96 flex-col items-center justify-center md:flex-row">
+    <section
+      className="relative z-10 flex h-96 flex-col items-center justify-center md:flex-row"
+      ref={ref}
+    >
       <div className="flex h-full w-full flex-col bg-[#482B7C] sm:flex-row">
         <motion.div
           className="flex w-full flex-col items-center justify-center px-10 pt-10 sm:w-2/3 sm:px-20 sm:pt-20 md:items-start"
-          transition={{ duration: 1 }}
-          ref={ref}
+          transition={{ duration: 2 }}
           animate={controls}
           initial="hidden"
           variants={squareVariants}
@@ -48,7 +50,7 @@ export default function SplitSection({ scale }: { scale: number }) {
         </motion.div>
         <motion.div
           className="mb-6 flex w-full items-center justify-center sm:w-1/3 "
-          transition={{ duration: 1 }}
+          transition={{ duration: 2 }}
           ref={ref}
           animate={controls}
           initial="hidden"
@@ -65,11 +67,11 @@ export default function SplitSection({ scale }: { scale: number }) {
       <div className="flex h-full w-full flex-col bg-[#1D1E39] sm:flex-row">
         <motion.div
           className="flex w-full flex-col items-center justify-center px-10 pt-10 sm:w-2/3 sm:px-20 sm:pt-20 md:items-start"
-          transition={{ duration: 1 }}
           ref={ref}
           animate={controls}
           initial="hidden"
           variants={squareVariants}
+          transition={{ duration: 2 }}
         >
           <strong className="text-xl">The future is AI</strong>
           <p className="py-10 text-center text-sm sm:pb-20 md:text-left">
@@ -88,7 +90,7 @@ export default function SplitSection({ scale }: { scale: number }) {
         </motion.div>
         <motion.div
           className="mb-6 flex w-full  items-center justify-center sm:w-1/3"
-          transition={{ duration: 1 }}
+          transition={{ duration: 2 }}
           ref={ref}
           animate={controls}
           initial="hidden"

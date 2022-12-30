@@ -55,6 +55,8 @@ export default function DataGeneration({
     if (isInView || isInView2) startAnimation(controls);
     else stopAnimation(controls);
 
+    console.log(isInView4);
+
     if (isInView4) {
       controls4.start({ opacity: 1 });
     }
@@ -76,6 +78,11 @@ export default function DataGeneration({
 
   const { scrollYProgress: scrollYProgressLines } = useScroll({
     target: ref3,
+  });
+
+  const { scrollYProgress: scrollYTitle } = useScroll({
+    target: ref4,
+    offset: ["end end", "start start"],
   });
 
   return (
@@ -316,7 +323,9 @@ export default function DataGeneration({
         </div>
       </motion.div>
 
-      <div className="flex h-auto w-full flex-col items-center md:flex-row">
+      <div className="relative flex h-auto w-full flex-col items-center md:flex-row">
+        {/* <span className="absolute -top-14 text-xl" > hiiii</span> */}
+
         {/* <Image
           className="relative md:-left-10"
           src="/assets/dashed-lines.svg"
@@ -391,8 +400,10 @@ export default function DataGeneration({
         </motion.svg>
         <motion.p
           initial={{ opacity: 0 }}
-          transition={{ duration: 1, delay: 2 }}
+          transition={{ duration: 1 }}
           animate={controls4}
+          ref={ref4}
+          style={{ opacity: scrollYTitle }}
           className="invisible w-2/3 animate-[cssAnimation_0s_3s_forwards] text-center text-2xl text-[#F46256] md:w-1/3 md:text-left md:text-3xl"
         >
           <strong>High-Quality test data is hard to come by,</strong> and using
@@ -402,7 +413,7 @@ export default function DataGeneration({
       </div>
       <div className="invisible flex w-full animate-[cssAnimation_0s_3s_forwards] items-center justify-center px-10 pb-40 pt-14">
         <p className="relative inline text-lg font-light md:w-1/2">
-          <span className="float-left flex h-6 items-center pr-4" ref={ref4}>
+          <span className="float-left flex h-6 items-center pr-4">
             <Image
               src="/assets/red-dots.svg"
               alt="red dots"
