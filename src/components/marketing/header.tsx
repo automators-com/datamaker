@@ -15,7 +15,7 @@ export default function Header({
     <header className="fixed z-50 flex h-10 w-full items-center justify-between py-8 pr-4 text-xs font-bold">
       <div
         onClick={() => scrollToTop()}
-        className="cursor-pointer rounded-r-full border border-l-0 border-[#459CA7] bg-[#1D1E39] py-3 px-16 text-[#EBFF00] transition duration-300 ease-in-out hover:bg-[#08FFB3] hover:text-[#1D1E39]"
+        className="bg-header rounded-r-full border border-l-0 border-[#459CA7] py-3 px-16"
       >
         dataMaker();
       </div>

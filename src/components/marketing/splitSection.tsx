@@ -3,16 +3,12 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import {
+  squareVariants,
+  startAnimation,
+  stopAnimation,
+} from "../../utilities/controlAnimation";
 
-// let window: Window & typeof globalThis;
-const squareVariants = {
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 50, type: "spring", stiffness: 120, delay: 0.5 },
-  },
-  hidden: { opacity: 0, scale: 0.5 },
-};
 export default function SplitSection({ scale }: { scale: number }) {
   const controls = useAnimation();
 
@@ -20,22 +16,19 @@ export default function SplitSection({ scale }: { scale: number }) {
   const isInView = useInView(ref);
 
   useEffect(() => {
-    async function startAnimation() {
-      await controls
-        .start("visible")
-        .then()
-        .catch((err) => console.log(err));
-    }
-    if (isInView) startAnimation();
+    if (isInView) startAnimation(controls);
+    else stopAnimation(controls);
   }, [controls, isInView]);
 
   return (
-    <section className="relative z-10 flex h-96 flex-col items-center justify-center md:flex-row">
+    <section
+      className="relative z-10 flex h-96 flex-col items-center justify-center md:flex-row"
+      ref={ref}
+    >
       <div className="flex h-full w-full flex-col bg-[#482B7C] sm:flex-row">
         <motion.div
           className="flex w-full flex-col items-center justify-center px-10 pt-10 sm:w-2/3 sm:px-20 sm:pt-20 md:items-start"
-          transition={{ duration: 1 }}
-          ref={ref}
+          transition={{ duration: 2 }}
           animate={controls}
           initial="hidden"
           variants={squareVariants}
@@ -57,7 +50,7 @@ export default function SplitSection({ scale }: { scale: number }) {
         </motion.div>
         <motion.div
           className="mb-6 flex w-full items-center justify-center sm:w-1/3 "
-          transition={{ duration: 1 }}
+          transition={{ duration: 2 }}
           ref={ref}
           animate={controls}
           initial="hidden"
@@ -74,11 +67,11 @@ export default function SplitSection({ scale }: { scale: number }) {
       <div className="flex h-full w-full flex-col bg-[#1D1E39] sm:flex-row">
         <motion.div
           className="flex w-full flex-col items-center justify-center px-10 pt-10 sm:w-2/3 sm:px-20 sm:pt-20 md:items-start"
-          transition={{ duration: 1 }}
           ref={ref}
           animate={controls}
           initial="hidden"
           variants={squareVariants}
+          transition={{ duration: 2 }}
         >
           <strong className="text-xl">The future is AI</strong>
           <p className="py-10 text-center text-sm sm:pb-20 md:text-left">
@@ -97,7 +90,7 @@ export default function SplitSection({ scale }: { scale: number }) {
         </motion.div>
         <motion.div
           className="mb-6 flex w-full  items-center justify-center sm:w-1/3"
-          transition={{ duration: 1 }}
+          transition={{ duration: 2 }}
           ref={ref}
           animate={controls}
           initial="hidden"

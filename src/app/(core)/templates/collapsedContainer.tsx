@@ -14,6 +14,8 @@ import { MenuI } from "../../../components/menu";
 import type { UseFieldArrayMove } from "react-hook-form";
 import { useFormContext } from "react-hook-form";
 import type { Item, TemplateForm } from "./types";
+import ReactTooltip from "react-tooltip";
+import Image from "next/image";
 
 const CollapsedContainer = ({
   deleteField,
@@ -141,18 +143,52 @@ const CollapsedContainer = ({
                 }
                 pClass="w-[55%]"
               />
-              <DropDown
-                label="Data Type"
-                list={DataTypes}
-                name="dataType"
-                setValue={(e: Item) => {
-                  setType(e);
-                  setValue(`fieldList.${index}.dataType`, e);
-                }}
-                value={type}
-                addClass="w-[45%]"
-                formRegister={{ ...register(`fieldList.${index}.dataType`) }}
-              />
+              <div className="relative w-[45%]">
+                <DropDown
+                  label="Data Type"
+                  list={DataTypes}
+                  name="dataType"
+                  setValue={(e: Item) => {
+                    setType(e);
+                    setValue(`fieldList.${index}.dataType`, e);
+                  }}
+                  value={type}
+                  addClass=""
+                  formRegister={{ ...register(`fieldList.${index}.dataType`) }}
+                />
+                {index === 0 && landing && (
+                  <>
+                    <div
+                      data-tip
+                      data-for="data"
+                      className="absolute -top-1 left-20 rounded-full bg-[#F46256] p-2"
+                    >
+                      <Image
+                        src="/assets/question-mark-icon.svg"
+                        alt="question icon"
+                        width={8}
+                        height={8}
+                      />
+                    </div>
+                    <ReactTooltip
+                      id="data"
+                      place="top"
+                      delayHide={300}
+                      effect="solid"
+                      className="!rounded-md !bg-black !p-3"
+                    >
+                      <p className="w-64 text-xs">
+                        <strong>
+                          Data Types determine the general form a data a field
+                          will generate,{" "}
+                        </strong>
+                        The list of data types is constantly growing already
+                        features a number of smart and AI-Driven methods.
+                      </p>
+                    </ReactTooltip>
+                  </>
+                )}
+              </div>
               {!landing && (
                 <MenuI
                   addClass={`${isSubmit && errors.fieldList ? "mt-7" : "mt-6"}`}
