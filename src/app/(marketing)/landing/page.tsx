@@ -114,7 +114,7 @@ export default function LandingPage() {
               width="10"
               height="150"
               viewBox="0 0 10 407.5"
-              className="relative left-4 top-10 scale-150 lg:left-20"
+              className="relative left-4 top-64 scale-150 lg:top-5 lg:left-20"
               ref={ref}
               initial="hidden"
               animate={isInView ? "visible" : undefined}
@@ -192,7 +192,7 @@ export default function LandingPage() {
               width="10"
               height="150"
               viewBox="0 0 10 382"
-              className="relative top-48 scale-150 lg:-top-10 lg:left-28"
+              className="relative top-36 scale-150 lg:-top-10 lg:left-28"
               ref={ref}
               initial="hidden"
               animate={isInView ? "visible" : undefined}
