@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { DataTypes } from "../../../utilities/constants";
 // import Constraints from "../../../components/constraints";
 import Divider from "../../../components/divider";
-import DropDown from "../../../components/dropdown";
+// import DropDown from "../../../components/dropdown";
 import { Input } from "../../../components/input";
 import { MenuI } from "../../../components/menu";
 import type { UseFieldArrayMove } from "react-hook-form";
@@ -16,6 +16,7 @@ import { useFormContext } from "react-hook-form";
 import type { Item, TemplateForm } from "./types";
 import ReactTooltip from "react-tooltip";
 import Image from "next/image";
+import ComboBox from "../../../components/combobox";
 
 const CollapsedContainer = ({
   deleteField,
@@ -144,7 +145,7 @@ const CollapsedContainer = ({
                 pClass="w-[55%]"
               />
               <div className="relative w-[45%]">
-                <DropDown
+                {/* <DropDown
                   label="Data Type"
                   list={DataTypes}
                   name="dataType"
@@ -154,6 +155,17 @@ const CollapsedContainer = ({
                   }}
                   value={type}
                   addClass=""
+                  formRegister={{ ...register(`fieldList.${index}.dataType`) }}
+                /> */}
+                <ComboBox
+                  label="Data Type"
+                  list={DataTypes}
+                  name="dataType"
+                  setValue={(e: Item) => {
+                    setType(e);
+                    setValue(`fieldList.${index}.dataType`, e);
+                  }}
+                  value={type}
                   formRegister={{ ...register(`fieldList.${index}.dataType`) }}
                 />
                 {index === 0 && landing && (

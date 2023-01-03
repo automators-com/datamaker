@@ -1,7 +1,6 @@
 import type { Item } from "../app/(core)/templates/types";
-import type { dropDownList } from "./types";
 
-export const DataTypes: dropDownList[] = [
+export const DataTypes: Item[] = [
   { id: 1, name: "String" },
   { id: 2, name: "Integer" },
   { id: 3, name: "Name" },

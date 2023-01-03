@@ -2,17 +2,7 @@ import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { classNames } from "../../utilities/className";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { dropDownList } from "../../utilities/types";
-
-interface IProps {
-  label?: string;
-  name: string;
-  value: dropDownList;
-  list: dropDownList[];
-  addClass?: string;
-  setValue: any; // function
-  formRegister?: any;
-}
+import type { IProps } from "./dropdownProps";
 
 const DropDown = ({ value, label, list, setValue, addClass }: IProps) => {
   return (
