@@ -108,7 +108,7 @@ export default function LandingPage() {
             setRow={setRow}
             scale={scale}
           />
-          <div className="absolute bottom-[50%] left-1/2 z-20  lg:left-0">
+          <div className="absolute bottom-[50%] left-1/2 z-20 hidden lg:left-0  lg:inline">
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"

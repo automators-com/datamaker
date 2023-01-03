@@ -80,7 +80,7 @@ export default function Features({
             width={1280}
             height={801}
           />
-          <div className="absolute -top-10 right-64 md:-top-96">
+          <div className="absolute -top-10 right-64 hidden md:-top-96 lg:inline">
             <motion.svg
               xmlns="http://www.w3.org/2000/svg"
               width="10"
