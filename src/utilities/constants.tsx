@@ -32,7 +32,7 @@ export const DataTypes: Item[] = [
   { id: 29, name: "Product Name" },
   { id: 30, name: "Boolean" },
   { id: 31, name: "Date[BirthDate]" },
-  { id: 32, name: "Date[Between]" },
+  // { id: 32, name: "Date[Between]" },
   { id: 33, name: "Date[Month]" },
   { id: 34, name: "Date[Weekday]" },
   { id: 35, name: "Time Zone" },

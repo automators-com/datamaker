@@ -112,9 +112,9 @@ export const getTableData = (len: number, data: TemplateField[]): any[] => {
           case 31:
             return faker.date.birthdate();
             break;
-          case 32:
-            return faker.date.between(min, max);
-            break;
+          // case 32:
+          //   return faker.date.between(min, max);
+          //   break;
           case 33:
             return faker.date.month();
             break;
