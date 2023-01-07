@@ -3,7 +3,7 @@ import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import Divider from "../../../components/divider";
 import CollapsedContainer from "./collapsedContainer";
-import { TemplateForm } from "./types";
+import type { TemplateForm } from "./types";
 
 export default function ArrayForm({
   isSubmit,
@@ -12,7 +12,7 @@ export default function ArrayForm({
   index,
 }: {
   isSubmit: boolean;
-  setIsArray: any;
+  setIsArray: (x: boolean) => void;
   isArray: boolean;
   index: number;
 }) {
@@ -23,7 +23,7 @@ export default function ArrayForm({
     name: `fieldList.${index}.arrayData`,
   });
 
-  console.log(fields);
+  console.log(fields, index);
 
   return (
     <>

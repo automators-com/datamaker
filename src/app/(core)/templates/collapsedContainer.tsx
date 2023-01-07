@@ -28,6 +28,7 @@ const CollapsedContainer = ({
   setIsArray,
   isArray,
   arrayIndex,
+  setIndex,
 }: {
   index: number;
   deleteField?: (i: number) => void;
@@ -37,6 +38,7 @@ const CollapsedContainer = ({
   isArray?: boolean;
   setIsArray?: (val: boolean) => void;
   arrayIndex?: number;
+  setIndex?: any;
 }) => {
   const {
     register,
@@ -71,7 +73,10 @@ const CollapsedContainer = ({
         : Fields[index].dataType
       : Fields[index].dataType
   );
-  const [arrayLength, setArrayLength] = useState(3);
+
+  const [arrayLength, setArrayLength] = useState(
+    Fields[index].arrayLength ? Fields[index].arrayLength : 2
+  );
 
   useEffect(() => {
     if (type.id === 36 && !arrayData) {
@@ -84,6 +89,9 @@ const CollapsedContainer = ({
         },
       ]);
 
+      console.log(index);
+
+      setIndex(index);
       setValue(`fieldList.${index}.arrayLength`, arrayLength);
     }
   }, [type]);
@@ -278,6 +286,9 @@ const CollapsedContainer = ({
                       setValue(`fieldList.${index}.arrayLength`, val);
 
                       setArrayLength(val);
+                      console.log(index);
+
+                      setIndex(index);
                     }}
                   />
 

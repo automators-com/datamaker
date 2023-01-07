@@ -49,6 +49,7 @@ export default function Form({
   // validate only onSubmit
   const [isSubmit, setIsSubmit] = useState(false);
   const [isArray, setIsArray] = useState(false);
+  const [fieldIndex, setIndex] = useState(0);
 
   // retrieve all hook methods
   const {
@@ -145,7 +146,6 @@ export default function Form({
             <Divider />
 
             {fields.map((item, index) => {
-              // setIndex(index)
               return (
                 <CollapsedContainer
                   key={item.id}
@@ -158,7 +158,7 @@ export default function Form({
                   isSubmit={isSubmit}
                   setIsArray={setIsArray}
                   isArray={isArray}
-                  arrayIndex={0}
+                  setIndex={setIndex}
                 />
               );
             })}
@@ -181,7 +181,7 @@ export default function Form({
             isArray={isArray}
             isSubmit={isSubmit}
             setIsArray={setIsArray}
-            index={0}
+            index={fieldIndex}
           />
         )}
       </div>
