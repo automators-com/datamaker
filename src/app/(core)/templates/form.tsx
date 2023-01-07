@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import Divider from "../../../components/divider";
 import { Input } from "../../../components/input";
+import ArrayForm from "./arrayForm";
 import CollapsedContainer from "./collapsedContainer";
 import FormHeader from "./formHeader";
 import type { Template, TemplateForm } from "./types";
@@ -47,6 +48,7 @@ export default function Form({
 
   // validate only onSubmit
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isArray, setIsArray] = useState(false);
 
   // retrieve all hook methods
   const {
@@ -54,6 +56,7 @@ export default function Form({
     formState: { errors, isDirty },
     reset,
     register,
+    // getValues
   } = useFormContext<TemplateForm>();
 
   const { fields, append, remove, move } = useFieldArray({
@@ -126,46 +129,61 @@ export default function Form({
       />
 
       <div className="p-6 sm:p-6 md:p-8 lg:p-9">
-        <Input
-          formRegister={register("templateName", {
-            required: "Please enter a template name",
-          })}
-          error={isSubmit ? errors.templateName?.message : ""}
-          id={"templateName"}
-          placeholder="Template Name"
-          type="text"
-          label="Template Name"
-        />
-
-        <Divider />
-
-        {fields.map((item, index) => {
-          return (
-            <CollapsedContainer
-              key={item.id}
-              index={index}
-              deleteField={(i: number) => {
-                if (fields.length === 1) return;
-                remove(i);
-              }}
-              move={move}
-              isSubmit={isSubmit}
+        {!isArray ? (
+          <>
+            <Input
+              formRegister={register("templateName", {
+                required: "Please enter a template name",
+              })}
+              error={isSubmit ? errors.templateName?.message : ""}
+              id={"templateName"}
+              placeholder="Template Name"
+              type="text"
+              label="Template Name"
             />
-          );
-        })}
 
-        <button
-          className="btn btn-link mt-2 flex !pl-0 font-normal"
-          onClick={() =>
-            append({
-              fieldName: "",
-              dataType: { id: 1, name: "String" },
-              constraints: [],
-            })
-          }
-        >
-          <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
-        </button>
+            <Divider />
+
+            {fields.map((item, index) => {
+              // setIndex(index)
+              return (
+                <CollapsedContainer
+                  key={item.id}
+                  index={index}
+                  deleteField={(i: number) => {
+                    if (fields.length === 1) return;
+                    remove(i);
+                  }}
+                  move={move}
+                  isSubmit={isSubmit}
+                  setIsArray={setIsArray}
+                  isArray={isArray}
+                  arrayIndex={0}
+                />
+              );
+            })}
+
+            <button
+              className="btn btn-link mt-2 flex !pl-0 font-normal"
+              onClick={() =>
+                append({
+                  fieldName: "",
+                  dataType: { id: 1, name: "String" },
+                  constraints: [],
+                })
+              }
+            >
+              <PlusCircleIcon className="!h-5 !w-5 text-accent" /> Add Field
+            </button>
+          </>
+        ) : (
+          <ArrayForm
+            isArray={isArray}
+            isSubmit={isSubmit}
+            setIsArray={setIsArray}
+            index={0}
+          />
+        )}
       </div>
     </>
   );

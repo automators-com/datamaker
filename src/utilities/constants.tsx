@@ -36,9 +36,9 @@ export const DataTypes: Item[] = [
   { id: 33, name: "Date[Month]" },
   { id: 34, name: "Date[Weekday]" },
   { id: 35, name: "Time Zone" },
+  { id: 36, name: "Array" },
 
   // { id: 5, name: "Object" },
-  // { id: 6, name: "Array" },
   // { id: 8, name: "Response" },
 ];
 

@@ -4,7 +4,7 @@ import { Disclosure } from "@headlessui/react";
 //   ChevronUpIcon,
 //   PlusIcon,
 // } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataTypes } from "../../../utilities/constants";
 // import Constraints from "../../../components/constraints";
 import Divider from "../../../components/divider";
@@ -17,6 +17,7 @@ import type { Item, TemplateForm } from "./types";
 import ReactTooltip from "react-tooltip";
 import Image from "next/image";
 import ComboBox from "../../../components/combobox";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const CollapsedContainer = ({
   deleteField,
@@ -24,24 +25,29 @@ const CollapsedContainer = ({
   move,
   isSubmit,
   landing,
+  setIsArray,
+  isArray,
+  arrayIndex,
 }: {
   index: number;
   deleteField?: (i: number) => void;
   move?: UseFieldArrayMove;
   isSubmit?: boolean;
   landing?: boolean;
+  isArray?: boolean;
+  setIsArray?: (val: boolean) => void;
+  arrayIndex?: number;
 }) => {
   const {
     register,
-    // control,
     getValues,
     setValue,
     formState: { errors },
-    // clearErrors,
-    // setError,
   } = useFormContext<TemplateForm>(); // retrieve all hook methods
 
   const Fields = getValues("fieldList");
+  const arrayData = getValues(`fieldList.${index}.arrayData`);
+
   // const { fields, append, remove } = useFieldArray({
   //   control,
   //   name: `fieldList.${index}.constraints`,
@@ -58,8 +64,29 @@ const CollapsedContainer = ({
   //   },
   // });
 
-  const [type, setType] = useState(Fields[index].dataType);
-  // const [list, setList] = useState(_list);
+  const [type, setType] = useState(
+    isArray
+      ? arrayData && typeof arrayIndex !== "undefined"
+        ? arrayData[arrayIndex].dataType
+        : Fields[index].dataType
+      : Fields[index].dataType
+  );
+  const [arrayLength, setArrayLength] = useState(3);
+
+  useEffect(() => {
+    if (type.id === 36 && !arrayData) {
+      console.log("first time");
+
+      setValue(`fieldList.${index}.arrayData`, [
+        {
+          fieldName: "",
+          dataType: { id: 1, name: "String" },
+        },
+      ]);
+
+      setValue(`fieldList.${index}.arrayLength`, arrayLength);
+    }
+  }, [type]);
 
   const handleDuplicate = () =>
     setValue("fieldList", [...Fields, Fields[index]]);
@@ -132,11 +159,22 @@ const CollapsedContainer = ({
                 addClass="border-base-content"
                 placeholder="Name"
                 type="text"
-                formRegister={{
-                  ...register(`fieldList.${index}.fieldName`, {
-                    required: "Please enter field name",
-                  }),
-                }}
+                formRegister={
+                  isArray && typeof arrayIndex !== "undefined"
+                    ? {
+                        ...register(
+                          `fieldList.${index}.arrayData.${arrayIndex}.fieldName`,
+                          {
+                            required: "Please enter field name",
+                          }
+                        ),
+                      }
+                    : {
+                        ...register(`fieldList.${index}.fieldName`, {
+                          required: "Please enter field name",
+                        }),
+                      }
+                }
                 error={
                   isSubmit && errors.fieldList
                     ? errors.fieldList[index]?.fieldName?.message
@@ -159,14 +197,25 @@ const CollapsedContainer = ({
                 /> */}
                 <ComboBox
                   label="Data Type"
-                  list={DataTypes}
+                  list={
+                    landing ? DataTypes.filter((x) => x.id !== 36) : DataTypes
+                  }
                   name="dataType"
                   setValue={(e: Item) => {
                     setType(e);
-                    setValue(`fieldList.${index}.dataType`, e);
+                    if (isArray && typeof arrayIndex !== "undefined")
+                      setValue(
+                        `fieldList.${index}.arrayData.${arrayIndex}.dataType`,
+                        e
+                      );
+                    else setValue(`fieldList.${index}.dataType`, e);
                   }}
                   value={type}
-                  formRegister={{ ...register(`fieldList.${index}.dataType`) }}
+                  formRegister={
+                    isArray
+                      ? { ...register(`fieldList.${index}.arrayData`) }
+                      : { ...register(`fieldList.${index}.dataType`) }
+                  }
                 />
                 {index === 0 && landing && (
                   <>
@@ -213,6 +262,39 @@ const CollapsedContainer = ({
             </div>
           </div>
           <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
+            {type.id === 36 && (
+              <>
+                <span className="w-14 text-xs font-medium text-base-content opacity-50">
+                  Array Settings
+                </span>
+
+                <div className="my-2 inline-flex w-auto flex-row items-center space-x-2 rounded-md bg-base-content bg-opacity-10 py-2 px-2 text-xs">
+                  <Input
+                    type="number"
+                    addClass="w-14 !pr-0.5 text-center"
+                    value={arrayLength}
+                    setValue={(e) => {
+                      const val = Number(e.target.value);
+                      setValue(`fieldList.${index}.arrayLength`, val);
+
+                      setArrayLength(val);
+                    }}
+                  />
+
+                  <span className="font-medium"> Iteration(s)</span>
+                </div>
+
+                <button
+                  className="btn-primary-accent-light flex h-12 w-auto items-center justify-between px-4 text-base-content"
+                  onClick={() => {
+                    setIsArray && setIsArray(true);
+                  }}
+                >
+                  <span className="font-medium"> Edit Array Fields </span>{" "}
+                  <ArrowRightIcon className="h-5 w-5" />
+                </button>
+              </>
+            )}
             {/* <>
                 <span className="w-[72px] pr-20 text-xs font-medium text-base-content opacity-50">
                   Field Constraints

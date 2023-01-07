@@ -6,6 +6,11 @@ export type TemplateField = {
   constraints: Constraint[];
   fieldName: string;
   dataType: Item;
+  arrayData?: {
+    fieldName: string;
+    dataType: Item;
+  }[];
+  arrayLength?: number;
 };
 
 export type Template = {
