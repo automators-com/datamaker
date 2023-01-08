@@ -17,6 +17,12 @@ export const Target = [
   { id: 2, name: "JSON" },
 ];
 
+export const DataSources = [
+  { id: 1, name: "CSV" },
+  // { id: 2, name: "JSON" },
+  // { id: 3, name: "SQL" },
+] as dropDownList[];
+
 export const _list: Item[] = [
   { id: 1, name: "Min" },
   { id: 2, name: "Max" },
