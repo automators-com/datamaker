@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -11,7 +12,7 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 // import { toast } from "react-toastify";
 
-export default function UploadData() {
+export default function UploadData({ setIsOpen }: { setIsOpen: any }) {
   const [fileContents, setFileContents] = useState<any>(null);
   const [uploading, setUploading] = useState(false);
 
@@ -44,12 +45,14 @@ export default function UploadData() {
       body: acceptedFiles[0],
     })
       .then((res: any) => {
-        if (res.ok) {
-          setFileContents(null);
-          console.log("Timesheet uploaded successfully");
-        } else {
-          console.log("Invalid timesheet");
-        }
+        const data = res.json();
+        return data;
+      })
+      .then((data: any) => {
+        console.log("Template generated successfully");
+        console.log(data);
+        setIsOpen(false);
+        setFileContents(null);
         setUploading(false);
       })
       .catch((err: any) => {
@@ -66,7 +69,7 @@ export default function UploadData() {
       <div
         className={`my-4 box-border flex h-80 w-full cursor-pointer flex-col items-center justify-center rounded-lg border border-base-content p-4 text-sm text-base-content`}
       >
-        Processing...
+        Processing...This may take a minute.
       </div>
     );
   }
@@ -111,7 +114,7 @@ export default function UploadData() {
       ) : (
         <div className="flex flex-col items-center justify-center">
           <p className="w-full text-center text-sm text-base-content">
-            Drag and drop or click here to upload your csv timesheet.
+            Drag and drop or click here to upload your csv file.
           </p>
         </div>
       )}

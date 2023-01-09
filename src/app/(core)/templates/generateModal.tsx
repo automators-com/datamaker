@@ -9,11 +9,14 @@ import UploadData from "./upload";
 export default function GenerateModal({
   isOpen,
   setIsOpen,
+  setSelectedTemplate,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  setSelectedTemplate: (template: any) => void;
 }) {
   const [selectedDataSource, setSelectedDataSource] = useState(DataSources[0]);
+  console.log(setSelectedTemplate);
 
   return (
     <>
@@ -74,7 +77,7 @@ export default function GenerateModal({
 
                   {selectedDataSource.id === 1 ? (
                     <div className="mt-2">
-                      <UploadData />
+                      <UploadData setIsOpen={setIsOpen} />
                     </div>
                   ) : (
                     <div className="mt-2">

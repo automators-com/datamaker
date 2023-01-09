@@ -94,7 +94,11 @@ export default function FormMenu({
         </Transition>
       </Menu>
       {isModalOpen && (
-        <GenerateModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+        <GenerateModal
+          isOpen={isModalOpen}
+          setIsOpen={setIsModalOpen}
+          setSelectedTemplate={setSelectedTemplate}
+        />
       )}
     </>
   );
