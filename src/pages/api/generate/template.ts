@@ -93,7 +93,7 @@ export default async function handler(
 
     await prisma.template.create({
       data: {
-        fields: JSON.stringify(template),
+        fields: template,
         name: "AI Generated Template",
         User: {
           connect: {

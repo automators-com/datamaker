@@ -16,7 +16,6 @@ export default function GenerateModal({
   setSelectedTemplate: (template: any) => void;
 }) {
   const [selectedDataSource, setSelectedDataSource] = useState(DataSources[0]);
-  console.log(setSelectedTemplate);
 
   return (
     <>
@@ -77,7 +76,10 @@ export default function GenerateModal({
 
                   {selectedDataSource.id === 1 ? (
                     <div className="mt-2">
-                      <UploadData setIsOpen={setIsOpen} />
+                      <UploadData
+                        setIsOpen={setIsOpen}
+                        setSelectedTemplate={setSelectedTemplate}
+                      />
                     </div>
                   ) : (
                     <div className="mt-2">

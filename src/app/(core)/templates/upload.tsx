@@ -12,9 +12,16 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 // import { toast } from "react-toastify";
 
-export default function UploadData({ setIsOpen }: { setIsOpen: any }) {
+export default function UploadData({
+  setIsOpen,
+  setSelectedTemplate,
+}: {
+  setIsOpen: any;
+  setSelectedTemplate: any;
+}) {
   const [fileContents, setFileContents] = useState<any>(null);
   const [uploading, setUploading] = useState(false);
+  console.log(setSelectedTemplate);
 
   const onDrop = (acceptedFiles: any) => {
     const reader = new FileReader();
@@ -51,6 +58,7 @@ export default function UploadData({ setIsOpen }: { setIsOpen: any }) {
       .then((data: any) => {
         console.log("Template generated successfully");
         console.log(data);
+        // setSelectedTemplate(data);
         setIsOpen(false);
         setFileContents(null);
         setUploading(false);
@@ -110,7 +118,7 @@ export default function UploadData({ setIsOpen }: { setIsOpen: any }) {
     >
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Let it go, let it go...</p>
+        <p className="text-sm text-base-content">Drop the file now</p>
       ) : (
         <div className="flex flex-col items-center justify-center">
           <p className="w-full text-center text-sm text-base-content">
