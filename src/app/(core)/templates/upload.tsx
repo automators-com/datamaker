@@ -8,8 +8,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
+import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
+import type { Template, TemplateField } from "./types";
 // import { toast } from "react-toastify";
 
 export default function UploadData({
@@ -17,11 +19,11 @@ export default function UploadData({
   setSelectedTemplate,
 }: {
   setIsOpen: any;
-  setSelectedTemplate: any;
+  setSelectedTemplate: Dispatch<SetStateAction<Template | null>>;
 }) {
   const [fileContents, setFileContents] = useState<any>(null);
   const [uploading, setUploading] = useState(false);
-  console.log(setSelectedTemplate);
+  const [fileName, setFileName] = useState("AI Generate Template");
 
   const onDrop = (acceptedFiles: any) => {
     const reader = new FileReader();
@@ -30,6 +32,8 @@ export default function UploadData({
       setFileContents(fileContent);
     };
     reader.readAsText(acceptedFiles[0]);
+
+    setFileName(acceptedFiles[0].name.split(".")[0]);
   };
 
   const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
@@ -55,10 +59,10 @@ export default function UploadData({
         const data = res.json();
         return data;
       })
-      .then((data: any) => {
+      .then((data: TemplateField[]) => {
         console.log("Template generated successfully");
         console.log(data);
-        // setSelectedTemplate(data);
+        setSelectedTemplate({ name: fileName, createdBy: "", fields: data });
         setIsOpen(false);
         setFileContents(null);
         setUploading(false);
