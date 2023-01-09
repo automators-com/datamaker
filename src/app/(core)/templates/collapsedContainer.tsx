@@ -56,7 +56,7 @@ const CollapsedContainer = ({
   //     },
   //   },
   // });
-
+  console.log({ Fields, index });
   const [type, setType] = useState(Fields[index].dataType);
   // const [list, setList] = useState(_list);
 
