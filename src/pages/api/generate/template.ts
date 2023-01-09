@@ -21,6 +21,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // only allow POST requests
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
   // check if user is logged in
   const session = await getServerSession(req, res, authOptions);
 
