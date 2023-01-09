@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ArrowLeftIcon,
   PaperAirplaneIcon as PaperAirplaneIconOutline,
@@ -8,14 +8,13 @@ import { exportJson } from "../../../utilities/exportData";
 import { classNames } from "../../../utilities/className";
 import { CSVLink } from "react-csv";
 import { handleClickScroll } from "../../../utilities/scrollTo";
-
-const Types = [
-  { name: "Table", id: 1 },
-  { name: "JSON", id: 2 },
-];
+import type { Item } from "./types";
+import { Types } from "../../../utilities/constants";
 
 export default function PreviewModal({
   // handleEdit,
+  preview,
+  setPreview,
   target,
   name,
   handleBack,
@@ -24,8 +23,10 @@ export default function PreviewModal({
   handleClose,
   landing,
 }: {
+  preview?: Item;
+  setPreview?: (val: Item) => void;
   target: number;
-  TableHeader: string[];
+  TableHeader: any[];
   name: string;
   // handleEdit: () => void;
   handleBack?: () => void;
@@ -33,7 +34,6 @@ export default function PreviewModal({
   tableData: any[];
   landing?: boolean;
 }) {
-  const [preview, setPreview] = useState(Types[0]);
   const pretty = JSON.stringify(tableData, null, 4);
 
   return (
@@ -92,7 +92,7 @@ export default function PreviewModal({
             )}
           </div>
         </div>
-        {preview.id === 1 ? (
+        {preview?.id === 1 ? (
           <div className="-mx-4 mt-7 h-80 overflow-auto shadow ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
             <table className="w-[90%] divide-y divide-base-200">
               <thead className="bg-secondary">

@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import type { TemplateForm } from "./types";
-import { getTableData } from "../../../utilities/tableData";
+import { getDataTable } from "../../../utilities/dataTable";
 import PreviewModal from "./previewModal";
 import DropDown from "../../../components/dropdown";
 import { exportJson } from "../../../utilities/exportData";
 import { CSVLink } from "react-csv";
-import { Target } from "../../../utilities/constants";
+import { Target, Types } from "../../../utilities/constants";
 
 export default function ExportModal({
   open,
@@ -24,11 +25,28 @@ export default function ExportModal({
     target: Target[0],
   });
 
+  const [preview, setPreview] = useState(Types[0]);
   const [openPreview, setOpenPreview] = useState(false);
   const dataPointRef = useRef<HTMLInputElement>(null);
 
-  const TableHeader = data?.fieldList; //?.map((x) => x.fieldName);
-  const tableData: any[] = getTableData(exportData.dataPoint, TableHeader);
+  const FieldList = data?.fieldList; //?.map((x) => x.fieldName);
+
+  const tableHeader = FieldList?.map((x) => {
+    if (x.dataType.id === 36) return x.arrayData?.map((y) => y.fieldName);
+    else return x.fieldName;
+  }).flat();
+
+  const _data: any =
+    preview.id === 2
+      ? FieldList
+      : FieldList?.map((x) => {
+          if (x.arrayLength) {
+            return x.arrayData;
+          } else return x;
+        }).flat();
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const dataTable: any[] = getDataTable(exportData.dataPoint, _data);
 
   const handleClose = () => {
     setOpen(false);
@@ -83,12 +101,14 @@ export default function ExportModal({
                     //   setOpenPreview(false);
                     //   setOpen(false);
                     // }}
+                    setPreview={setPreview}
+                    preview={preview}
                     handleClose={handleClose}
                     target={exportData.target.id}
                     name={data.templateName}
                     handleBack={() => setOpenPreview(false)}
-                    TableHeader={TableHeader?.map((x) => x.fieldName)}
-                    tableData={tableData}
+                    TableHeader={tableHeader} // TableHeader?.map((x) => x.fieldName)}
+                    tableData={dataTable}
                   />
                 ) : (
                   <>
@@ -169,7 +189,7 @@ export default function ExportModal({
 
                       {exportData.target.id === 1 ? (
                         <CSVLink
-                          data={tableData}
+                          data={dataTable}
                           filename={data.templateName}
                           className="btn btn-primary-accent"
                           target="_blank"
@@ -181,7 +201,7 @@ export default function ExportModal({
                         <button
                           className="btn btn-primary-accent"
                           onClick={() => {
-                            exportJson(tableData, data.templateName);
+                            exportJson(dataTable, data.templateName);
                             handleClose();
                           }}
                         >

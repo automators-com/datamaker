@@ -1,5 +1,10 @@
 import type { Item } from "../app/(core)/templates/types";
 
+export const Types = [
+  { name: "Table", id: 1 },
+  { name: "JSON", id: 2 },
+];
+
 export const DataTypes: Item[] = [
   { id: 1, name: "String" },
   { id: 2, name: "Integer" },

@@ -10,7 +10,7 @@ import { PaperAirplaneIcon as PaperAirplaneIconOutline } from "@heroicons/react/
 import { Input } from "../input";
 import { handleClickScroll } from "../../utilities/scrollTo";
 import { exportJson } from "../../utilities/exportData";
-import { getTableData } from "../../utilities/tableData";
+import { getDataTable } from "../../utilities/dataTable";
 import { motion, useAnimation, useInView, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -34,7 +34,7 @@ export default function DataGeneration({
   const [robotHover, setRobotHover] = useState(false);
   // const scale = 0.7;
   const Fields = methods.getValues("fieldList");
-  const tableData: any[] = getTableData(row, Fields);
+  const tableData: any[] = getDataTable(row, Fields);
 
   const controls = useAnimation();
   const controls3 = useAnimation();

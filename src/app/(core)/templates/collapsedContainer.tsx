@@ -269,9 +269,37 @@ const CollapsedContainer = ({
               )}
             </div>
           </div>
-          <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 px-5 pt-3">
+          <Disclosure.Panel className="flex flex-wrap items-center gap-x-2 pt-3">
             {type.id === 36 && (
               <>
+                <p className="mt-1 mb-3 text-xs">
+                  {" "}
+                  [Street,{" "}
+                  <span className="text-base-content text-opacity-50">
+                    String
+                  </span>
+                  ], [Number,{" "}
+                  <span className="text-base-content text-opacity-50">
+                    Integer
+                  </span>
+                  ], [City,{" "}
+                  <span className="text-base-content text-opacity-50">
+                    String
+                  </span>
+                  ], [Postal Code,{" "}
+                  <span className="text-base-content text-opacity-50">
+                    Integer
+                  </span>
+                  ], [Country,{" "}
+                  <span className="text-base-content text-opacity-50">
+                    String
+                  </span>
+                  ], [Province,{" "}
+                  <span className="text-base-content text-opacity-50">
+                    String
+                  </span>
+                  ]
+                </p>
                 <span className="w-14 text-xs font-medium text-base-content opacity-50">
                   Array Settings
                 </span>

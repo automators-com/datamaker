@@ -15,7 +15,7 @@ import Placeholder from "./placeholder";
 import LivePreview from "./livePreview";
 
 import type { Template, TemplateForm } from "./types";
-import { getTableData } from "../../../utilities/tableData";
+import { getDataTable } from "../../../utilities/dataTable";
 import MoonLoader from "../../../components/loaders/moonLoader";
 import { FormProvider, useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
@@ -143,7 +143,7 @@ export default function Page() {
     },
   });
 
-  const tableData = getTableData(1, watch().fieldList);
+  const tableData = getDataTable(1, watch().fieldList);
 
   const onSubmit = (data: TemplateForm) => {
     console.log(data);

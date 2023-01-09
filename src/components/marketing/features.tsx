@@ -3,7 +3,7 @@ import type { UseFormReturn } from "react-hook-form";
 import PreviewModal from "../../app/(core)/templates/previewModal";
 import type { TemplateForm } from "../../app/(core)/templates/types";
 import { Target } from "../../utilities/constants";
-import { getTableData } from "../../utilities/tableData";
+import { getDataTable } from "../../utilities/dataTable";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { draw } from "../../utilities/draw";
@@ -311,7 +311,7 @@ export default function Features({
           <PreviewModal
             name=""
             TableHeader={DataTable.map((x) => x.fieldName)}
-            tableData={getTableData(rows, DataTable)}
+            tableData={getDataTable(rows, DataTable)}
             target={Target[0].id}
             landing={true}
           />

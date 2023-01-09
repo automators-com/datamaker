@@ -2,7 +2,7 @@
 import { faker } from "@faker-js/faker";
 import type { Item, TemplateField } from "../app/(core)/templates/types";
 
-export const getTableData = (
+export const getDataTable = (
   len: number,
   data:
     | TemplateField[]
@@ -146,15 +146,11 @@ export const getTableData = (
               return faker.address.timeZone();
               break;
             case 36:
-              console.log(data, field);
-
               // eslint-disable-next-line no-case-declarations
-              const dat = getTableData(
+              const dat = getDataTable(
                 field.arrayLength ? field.arrayLength : 2,
                 field.arrayData
               );
-              console.log(dat);
-
               return dat;
               break;
             default:
